@@ -1,0 +1,19 @@
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\bin\Debug\FCS_Funding.exe.config
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\bin\Debug\FCS_Funding.exe
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\bin\Debug\FCS_Funding.pdb
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.csprojResolveAssemblyReference.cache
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\MainWindow.baml
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\MainWindow.g.cs
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\App.g.cs
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding_MarkupCompile.cache
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.g.resources
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.Properties.Resources.resources
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.csproj.GenerateResource.Cache
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.exe
+C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.pdb
+C:\Users\Spencer\Desktop\FCS_Funding\FCS_Funding\bin\Debug\FCS_Funding.exe.config
+C:\Users\Spencer\Desktop\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.exe
+C:\Users\Spencer\Desktop\FCS_Funding\FCS_Funding\obj\Debug\FCS_Funding.pdb
+C:\Users\Spencer\Desktop\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe.config
+C:\Users\Spencer\Desktop\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.exe
+C:\Users\Spencer\Desktop\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.pdb
