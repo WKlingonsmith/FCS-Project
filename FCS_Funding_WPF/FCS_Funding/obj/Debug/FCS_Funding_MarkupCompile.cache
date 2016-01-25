@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\obj\Debug\
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\obj\Debug\
 FCS_Funding
 none
 false
 DEBUG;TRACE
-C:\Users\Spencer\Documents\College\CS 4750\FCS_Funding\FCS_Funding\App.xaml
-11151548125
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\App.xaml
+3-1949800390
 
-5-2017746502
+738214567
 12-1401562060
-MainWindow.xaml;
+CreateNewClient.xaml;Login.xaml;MainWindow.xaml;
 
 False
 
