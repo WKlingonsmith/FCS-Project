@@ -27,7 +27,8 @@ namespace FCS_Funding
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
+            CreateNewClient cnc = new CreateNewClient();
+            cnc.Show();
         }
     }
 }

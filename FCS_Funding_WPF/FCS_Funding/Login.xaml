@@ -25,8 +25,8 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="3" Grid.Column="2"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">        
-            <TextBlock Text="FCS Funding Software" FontSize="18" HorizontalAlignment="Center" TextAlignment="Center"  VerticalAlignment="Center"  Grid.Row="3" Grid.Column="2"/>
+        <Border Grid.Row="3" Grid.Column="2"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBlock Text="FCS Funding Software" FontSize="18" HorizontalAlignment="Left" TextAlignment="Center"  VerticalAlignment="Center"  Grid.Row="3" Grid.Column="2" Margin="17.8,12.8,0,12.8"/>
         </Border>
         <TextBlock Text="Username:" Padding="110, 0, 0, 0" FontSize="18" Grid.Row="5" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" />
         <TextBlock Text="Password:" Padding="110, 0, 0, 0" FontSize="18" Grid.Row="6"  Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center"/>

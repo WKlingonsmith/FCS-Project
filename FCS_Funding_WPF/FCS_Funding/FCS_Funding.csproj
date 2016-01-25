@@ -69,6 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Client.cs" />
     <Compile Include="CreateNewClient.xaml.cs">
       <DependentUpon>CreateNewClient.xaml</DependentUpon>
     </Compile>
