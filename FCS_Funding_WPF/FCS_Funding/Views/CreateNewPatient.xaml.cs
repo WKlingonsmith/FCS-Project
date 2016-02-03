@@ -12,31 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace FCS_Funding
+namespace FCS_Funding.Views
 {
     /// <summary>
-    /// Interaction logic for CreateNewClient.xaml
+    /// Interaction logic for CreateNewPatient.xaml
     /// </summary>
-    public partial class CreateNewClient : Window
+    public partial class CreateNewPatient : Window
     {
-        public string clientName { get; set; }
-        public string clientOQ { get; set; }
+        public string patientName { get; set; }
+        public string patientOQ { get; set; }
         public string notes { get; set; }
-
-        public CreateNewClient()
+        public CreateNewPatient()
         {
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (this.clientName != null && this.clientOQ != null && this.notes != null)
+            if (this.patientName != null && this.patientOQ != null && this.notes != null)
             {
                 //add the client to the database
                 this.Close();
-                MessageBox.Show(this.clientName + " " + this.clientOQ + " " + this.notes);
+                MessageBox.Show(this.patientName + " " + this.patientOQ + " " + this.notes);
                 MessageBox.Show("Successfully added client.");
+                
             }
             else
             {

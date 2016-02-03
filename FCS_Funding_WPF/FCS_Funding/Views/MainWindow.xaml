@@ -32,7 +32,7 @@
                 </Setter>
             </Style>
         </TabControl.Resources>
-        <TabItem Width="150" Height="50" Header="Clients" FontSize="20" >
+        <TabItem Width="150" Height="50" Header="Pantients" FontSize="20" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -59,17 +59,18 @@
                 </Grid.RowDefinitions>
                 <Border Grid.RowSpan="14"  BorderThickness="0, 0, 3, 0" BorderBrush="Black">
                 </Border>
-                <Button Width="210" Grid.Column="0" Grid.Row="1" Content="Create New Client" Click="Button_Click" Margin="2,0.8,1.6,0" Height="45" VerticalAlignment="Top"/>
+                <Button Width="210" Grid.Column="0" Grid.Row="1" Content="Create New Patient" Click="Button_Click" Margin="2,0.8,1.6,0" Height="45" VerticalAlignment="Top"/>
+                <Button Width="210" Grid.Column="0" Grid.Row="2" Content="Create Household" Margin="2,0.8,1.6,0" Height="45" VerticalAlignment="Top" Click="Button_Click_1"/>
                 <ComboBox Name="SeachBy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" Text="Search By" Grid.Column="2" Grid.Row="1">
-                    <ComboBoxItem Name="cbi1">Client OQ</ComboBoxItem>
+                    <ComboBoxItem Name="cbi1">Patient OQ</ComboBoxItem>
                     <ComboBoxItem Name="cbi2">Name</ComboBoxItem>
                 </ComboBox>
                 <TextBox FontSize="18" Grid.Row="1" Grid.Column="3" Height="30" />
                 <Button Height="45" Width="210" Grid.Column="3" Grid.Row="2" Content="Filter" />
                 <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="10" CanUserResizeColumns="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Width="150" Binding="{Binding ID}"/>
-                        <DataGridTextColumn Header="Client OQ" Width="150" Binding="{Binding Date}"/>
+                        <DataGridTextColumn Header="Name" Width="150" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Patient OQ" Width="150" Binding="{Binding PatientOQ}"/>
                         <DataGridTextColumn Header="Notes" Width="340" Binding="{Binding Notes}"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -106,6 +107,21 @@
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="1" Content="Add New Grant"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="2" Content="Create Grant Reminder"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="3" Content="View Grant Reminder"/>
+                <ComboBox Name="GrantSeachBy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" Text="Search By" Grid.Column="2" Grid.Row="1">
+                    <ComboBoxItem Name="GrantID">Client OQ</ComboBoxItem>
+                    <ComboBoxItem Name="name">Name</ComboBoxItem>
+                    <ComboBoxItem Name="DateRange">Date Range</ComboBoxItem>
+                    <ComboBoxItem Name="TotalAmount">Total Amount</ComboBoxItem>
+                </ComboBox>
+                <TextBox FontSize="18" Grid.Row="1" Grid.Column="3" Height="30" />
+                <Button Height="45" Width="210" Grid.Column="3" Grid.Row="2" Content="Filter" />
+                <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="10" CanUserResizeColumns="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Width="150" Binding="{Binding ID}"/>
+                        <DataGridTextColumn Header="Client OQ" Width="150" Binding="{Binding Date}"/>
+                        <DataGridTextColumn Header="Notes" Width="340" Binding="{Binding Notes}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </TabItem>
         <TabItem Width="150" Height="50" Header="Donors" FontSize="20">
@@ -225,7 +241,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.RowSpan="14"  BorderThickness="0, 0, 3, 0" BorderBrush="Black">
                 </Border>
-                <Button Height="45" Width="210" Grid.Column="0" Grid.Row="1" Content="Client Revenue"/>
+                <Button Height="45" Width="210" Grid.Column="0" Grid.Row="1" Content="Client Revenue" />
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="2" Content="Client YTD"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="3" Content="Donations"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="4" Content="In-Kind Donations"/>

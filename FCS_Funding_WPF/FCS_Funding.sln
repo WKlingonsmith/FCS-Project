@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding", "FCS_Funding\FCS_Funding.csproj", "{A096A895-12B3-4F73-88FD-025367BE621F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding_Test", "FCS_Funding_Test\FCS_Funding_Test.csproj", "{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A096A895-12B3-4F73-88FD-025367BE621F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A096A895-12B3-4F73-88FD-025367BE621F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A096A895-12B3-4F73-88FD-025367BE621F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
