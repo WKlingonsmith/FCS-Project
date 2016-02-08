@@ -42,3 +42,7 @@ C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\ob
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\obj\Debug\Views\CreateNewPatient.g.cs
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\obj\Debug\Views\CreateHousehold.baml
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\obj\Debug\Views\CreateHousehold.g.cs
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.xml
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.SqlServer.xml

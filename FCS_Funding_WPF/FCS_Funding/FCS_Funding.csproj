@@ -34,9 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +64,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Donation.cs" />
+    <Compile Include="Models\DonationPurpose.cs" />
+    <Compile Include="Models\Donor.cs" />
+    <Compile Include="Models\DonorContact.cs" />
+    <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\ExpenseType.cs" />
+    <Compile Include="Models\FCS_DB.cs" />
+    <Compile Include="Models\FundRaisingEvent.cs" />
+    <Compile Include="Models\GrantProposal.cs" />
+    <Compile Include="Models\In_Kind_Item.cs" />
+    <Compile Include="Models\In_Kind_Service.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientHousehold.cs" />
+    <Compile Include="Models\PatientProblem.cs" />
+    <Compile Include="Models\Purpose.cs" />
+    <Compile Include="Models\Reminder.cs" />
+    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\View_FamilySessionCount.cs" />
+    <Compile Include="Models\View_GroupSessionCount.cs" />
+    <Compile Include="Models\View_IndividualSessionCount.cs" />
+    <Compile Include="Models\View_NewPatientByDoctor.cs" />
+    <Compile Include="Models\View_OnGoingPatientByDoctor.cs" />
     <Compile Include="Views\CreateHousehold.xaml.cs">
       <DependentUpon>CreateHousehold.xaml</DependentUpon>
     </Compile>
@@ -129,6 +161,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

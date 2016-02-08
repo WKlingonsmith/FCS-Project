@@ -74,6 +74,7 @@
         <Border Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="5"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="3" Grid.RowSpan="5" TextWrapping="Wrap" Text="{Binding notes, ElementName=ThisWindow}" />
         </Border>
+        <CheckBox Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="3" Content="Is Head of Household?" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button FontSize="18" Grid.Column="3" Grid.Row="16" Content="Add Client" Click="Button_Click" Margin="0.2,10,0,30" Grid.RowSpan="2"  />
     </Grid>
 </Window>
