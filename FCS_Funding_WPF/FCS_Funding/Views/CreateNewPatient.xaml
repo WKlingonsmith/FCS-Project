@@ -31,25 +31,37 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Family Member OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="30" />
-        <Border Grid.Row="3" Grid.Column="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding patientName, ElementName=ThisWindow}"/>
+        <TextBlock Text="Create New Patient" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        
+        <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+        <Border Grid.Row="3" Grid.Column="2" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Grid.Column="2" Text="{Binding firstName, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
-        <Border Grid.Row="5" Grid.Column="2" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Grid.Row="5" Grid.Column="2" Text="{Binding patientName, ElementName=ThisWindow}"/>
+        <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Height="30" />
+        <Border Grid.Row="3" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding lastName, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="3" Height="30" />
-        <Border Grid.Row="5" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding patientName, ElementName=ThisWindow}"/>
+        <TextBlock Text="Patient OQ" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
+        <Border Grid.Row="4" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Patient OQ" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
-        <Border Grid.Row="6" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" />
-        </Border>
-        <TextBlock Text="Gender" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="3" Height="30" />
-        <Border Grid.Row="6" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <TextBlock Text="Gender" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="3" Height="30" />
+        <Border Grid.Row="4" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18"  Text="{Binding gender, ElementName=ThisWindow}" />
+        </Border>
+        <CheckBox Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="3" Content="Is Head of Household?" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Change_HeadOfHousehold" >
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <CheckBox Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Content="First Member of Household?" Margin="26,0,0,0" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Disable_Textbox">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <TextBlock Text="Family Member OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Height="30" />
+        <Border Grid.Row="7" Grid.Column="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="Family_OQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" />
         </Border>
         <ComboBox Name="AgeGroup" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="175" Height="40" Text="Age Group" Grid.Column="2" Grid.Row="8" FontSize="20">
             <ComboBoxItem Name="five">0-5</ComboBoxItem>
@@ -72,9 +84,9 @@
         </ComboBox>
         <TextBlock Text="Notes" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" />
         <Border Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="5"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Grid.Row="5" Grid.Column="2"  Grid.ColumnSpan="3" Grid.RowSpan="5" TextWrapping="Wrap" Text="{Binding notes, ElementName=ThisWindow}" />
+            <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding notes, ElementName=ThisWindow}" />
         </Border>
-        <CheckBox Grid.Column="2" Grid.Row="15" Grid.ColumnSpan="3" Content="Is Head of Household?" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button FontSize="18" Grid.Column="3" Grid.Row="16" Content="Add Client" Click="Button_Click" Margin="0.2,10,0,30" Grid.RowSpan="2"  />
+        
+        <Button FontSize="18" Grid.Column="3" Grid.Row="16" Content="Add Client" Click="Add_Client" Margin="0.2,10,0,30" Grid.RowSpan="2"  />
     </Grid>
 </Window>

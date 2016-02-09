@@ -32,12 +32,6 @@ namespace FCS_Funding
             ch.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            CreateHousehold ch = new CreateHousehold();
-            ch.Show();
-        }
-
        
     }
 }
