@@ -171,6 +171,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FCS_DataTesting\FCS_DataTesting.csproj">
+      <Project>{c97a3bc5-35bc-4e38-b295-d2b1a5e6e0d2}</Project>
+      <Name>FCS_DataTesting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
