@@ -26,18 +26,24 @@ namespace FCS_Funding
         public ObservableCollection<Patient> data { get; set; }
         public MainWindow()
         {
+            
+            //DGrid.ItemsSource = data;
+            
+            InitializeComponent();
+        }
+        private void Patient_Grid(object sender, RoutedEventArgs e)
+        {
             //ItemsSource="{Binding Source=data}"
             Patient p1 = new Patient("Spencer", 2546, "Loves basketball");
             Patient p2 = new Patient("Tom", 2547, "Hate basketball");
             Patient p3 = new Patient("Chris", 2548, "Loves football");
             data = new ObservableCollection<Patient>();
-            data.Add(p1); 
+            data.Add(p1);
             data.Add(p2);
             data.Add(p3);
-            DGrid.ItemsSource = null;
-            DGrid.ItemsSource = data;
-            
-            InitializeComponent();
+            // ... Assign ItemsSource of DataGrid.
+            var grid = sender as DataGrid;
+            grid.ItemsSource = data;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

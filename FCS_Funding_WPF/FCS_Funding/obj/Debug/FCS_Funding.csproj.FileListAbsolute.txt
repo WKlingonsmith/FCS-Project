@@ -48,3 +48,14 @@ C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bi
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_DataTesting.dll
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_DataTesting.pdb
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll

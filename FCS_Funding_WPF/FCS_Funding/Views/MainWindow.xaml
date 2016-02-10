@@ -66,11 +66,11 @@
                 </ComboBox>
                 <TextBox FontSize="18" Grid.Row="1" Grid.Column="3" Height="30" />
                 <Button Height="45" Width="210" Grid.Column="3" Grid.Row="2" Content="Filter" />
-                <DataGrid Grid.Column="1" Name="DGrid"  Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="10" ItemsSource="{Binding Source=data}" CanUserResizeColumns="True"  AutoGenerateColumns="False">
+                <DataGrid Grid.Column="1" Name="DGrid"  Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="10" Loaded="Patient_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Width="150" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Patient OQ" Width="150" Binding="{Binding PatientOQ}"/>
-                        <DataGridTextColumn Header="Note" Width="340" Binding="{Binding Notes}"/>
+                        <DataGridTextColumn Header="Name" Width="150" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Patient OQ" Width="150" Binding="{Binding Path=PatientOQ}"/>
+                        <DataGridTextColumn Header="Note" Width="340" Binding="{Binding Path=Notes}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
