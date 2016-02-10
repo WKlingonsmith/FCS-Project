@@ -9,8 +9,13 @@ namespace FCS_Funding.Models
     [Table("ExpenseType")]
     public partial class ExpenseType
     {
-        public ExpenseType()
+        //Ken made this constructor, FOR SCIENCE
+        public ExpenseType(int etID, string et1, string eDescription)
         {
+            ExpenseTypeID = etID;
+            ExpenseType1 = et1;
+            ExpenseDescription = eDescription;
+
             Expense = new HashSet<Expense>();
         }
 

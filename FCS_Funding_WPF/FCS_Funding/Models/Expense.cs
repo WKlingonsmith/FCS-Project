@@ -9,6 +9,19 @@ namespace FCS_Funding.Models
     [Table("Expense")]
     public partial class Expense
     {
+        //Ken made this constructor
+        Expense(int eID, int etID, int dID, int pID, int aID, DateTime eDueDate, DateTime ePaidDate, decimal eAmount)
+        {
+            ExpenseID = eID;
+            ExpenseTypeID = etID;
+            DonationID = dID;
+            PatientID = pID;
+            AppointmentID = aID;
+            ExpenseDueDate = eDueDate;
+            ExpensePaidDate = ePaidDate;
+            ExpenseAmount = eAmount;
+        }
+
         public int ExpenseID { get; set; }
 
         public int ExpenseTypeID { get; set; }
