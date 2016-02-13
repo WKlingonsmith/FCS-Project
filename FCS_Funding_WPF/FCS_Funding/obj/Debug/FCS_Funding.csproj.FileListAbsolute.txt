@@ -46,6 +46,7 @@ C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bi
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.xml
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\EntityFramework.SqlServer.xml
+<<<<<<< HEAD
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe.config
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.exe
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.pdb
@@ -75,3 +76,7 @@ C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WP
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.g.resources
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.Properties.Resources.resources
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\obj\Debug\FCS_Funding.csproj.GenerateResource.Cache
+=======
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_DataTesting.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_DataTesting.pdb
+>>>>>>> 9cdca00102b1be9ceebcff637e55ef74cd989951

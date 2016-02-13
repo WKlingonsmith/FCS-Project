@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding", "FCS_Funding\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding_Test", "FCS_Funding_Test\FCS_Funding_Test.csproj", "{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_DataTesting", "FCS_DataTesting\FCS_DataTesting.csproj", "{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

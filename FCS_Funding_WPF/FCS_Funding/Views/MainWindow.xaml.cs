@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FCS_Funding.Views;
+using FCS_DataTesting;
+using System.Collections.ObjectModel;
 
 namespace FCS_Funding
 {
@@ -21,8 +23,20 @@ namespace FCS_Funding
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Patient> data { get; set; }
         public MainWindow()
         {
+            //ItemsSource="{Binding Source=data}"
+            Patient p1 = new Patient("Spencer", 2546, "Loves basketball");
+            Patient p2 = new Patient("Tom", 2547, "Hate basketball");
+            Patient p3 = new Patient("Chris", 2548, "Loves football");
+            data = new ObservableCollection<Patient>();
+            data.Add(p1); 
+            data.Add(p2);
+            data.Add(p3);
+            DGrid.ItemsSource = null;
+            DGrid.ItemsSource = data;
+            
             InitializeComponent();
         }
 

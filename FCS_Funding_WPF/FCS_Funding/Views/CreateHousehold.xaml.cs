@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FCS_Funding.Models;
 
 namespace FCS_Funding.Views
 {
@@ -60,6 +61,8 @@ namespace FCS_Funding.Views
                 date = DateTime.Now;
                 MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
                     + "\n" + notes + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n" + HeadOfHousehold + "\n" + Income);
+                PatientHousehold ph = new PatientHousehold(HouseholdPopulation, Income);
+                //ph.addHousehold();
             }
             //add both patient and household
             else

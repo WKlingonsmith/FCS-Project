@@ -12,8 +12,13 @@ DEBUG;TRACE
 C:\Users\Kenneth\Desktop\Spring2016\Software Engineering 3\fcsGit\FCS_Funding_WPF\FCS_Funding\App.xaml
 7-818300585
 
+<<<<<<< HEAD
 391215120039
 19-596894937
+=======
+39-119489048
+20264034638
+>>>>>>> 9cdca00102b1be9ceebcff637e55ef74cd989951
 Views\AddNewGrant.xaml;Views\CreateGrantReminder.xaml;Views\CreateHousehold.xaml;Views\CreateNewPatient.xaml;Views\Login.xaml;Views\MainWindow.xaml;Views\ViewGrantReminder.xaml;
 
 False

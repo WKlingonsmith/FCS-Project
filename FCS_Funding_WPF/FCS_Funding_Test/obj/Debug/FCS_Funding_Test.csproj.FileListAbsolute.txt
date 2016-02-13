@@ -8,3 +8,5 @@ C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Te
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\EntityFramework.dll
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_Funding.pdb
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\EntityFramework.xml
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_DataTesting.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_DataTesting.pdb
