@@ -3,3 +3,14 @@ C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTestin
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\obj\Debug\FCS_DataTesting.csprojResolveAssemblyReference.cache
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\obj\Debug\FCS_DataTesting.dll
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\obj\Debug\FCS_DataTesting.pdb
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\de\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\en\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\es\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\fr\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\it\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\ja\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\ko\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\ru\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_DataTesting\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
