@@ -9,8 +9,17 @@ namespace FCS_Funding.Models
     [Table("Donation")]
     public partial class Donation
     {
-        public Donation()
+        public Donation(int dId, int eId, int donId, int requestPersonalID, bool rest, bool iKind, decimal dAmount, DateTime dDate)
         {
+            DonationID = dId;
+            EventID = eId;
+            DonorID = donId;
+            RequestForPersonalID = requestPersonalID;
+            Restricted = rest;
+            InKind = iKind;
+            DonationAmount = dAmount;
+            DonationDate = dDate;
+
             DonationPurpose = new HashSet<DonationPurpose>();
             Expense = new HashSet<Expense>();
             In_Kind_Item = new HashSet<In_Kind_Item>();

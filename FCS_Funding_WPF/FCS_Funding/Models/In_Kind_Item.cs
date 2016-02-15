@@ -8,6 +8,15 @@ namespace FCS_Funding.Models
 
     public partial class In_Kind_Item
     {
+        //Constructor made by Ken
+        public In_Kind_Item(int iID, int dID, string name, string description)
+        {
+            ItemID = iID;
+            DonationID = dID;
+            ItemName = name;
+            ItemDescription = description;
+        }
+
         [Key]
         public int ItemID { get; set; }
 

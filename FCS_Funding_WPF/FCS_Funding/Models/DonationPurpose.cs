@@ -9,6 +9,15 @@ namespace FCS_Funding.Models
     [Table("DonationPurpose")]
     public partial class DonationPurpose
     {
+        /*Ken created this constructor*/
+        public DonationPurpose(int dpID, int dID, int pID, decimal dPurposeAmount)
+        {
+            DonationPurposeID = dpID;
+            DonationID = dID;
+            PurposeID = pID;
+            DonationPurposeAmount = dPurposeAmount;
+        }//end of constructor
+
         public int DonationPurposeID { get; set; }
 
         public int DonationID { get; set; }

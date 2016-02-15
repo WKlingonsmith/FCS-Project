@@ -9,6 +9,15 @@ namespace FCS_Funding.Models
     [Table("Reminder")]
     public partial class Reminder
     {
+        //constructor created by Ken
+        public Reminder(int remindID, int donorID, DateTime remindDate, string description)
+        {
+                ReminderID = remindID;
+                DonorID = donorID;
+                ReminderDate = remindDate;
+                ReminderDescription = description;
+        }
+
         public int ReminderID { get; set; }
 
         public int DonorID { get; set; }

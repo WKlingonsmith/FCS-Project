@@ -9,8 +9,21 @@ namespace FCS_Funding.Models
     [Table("Donor")]
     public partial class Donor
     {
-        public Donor()
+        //Ken made this constructor
+        public Donor(int dID, string dFirstName, string dLastName, string dType, string oName, string dAddress1,
+            string dAddress2, string dState, string dCity, string dZip)
         {
+            DonorID = dID;
+            DonorFirstName = dFirstName;
+            DonorLastName = dLastName;
+            DonorType = dType;
+            OrganizationName = oName;
+            DonorAddress1 = dAddress1;
+            DonorAddress2 = dAddress2;
+            DonorState = dState;
+            DonorCity = dCity;
+            DonorZip = dZip;
+
             Donation = new HashSet<Donation>();
             DonorContact = new HashSet<DonorContact>();
             GrantProposal = new HashSet<GrantProposal>();

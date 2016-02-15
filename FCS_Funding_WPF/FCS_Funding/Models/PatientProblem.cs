@@ -9,6 +9,15 @@ namespace FCS_Funding.Models
     [Table("PatientProblem")]
     public partial class PatientProblem
     {
+
+        //Constructor made by Ken
+        public PatientProblem(int probID, int patientID, string probType)
+        {
+            ProblemID = probID;
+            PatientID = patientID;
+            ProbelmType = probType;
+        }
+
         [Key]
         public int ProblemID { get; set; }
 

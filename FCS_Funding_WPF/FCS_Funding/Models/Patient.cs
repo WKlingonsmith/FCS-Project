@@ -9,8 +9,20 @@ namespace FCS_Funding.Models
     [Table("Patient")]
     public partial class Patient
     {
-        public Patient()
+        /*Ken set up this constructor*/
+        public Patient(int pID, int pOQ, int houseID, string fName, string lName, string pGender, 
+            string pAgeGroup, string pEthnicity, DateTime intakeHour, bool head)
         {
+            PatientID = pID; 
+            PatientOQ = pOQ;
+            HouseholdID = houseID;
+            PatientFirstName = fName;
+            PatientLastName = lName;
+            PatientGender = pGender;
+            PatientAgeGroup = pAgeGroup;
+            PatientEthnicity = pEthnicity;
+            NewClientIntakeHour = intakeHour;
+            IsHead = head;
             Expense = new HashSet<Expense>();
             PatientProblem = new HashSet<PatientProblem>();
         }

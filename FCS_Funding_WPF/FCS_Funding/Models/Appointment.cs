@@ -9,9 +9,16 @@ namespace FCS_Funding.Models
     [Table("Appointment")]
     public partial class Appointment
     {
-        public Appointment()
+        /*This constructor was created by Ken */
+        public Appointment(int aId, int sId, DateTime aStartDate, DateTime aEndDate, string aCancelType)
         {
-            Expense = new HashSet<Expense>();
+                AppointmentID = aId;
+                StaffID = sId;
+                AppointmentStartDate = aStartDate;
+                AppointmentEndDate = aEndDate;
+                AppointmentCancelationType = aCancelType;
+
+                Expense = new HashSet<Expense>();
         }
 
         public int AppointmentID { get; set; }

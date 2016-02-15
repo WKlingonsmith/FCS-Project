@@ -9,6 +9,16 @@ namespace FCS_Funding.Models
     [Table("FundRaisingEvent")]
     public partial class FundRaisingEvent
     {
+        //constructor.  Made by Ken?  Dunno
+        FundRaisingEvent(int eID, DateTime eStartDate, DateTime eEndDate, string eName, string eDescription)
+        {
+            EventID = eID;
+            EventStartDateTime = eStartDate;
+            EventEndDateTime = eEndDate;
+            EventName = eName;
+            EventDescription = eDescription;
+        }
+
         [Key]
         public int EventID { get; set; }
 

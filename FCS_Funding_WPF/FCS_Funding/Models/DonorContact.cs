@@ -9,6 +9,17 @@ namespace FCS_Funding.Models
     [Table("DonorContact")]
     public partial class DonorContact
     {
+        //Ken made this constructor
+        DonorContact(int cID, int dID, string cFirstName, string cLastName, string cPhone, string cEmail)
+        {
+            ContactID = cID;
+            DonorID = dID;
+            ContactFirstName = cFirstName;
+            ContactLastName = cLastName;
+            ContactPhone = cPhone;
+            ContactEmail = cEmail;
+        }//end of constructor
+
         [Key]
         public int ContactID { get; set; }
 
