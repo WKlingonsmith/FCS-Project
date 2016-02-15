@@ -8,6 +8,17 @@ namespace FCS_Funding.Models
 
     public partial class In_Kind_Service
     {
+        //constructor made by Ken
+        public In_Kind_Service(int sID, int dID, DateTime start, DateTime end, decimal rate, string description)
+        {
+            ServiceID = sID;
+            DonationID = dID;
+            StartDateTime = start;
+            EndDateTime = end;
+            RatePerHour = rate;
+            ServiceDescription = description;
+        }
+
         [Key]
         public int ServiceID { get; set; }
 
