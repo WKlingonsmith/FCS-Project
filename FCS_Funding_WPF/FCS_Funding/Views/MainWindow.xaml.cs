@@ -23,7 +23,10 @@ namespace FCS_Funding
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Patient> data { get; set; }
+        public ObservableCollection<Patient> Patients { get; set; }
+        public ObservableCollection<GrantsDataGrid> Grants { get; set; }
+        public ObservableCollection<DonorsDataGrid> Donors { get; set; }
+        public ObservableCollection<InKindDonation> InKindDonations { get; set; }
         public MainWindow()
         {
             
@@ -39,15 +42,15 @@ namespace FCS_Funding
             Patient p3 = new Patient(2546, "Mandy", "Fronberg", "Female", "18-24", "White", DateTime.Now, false, "Wife", "Loves basketball");
             Patient p4 = new Patient(2546, "Vince", "Fronberg", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves basketball");
             Patient p5 = new Patient(2546, "Tom", "Fronberg", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves basketball");
-            data = new ObservableCollection<Patient>();
-            data.Add(p1);
-            data.Add(p2);
-            data.Add(p3);
-            data.Add(p4);
-            data.Add(p5);
+            Patients = new ObservableCollection<Patient>();
+            Patients.Add(p1);
+            Patients.Add(p2);
+            Patients.Add(p3);
+            Patients.Add(p4);
+            Patients.Add(p5);
             // ... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
-            grid.ItemsSource = data;
+            grid.ItemsSource = Patients;
         }
         private void EditPatient(object sender, RoutedEventArgs e)
         {
@@ -56,10 +59,68 @@ namespace FCS_Funding
             MessageBox.Show("HI");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
         {
             CreateNewPatient ch = new CreateNewPatient();
             ch.Show();
+        }
+
+        private void Grants_Grid(object sender, RoutedEventArgs e)
+        {
+            GrantsDataGrid g1 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g2 = new GrantsDataGrid("New Charity", 124.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g3 = new GrantsDataGrid("Cross Charitable Foundation", 104.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g4 = new GrantsDataGrid("Cross Charitable Foundation", 102.25M, DateTime.Now, "Charitable People", "We wanted to donate");
+            GrantsDataGrid g5 = new GrantsDataGrid("Cross Charitable Foundation", 241.25M, DateTime.Now, "C", "We wanted to donate");
+            GrantsDataGrid g6 = new GrantsDataGrid("Cross Charitable Foundation", 254.25M, DateTime.Now, "Chari", "We wanted to donate");
+            GrantsDataGrid g7 = new GrantsDataGrid("Cross Charitable Foundation", 184.25M, DateTime.Now, "Charitds", "We wanted to donate");
+            GrantsDataGrid g8 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g9 = new GrantsDataGrid("New Charity", 124.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g13 = new GrantsDataGrid("Cross Charitable Foundation", 104.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g14 = new GrantsDataGrid("Cross Charitable Foundation", 102.25M, DateTime.Now, "Charitable People", "We wanted to donate");
+            GrantsDataGrid g15 = new GrantsDataGrid("Cross Charitable Foundation", 241.25M, DateTime.Now, "C", "We wanted to donate");
+            GrantsDataGrid g16 = new GrantsDataGrid("Cross Charitable Foundation", 254.25M, DateTime.Now, "Chari", "We wanted to donate");
+            GrantsDataGrid g17 = new GrantsDataGrid("Cross Charitable Foundation", 184.25M, DateTime.Now, "Charitds", "We wanted to donate");
+            Grants = new ObservableCollection<GrantsDataGrid>();
+            Grants.Add(g1);
+            Grants.Add(g2);
+            Grants.Add(g3);
+            Grants.Add(g4);
+            Grants.Add(g5);
+            Grants.Add(g6);
+            Grants.Add(g7);
+            Grants.Add(g8);
+            Grants.Add(g9);
+            Grants.Add(g13);
+            Grants.Add(g14);
+            Grants.Add(g15);
+            Grants.Add(g16);
+            Grants.Add(g17);
+            // ... Assign ItemsSource of DataGrid.
+            var grid = sender as DataGrid;
+            grid.ItemsSource = Grants;
+        }
+
+        private void Donor_Grid(object sender, RoutedEventArgs e)
+        {
+            DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
+            DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
+            Donors = new ObservableCollection<DonorsDataGrid>();
+            Donors.Add(d1);
+            Donors.Add(d2);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = Donors;
+        }
+
+        private void InKindGrid(object sender, RoutedEventArgs e)
+        {
+            InKindDonation in1 = new InKindDonation("-", "Tom Fronberg", "HAFB", DateTime.Now, "Helped Write Code", 5M, 11.25M);
+            InKindDonation in2 = new InKindDonation("Couch", "-", "HAFB", DateTime.Now, "Couch");
+            InKindDonations = new ObservableCollection<InKindDonation>();
+            InKindDonations.Add(in1);
+            InKindDonations.Add(in2);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = InKindDonations;
         }
 
        
