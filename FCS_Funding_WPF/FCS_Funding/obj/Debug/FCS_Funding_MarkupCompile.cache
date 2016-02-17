@@ -4,16 +4,28 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding\obj\Debug\
+=======
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\obj\Debug\
+>>>>>>> 79894778e31f2beef93760a7d7e57b0e33188d32
 FCS_Funding
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding\App.xaml
 7-818300585
 
 35108976113
 21309022779
+=======
+C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding\App.xaml
+7-818300585
+
+35108976113
+21-1902797770
+>>>>>>> 79894778e31f2beef93760a7d7e57b0e33188d32
 Views\AddNewGrant.xaml;Views\CreateGrantReminder.xaml;Views\CreateHousehold.xaml;Views\CreateNewPatient.xaml;Views\Login.xaml;Views\MainWindow.xaml;Views\ViewGrantReminder.xaml;
 
 False
