@@ -288,6 +288,20 @@
                 <Border Grid.RowSpan="14"  BorderThickness="0, 0, 3, 0" BorderBrush="Black">
                 </Border>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="1" Content="Create New Event"/>
+                <ComboBox x:Name="SeachBy_Copy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" Text="Search By" Grid.Column="2" Grid.Row="1" Margin="7.2,10.8">
+                    <ComboBoxItem x:Name="cb1" Content="Event ID"/>
+                    <ComboBoxItem x:Name="cb2" Content="Event Name"/>
+                </ComboBox>
+                <DataGrid Grid.Column="1" x:Name="Events_Grid"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="10" Loaded="Patient_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Event Name" Width="350" Binding="{Binding EventName}"/>
+                        <DataGridTextColumn Header="Event ID" Width="200" Binding="{Binding EventID}"/>
+                        <DataGridTextColumn Header="Event Date" Width="200" Binding="{Binding EventDate}"/>
+                        <DataGridTextColumn Header="Total $ Raised" Width="315" Binding="{Binding AmountRaised}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox FontSize="18" Grid.Row="1" Grid.Column="3" Height="30" Grid.ColumnSpan="2" Margin="0,15.8,214,15.8" />
+                <Button Height="45" Width="210" Grid.Column="3" Grid.Row="2" Content="Filter" Margin="1.8,8.3" />
             </Grid>
         </TabItem>
         <TabItem Width="150" Height="50" Header="Reports" FontSize="20">
@@ -325,6 +339,20 @@
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="5" Content="Grant Donations"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="6" Content="Grant Fiscal Year"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="7" Content="Accounting Sheet"/>
+                <ComboBox x:Name="SeachBy_Copy1" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" Text="Search By" Grid.Column="2" Grid.Row="1" Margin="7.2,10.8">
+                    <ComboBoxItem x:Name="cbr1" Content="Event ID"/>
+                    <ComboBoxItem x:Name="cbr2" Content="Event Name"/>
+                    <ComboBoxItem x:Name="cbr3" Content="Event Date"/>
+                </ComboBox>
+                <TextBox FontSize="18" Grid.Row="1" Grid.Column="3" Height="30" Grid.ColumnSpan="2" Margin="0,15.8,214,15.8" />
+                <Button Height="45" Width="210" Grid.Column="3" Grid.Row="2" Content="Filter" Margin="1.8,8.3" />
+                <DataGrid Grid.Column="1" x:Name="Reports_Grid"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="10" Loaded="Patient_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Event Name" Width="500" Binding="{Binding EventName}"/>
+                        <DataGridTextColumn Header="Event ID" Width="300" Binding="{Binding EventID}"/>
+                        <DataGridTextColumn Header="Event Date" Width="250" Binding="{Binding EventDate}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </TabItem>
         <TabItem Width="150" Height="50" Header="Administrative" FontSize="20">
@@ -357,6 +385,14 @@
                 </Border>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="1" Content="Create New Account"/>
                 <Button Height="45" Width="210" Grid.Column="0" Grid.Row="2" Content="Create Backup"/>
+                <DataGrid x:Name="Admin_Grid"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="11" Loaded="Patient_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False" Margin="3.4,9.8,0.2,0.2" Grid.Column="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="User Name" Width="500" Binding="{Binding UserName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="43" Margin="0.4,8.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="418"/>
+                <Button x:Name="button" Content="Search" Grid.Column="5" HorizontalAlignment="Left" Height="41" Margin="10.4,10.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="193"/>
+                <TextBlock x:Name="textBlock" Grid.ColumnSpan="2" Grid.Column="1" Height="43" Margin="205.4,8.4,9.6,10.2" Grid.Row="1" TextWrapping="Wrap" Text="Search By Username"/>
             </Grid>
         </TabItem>
     </TabControl>
