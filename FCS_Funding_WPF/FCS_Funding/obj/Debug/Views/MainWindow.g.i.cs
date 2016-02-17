@@ -64,15 +64,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 70 "..\..\..\Views\MainWindow.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.DataGrid DGrid;
-        
-        #line default
-        #line hidden
-        
-        
-        #line 123 "..\..\..\Views\MainWindow.xaml"
+        #line 128 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox GrantSeachBy;
         
@@ -80,7 +72,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 124 "..\..\..\Views\MainWindow.xaml"
+        #line 129 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem GrantID;
         
@@ -88,7 +80,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 125 "..\..\..\Views\MainWindow.xaml"
+        #line 130 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem name;
         
@@ -96,7 +88,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 126 "..\..\..\Views\MainWindow.xaml"
+        #line 131 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem DateRange;
         
@@ -104,7 +96,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 127 "..\..\..\Views\MainWindow.xaml"
+        #line 132 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem TotalAmount;
         
@@ -112,7 +104,127 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 231 "..\..\..\Views\MainWindow.xaml"
+        #line 180 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBox DonorSeachBy;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 181 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem FirstName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 182 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem LastName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 183 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem OrganizationName;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 184 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem DonorType;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 185 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem DonorAddress1;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 186 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem DonorAddress2;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 187 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem DonorState;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 188 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem DonorCity;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 189 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem DonorZip;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 240 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBox InKindSeachBy;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 241 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem rantID;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 242 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem ame;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 243 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem ateRange;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 244 "..\..\..\Views\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ComboBoxItem ToalAmount;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 291 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox SeachBy_Copy;
         
@@ -120,7 +232,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 232 "..\..\..\Views\MainWindow.xaml"
+        #line 292 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cb1;
         
@@ -128,7 +240,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 233 "..\..\..\Views\MainWindow.xaml"
+        #line 293 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cb2;
         
@@ -136,7 +248,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 235 "..\..\..\Views\MainWindow.xaml"
+        #line 295 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid Events_Grid;
         
@@ -144,7 +256,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 282 "..\..\..\Views\MainWindow.xaml"
+        #line 342 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox SeachBy_Copy1;
         
@@ -152,7 +264,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 283 "..\..\..\Views\MainWindow.xaml"
+        #line 343 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbr1;
         
@@ -160,7 +272,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 284 "..\..\..\Views\MainWindow.xaml"
+        #line 344 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbr2;
         
@@ -168,7 +280,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 285 "..\..\..\Views\MainWindow.xaml"
+        #line 345 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbr3;
         
@@ -176,7 +288,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 289 "..\..\..\Views\MainWindow.xaml"
+        #line 349 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid Reports_Grid;
         
@@ -184,7 +296,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 328 "..\..\..\Views\MainWindow.xaml"
+        #line 388 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid Admin_Grid;
         
@@ -192,7 +304,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 333 "..\..\..\Views\MainWindow.xaml"
+        #line 393 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox textBox;
         
@@ -200,7 +312,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 334 "..\..\..\Views\MainWindow.xaml"
+        #line 394 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button button;
         
@@ -208,7 +320,7 @@ namespace FCS_Funding {
         #line hidden
         
         
-        #line 335 "..\..\..\Views\MainWindow.xaml"
+        #line 395 "..\..\..\Views\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBlock textBlock;
         
@@ -248,7 +360,7 @@ namespace FCS_Funding {
             case 1:
             
             #line 63 "..\..\..\Views\MainWindow.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Button_Click);
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Open_CreateNewPatient);
             
             #line default
             #line hidden
@@ -263,10 +375,9 @@ namespace FCS_Funding {
             this.cbi2 = ((System.Windows.Controls.ComboBoxItem)(target));
             return;
             case 5:
-            this.DGrid = ((System.Windows.Controls.DataGrid)(target));
             
             #line 70 "..\..\..\Views\MainWindow.xaml"
-            this.DGrid.Loaded += new System.Windows.RoutedEventHandler(this.Patient_Grid);
+            ((System.Windows.Controls.DataGrid)(target)).Loaded += new System.Windows.RoutedEventHandler(this.Patient_Grid);
             
             #line default
             #line hidden
@@ -287,60 +398,129 @@ namespace FCS_Funding {
             this.TotalAmount = ((System.Windows.Controls.ComboBoxItem)(target));
             return;
             case 12:
-            this.SeachBy_Copy = ((System.Windows.Controls.ComboBox)(target));
+            
+            #line 136 "..\..\..\Views\MainWindow.xaml"
+            ((System.Windows.Controls.DataGrid)(target)).Loaded += new System.Windows.RoutedEventHandler(this.Grants_Grid);
+            
+            #line default
+            #line hidden
             return;
             case 13:
-            this.cb1 = ((System.Windows.Controls.ComboBoxItem)(target));
+            this.DonorSeachBy = ((System.Windows.Controls.ComboBox)(target));
             return;
             case 14:
-            this.cb2 = ((System.Windows.Controls.ComboBoxItem)(target));
+            this.FirstName = ((System.Windows.Controls.ComboBoxItem)(target));
             return;
             case 15:
+            this.LastName = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 16:
+            this.OrganizationName = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 17:
+            this.DonorType = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 18:
+            this.DonorAddress1 = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 19:
+            this.DonorAddress2 = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 20:
+            this.DonorState = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 21:
+            this.DonorCity = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 22:
+            this.DonorZip = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 23:
+            
+            #line 193 "..\..\..\Views\MainWindow.xaml"
+            ((System.Windows.Controls.DataGrid)(target)).Loaded += new System.Windows.RoutedEventHandler(this.Donor_Grid);
+            
+            #line default
+            #line hidden
+            return;
+            case 24:
+            this.InKindSeachBy = ((System.Windows.Controls.ComboBox)(target));
+            return;
+            case 25:
+            this.rantID = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 26:
+            this.ame = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 27:
+            this.ateRange = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 28:
+            this.ToalAmount = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 29:
+            
+            #line 248 "..\..\..\Views\MainWindow.xaml"
+            ((System.Windows.Controls.DataGrid)(target)).Loaded += new System.Windows.RoutedEventHandler(this.InKindGrid);
+            
+            #line default
+            #line hidden
+            return;
+            case 30:
+            this.SeachBy_Copy = ((System.Windows.Controls.ComboBox)(target));
+            return;
+            case 31:
+            this.cb1 = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 32:
+            this.cb2 = ((System.Windows.Controls.ComboBoxItem)(target));
+            return;
+            case 33:
             this.Events_Grid = ((System.Windows.Controls.DataGrid)(target));
             
-            #line 235 "..\..\..\Views\MainWindow.xaml"
+            #line 295 "..\..\..\Views\MainWindow.xaml"
             this.Events_Grid.Loaded += new System.Windows.RoutedEventHandler(this.Patient_Grid);
             
             #line default
             #line hidden
             return;
-            case 16:
+            case 34:
             this.SeachBy_Copy1 = ((System.Windows.Controls.ComboBox)(target));
             return;
-            case 17:
+            case 35:
             this.cbr1 = ((System.Windows.Controls.ComboBoxItem)(target));
             return;
-            case 18:
+            case 36:
             this.cbr2 = ((System.Windows.Controls.ComboBoxItem)(target));
             return;
-            case 19:
+            case 37:
             this.cbr3 = ((System.Windows.Controls.ComboBoxItem)(target));
             return;
-            case 20:
+            case 38:
             this.Reports_Grid = ((System.Windows.Controls.DataGrid)(target));
             
-            #line 289 "..\..\..\Views\MainWindow.xaml"
+            #line 349 "..\..\..\Views\MainWindow.xaml"
             this.Reports_Grid.Loaded += new System.Windows.RoutedEventHandler(this.Patient_Grid);
             
             #line default
             #line hidden
             return;
-            case 21:
+            case 39:
             this.Admin_Grid = ((System.Windows.Controls.DataGrid)(target));
             
-            #line 328 "..\..\..\Views\MainWindow.xaml"
+            #line 388 "..\..\..\Views\MainWindow.xaml"
             this.Admin_Grid.Loaded += new System.Windows.RoutedEventHandler(this.Patient_Grid);
             
             #line default
             #line hidden
             return;
-            case 22:
+            case 40:
             this.textBox = ((System.Windows.Controls.TextBox)(target));
             return;
-            case 23:
+            case 41:
             this.button = ((System.Windows.Controls.Button)(target));
             return;
-            case 24:
+            case 42:
             this.textBlock = ((System.Windows.Controls.TextBlock)(target));
             return;
             }
@@ -361,7 +541,7 @@ namespace FCS_Funding {
             eventSetter = new System.Windows.EventSetter();
             eventSetter.Event = System.Windows.Controls.Control.MouseDoubleClickEvent;
             
-            #line 85 "..\..\..\Views\MainWindow.xaml"
+            #line 86 "..\..\..\Views\MainWindow.xaml"
             eventSetter.Handler = new System.Windows.Input.MouseButtonEventHandler(this.EditPatient);
             
             #line default
