@@ -10,3 +10,16 @@ C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Te
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\EntityFramework.xml
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_DataTesting.dll
 C:\Users\Spencer\Documents\College\CS 4750\Source\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_DataTesting.pdb
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_Funding_Test.dll.config
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_Funding_Test.dll
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_Funding_Test.pdb
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_Funding.exe
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_DataTesting.dll
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\EntityFramework.dll
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_Funding.pdb
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\FCS_DataTesting.pdb
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\bin\Debug\EntityFramework.xml
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\obj\Debug\FCS_Funding_Test.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\obj\Debug\FCS_Funding_Test.dll
+C:\Users\Owner\Documents\CS 4750\FCS Funding\FCS_Funding_WPF\FCS_Funding_Test\obj\Debug\FCS_Funding_Test.pdb

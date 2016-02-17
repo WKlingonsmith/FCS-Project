@@ -27,6 +27,9 @@ namespace FCS_Funding
         public ObservableCollection<GrantsDataGrid> Grants { get; set; }
         public ObservableCollection<DonorsDataGrid> Donors { get; set; }
         public ObservableCollection<InKindDonation> InKindDonations { get; set; }
+        public ObservableCollection<EventsDataGrid> Events { get; set; }
+        public ObservableCollection<ReportsDataGrid> Reports { get; set; }
+        public ObservableCollection<AdminDataGrid> Admins { get; set; }
         public MainWindow()
         {
             
@@ -123,6 +126,42 @@ namespace FCS_Funding
             grid.ItemsSource = InKindDonations;
         }
 
-       
+        private void Events_Grid(object sender, RoutedEventArgs e)
+        {
+            EventsDataGrid e1 = new EventsDataGrid(1234, DateTime.Now, DateTime.Now, "Fall Fundraiser", "Held at Marriot Ballroom");
+            EventsDataGrid e2 = new EventsDataGrid(2345, DateTime.Now, DateTime.Now, "Spring Fundraiser", "Mayor of Ogden attending");
+            EventsDataGrid e3 = new EventsDataGrid(3456, DateTime.Now, DateTime.Now, "Summer Fundraiser", "Focusing on mental health");
+            EventsDataGrid e4 = new EventsDataGrid(1234, DateTime.Now, DateTime.Now, "Winter Fundraiser", "Give us money");
+            Events = new ObservableCollection<EventsDataGrid>();
+            Events.Add(e1);
+            Events.Add(e2);
+            Events.Add(e3);
+            Events.Add(e4);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = Events;
+
+        }
+
+        private void Reports_Grid(object sender, RoutedEventArgs e)
+        {
+            ReportsDataGrid r1 = new ReportsDataGrid("Summer Fund Raiser", "It was great");
+            ReportsDataGrid r2 = new ReportsDataGrid("Fall Fund Raiser", "It was great");
+            Reports = new ObservableCollection<ReportsDataGrid>();
+            Reports.Add(r1);
+            Reports.Add(r2);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = Reports;
+        }
+
+        private void Admin_Grid(object sender, RoutedEventArgs e)
+        {
+            AdminDataGrid a1 = new AdminDataGrid("13224", "Billy", "Joel");
+            AdminDataGrid a2 = new AdminDataGrid("12347", "Lionnel", "Messi");
+            Admins = new ObservableCollection<AdminDataGrid>();
+            Admins.Add(a1);
+            Admins.Add(a2);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = Admins;
+        }
     }
 }
