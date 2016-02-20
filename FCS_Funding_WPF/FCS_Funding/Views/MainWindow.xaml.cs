@@ -26,7 +26,8 @@ namespace FCS_Funding
         public ObservableCollection<Patient> Patients { get; set; }
         public ObservableCollection<GrantsDataGrid> Grants { get; set; }
         public ObservableCollection<DonorsDataGrid> Donors { get; set; }
-        public ObservableCollection<InKindDonation> InKindDonations { get; set; }
+        public ObservableCollection<InKindItem> InKindItems { get; set; }
+        public ObservableCollection<InKindService> InKindServices { get; set; }
         public ObservableCollection<EventsDataGrid> Events { get; set; }
         public ObservableCollection<ReportsDataGrid> Reports { get; set; }
         public ObservableCollection<AdminDataGrid> Admins { get; set; }
@@ -40,11 +41,11 @@ namespace FCS_Funding
         private void Patient_Grid(object sender, RoutedEventArgs e)
         {
             //ItemsSource="{Binding Source=data}"
-            Patient p1 = new Patient(2546, "Chri", "Fronberg", "Male", "18-24", "White", DateTime.Now, false, "Son", "Loves basketball");
-            Patient p2 = new Patient(2546, "Eric", "Fronberg", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves basketball");
-            Patient p3 = new Patient(2546, "Mandy", "Fronberg", "Female", "18-24", "White", DateTime.Now, false, "Wife", "Loves basketball");
-            Patient p4 = new Patient(2546, "Vince", "Fronberg", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves basketball");
-            Patient p5 = new Patient(2546, "Tom", "Fronberg", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves basketball");
+            Patient p1 = new Patient(15, "Derek", "Favors", "Male", "24-34", "Black", DateTime.Now, false, "Son", "Loves dunking");
+            Patient p2 = new Patient(25, "Raugh", "Neto", "Male", "18-24", "Brazilian", DateTime.Now, true, "Head", "Loves passing");
+            Patient p3 = new Patient(3, "Trey", "Burke", "Female", "18-24", "Black", DateTime.Now, false, "Wife", "Loves shooting");
+            Patient p4 = new Patient(20, "Gordon", "Hayward", "Male", "24-34", "White", DateTime.Now, true, "Head", "Loves three pointers");
+            Patient p5 = new Patient(27, "Rudy", "Gobert", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves Jazz");
             Patients = new ObservableCollection<Patient>();
             Patients.Add(p1);
             Patients.Add(p2);
@@ -57,15 +58,26 @@ namespace FCS_Funding
         }
         private void EditPatient(object sender, RoutedEventArgs e)
         {
-            DataGridRow row = sender as DataGridRow;
-            
-            MessageBox.Show("HI");
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                DataGrid dg = sender as DataGrid;
+                Patient p = (Patient)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdatePatient up = new UpdatePatient(p);
+                up.Topmost = true;
+                up.Show();
+            }
         }
 
         private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
         {
-            CreateNewPatient ch = new CreateNewPatient();
-            ch.Show();
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                CreateNewPatient ch = new CreateNewPatient();
+                ch.Topmost = true;
+                ch.Show();
+            }
         }
 
         private void Grants_Grid(object sender, RoutedEventArgs e)
@@ -115,15 +127,15 @@ namespace FCS_Funding
             grid.ItemsSource = Donors;
         }
 
-        private void InKindGrid(object sender, RoutedEventArgs e)
+        private void InKindItemGrid(object sender, RoutedEventArgs e)
         {
-            InKindDonation in1 = new InKindDonation("-", "Tom Fronberg", "HAFB", DateTime.Now, "Helped Write Code", 5M, 11.25M);
-            InKindDonation in2 = new InKindDonation("Couch", "-", "HAFB", DateTime.Now, "Couch");
-            InKindDonations = new ObservableCollection<InKindDonation>();
-            InKindDonations.Add(in1);
-            InKindDonations.Add(in2);
+            InKindItem in1 = new InKindItem("TV", "Tom", "Fronberg", "HAFB", DateTime.Now, "Includes a remote");
+            InKindItem in2 = new InKindItem("Couch", "Chris", "Johnson", "Clearfield Clinic", DateTime.Now, "Has a hole in it");
+            InKindItems = new ObservableCollection<InKindItem>();
+            InKindItems.Add(in1);
+            InKindItems.Add(in2);
             var grid = sender as DataGrid;
-            grid.ItemsSource = InKindDonations;
+            grid.ItemsSource = InKindItems;
         }
 
         private void Events_Grid(object sender, RoutedEventArgs e)
@@ -162,6 +174,17 @@ namespace FCS_Funding
             Admins.Add(a2);
             var grid = sender as DataGrid;
             grid.ItemsSource = Admins;
+        }
+
+        private void InKindServiceGrid(object sender, RoutedEventArgs e)
+        {
+            DateTime start = new DateTime(2016, 2, 17, 8, 24, 32);
+            DateTime end = new DateTime(2016, 2, 17, 16, 17, 8);
+            InKindService s1 = new InKindService("Spencer", "Fronberg", "HAFB", start, end, 10.75M, "Coding");
+            InKindServices = new ObservableCollection<InKindService>();
+            InKindServices.Add(s1);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = InKindServices;
         }
     }
 }

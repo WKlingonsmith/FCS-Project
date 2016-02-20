@@ -61,8 +61,15 @@ namespace FCS_Funding.Views
                 date = DateTime.Now;
                 MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
                     + "\n" + notes + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n" + HeadOfHousehold + "\n" + Income);
-                PatientHousehold ph = new PatientHousehold(HouseholdPopulation, Income);
-                //ph.addHousehold();
+                //FCS_DB n = new FCS_DB();
+                //n.PatientHousehold.Add()
+                //PatientHouseholdMap ph = new PatientHouseholdMap();
+                
+                //FCS_FundingDataSet mydb = new FCS_FundingDataSet();                
+                //mydb.PatientHousehold.AddPatientHouseholdRow(HouseholdPopulation, Income, County);
+                //mydb.Patient.AddPatientRow(patientOQ, mydb.PatientHousehold.OrderByDescending(u => u.HouseholdID).FirstOrDefault(), firstName, lastName, gender, ageGroup, ethnicGroup, DateTime.Now, headOfHouse);
+                //mydb.AcceptChanges();
+                
             }
             //add both patient and household
             else

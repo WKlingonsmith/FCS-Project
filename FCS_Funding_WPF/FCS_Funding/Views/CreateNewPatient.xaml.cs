@@ -59,7 +59,7 @@ namespace FCS_Funding.Views
                     ch.Show();
 
                 }
-                //Need to add the client with the OQ Number
+                //Need to add the client with the family OQ Number
                 else if(familyOQNumber > 0)
                 {
                     date = DateTime.Now;
