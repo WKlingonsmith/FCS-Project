@@ -74,17 +74,45 @@
     <Compile Include="Models\DonorContact.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\ExpenseType.cs" />
+    <Compile Include="Models\FCS_FundingContext.cs" />
+    <Compile Include="Models\FundRaisingEvent.cs" />
     <Compile Include="Models\GrantProposal.cs" />
     <Compile Include="Models\In_Kind_Item.cs" />
     <Compile Include="Models\In_Kind_Service.cs" />
+    <Compile Include="Models\Mapping\AppointmentMap.cs" />
+    <Compile Include="Models\Mapping\DonationMap.cs" />
+    <Compile Include="Models\Mapping\DonationPurposeMap.cs" />
+    <Compile Include="Models\Mapping\DonorContactMap.cs" />
+    <Compile Include="Models\Mapping\DonorMap.cs" />
+    <Compile Include="Models\Mapping\ExpenseMap.cs" />
+    <Compile Include="Models\Mapping\ExpenseTypeMap.cs" />
+    <Compile Include="Models\Mapping\FundRaisingEventMap.cs" />
+    <Compile Include="Models\Mapping\GrantProposalMap.cs" />
+    <Compile Include="Models\Mapping\In_Kind_ItemMap.cs" />
+    <Compile Include="Models\Mapping\In_Kind_ServiceMap.cs" />
+    <Compile Include="Models\Mapping\PatientHouseholdMap.cs" />
+    <Compile Include="Models\Mapping\PatientMap.cs" />
+    <Compile Include="Models\Mapping\PatientProblemMap.cs" />
+    <Compile Include="Models\Mapping\ProblemMap.cs" />
+    <Compile Include="Models\Mapping\PurposeMap.cs" />
+    <Compile Include="Models\Mapping\ReminderMap.cs" />
+    <Compile Include="Models\Mapping\StaffMap.cs" />
+    <Compile Include="Models\Mapping\View_FamilySessionCountMap.cs" />
+    <Compile Include="Models\Mapping\View_GroupSessionCountMap.cs" />
+    <Compile Include="Models\Mapping\View_GroupSessionPreCountMap.cs" />
+    <Compile Include="Models\Mapping\View_IndividualSessionCountMap.cs" />
+    <Compile Include="Models\Mapping\View_NewPatientByDoctorMap.cs" />
+    <Compile Include="Models\Mapping\View_OnGoingPatientByDoctorMap.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientHousehold.cs" />
     <Compile Include="Models\PatientProblem.cs" />
+    <Compile Include="Models\Problem.cs" />
     <Compile Include="Models\Purpose.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\View_FamilySessionCount.cs" />
     <Compile Include="Models\View_GroupSessionCount.cs" />
+    <Compile Include="Models\View_GroupSessionPreCount.cs" />
     <Compile Include="Models\View_IndividualSessionCount.cs" />
     <Compile Include="Models\View_NewPatientByDoctor.cs" />
     <Compile Include="Models\View_OnGoingPatientByDoctor.cs" />
@@ -186,6 +214,9 @@
       <Project>{c97a3bc5-35bc-4e38-b295-d2b1a5e6e0d2}</Project>
       <Name>FCS_DataTesting</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -54,11 +54,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CreateNewHouseold_Test.cs" />
-    <Compile Include="FCS_FundingDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FCS_FundingDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -75,17 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="FCS_FundingDataSet.xsc">
-      <DependentUpon>FCS_FundingDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="FCS_FundingDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FCS_FundingDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="FCS_FundingDataSet.xss">
-      <DependentUpon>FCS_FundingDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

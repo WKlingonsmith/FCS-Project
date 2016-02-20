@@ -64,11 +64,21 @@ namespace FCS_Funding.Views
                 //FCS_DB n = new FCS_DB();
                 //n.PatientHousehold.Add()
                 //PatientHouseholdMap ph = new PatientHouseholdMap();
-                
-                //FCS_FundingDataSet mydb = new FCS_FundingDataSet();                
+                //DataSet1 mydb = new DataSet1();                
                 //mydb.PatientHousehold.AddPatientHouseholdRow(HouseholdPopulation, Income, County);
                 //mydb.Patient.AddPatientRow(patientOQ, mydb.PatientHousehold.OrderByDescending(u => u.HouseholdID).FirstOrDefault(), firstName, lastName, gender, ageGroup, ethnicGroup, DateTime.Now, headOfHouse);
                 //mydb.AcceptChanges();
+                //Models.PatientHousehold ph = new Models.PatientHousehold();
+                //ph.HouseholdCounty = County;
+                //ph.HouseholdIncomeBracket = Income;
+                //ph.HouseholdPopulation = HouseholdPopulation;
+                FCS_FundingContext db = new FCS_FundingContext();
+                PatientHousehold p = new PatientHousehold(HouseholdPopulation, Income, County);
+                Patient pat = new Patient(patientOQ, p.HouseholdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, "Step Child");
+                
+                db.PatientHouseholds.Add(p);
+                db.Patients.Add(pat);
+                db.SaveChanges();
                 
             }
             //add both patient and household
