@@ -55,7 +55,6 @@ namespace FCS_Funding.Views
         {
             Determine_HeadOfHousehold(this.headOfHousehold.SelectedIndex);
             Determine_Income(this.income.SelectedIndex);
-            MessageBox.Show(this.County);
             if (HeadOfHousehold != null && Income != null && HouseholdPopulation > 0 && County != null && County != "")
             {
                 date = DateTime.Now;
@@ -72,14 +71,14 @@ namespace FCS_Funding.Views
                 //ph.HouseholdCounty = County;
                 //ph.HouseholdIncomeBracket = Income;
                 //ph.HouseholdPopulation = HouseholdPopulation;
+
                 FCS_FundingContext db = new FCS_FundingContext();
+                //db.Patients.Select(h => h.HouseholdID).Where(patientOQ);
                 PatientHousehold p = new PatientHousehold(HouseholdPopulation, Income, County);
                 Patient pat = new Patient(patientOQ, p.HouseholdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, "Step Child");
-                
                 db.PatientHouseholds.Add(p);
                 db.Patients.Add(pat);
-                db.SaveChanges();
-                
+                db.SaveChanges();    
             }
             //add both patient and household
             else

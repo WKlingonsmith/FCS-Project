@@ -30,7 +30,6 @@ namespace FCS_Funding.Views
             firstName = p.FirstName;
             lastName = p.LastName;
             patientOQ = p.PatientOQ;
-            notes = p.Notes;
             gender = p.Gender;
             InitializeComponent();
         }

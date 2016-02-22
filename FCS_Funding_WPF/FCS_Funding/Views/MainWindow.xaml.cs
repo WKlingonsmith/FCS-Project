@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FCS_Funding.Views;
 using FCS_DataTesting;
 using System.Collections.ObjectModel;
+//using FCS_Funding.Models;
 
 namespace FCS_Funding
 {
@@ -31,30 +32,127 @@ namespace FCS_Funding
         public ObservableCollection<EventsDataGrid> Events { get; set; }
         public ObservableCollection<ReportsDataGrid> Reports { get; set; }
         public ObservableCollection<AdminDataGrid> Admins { get; set; }
+        public string PatientFilter { get; set; }
+        public string PatientsSearchByEnum { get; set; }
+
+        //Helper properties
+        private bool ShouldLoadPatient { get; set; }
+        private bool ShouldRefreshPatients { get; set; }
+
         public MainWindow()
         {
             
             //DGrid.ItemsSource = data;
-            
+            ShouldLoadPatient = true;
+            ShouldRefreshPatients = false;
             InitializeComponent();
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
         {
-            //ItemsSource="{Binding Source=data}"
-            Patient p1 = new Patient(15, "Derek", "Favors", "Male", "24-34", "Black", DateTime.Now, false, "Son", "Loves dunking");
-            Patient p2 = new Patient(25, "Raugh", "Neto", "Male", "18-24", "Brazilian", DateTime.Now, true, "Head", "Loves passing");
-            Patient p3 = new Patient(3, "Trey", "Burke", "Female", "18-24", "Black", DateTime.Now, false, "Wife", "Loves shooting");
-            Patient p4 = new Patient(20, "Gordon", "Hayward", "Male", "24-34", "White", DateTime.Now, true, "Head", "Loves three pointers");
-            Patient p5 = new Patient(27, "Rudy", "Gobert", "Male", "18-24", "White", DateTime.Now, true, "Head", "Loves Jazz");
-            Patients = new ObservableCollection<Patient>();
-            Patients.Add(p1);
-            Patients.Add(p2);
-            Patients.Add(p3);
-            Patients.Add(p4);
-            Patients.Add(p5);
-            // ... Assign ItemsSource of DataGrid.
-            var grid = sender as DataGrid;
-            grid.ItemsSource = Patients;
+            int index = this.SeachBy_Patients.SelectedIndex;
+            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            var join1 = from patient in db.Patients
+                        join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
+                        select new
+                        {
+                            pOQ = patient.PatientOQ,
+                            FName = patient.PatientFirstName,
+                            LName = patient.PatientLastName,
+                            Gend = patient.PatientGender,
+                            aGroup = patient.PatientAgeGroup,
+                            ethn = patient.PatientEthnicity,
+                            theTime = patient.NewClientIntakeHour,
+                            head = patient.IsHead,
+                            relation = patient.RelationToHead
+                        };
+
+            if (ShouldRefreshPatients)
+            {
+                PatientGrid.ItemsSource = join1.ToList();
+                ShouldRefreshPatients = false;
+                ShouldLoadPatient = false;
+            }
+            else
+            {
+                if (index == 0) //Search By Patient OQ 
+                {
+                    try
+                    {
+                        int value = Convert.ToInt32(PatientFilter);
+                        var newjoin = from patient in join1
+                                      where patient.pOQ.Equals(value)
+                                      select patient;
+                        PatientGrid.ItemsSource = newjoin.ToList();
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Make sure you put a value in.");
+                    }
+                }
+                else if (index == 1) //Search by First Name 
+                {
+                    var newjoin = from patient in join1
+                                  where patient.FName.Contains(PatientFilter)
+                                  select patient;
+                    PatientGrid.ItemsSource = newjoin.ToList();
+                }
+                else if (index == 2) //Search by Last Name
+                {
+                    var newjoin = from patient in join1
+                                  where patient.LName.Contains(PatientFilter)
+                                  select patient;
+                    PatientGrid.ItemsSource = newjoin.ToList();
+                }
+                else if (index == 3) //Search by Gender
+                {
+                    var newjoin = from patient in join1
+                                  where patient.Gend.StartsWith(PatientFilter)
+                                  select patient;
+                    PatientGrid.ItemsSource = newjoin.ToList();
+                }
+                else if (index == 4) //Search by Age Group
+                {
+                    var newjoin = from patient in join1
+                                  where patient.aGroup.Contains(PatientFilter)
+                                  select patient;
+                    PatientGrid.ItemsSource = newjoin.ToList();
+                }
+                else if (index == 5) //Search by Ethnicity
+                {
+                    var newjoin = from patient in join1
+                                  where patient.ethn.Contains(PatientFilter)
+                                  select patient;
+                    PatientGrid.ItemsSource = newjoin.ToList();
+                }
+                else //Did not select anything
+                {
+                    if (ShouldLoadPatient) //This is either refreshing the patient or initializing the patient
+                    {
+                        // ... Assign ItemsSource of DataGrid. 
+                        var grid = sender as DataGrid;
+                        if (grid == null)
+                        {
+                            PatientGrid.ItemsSource = join1.ToList();
+                            ShouldLoadPatient = false;
+                        }
+                        else
+                        {
+                            grid.ItemsSource = join1.ToList();
+                            ShouldLoadPatient = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Make sure you select a filter.");
+                    }
+                }
+            }
+            
+
+        }
+        private void Filter_Patients(object sender, RoutedEventArgs e)
+        {
+            Patient_Grid(sender, e);           
         }
         private void EditPatient(object sender, RoutedEventArgs e)
         {
@@ -186,5 +284,15 @@ namespace FCS_Funding
             var grid = sender as DataGrid;
             grid.ItemsSource = InKindServices;
         }
+
+        private void Refresh_Patients(object sender, RoutedEventArgs e)
+        {
+            ShouldLoadPatient = true;
+            ShouldRefreshPatients = true;
+            Patient_Grid(sender, e);
+        }
+        
+
+        
     }
 }

@@ -17,9 +17,8 @@ namespace FCS_DataTesting
         public DateTime Time { get; set; }
         public Boolean IsHead { get; set; }
         public string RelationToHead { get;  set; }
-        public string Notes { get; set; }
 
-        public Patient(int p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth,  string note)
+        public Patient(int p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth)
         {
             PatientOQ = p;
             FirstName = fn;
@@ -30,8 +29,6 @@ namespace FCS_DataTesting
             Time = t;
             IsHead = h;
             RelationToHead = rth;
-
-            Notes = note;
         }
     }
 }

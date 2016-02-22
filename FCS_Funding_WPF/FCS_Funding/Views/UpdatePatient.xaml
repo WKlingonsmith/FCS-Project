@@ -49,10 +49,6 @@
         <Border Grid.Row="4" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18"  Text="{Binding gender, ElementName=UpdatePatientWindow}" />
         </Border>
-        <TextBlock Text="Notes" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" />
-        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="5"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding notes, ElementName=UpdatePatientWindow}" />
-        </Border>
 
         <Button FontSize="18" Grid.Column="3" Grid.Row="12" Content="Update Client" Click="Update_Patient" Margin="0.2,10,0,30" Grid.RowSpan="2"  />
     </Grid>

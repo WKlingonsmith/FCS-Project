@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FCS_Funding.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -66,7 +67,20 @@ namespace FCS_Funding.Views
                     MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" + 
                         familyOQNumber + "\n" + notes + "\n" + date);
                     //this.Close();
-                    MessageBox.Show("Successfully added client.");
+
+                    FCS_FundingContext db = new FCS_FundingContext();
+                    try
+                    {
+                        int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
+                        Patient pat2 = new Patient(patientOQ, householdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, "Step Child");
+                        db.Patients.Add(pat2);
+                        db.SaveChanges();
+                        MessageBox.Show("Successfully added client.");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
+                    }
                 }
                 //They are missing the client OQ number.
                 else
