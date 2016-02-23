@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FCS_DataTesting
 {
-    public class Patient
+    public class PatientGrid
     {
         public int PatientOQ { get; set; }
         public string FirstName { get; set; }
@@ -18,7 +18,7 @@ namespace FCS_DataTesting
         public Boolean IsHead { get; set; }
         public string RelationToHead { get;  set; }
 
-        public Patient(int p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth)
+        public PatientGrid(int p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth)
         {
             PatientOQ = p;
             FirstName = fn;
@@ -29,6 +29,10 @@ namespace FCS_DataTesting
             Time = t;
             IsHead = h;
             RelationToHead = rth;
+        }
+        public PatientGrid()
+        { 
+        
         }
     }
 }

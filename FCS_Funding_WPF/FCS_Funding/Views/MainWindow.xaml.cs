@@ -24,7 +24,7 @@ namespace FCS_Funding
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Patient> Patients { get; set; }
+        public ObservableCollection<PatientGrid> Patients { get; set; }
         public ObservableCollection<GrantsDataGrid> Grants { get; set; }
         public ObservableCollection<DonorsDataGrid> Donors { get; set; }
         public ObservableCollection<InKindItem> InKindItems { get; set; }
@@ -53,17 +53,17 @@ namespace FCS_Funding
             FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
             var join1 = from patient in db.Patients
                         join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
-                        select new
+                        select new PatientGrid
                         {
-                            pOQ = patient.PatientOQ,
-                            FName = patient.PatientFirstName,
-                            LName = patient.PatientLastName,
-                            Gend = patient.PatientGender,
-                            aGroup = patient.PatientAgeGroup,
-                            ethn = patient.PatientEthnicity,
-                            theTime = patient.NewClientIntakeHour,
-                            head = patient.IsHead,
-                            relation = patient.RelationToHead
+                            PatientOQ = patient.PatientOQ,
+                            FirstName = patient.PatientFirstName,
+                            LastName = patient.PatientLastName,
+                            Gender = patient.PatientGender,
+                            AgeGroup = patient.PatientAgeGroup,
+                            Ethnicity = patient.PatientEthnicity,
+                            Time = patient.NewClientIntakeHour,
+                            IsHead = patient.IsHead,
+                            RelationToHead = patient.RelationToHead
                         };
 
             if (ShouldRefreshPatients)
@@ -80,7 +80,7 @@ namespace FCS_Funding
                     {
                         int value = Convert.ToInt32(PatientFilter);
                         var newjoin = from patient in join1
-                                      where patient.pOQ.Equals(value)
+                                      where patient.PatientOQ.Equals(value)
                                       select patient;
                         PatientGrid.ItemsSource = newjoin.ToList();
                     }
@@ -92,35 +92,35 @@ namespace FCS_Funding
                 else if (index == 1) //Search by First Name 
                 {
                     var newjoin = from patient in join1
-                                  where patient.FName.Contains(PatientFilter)
+                                  where patient.FirstName.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 2) //Search by Last Name
                 {
                     var newjoin = from patient in join1
-                                  where patient.LName.Contains(PatientFilter)
+                                  where patient.LastName.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 3) //Search by Gender
                 {
                     var newjoin = from patient in join1
-                                  where patient.Gend.StartsWith(PatientFilter)
+                                  where patient.Gender.StartsWith(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 4) //Search by Age Group
                 {
                     var newjoin = from patient in join1
-                                  where patient.aGroup.Contains(PatientFilter)
+                                  where patient.AgeGroup.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 5) //Search by Ethnicity
                 {
                     var newjoin = from patient in join1
-                                  where patient.ethn.Contains(PatientFilter)
+                                  where patient.Ethnicity.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
@@ -160,7 +160,7 @@ namespace FCS_Funding
             if (Count <= 1)
             {
                 DataGrid dg = sender as DataGrid;
-                Patient p = (Patient)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                 UpdatePatient up = new UpdatePatient(p);
                 up.Topmost = true;
                 up.Show();

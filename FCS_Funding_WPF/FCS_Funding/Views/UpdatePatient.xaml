@@ -49,6 +49,22 @@
         <Border Grid.Row="4" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18"  Text="{Binding gender, ElementName=UpdatePatientWindow}" />
         </Border>
+        <TextBlock Text="Age Group" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
+        <Border Grid.Row="5" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=UpdatePatientWindow}"  />
+        </Border>
+        <TextBlock Text="Ethnicity" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="3" Height="30" />
+        <Border Grid.Row="5" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18"  Text="{Binding gender, ElementName=UpdatePatientWindow}" />
+        </Border>
+        <TextBlock Text="Is head?" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
+        <Border Grid.Row="6" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=UpdatePatientWindow}"  />
+        </Border>
+        <TextBlock Text="Relation to Head" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="3" Height="30" />
+        <Border Grid.Row="6" Grid.Column="4" Height="35"  BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18"  Text="{Binding gender, ElementName=UpdatePatientWindow}" />
+        </Border>
 
         <Button FontSize="18" Grid.Column="3" Grid.Row="12" Content="Update Client" Click="Update_Patient" Margin="0.2,10,0,30" Grid.RowSpan="2"  />
     </Grid>

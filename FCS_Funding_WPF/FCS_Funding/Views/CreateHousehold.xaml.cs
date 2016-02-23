@@ -22,7 +22,6 @@ namespace FCS_Funding.Views
     {
         //private static enum HeadOfHousehold { Mother, Father };
         //Household properies
-        private string HeadOfHousehold { get; set; }
         private string Income { get; set; }
         public int HouseholdPopulation { get; set; }
         public string County { get; set; }
@@ -31,70 +30,48 @@ namespace FCS_Funding.Views
         private string firstName { get; set; }
         private string lastName { get; set; }
         private int patientOQ { get; set; }
-        private string notes { get; set; }
         private Boolean headOfHouse { get; set; }
         private string gender { get; set; }
         private DateTime date { get; set; }
         private string ageGroup { get; set; }
         private string ethnicGroup { get; set; }
+        private string relationToHead { get; set; }
 
-        public CreateHousehold(string fName, string lName, int pOQ, string gen, Boolean head, string aGroup, string ethnicG, string note)
+        public CreateHousehold(string fName, string lName, int pOQ, string gen, Boolean head, string aGroup, string ethnicG, string rel)
         {
             firstName = fName;
             lastName = lName;
             patientOQ = pOQ;
-            notes = note;
             headOfHouse = head;
             gender = gen;
             ageGroup = aGroup;
             ethnicGroup = ethnicG;
+            relationToHead = rel;
             InitializeComponent();
         }
 
         private void Add_Household(object sender, RoutedEventArgs e)
         {
-            Determine_HeadOfHousehold(this.headOfHousehold.SelectedIndex);
             Determine_Income(this.income.SelectedIndex);
-            if (HeadOfHousehold != null && Income != null && HouseholdPopulation > 0 && County != null && County != "")
+            if (Income != null && HouseholdPopulation > 0 && County != null && County != "")
             {
                 date = DateTime.Now;
                 MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
-                    + "\n" + notes + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n" + HeadOfHousehold + "\n" + Income);
-                //FCS_DB n = new FCS_DB();
-                //n.PatientHousehold.Add()
-                //PatientHouseholdMap ph = new PatientHouseholdMap();
-                //DataSet1 mydb = new DataSet1();                
-                //mydb.PatientHousehold.AddPatientHouseholdRow(HouseholdPopulation, Income, County);
-                //mydb.Patient.AddPatientRow(patientOQ, mydb.PatientHousehold.OrderByDescending(u => u.HouseholdID).FirstOrDefault(), firstName, lastName, gender, ageGroup, ethnicGroup, DateTime.Now, headOfHouse);
-                //mydb.AcceptChanges();
-                //Models.PatientHousehold ph = new Models.PatientHousehold();
-                //ph.HouseholdCounty = County;
-                //ph.HouseholdIncomeBracket = Income;
-                //ph.HouseholdPopulation = HouseholdPopulation;
+                    + "\n"  + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n"  + Income);
 
                 FCS_FundingContext db = new FCS_FundingContext();
-                //db.Patients.Select(h => h.HouseholdID).Where(patientOQ);
                 PatientHousehold p = new PatientHousehold(HouseholdPopulation, Income, County);
-                Patient pat = new Patient(patientOQ, p.HouseholdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, "Step Child");
+                Patient pat = new Patient(patientOQ, p.HouseholdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, relationToHead);
                 db.PatientHouseholds.Add(p);
                 db.Patients.Add(pat);
-                db.SaveChanges();    
+                db.SaveChanges();
+                this.Close();
             }
             //add both patient and household
             else
             {
                 MessageBox.Show("Make sure you select an income and head of household");                
             }
-        }
-        private void Determine_HeadOfHousehold(int selection)
-        {
-            switch (selection)
-            {
-                case 0:
-                    HeadOfHousehold = "Mother"; break;
-                case 1:
-                    HeadOfHousehold = "Father"; break;
-            }       
         }
 
         private void Determine_Income(int selection)

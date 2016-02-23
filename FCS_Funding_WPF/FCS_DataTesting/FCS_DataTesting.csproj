@@ -46,7 +46,7 @@
     <Compile Include="GrantsDataGrid.cs" />
     <Compile Include="InKindItem.cs" />
     <Compile Include="InKindService.cs" />
-    <Compile Include="Patient.cs" />
+    <Compile Include="PatientGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportsDataGrid.cs" />
   </ItemGroup>

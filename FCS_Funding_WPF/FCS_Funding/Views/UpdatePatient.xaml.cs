@@ -25,7 +25,7 @@ namespace FCS_Funding.Views
         public int patientOQ { get; set; }
         public string notes { get; set; }
         public string gender { get; set; }
-        public UpdatePatient(Patient p)
+        public UpdatePatient(PatientGrid p)
         {
             firstName = p.FirstName;
             lastName = p.LastName;

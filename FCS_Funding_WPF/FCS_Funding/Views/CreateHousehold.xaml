@@ -37,20 +37,19 @@
         <Border Grid.Row="4" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding HouseholdPopulation, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="County:" TextAlignment="Center" FontSize="18" Grid.Row="5" Grid.Column="2" Height="30" Padding="83, 0, 0, 0"/>
-        <Border Grid.Row="5" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
+        <TextBlock Text="County:" TextAlignment="Center" FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" Padding="83, 0, 0, 0"/>
+        <Border Grid.Row="6" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding County, ElementName=ThisWindow}"/>
         </Border>
-        <ComboBox Name="income" SelectedItem="{Binding Income}" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="150" Height="40" Text="Income" Grid.Column="2" Grid.Row="7" FontSize="20" Grid.ColumnSpan="3" >
-            <ComboBoxItem Name="zero">$0-9,999</ComboBoxItem>
-            <ComboBoxItem Name="ten">$10,000-14,999</ComboBoxItem>
-            <ComboBoxItem Name="twentyfour">$15,000-24,000</ComboBoxItem>
-            <ComboBoxItem Name="thirtyfive">$25,000-34,999</ComboBoxItem>
-            <ComboBoxItem Name="thirtyfiveplus">$35,000+</ComboBoxItem>
-        </ComboBox>
-        <ComboBox Name="headOfHousehold"  IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="40" Text="Head Of Household" Grid.Column="1" Grid.Row="7" FontSize="20" Grid.ColumnSpan="3" Margin="156.8,0,179,0">
-            <ComboBoxItem Name="Mother">Mother</ComboBoxItem>
-            <ComboBoxItem Name="Father">Father</ComboBoxItem>
+        <TextBlock Text="Income Bracket:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0"/>
+        <ComboBox Name="income" SelectedItem="{Binding Income}" IsReadOnly="True" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="170" Height="40" Grid.Column="3" 
+                  Grid.Row="8" FontSize="20"  >
+            <ComboBoxItem >$0-9,999</ComboBoxItem>
+            <ComboBoxItem >$10,000-14,999</ComboBoxItem>
+            <ComboBoxItem >$15,000-24,000</ComboBoxItem>
+            <ComboBoxItem >$25,000-34,999</ComboBoxItem>
+            <ComboBoxItem >$35,000+</ComboBoxItem>
         </ComboBox>
         <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="11" Content="Add Household" Margin="93.6,0,82.8,0" Click="Add_Household"   />
 
