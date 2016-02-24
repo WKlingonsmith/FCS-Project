@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding", "FCS_Funding\FCS_Funding.csproj", "{A096A895-12B3-4F73-88FD-025367BE621F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding_Test", "FCS_Funding_Test\FCS_Funding_Test.csproj", "{7251BA8E-2EA1-4C6D-88D9-07B2C314DCD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_DataTesting", "FCS_DataTesting\FCS_DataTesting.csproj", "{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodedUITestProject", "CodedUITestProject\CodedUITestProject.csproj", "{83AC0A18-A66A-4A7F-AF79-B019C09427E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

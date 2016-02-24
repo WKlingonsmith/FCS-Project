@@ -7,6 +7,7 @@
 *.exe
 *.o
 *.so
+*.suo
 
 # Packages #
 ############
@@ -38,13 +39,21 @@ ehthumbs.db
 Thumbs.db
 
 # Ken's added files:
+#Solution File
 FCS_Funding.sln
+#obj and bin file
 /FCS_Funding_WPF/FCS_DataTesting/bin/
 /FCS_Funding_WPF/FCS_DataTesting/obj/
 /FCS_Funding_WPF/FCS_Funding/bin/
 /FCS_Funding_WPF/FCS_Funding/obj/
 /FCS_Funding_WPF/FCS_Funding_Test/bin/
 /FCS_Funding_WPF/FCS_Funding_Test/obj/
+#App.config files
 /FCS_Funding_WPF/FCS_DataTesting/App.config
 /FCS_Funding_WPF/FCS_Funding/App.config
 /FCS_Funding_WPF/FCS_Funding_Test/App.config
+#Coded Test bin and obj
+/FCS_Funding_WPF/CodedUITestProject/bin/
+/FCS_Funding_WPF/CodedUITestProject/obj/
+#Random file added by Ken because I don't want it to commit
+FCS_Funding_WPF/.vs/FCS_Funding/v14/.suo
