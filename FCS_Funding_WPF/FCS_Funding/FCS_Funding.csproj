@@ -67,6 +67,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FCS_FundingDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FCS_FundingDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Donation.cs" />
     <Compile Include="Models\DonationPurpose.cs" />
@@ -197,6 +202,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="FCS_FundingDataSet1.xsc">
+      <DependentUpon>FCS_FundingDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="FCS_FundingDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FCS_FundingDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FCS_FundingDataSet1.xss">
+      <DependentUpon>FCS_FundingDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

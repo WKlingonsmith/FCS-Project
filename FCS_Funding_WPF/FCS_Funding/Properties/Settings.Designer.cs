@@ -32,5 +32,16 @@ namespace FCS_Funding.Properties {
                 return ((string)(this["FCS_FundingConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=KENNETH-LAPLET\\SQLEXPRESS;Initial Catalog=FCS_Funding;Integrated Secu" +
+            "rity=True")]
+        public string FCS_FundingConnectionStringKen {
+            get {
+                return ((string)(this["FCS_FundingConnectionStringKen"]));
+            }
+        }
     }
 }
