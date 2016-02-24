@@ -162,8 +162,77 @@ namespace FCS_Funding
                 DataGrid dg = sender as DataGrid;
                 PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                 UpdatePatient up = new UpdatePatient(p);
+                up.TheHead.IsChecked = p.IsHead;
+                up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
+                up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
+                up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
+                //up.firstName = p.FirstName;
+                //up.lastName = p.LastName;
+                //up.patientOQ = p.PatientOQ;
+                //up.relationToHead = p.RelationToHead;
                 up.Topmost = true;
                 up.Show();
+            }
+        }
+        private int Determine_GenderIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "Male":
+                    return 0;
+                case "Female":
+                    return 1;
+                case "Other":
+                    return 2;
+                default:
+                    return 2;
+            }
+        }
+        private int Determine_AgeGroupIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "0-5":
+                    return 0;
+                case "6-11":
+                    return 1;
+                case "12-17":
+                    return 2;
+                case "18-23":
+                    return 3;
+                case "24-44":
+                    return 4;
+                case "45-54":
+                    return 5;
+                case "55-69":
+                    return 6;
+                case "70+":
+                    return 7;
+                default:
+                    return 0;
+            }
+        }
+
+        private int Determine_EthnicGroupIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "African American":
+                    return 0;
+                case "Native/Alaskan":
+                    return 1;
+                case "Pacific Islander":
+                    return 2;
+                case "Asian":
+                    return 3;
+                case "Caucasian":
+                    return 4;
+                case "Hispanic":
+                    return 5;
+                case "Other":
+                    return 6;
+                default:
+                    return 0;
             }
         }
 
