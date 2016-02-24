@@ -24,7 +24,7 @@ namespace FCS_Funding
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Patient> Patients { get; set; }
+        public ObservableCollection<PatientGrid> Patients { get; set; }
         public ObservableCollection<GrantsDataGrid> Grants { get; set; }
         public ObservableCollection<DonorsDataGrid> Donors { get; set; }
         public ObservableCollection<InKindItem> InKindItems { get; set; }
@@ -53,17 +53,17 @@ namespace FCS_Funding
             FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
             var join1 = from patient in db.Patients
                         join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
-                        select new
+                        select new PatientGrid
                         {
-                            pOQ = patient.PatientOQ,
-                            FName = patient.PatientFirstName,
-                            LName = patient.PatientLastName,
-                            Gend = patient.PatientGender,
-                            aGroup = patient.PatientAgeGroup,
-                            ethn = patient.PatientEthnicity,
-                            theTime = patient.NewClientIntakeHour,
-                            head = patient.IsHead,
-                            relation = patient.RelationToHead
+                            PatientOQ = patient.PatientOQ,
+                            FirstName = patient.PatientFirstName,
+                            LastName = patient.PatientLastName,
+                            Gender = patient.PatientGender,
+                            AgeGroup = patient.PatientAgeGroup,
+                            Ethnicity = patient.PatientEthnicity,
+                            Time = patient.NewClientIntakeHour,
+                            IsHead = patient.IsHead,
+                            RelationToHead = patient.RelationToHead
                         };
 
             if (ShouldRefreshPatients)
@@ -80,7 +80,7 @@ namespace FCS_Funding
                     {
                         int value = Convert.ToInt32(PatientFilter);
                         var newjoin = from patient in join1
-                                      where patient.pOQ.Equals(value)
+                                      where patient.PatientOQ.Equals(value)
                                       select patient;
                         PatientGrid.ItemsSource = newjoin.ToList();
                     }
@@ -92,35 +92,35 @@ namespace FCS_Funding
                 else if (index == 1) //Search by First Name 
                 {
                     var newjoin = from patient in join1
-                                  where patient.FName.Contains(PatientFilter)
+                                  where patient.FirstName.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 2) //Search by Last Name
                 {
                     var newjoin = from patient in join1
-                                  where patient.LName.Contains(PatientFilter)
+                                  where patient.LastName.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 3) //Search by Gender
                 {
                     var newjoin = from patient in join1
-                                  where patient.Gend.StartsWith(PatientFilter)
+                                  where patient.Gender.StartsWith(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 4) //Search by Age Group
                 {
                     var newjoin = from patient in join1
-                                  where patient.aGroup.Contains(PatientFilter)
+                                  where patient.AgeGroup.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
                 else if (index == 5) //Search by Ethnicity
                 {
                     var newjoin = from patient in join1
-                                  where patient.ethn.Contains(PatientFilter)
+                                  where patient.Ethnicity.Contains(PatientFilter)
                                   select patient;
                     PatientGrid.ItemsSource = newjoin.ToList();
                 }
@@ -160,10 +160,79 @@ namespace FCS_Funding
             if (Count <= 1)
             {
                 DataGrid dg = sender as DataGrid;
-                Patient p = (Patient)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                 UpdatePatient up = new UpdatePatient(p);
+                up.TheHead.IsChecked = p.IsHead;
+                up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
+                up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
+                up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
+                //up.firstName = p.FirstName;
+                //up.lastName = p.LastName;
+                //up.patientOQ = p.PatientOQ;
+                //up.relationToHead = p.RelationToHead;
                 up.Topmost = true;
                 up.Show();
+            }
+        }
+        private int Determine_GenderIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "Male":
+                    return 0;
+                case "Female":
+                    return 1;
+                case "Other":
+                    return 2;
+                default:
+                    return 2;
+            }
+        }
+        private int Determine_AgeGroupIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "0-5":
+                    return 0;
+                case "6-11":
+                    return 1;
+                case "12-17":
+                    return 2;
+                case "18-23":
+                    return 3;
+                case "24-44":
+                    return 4;
+                case "45-54":
+                    return 5;
+                case "55-69":
+                    return 6;
+                case "70+":
+                    return 7;
+                default:
+                    return 0;
+            }
+        }
+
+        private int Determine_EthnicGroupIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "African American":
+                    return 0;
+                case "Native/Alaskan":
+                    return 1;
+                case "Pacific Islander":
+                    return 2;
+                case "Asian":
+                    return 3;
+                case "Caucasian":
+                    return 4;
+                case "Hispanic":
+                    return 5;
+                case "Other":
+                    return 6;
+                default:
+                    return 0;
             }
         }
 

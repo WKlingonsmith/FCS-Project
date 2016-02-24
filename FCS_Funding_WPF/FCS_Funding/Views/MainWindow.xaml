@@ -74,15 +74,15 @@
                 <Button Height="45" Width="210" Grid.Column="5" Grid.Row="2" Content="Refresh" Click="Refresh_Patients" />
                 <DataGrid Name="PatientGrid" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="10" Loaded="Patient_Grid" CanUserResizeColumns="True"  IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Patient OQ" Width="110" Binding="{Binding Path=pOQ}"/>
-                        <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=FName}"/>
-                        <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=LName}"/>
-                        <DataGridTextColumn Header="Gender" Width="100" Binding="{Binding Path=Gend}"/>
-                        <DataGridTextColumn Header="Age Group" Width="110" Binding="{Binding Path=aGroup}"/>
-                        <DataGridTextColumn Header="Ethnicity" Width="110" Binding="{Binding Path=ethn}"/>
-                        <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=theTime}"/>
-                        <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=head}"/>
-                        <DataGridTextColumn Header="Relation to Head" Width="110" Binding="{Binding Path=relation}"/>
+                        <DataGridTextColumn Header="Patient OQ" Width="110" Binding="{Binding Path=PatientOQ}"/>
+                        <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=FirstName}"/>
+                        <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=LastName}"/>
+                        <DataGridTextColumn Header="Gender" Width="100" Binding="{Binding Path=Gender}"/>
+                        <DataGridTextColumn Header="Age Group" Width="110" Binding="{Binding Path=AgeGroup}"/>
+                        <DataGridTextColumn Header="Ethnicity" Width="110" Binding="{Binding Path=Ethnicity}"/>
+                        <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=Time}"/>
+                        <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=IsHead}"/>
+                        <DataGridTextColumn Header="Relation to Head" Width="110" Binding="{Binding Path=RelationToHead}"/>
                     </DataGrid.Columns>
                     <!--This is to edit the patient-->
                     <!--<DataGrid.Resources>

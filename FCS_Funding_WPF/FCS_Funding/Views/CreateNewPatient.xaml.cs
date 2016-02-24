@@ -25,11 +25,11 @@ namespace FCS_Funding.Views
         public string firstName { get; set; }
         public string lastName { get; set; }
         public int patientOQ { get; set; }
-        public string notes { get; set; }
         public Boolean headOfHouse { get; set; }
-        public string gender { get; set; }
+        public string PatientGender { get; set; }
         public DateTime date { get; set; }
         public int familyOQNumber { get; set; }
+        public string relationToHead { get; set; }
         private string ageGroup { get; set; }
         private string ethnicGroup { get; set; }
         
@@ -49,13 +49,15 @@ namespace FCS_Funding.Views
         {
             Determine_AgeGroup(this.AgeGroup.SelectedIndex);
             Determine_EthnicGroup(this.ethnicity.SelectedIndex);
+            Determine_Gender(this.Gender.SelectedIndex);
             if (this.firstName != null && this.firstName != "" && this.lastName != null && this.lastName != "" && patientOQ > 0 &&
-                this.notes != null && this.notes != "" && this.gender != null && this.gender != "" && this.ageGroup != null && this.ethnicGroup != null)
+                 PatientGender != null && PatientGender != "" && this.ageGroup != null && this.ethnicGroup != null
+                && this.relationToHead != null && this.relationToHead != "")
             {
                 //Need to add another household and open the NewHousehold View
                 if(!Family_OQ.IsEnabled)
                 {
-                    CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.gender, this.headOfHouse,this.ageGroup, this.ethnicGroup, this.notes);
+                    CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.PatientGender, this.headOfHouse, this.ageGroup, this.ethnicGroup, this.relationToHead);
                     this.Close();
                     ch.Show();
 
@@ -64,18 +66,20 @@ namespace FCS_Funding.Views
                 else if(familyOQNumber > 0)
                 {
                     date = DateTime.Now;
-                    MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" + 
-                        familyOQNumber + "\n" + notes + "\n" + date);
+                    MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" + 
+                        familyOQNumber + "\n" + "\n" + relationToHead + "\n" + date);
                     //this.Close();
 
                     FCS_FundingContext db = new FCS_FundingContext();
                     try
                     {
                         int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
-                        Patient pat2 = new Patient(patientOQ, householdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, "Step Child");
+                        Patient pat2 = new Patient(patientOQ, householdID, firstName, lastName, PatientGender, ageGroup, ethnicGroup, date, headOfHouse, relationToHead);
                         db.Patients.Add(pat2);
                         db.SaveChanges();
                         MessageBox.Show("Successfully added client.");
+                        this.Close();
+                        
                     }
                     catch(Exception ex)
                     {
@@ -164,6 +168,18 @@ namespace FCS_Funding.Views
                     ethnicGroup = "Hispanic"; break;
                 case 6:
                     ethnicGroup = "Other"; break;
+            }
+        }
+        private void Determine_Gender(int selection)
+        {
+            switch (selection)
+            {
+                case 0:
+                    PatientGender = "Male"; break;
+                case 1:
+                    PatientGender = "Female"; break;
+                case 2:
+                    PatientGender = "Other"; break;
             }
         }
     }
