@@ -145,6 +145,179 @@ namespace CodedUITestProject
             // Last action on Row was not recorded because the control does not have any good identification property.
         }
         
+        /// <summary>
+        /// Opens the program, navigates to the patient tab, clicks "Create New Patient", creates the new patient, and then hits refresh.  Currently there isn't a way to test of the thing was inserted.
+        /// </summary>
+        public void insertTest()
+        {
+            #region Variable Declarations
+            WpfButton uILoginButton = this.UILoginWindow.UILoginButton;
+            WpfButton uICreateNewPatientButton = this.UIMainWindowWindow.UIItemTabList.UIPatientsTabPage.UICreateNewPatientButton;
+            WpfEdit uIItemEdit = this.UICreateNewPatientWindow.UIItemEdit;
+            WpfEdit uIItemEdit1 = this.UICreateNewPatientWindow.UIItemEdit1;
+            WpfEdit uIItemEdit2 = this.UICreateNewPatientWindow.UIItemEdit2;
+            WpfEdit uIItemEdit3 = this.UICreateNewPatientWindow.UIItemEdit3;
+            WpfComboBox uIGenderComboBox = this.UICreateNewPatientWindow.UIGenderComboBox;
+            WpfComboBox uIAgeGroupComboBox = this.UICreateNewPatientWindow.UIAgeGroupComboBox;
+            WpfComboBox uIEthnicityComboBox = this.UICreateNewPatientWindow.UIEthnicityComboBox;
+            WpfCheckBox uIIsHeadofHouseholdCheckBox = this.UICreateNewPatientWindow.UIIsHeadofHouseholdCheckBox;
+            WpfCheckBox uIFirstMemberofHousehoCheckBox = this.UICreateNewPatientWindow.UIFirstMemberofHousehoCheckBox;
+            WpfEdit uIFamily_OQEdit = this.UICreateNewPatientWindow.UIFamily_OQEdit;
+            WpfButton uIAddClientButton = this.UICreateNewPatientWindow.UIAddClientButton;
+            WpfEdit uIItemEdit4 = this.UICreateHouseholdWindow.UIItemEdit;
+            WpfEdit uIItemEdit11 = this.UICreateHouseholdWindow.UIItemEdit1;
+            WpfComboBox uIIncomeComboBox = this.UICreateHouseholdWindow.UIIncomeComboBox;
+            WpfButton uIAddHouseholdButton = this.UICreateHouseholdWindow.UIAddHouseholdButton;
+            WinButton uIOKButton = this.UIOKWindow.UIOKButton;
+            WpfButton uIRefreshButton = this.UIMainWindowWindow.UIItemTabList.UIPatientsTabPage.UIRefreshButton;
+            #endregion
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(84, 34));
+
+            // Click 'Create New Patient' button
+            Mouse.Click(uICreateNewPatientButton, new Point(172, 33));
+
+            // Type '5' in text box
+            uIItemEdit.Text = this.insertTestParams.UIItemEditText;
+
+            // Type 'myTest' in text box numbered 2 in 'CreateNewPatient' window
+            uIItemEdit1.Text = this.insertTestParams.UIItemEdit1Text;
+
+            // Type 'myTestLastName' in text box numbered 3 in 'CreateNewPatient' window
+            uIItemEdit2.Text = this.insertTestParams.UIItemEdit2Text;
+
+            // Type 'stepchild' in text box numbered 4 in 'CreateNewPatient' window
+            uIItemEdit3.Text = this.insertTestParams.UIItemEdit3Text;
+
+            // Select 'Other' in 'Gender' combo box
+            uIGenderComboBox.SelectedItem = this.insertTestParams.UIGenderComboBoxSelectedItem;
+
+            // Select '70+' in 'AgeGroup' combo box
+            uIAgeGroupComboBox.SelectedItem = this.insertTestParams.UIAgeGroupComboBoxSelectedItem;
+
+            // Select 'Other' in 'ethnicity' combo box
+            uIEthnicityComboBox.SelectedItem = this.insertTestParams.UIEthnicityComboBoxSelectedItem;
+
+            // Select 'Is Head of Household?' check box
+            uIIsHeadofHouseholdCheckBox.Checked = this.insertTestParams.UIIsHeadofHouseholdCheckBoxChecked;
+
+            // Select 'First Member of Household?' check box
+            uIFirstMemberofHousehoCheckBox.Checked = this.insertTestParams.UIFirstMemberofHousehoCheckBoxChecked;
+
+            // Click 'Family_OQ' text box
+            Mouse.Click(uIFamily_OQEdit, new Point(82, 21));
+
+            // Click 'Add Client' button
+            Mouse.Click(uIAddClientButton, new Point(101, 30));
+
+            // Type '3' in text box
+            uIItemEdit4.Text = this.insertTestParams.UIItemEditText1;
+
+            // Type 'myCounty' in text box numbered 2 in 'CreateHousehold' window
+            uIItemEdit11.Text = this.insertTestParams.UIItemEdit1Text1;
+
+            // Select '$35,000+' in 'income' combo box
+            uIIncomeComboBox.SelectedItem = this.insertTestParams.UIIncomeComboBoxSelectedItem;
+
+            // Click 'Add Household' button
+            Mouse.Click(uIAddHouseholdButton, new Point(166, 43));
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(40, 19));
+
+            // Click 'Refresh' button
+            Mouse.Click(uIRefreshButton, new Point(72, 46));
+        }
+        
+        /// <summary>
+        /// Adds Satan into the database.  No assertions yet.
+        /// </summary>
+        public void TestpatientInsert2()
+        {
+            #region Variable Declarations
+            WpfButton uILoginButton = this.UILoginWindow.UILoginButton;
+            WpfButton uICreateNewPatientButton = this.UIMainWindowWindow.UIItemTabList.UIPatientsTabPage.UICreateNewPatientButton;
+            WpfEdit uIItemEdit = this.UICreateNewPatientWindow.UIItemEdit;
+            WpfEdit uIItemEdit1 = this.UICreateNewPatientWindow.UIItemEdit1;
+            WpfEdit uIItemEdit2 = this.UICreateNewPatientWindow.UIItemEdit2;
+            WpfEdit uIItemEdit3 = this.UICreateNewPatientWindow.UIItemEdit3;
+            WpfCheckBox uIIsHeadofHouseholdCheckBox = this.UICreateNewPatientWindow.UIIsHeadofHouseholdCheckBox;
+            WpfCheckBox uIFirstMemberofHousehoCheckBox = this.UICreateNewPatientWindow.UIFirstMemberofHousehoCheckBox;
+            WpfComboBox uIGenderComboBox = this.UICreateNewPatientWindow.UIGenderComboBox;
+            WpfComboBox uIAgeGroupComboBox = this.UICreateNewPatientWindow.UIAgeGroupComboBox;
+            WpfComboBox uIEthnicityComboBox = this.UICreateNewPatientWindow.UIEthnicityComboBox;
+            WpfButton uIAddClientButton = this.UICreateNewPatientWindow.UIAddClientButton;
+            WpfEdit uIItemEdit4 = this.UICreateHouseholdWindow.UIItemEdit;
+            WpfEdit uIItemEdit11 = this.UICreateHouseholdWindow.UIItemEdit1;
+            WpfComboBox uIIncomeComboBox = this.UICreateHouseholdWindow.UIIncomeComboBox;
+            WpfButton uIAddHouseholdButton = this.UICreateHouseholdWindow.UIAddHouseholdButton;
+            WinButton uIOKButton = this.UIOKWindow.UIOKButton;
+            #endregion
+
+            // Launch '%ProgramFiles%\Microsoft Visual Studio 14.0\Common7\IDE\PrivateAssemblies\ScriptedSandbox64.exe' with arguments '"Software\Microsoft\VisualStudio\14.0\ScriptedPlugins" "Software\Microsoft\VisualStudio\14.0_Config\ScriptedPlugins" 110418 e70 "file:///C:/Program Files (x86)/Microsoft Visual Studio 14.0/Common7/IDE/PrivateAssemblies/plugin.vs.js"'
+            ApplicationUnderTest scriptedSandbox64Application = ApplicationUnderTest.Launch(this.TestpatientInsert2Params.ExePath, this.TestpatientInsert2Params.AlternateExePath, "\"Software\\Microsoft\\VisualStudio\\14.0\\ScriptedPlugins\" \"Software\\Microsoft\\Visual" +
+                    "Studio\\14.0_Config\\ScriptedPlugins\" 110418 e70 \"file:///C:/Program Files (x86)/M" +
+                    "icrosoft Visual Studio 14.0/Common7/IDE/PrivateAssemblies/plugin.vs.js\"");
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(135, 31));
+
+            // Click 'Create New Patient' button
+            Mouse.Click(uICreateNewPatientButton, new Point(171, 19));
+
+            // Type '666' in text box
+            uIItemEdit.Text = this.TestpatientInsert2Params.UIItemEditText;
+
+            // Type 'Satan' in text box numbered 2 in 'CreateNewPatient' window
+            uIItemEdit1.Text = this.TestpatientInsert2Params.UIItemEdit1Text;
+
+            // Type '{Tab}' in text box numbered 2 in 'CreateNewPatient' window
+            Keyboard.SendKeys(uIItemEdit1, this.TestpatientInsert2Params.UIItemEdit1SendKeys, ModifierKeys.None);
+
+            // Type 'Test' in text box numbered 3 in 'CreateNewPatient' window
+            uIItemEdit2.Text = this.TestpatientInsert2Params.UIItemEdit2Text;
+
+            // Type 'Lord of Darkness' in text box numbered 4 in 'CreateNewPatient' window
+            uIItemEdit3.Text = this.TestpatientInsert2Params.UIItemEdit3Text;
+
+            // Select 'Is Head of Household?' check box
+            uIIsHeadofHouseholdCheckBox.Checked = this.TestpatientInsert2Params.UIIsHeadofHouseholdCheckBoxChecked;
+
+            // Select 'First Member of Household?' check box
+            uIFirstMemberofHousehoCheckBox.Checked = this.TestpatientInsert2Params.UIFirstMemberofHousehoCheckBoxChecked;
+
+            // Select 'Other' in 'Gender' combo box
+            uIGenderComboBox.SelectedItem = this.TestpatientInsert2Params.UIGenderComboBoxSelectedItem;
+
+            // Select '0-5' in 'AgeGroup' combo box
+            uIAgeGroupComboBox.SelectedItem = this.TestpatientInsert2Params.UIAgeGroupComboBoxSelectedItem;
+
+            // Select 'Other' in 'ethnicity' combo box
+            uIEthnicityComboBox.SelectedItem = this.TestpatientInsert2Params.UIEthnicityComboBoxSelectedItem;
+
+            // Click 'Add Client' button
+            Mouse.Click(uIAddClientButton, new Point(144, 41));
+
+            // Type '1' in text box
+            uIItemEdit4.Text = this.TestpatientInsert2Params.UIItemEditText1;
+
+            // Type 'Hell' in text box numbered 2 in 'CreateHousehold' window
+            uIItemEdit11.Text = this.TestpatientInsert2Params.UIItemEdit1Text1;
+
+            // Type '1000000' in text box
+            uIItemEdit4.Text = this.TestpatientInsert2Params.UIItemEditText2;
+
+            // Select '$35,000+' in 'income' combo box
+            uIIncomeComboBox.SelectedItem = this.TestpatientInsert2Params.UIIncomeComboBoxSelectedItem;
+
+            // Click 'Add Household' button
+            Mouse.Click(uIAddHouseholdButton, new Point(222, 21));
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(90, 7));
+        }
+        
         #region Properties
         public virtual TestpatientInsertParams TestpatientInsertParams
         {
@@ -155,6 +328,30 @@ namespace CodedUITestProject
                     this.mTestpatientInsertParams = new TestpatientInsertParams();
                 }
                 return this.mTestpatientInsertParams;
+            }
+        }
+        
+        public virtual insertTestParams insertTestParams
+        {
+            get
+            {
+                if ((this.minsertTestParams == null))
+                {
+                    this.minsertTestParams = new insertTestParams();
+                }
+                return this.minsertTestParams;
+            }
+        }
+        
+        public virtual TestpatientInsert2Params TestpatientInsert2Params
+        {
+            get
+            {
+                if ((this.mTestpatientInsert2Params == null))
+                {
+                    this.mTestpatientInsert2Params = new TestpatientInsert2Params();
+                }
+                return this.mTestpatientInsert2Params;
             }
         }
         
@@ -221,6 +418,10 @@ namespace CodedUITestProject
         
         #region Fields
         private TestpatientInsertParams mTestpatientInsertParams;
+        
+        private insertTestParams minsertTestParams;
+        
+        private TestpatientInsert2Params mTestpatientInsert2Params;
         
         private UILoginWindow mUILoginWindow;
         
@@ -318,6 +519,168 @@ namespace CodedUITestProject
         /// Type 'Davis' in text box numbered 2 in 'CreateHousehold' window
         /// </summary>
         public string UIItemEdit1Text1 = "Davis";
+        
+        /// <summary>
+        /// Select '$35,000+' in 'income' combo box
+        /// </summary>
+        public string UIIncomeComboBoxSelectedItem = "$35,000+";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'insertTest'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class insertTestParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Type '5' in text box
+        /// </summary>
+        public string UIItemEditText = "5";
+        
+        /// <summary>
+        /// Type 'myTest' in text box numbered 2 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit1Text = "myTest";
+        
+        /// <summary>
+        /// Type 'myTestLastName' in text box numbered 3 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit2Text = "myTestLastName";
+        
+        /// <summary>
+        /// Type 'stepchild' in text box numbered 4 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit3Text = "stepchild";
+        
+        /// <summary>
+        /// Select 'Other' in 'Gender' combo box
+        /// </summary>
+        public string UIGenderComboBoxSelectedItem = "Other";
+        
+        /// <summary>
+        /// Select '70+' in 'AgeGroup' combo box
+        /// </summary>
+        public string UIAgeGroupComboBoxSelectedItem = "70+";
+        
+        /// <summary>
+        /// Select 'Other' in 'ethnicity' combo box
+        /// </summary>
+        public string UIEthnicityComboBoxSelectedItem = "Other";
+        
+        /// <summary>
+        /// Select 'Is Head of Household?' check box
+        /// </summary>
+        public bool UIIsHeadofHouseholdCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Select 'First Member of Household?' check box
+        /// </summary>
+        public bool UIFirstMemberofHousehoCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Type '3' in text box
+        /// </summary>
+        public string UIItemEditText1 = "3";
+        
+        /// <summary>
+        /// Type 'myCounty' in text box numbered 2 in 'CreateHousehold' window
+        /// </summary>
+        public string UIItemEdit1Text1 = "myCounty";
+        
+        /// <summary>
+        /// Select '$35,000+' in 'income' combo box
+        /// </summary>
+        public string UIIncomeComboBoxSelectedItem = "$35,000+";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'TestpatientInsert2'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class TestpatientInsert2Params
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Launch '%ProgramFiles%\Microsoft Visual Studio 14.0\Common7\IDE\PrivateAssemblies\ScriptedSandbox64.exe' with arguments '"Software\Microsoft\VisualStudio\14.0\ScriptedPlugins" "Software\Microsoft\VisualStudio\14.0_Config\ScriptedPlugins" 110418 e70 "file:///C:/Program Files (x86)/Microsoft Visual Studio 14.0/Common7/IDE/PrivateAssemblies/plugin.vs.js"'
+        /// </summary>
+        public string ExePath = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\PrivateAssemblies" +
+            "\\ScriptedSandbox64.exe";
+        
+        /// <summary>
+        /// Launch '%ProgramFiles%\Microsoft Visual Studio 14.0\Common7\IDE\PrivateAssemblies\ScriptedSandbox64.exe' with arguments '"Software\Microsoft\VisualStudio\14.0\ScriptedPlugins" "Software\Microsoft\VisualStudio\14.0_Config\ScriptedPlugins" 110418 e70 "file:///C:/Program Files (x86)/Microsoft Visual Studio 14.0/Common7/IDE/PrivateAssemblies/plugin.vs.js"'
+        /// </summary>
+        public string AlternateExePath = "%ProgramFiles%\\Microsoft Visual Studio 14.0\\Common7\\IDE\\PrivateAssemblies\\Scripte" +
+            "dSandbox64.exe";
+        
+        /// <summary>
+        /// Type '666' in text box
+        /// </summary>
+        public string UIItemEditText = "666";
+        
+        /// <summary>
+        /// Type 'Satan' in text box numbered 2 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit1Text = "Satan";
+        
+        /// <summary>
+        /// Type '{Tab}' in text box numbered 2 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit1SendKeys = "{Tab}";
+        
+        /// <summary>
+        /// Type 'Test' in text box numbered 3 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit2Text = "Test";
+        
+        /// <summary>
+        /// Type 'Lord of Darkness' in text box numbered 4 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit3Text = "Lord of Darkness";
+        
+        /// <summary>
+        /// Select 'Is Head of Household?' check box
+        /// </summary>
+        public bool UIIsHeadofHouseholdCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Select 'First Member of Household?' check box
+        /// </summary>
+        public bool UIFirstMemberofHousehoCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Select 'Other' in 'Gender' combo box
+        /// </summary>
+        public string UIGenderComboBoxSelectedItem = "Other";
+        
+        /// <summary>
+        /// Select '0-5' in 'AgeGroup' combo box
+        /// </summary>
+        public string UIAgeGroupComboBoxSelectedItem = "0-5";
+        
+        /// <summary>
+        /// Select 'Other' in 'ethnicity' combo box
+        /// </summary>
+        public string UIEthnicityComboBoxSelectedItem = "Other";
+        
+        /// <summary>
+        /// Type '1' in text box
+        /// </summary>
+        public string UIItemEditText1 = "1";
+        
+        /// <summary>
+        /// Type 'Hell' in text box numbered 2 in 'CreateHousehold' window
+        /// </summary>
+        public string UIItemEdit1Text1 = "Hell";
+        
+        /// <summary>
+        /// Type '1000000' in text box
+        /// </summary>
+        public string UIItemEditText2 = "1000000";
         
         /// <summary>
         /// Select '$35,000+' in 'income' combo box
@@ -686,6 +1049,22 @@ namespace CodedUITestProject
                 return this.mUIAddClientButton;
             }
         }
+        
+        public WpfEdit UIFamily_OQEdit
+        {
+            get
+            {
+                if ((this.mUIFamily_OQEdit == null))
+                {
+                    this.mUIFamily_OQEdit = new WpfEdit(this);
+                    #region Search Criteria
+                    this.mUIFamily_OQEdit.SearchProperties[WpfEdit.PropertyNames.AutomationId] = "Family_OQ";
+                    this.mUIFamily_OQEdit.WindowTitles.Add("CreateNewPatient");
+                    #endregion
+                }
+                return this.mUIFamily_OQEdit;
+            }
+        }
         #endregion
         
         #region Fields
@@ -708,6 +1087,8 @@ namespace CodedUITestProject
         private WpfCheckBox mUIFirstMemberofHousehoCheckBox;
         
         private WpfButton mUIAddClientButton;
+        
+        private WpfEdit mUIFamily_OQEdit;
         #endregion
     }
     

@@ -84,7 +84,7 @@ namespace FCS_Funding
                                       select patient;
                         PatientGrid.ItemsSource = newjoin.ToList();
                     }
-                    catch (Exception exc)
+                    catch
                     {
                         MessageBox.Show("Make sure you put a value in.");
                     }
