@@ -9,6 +9,12 @@ namespace FCS_Funding.Models
         {
             this.DonationPurposes = new List<DonationPurpose>();
         }
+        public Purpose(string pn, string pd)
+        {
+            PurposeName = pn;
+            PurposeDescription = pd;
+            this.DonationPurposes = new List<DonationPurpose>();
+        }
 
         public int PurposeID { get; set; }
         public string PurposeName { get; set; }

@@ -47,7 +47,7 @@ namespace FCS_Funding.Views
             patientOQ = p.PatientOQ;
             relationToHead = p.RelationToHead;
             date = p.Time;
-            pOQ = patientOQ;
+            pOQ = p.PatientOQ;
             InitializeComponent();
         }
 
@@ -81,15 +81,19 @@ namespace FCS_Funding.Views
 
         private void Detete_Patient(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("hi", "You want to delete?", MessageBoxButton.YesNo);
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
-            int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
-            var patient = (from p in db.Patients
-                           where p.PatientID == patID
-                           select p).First();
-            db.Patients.Remove(patient);
-            db.SaveChanges();
-            //db.Patients.DeleteObject(order.SalesOrderDetails.First());
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Patient?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
+                var patient = (from p in db.Patients
+                               where p.PatientID == patID
+                               select p).First();
+                db.Patients.Remove(patient);
+                db.SaveChanges();
+                MessageBox.Show("You successfully deleted this Patient.");
+                this.Close();
+            }
         }
         private void Determine_Gender(int selection)
         {
