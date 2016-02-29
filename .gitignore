@@ -57,6 +57,8 @@ FCS_Funding.sln
 /FCS_Funding_WPF/CodedUITestProject/obj/
 #Random file added by Ken because I don't want it to commit
 FCS_Funding_WPF/.vs/FCS_Funding/v14/.suo
+FCS_Funding_WPF/.vs/FCS_Funding/v14/.suo
 #Random TestResults folder I don't want
 /FCS_Funding_WPF/TestResults
 /FCS_Funding_WPF\TestResults
+/FCS_Funding_WPF/FCS_UI_Testing/FCS_UI_Testing/obj/
