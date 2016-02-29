@@ -50,7 +50,7 @@ namespace FCS_Funding
         private void Patient_Grid(object sender, RoutedEventArgs e)
         {
             int index = this.SeachBy_Patients.SelectedIndex;
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
             var join1 = from patient in db.Patients
                         join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
                         select new PatientGrid
@@ -143,7 +143,7 @@ namespace FCS_Funding
                     }
                     else
                     {
-                        MessageBox.Show("Make sure you select a filter.");
+                        //MessageBox.Show("Make sure you select a filter.");
                     }
                 }
             }
@@ -166,6 +166,22 @@ namespace FCS_Funding
                 up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
                 up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
                 up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
+                //up.firstName = p.FirstName;
+                //up.lastName = p.LastName;
+                //up.patientOQ = p.PatientOQ;
+                //up.relationToHead = p.RelationToHead;
+                up.Topmost = true;
+                up.Show();
+            }
+        }
+        private void EditDonor(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                DataGrid dg = sender as DataGrid;
+                DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateDonor up = new UpdateDonor(p);
                 //up.firstName = p.FirstName;
                 //up.lastName = p.LastName;
                 //up.patientOQ = p.PatientOQ;
@@ -249,49 +265,54 @@ namespace FCS_Funding
 
         private void Grants_Grid(object sender, RoutedEventArgs e)
         {
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = from p in db.Purposes
+                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                        join d in db.Donations on dp.DonationID equals d.DonationID
+                        join dr in db.Donors on d.DonorID equals dr.DonorID
+                        join gp in db.GrantProposals on dr.DonorID equals gp.DonorID
+                        select new GrantsDataGrid
+                        {
+                            GrantName = gp.GrantName,
+                            DonationAmount = d.DonationAmount,
+                            DonationDate = d.DonationDate,
+                            PurposeName = p.PurposeName,
+                            PurposeDescription = p.PurposeDescription
+                        };
+        
             GrantsDataGrid g1 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
-            GrantsDataGrid g2 = new GrantsDataGrid("New Charity", 124.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
-            GrantsDataGrid g3 = new GrantsDataGrid("Cross Charitable Foundation", 104.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
-            GrantsDataGrid g4 = new GrantsDataGrid("Cross Charitable Foundation", 102.25M, DateTime.Now, "Charitable People", "We wanted to donate");
-            GrantsDataGrid g5 = new GrantsDataGrid("Cross Charitable Foundation", 241.25M, DateTime.Now, "C", "We wanted to donate");
-            GrantsDataGrid g6 = new GrantsDataGrid("Cross Charitable Foundation", 254.25M, DateTime.Now, "Chari", "We wanted to donate");
-            GrantsDataGrid g7 = new GrantsDataGrid("Cross Charitable Foundation", 184.25M, DateTime.Now, "Charitds", "We wanted to donate");
-            GrantsDataGrid g8 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
-            GrantsDataGrid g9 = new GrantsDataGrid("New Charity", 124.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
-            GrantsDataGrid g13 = new GrantsDataGrid("Cross Charitable Foundation", 104.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
-            GrantsDataGrid g14 = new GrantsDataGrid("Cross Charitable Foundation", 102.25M, DateTime.Now, "Charitable People", "We wanted to donate");
-            GrantsDataGrid g15 = new GrantsDataGrid("Cross Charitable Foundation", 241.25M, DateTime.Now, "C", "We wanted to donate");
-            GrantsDataGrid g16 = new GrantsDataGrid("Cross Charitable Foundation", 254.25M, DateTime.Now, "Chari", "We wanted to donate");
-            GrantsDataGrid g17 = new GrantsDataGrid("Cross Charitable Foundation", 184.25M, DateTime.Now, "Charitds", "We wanted to donate");
             Grants = new ObservableCollection<GrantsDataGrid>();
             Grants.Add(g1);
-            Grants.Add(g2);
-            Grants.Add(g3);
-            Grants.Add(g4);
-            Grants.Add(g5);
-            Grants.Add(g6);
-            Grants.Add(g7);
-            Grants.Add(g8);
-            Grants.Add(g9);
-            Grants.Add(g13);
-            Grants.Add(g14);
-            Grants.Add(g15);
-            Grants.Add(g16);
-            Grants.Add(g17);
+
             // ... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
-            grid.ItemsSource = Grants;
+            grid.ItemsSource = join1.ToList();
         }
 
         private void Donor_Grid(object sender, RoutedEventArgs e)
         {
-            DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
-            DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
-            Donors = new ObservableCollection<DonorsDataGrid>();
-            Donors.Add(d1);
-            Donors.Add(d2);
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = from p in db.Donors
+                        select new DonorsDataGrid
+                        {
+                            DonorID = p.DonorID,
+                            DonorFirstName = p.DonorFirstName,
+                            DonorLastName = p.DonorLastName,
+                            DonorAddress1 = p.DonorAddress1,
+                            OrganizationName = p.OrganizationName,
+                            DonorAddress2 = p.DonorAddress2,
+                            DonorCity = p.DonorCity,
+                            DonorState = p.DonorState,
+                            DonorType = p.DonorType,
+                            DonorZip = p.DonorZip
+                        };
+            //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
+            //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
+            //Donors = new ObservableCollection<DonorsDataGrid>();
+            //Donors.Add(d1);
+            //Donors.Add(d2);
             var grid = sender as DataGrid;
-            grid.ItemsSource = Donors;
+            grid.ItemsSource = join1.ToList();
         }
 
         private void InKindItemGrid(object sender, RoutedEventArgs e)
@@ -360,8 +381,33 @@ namespace FCS_Funding
             ShouldRefreshPatients = true;
             Patient_Grid(sender, e);
         }
-        
 
-        
+        private void Open_AddNewGrant(object sender, RoutedEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                AddNewGrant adg = new AddNewGrant();
+                adg.Topmost = true;
+                adg.Show();
+            }
+
+        }
+
+        private void Refresh_Donors(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Open_CreateNewDonor(object sender, RoutedEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                CreateNewDonor ch = new CreateNewDonor();
+                ch.Topmost = true;
+                ch.Show();
+            }
+        }
     }
 }

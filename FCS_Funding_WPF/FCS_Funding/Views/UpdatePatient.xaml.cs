@@ -34,6 +34,7 @@ namespace FCS_Funding.Views
         //Helper Variables
         private int headOfHousehold { get; set; }
         private DateTime date { get; set; }
+        private int pOQ { get; set; }
 
         public UpdatePatient(PatientGrid p)
         {
@@ -46,36 +47,53 @@ namespace FCS_Funding.Views
             patientOQ = p.PatientOQ;
             relationToHead = p.RelationToHead;
             date = p.Time;
+            pOQ = p.PatientOQ;
             InitializeComponent();
         }
 
         private void Update_Patient(object sender, RoutedEventArgs e)
         {
+            Determine_AgeGroup(this.AgeGroup.SelectedIndex);
+            Determine_EthnicGroup(this.Ethnicity.SelectedIndex);
+            Determine_Gender(this.Gender.SelectedIndex);
+
             FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
-            int patID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientID).Distinct().First();
-            //MessageBox.Show(patID.ToString());
-            //var orig = db.Patients.Find(patID);
-            //if(orig != null)
-            //{
-            //    Determine_Gender(this.Gender.SelectedIndex);
-            //    Determine_AgeGroup(this.AgeGroup.SelectedIndex);
-            //    Determine_EthnicGroup(this.Ethnicity.SelectedIndex);
-            //    orig.PatientOQ = patientOQ;
-            //    orig.PatientFirstName = firstName;
-            //    orig.PatientLastName = lastName;
-            //    orig.RelationToHead = relationToHead;
-            //    orig.PatientGender = PatientGender;
-            //    orig.PatientAgeGroup = ageGroup;
-            //    orig.PatientEthnicity = ethnicGroup;
-            //    orig.IsHead = TheHead.IsChecked.Value;
-            //    db.SaveChanges();
-            //    MessageBox.Show("You have updated " + firstName + " " + lastName);
-            //}
+            int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
+            var patient = (from p in db.Patients
+                           where p.PatientID == patID
+                          select p).First();
+            patient.PatientOQ = patientOQ;
+            patient.PatientFirstName = firstName;
+            patient.PatientLastName = lastName;
+            patient.RelationToHead = relationToHead;
+            patient.PatientGender = PatientGender;
+            patient.PatientAgeGroup = ageGroup;
+            patient.PatientEthnicity = ethnicGroup;
+            patient.IsHead =  TheHead.IsChecked.Value;
+            int changes = db.SaveChanges();
+            MessageBox.Show(changes.ToString());
             //int householdID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.HouseholdID).Distinct().First();
             //FCS_Funding.Models.Patient update = new FCS_Funding.Models.Patient(patientOQ, householdID, firstName, lastName, PatientGender,
             //    ageGroup, ethnicGroup, date, TheHead.IsChecked.Value, relationToHead);
             //db.Patients.Attach(update);
             //var entry = db.Entry(update);
+        }
+
+        private void Detete_Patient(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Patient?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
+                var patient = (from p in db.Patients
+                               where p.PatientID == patID
+                               select p).First();
+                db.Patients.Remove(patient);
+                db.SaveChanges();
+                MessageBox.Show("You successfully deleted this Patient.");
+                this.Close();
+            }
         }
         private void Determine_Gender(int selection)
         {

@@ -124,8 +124,14 @@
     <Compile Include="Views\CreateHousehold.xaml.cs">
       <DependentUpon>CreateHousehold.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateNewDonor.xaml.cs">
+      <DependentUpon>CreateNewDonor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateNewPatient.xaml.cs">
       <DependentUpon>CreateNewPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateDonor.xaml.cs">
+      <DependentUpon>UpdateDonor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdatePatient.xaml.cs">
       <DependentUpon>UpdatePatient.xaml</DependentUpon>
@@ -142,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateHousehold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateNewDonor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,6 +185,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UpdateDonor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UpdatePatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

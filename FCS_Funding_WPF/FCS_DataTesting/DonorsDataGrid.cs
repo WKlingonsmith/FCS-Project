@@ -8,6 +8,7 @@ namespace FCS_DataTesting
 {
     public class DonorsDataGrid
     {
+        public int DonorID { get; set; }
         public string DonorFirstName { get; set; }
         public string DonorLastName { get; set; }
         public string OrganizationName { get; set; }
@@ -17,7 +18,7 @@ namespace FCS_DataTesting
         public string DonorState { get; set; }
         public string DonorCity { get; set; }
         public string DonorZip { get; set; }
-        public DonorsDataGrid(string fn, string ln, string on, string dt, string da1, string da2, string s, string c, string z)
+        public DonorsDataGrid(string fn, string ln, string on, string dt, string da1, string da2, string s, string c, string z, int dID)
         {
             DonorFirstName = fn;
             DonorLastName  = ln;
@@ -28,6 +29,9 @@ namespace FCS_DataTesting
             DonorState = s;
             DonorCity = c;
             DonorZip  = z;
+            DonorID = dID;
         }
+        public DonorsDataGrid()
+        { }
     }
 }
