@@ -60,3 +60,4 @@ FCS_Funding_WPF/.vs/FCS_Funding/v14/.suo
 #Random TestResults folder I don't want
 /FCS_Funding_WPF/TestResults
 /FCS_Funding_WPF\TestResults
+/FCS_Funding_WPF/FCS_UI_Testing/FCS_UI_Testing/obj/
