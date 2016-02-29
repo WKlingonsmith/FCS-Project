@@ -20,6 +20,11 @@ namespace FCS_Funding.Models
             this.Expenses = new List<Expense>();
             this.PatientProblems = new List<PatientProblem>();
         }
+        public Patient()
+        {
+            this.Expenses = new List<Expense>();
+            this.PatientProblems = new List<PatientProblem>();
+        }
 
         public int PatientID { get; set; }
         public int PatientOQ { get; set; }
