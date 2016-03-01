@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDataGrid.cs" />
+    <Compile Include="DonorContactGrid.cs" />
     <Compile Include="DonorsDataGrid.cs" />
     <Compile Include="EventsDataGrid.cs" />
     <Compile Include="GrantsDataGrid.cs" />

@@ -16,7 +16,7 @@ namespace FCS_Funding.Models
         public int DonationID { get; set; }
         public Nullable<int> EventID { get; set; }
         public int DonorID { get; set; }
-        public Nullable<int> RequestForPersonalID { get; set; }
+        public Nullable<int> GrantProposalID { get; set; }
         public bool Restricted { get; set; }
         public bool InKind { get; set; }
         public decimal DonationAmount { get; set; }

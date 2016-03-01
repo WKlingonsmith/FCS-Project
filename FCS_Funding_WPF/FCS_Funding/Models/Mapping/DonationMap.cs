@@ -16,7 +16,7 @@ namespace FCS_Funding.Models.Mapping
             this.Property(t => t.DonationID).HasColumnName("DonationID");
             this.Property(t => t.EventID).HasColumnName("EventID");
             this.Property(t => t.DonorID).HasColumnName("DonorID");
-            this.Property(t => t.RequestForPersonalID).HasColumnName("RequestForPersonalID");
+            this.Property(t => t.GrantProposalID).HasColumnName("GrantProposalID");
             this.Property(t => t.Restricted).HasColumnName("Restricted");
             this.Property(t => t.InKind).HasColumnName("InKind");
             this.Property(t => t.DonationAmount).HasColumnName("DonationAmount");

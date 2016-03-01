@@ -1667,7 +1667,7 @@ namespace FCS_Funding {
             
             private global::System.Data.DataColumn columnDonorID;
             
-            private global::System.Data.DataColumn columnRequestForPersonalID;
+            private global::System.Data.DataColumn columnGrantProposalID;
             
             private global::System.Data.DataColumn columnRestricted;
             
@@ -1736,9 +1736,9 @@ namespace FCS_Funding {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RequestForPersonalIDColumn {
+            public global::System.Data.DataColumn GrantProposalIDColumn {
                 get {
-                    return this.columnRequestForPersonalID;
+                    return this.columnGrantProposalID;
                 }
             }
             
@@ -1811,13 +1811,13 @@ namespace FCS_Funding {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DonationRow AddDonationRow(int EventID, DonorRow parentDonorRowByFK_Donation_DonorID, int RequestForPersonalID, bool Restricted, bool InKind, decimal DonationAmount, System.DateTime DonationDate) {
+            public DonationRow AddDonationRow(int EventID, DonorRow parentDonorRowByFK_Donation_DonorID, int GrantProposalID, bool Restricted, bool InKind, decimal DonationAmount, System.DateTime DonationDate) {
                 DonationRow rowDonationRow = ((DonationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         EventID,
                         null,
-                        RequestForPersonalID,
+                        GrantProposalID,
                         Restricted,
                         InKind,
                         DonationAmount,
@@ -1857,7 +1857,7 @@ namespace FCS_Funding {
                 this.columnDonationID = base.Columns["DonationID"];
                 this.columnEventID = base.Columns["EventID"];
                 this.columnDonorID = base.Columns["DonorID"];
-                this.columnRequestForPersonalID = base.Columns["RequestForPersonalID"];
+                this.columnGrantProposalID = base.Columns["GrantProposalID"];
                 this.columnRestricted = base.Columns["Restricted"];
                 this.columnInKind = base.Columns["InKind"];
                 this.columnDonationAmount = base.Columns["DonationAmount"];
@@ -1873,8 +1873,8 @@ namespace FCS_Funding {
                 base.Columns.Add(this.columnEventID);
                 this.columnDonorID = new global::System.Data.DataColumn("DonorID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDonorID);
-                this.columnRequestForPersonalID = new global::System.Data.DataColumn("RequestForPersonalID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRequestForPersonalID);
+                this.columnGrantProposalID = new global::System.Data.DataColumn("GrantProposalID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGrantProposalID);
                 this.columnRestricted = new global::System.Data.DataColumn("Restricted", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRestricted);
                 this.columnInKind = new global::System.Data.DataColumn("InKind", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -10284,17 +10284,17 @@ namespace FCS_Funding {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int RequestForPersonalID {
+            public int GrantProposalID {
                 get {
                     try {
-                        return ((int)(this[this.tableDonation.RequestForPersonalIDColumn]));
+                        return ((int)(this[this.tableDonation.GrantProposalIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RequestForPersonalID\' in table \'Donation\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GrantProposalID\' in table \'Donation\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDonation.RequestForPersonalIDColumn] = value;
+                    this[this.tableDonation.GrantProposalIDColumn] = value;
                 }
             }
             
@@ -10367,14 +10367,14 @@ namespace FCS_Funding {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRequestForPersonalIDNull() {
-                return this.IsNull(this.tableDonation.RequestForPersonalIDColumn);
+            public bool IsGrantProposalIDNull() {
+                return this.IsNull(this.tableDonation.GrantProposalIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRequestForPersonalIDNull() {
-                this[this.tableDonation.RequestForPersonalIDColumn] = global::System.Convert.DBNull;
+            public void SetGrantProposalIDNull() {
+                this[this.tableDonation.GrantProposalIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14350,7 +14350,7 @@ SELECT AppointmentID, StaffID, AppointmentStartDate, AppointmentEndDate, Appoint
             tableMapping.ColumnMappings.Add("DonationID", "DonationID");
             tableMapping.ColumnMappings.Add("EventID", "EventID");
             tableMapping.ColumnMappings.Add("DonorID", "DonorID");
-            tableMapping.ColumnMappings.Add("RequestForPersonalID", "RequestForPersonalID");
+            tableMapping.ColumnMappings.Add("GrantProposalID", "GrantProposalID");
             tableMapping.ColumnMappings.Add("Restricted", "Restricted");
             tableMapping.ColumnMappings.Add("InKind", "InKind");
             tableMapping.ColumnMappings.Add("DonationAmount", "DonationAmount");
@@ -14358,38 +14358,38 @@ SELECT AppointmentID, StaffID, AppointmentStartDate, AppointmentEndDate, Appoint
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Donation] WHERE (([DonationID] = @Original_DonationID) AND ((@IsNull_EventID = 1 AND [EventID] IS NULL) OR ([EventID] = @Original_EventID)) AND ([DonorID] = @Original_DonorID) AND ((@IsNull_RequestForPersonalID = 1 AND [RequestForPersonalID] IS NULL) OR ([RequestForPersonalID] = @Original_RequestForPersonalID)) AND ([Restricted] = @Original_Restricted) AND ([InKind] = @Original_InKind) AND ([DonationAmount] = @Original_DonationAmount) AND ([DonationDate] = @Original_DonationDate))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Donation] WHERE (([DonationID] = @Original_DonationID) AND ((@IsNull_EventID = 1 AND [EventID] IS NULL) OR ([EventID] = @Original_EventID)) AND ([DonorID] = @Original_DonorID) AND ((@IsNull_GrantProposalID = 1 AND [GrantProposalID] IS NULL) OR ([GrantProposalID] = @Original_GrantProposalID)) AND ([Restricted] = @Original_Restricted) AND ([InKind] = @Original_InKind) AND ([DonationAmount] = @Original_DonationAmount) AND ([DonationDate] = @Original_DonationDate))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DonationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EventID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EventID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DonorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonorID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_RequestForPersonalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequestForPersonalID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RequestForPersonalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequestForPersonalID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GrantProposalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GrantProposalID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GrantProposalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GrantProposalID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Restricted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Restricted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InKind", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InKind", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DonationAmount", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationAmount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DonationDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Donation] ([EventID], [DonorID], [RequestForPersonalID], [Restricted], [InKind], [DonationAmount], [DonationDate]) VALUES (@EventID, @DonorID, @RequestForPersonalID, @Restricted, @InKind, @DonationAmount, @DonationDate);
-SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, DonationAmount, DonationDate FROM Donation WHERE (DonationID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Donation] ([EventID], [DonorID], [GrantProposalID], [Restricted], [InKind], [DonationAmount], [DonationDate]) VALUES (@EventID, @DonorID, @GrantProposalID, @Restricted, @InKind, @DonationAmount, @DonationDate);
+SELECT DonationID, EventID, DonorID, GrantProposalID, Restricted, InKind, DonationAmount, DonationDate FROM Donation WHERE (DonationID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DonorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonorID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RequestForPersonalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequestForPersonalID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GrantProposalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GrantProposalID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Restricted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Restricted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InKind", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InKind", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DonationAmount", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DonationDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Donation] SET [EventID] = @EventID, [DonorID] = @DonorID, [RequestForPersonalID] = @RequestForPersonalID, [Restricted] = @Restricted, [InKind] = @InKind, [DonationAmount] = @DonationAmount, [DonationDate] = @DonationDate WHERE (([DonationID] = @Original_DonationID) AND ((@IsNull_EventID = 1 AND [EventID] IS NULL) OR ([EventID] = @Original_EventID)) AND ([DonorID] = @Original_DonorID) AND ((@IsNull_RequestForPersonalID = 1 AND [RequestForPersonalID] IS NULL) OR ([RequestForPersonalID] = @Original_RequestForPersonalID)) AND ([Restricted] = @Original_Restricted) AND ([InKind] = @Original_InKind) AND ([DonationAmount] = @Original_DonationAmount) AND ([DonationDate] = @Original_DonationDate));
-SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, DonationAmount, DonationDate FROM Donation WHERE (DonationID = @DonationID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Donation] SET [EventID] = @EventID, [DonorID] = @DonorID, [GrantProposalID] = @GrantProposalID, [Restricted] = @Restricted, [InKind] = @InKind, [DonationAmount] = @DonationAmount, [DonationDate] = @DonationDate WHERE (([DonationID] = @Original_DonationID) AND ((@IsNull_EventID = 1 AND [EventID] IS NULL) OR ([EventID] = @Original_EventID)) AND ([DonorID] = @Original_DonorID) AND ((@IsNull_GrantProposalID = 1 AND [GrantProposalID] IS NULL) OR ([GrantProposalID] = @Original_GrantProposalID)) AND ([Restricted] = @Original_Restricted) AND ([InKind] = @Original_InKind) AND ([DonationAmount] = @Original_DonationAmount) AND ([DonationDate] = @Original_DonationDate));
+SELECT DonationID, EventID, DonorID, GrantProposalID, Restricted, InKind, DonationAmount, DonationDate FROM Donation WHERE (DonationID = @DonationID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DonorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonorID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RequestForPersonalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequestForPersonalID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GrantProposalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GrantProposalID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Restricted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Restricted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InKind", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InKind", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DonationAmount", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -14398,8 +14398,8 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EventID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EventID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DonorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonorID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_RequestForPersonalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequestForPersonalID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RequestForPersonalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RequestForPersonalID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GrantProposalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GrantProposalID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GrantProposalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GrantProposalID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Restricted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Restricted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InKind", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InKind", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DonationAmount", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DonationAmount", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14420,8 +14420,8 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, Do" +
-                "nationAmount, DonationDate FROM dbo.Donation";
+            this._commandCollection[0].CommandText = "SELECT DonationID, EventID, DonorID, GrantProposalID, Restricted, InKind, Donatio" +
+                "nAmount, DonationDate FROM dbo.Donation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -14482,7 +14482,7 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_DonationID, global::System.Nullable<int> Original_EventID, int Original_DonorID, global::System.Nullable<int> Original_RequestForPersonalID, bool Original_Restricted, bool Original_InKind, decimal Original_DonationAmount, System.DateTime Original_DonationDate) {
+        public virtual int Delete(int Original_DonationID, global::System.Nullable<int> Original_EventID, int Original_DonorID, global::System.Nullable<int> Original_GrantProposalID, bool Original_Restricted, bool Original_InKind, decimal Original_DonationAmount, System.DateTime Original_DonationDate) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_DonationID));
             if ((Original_EventID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -14493,9 +14493,9 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_DonorID));
-            if ((Original_RequestForPersonalID.HasValue == true)) {
+            if ((Original_GrantProposalID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_RequestForPersonalID.Value));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_GrantProposalID.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
@@ -14525,7 +14525,7 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> EventID, int DonorID, global::System.Nullable<int> RequestForPersonalID, bool Restricted, bool InKind, decimal DonationAmount, System.DateTime DonationDate) {
+        public virtual int Insert(global::System.Nullable<int> EventID, int DonorID, global::System.Nullable<int> GrantProposalID, bool Restricted, bool InKind, decimal DonationAmount, System.DateTime DonationDate) {
             if ((EventID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(EventID.Value));
             }
@@ -14533,8 +14533,8 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(DonorID));
-            if ((RequestForPersonalID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(RequestForPersonalID.Value));
+            if ((GrantProposalID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(GrantProposalID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -14566,7 +14566,7 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
         public virtual int Update(
                     global::System.Nullable<int> EventID, 
                     int DonorID, 
-                    global::System.Nullable<int> RequestForPersonalID, 
+                    global::System.Nullable<int> GrantProposalID, 
                     bool Restricted, 
                     bool InKind, 
                     decimal DonationAmount, 
@@ -14574,7 +14574,7 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
                     int Original_DonationID, 
                     global::System.Nullable<int> Original_EventID, 
                     int Original_DonorID, 
-                    global::System.Nullable<int> Original_RequestForPersonalID, 
+                    global::System.Nullable<int> Original_GrantProposalID, 
                     bool Original_Restricted, 
                     bool Original_InKind, 
                     decimal Original_DonationAmount, 
@@ -14587,8 +14587,8 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(DonorID));
-            if ((RequestForPersonalID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(RequestForPersonalID.Value));
+            if ((GrantProposalID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(GrantProposalID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -14607,9 +14607,9 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_DonorID));
-            if ((Original_RequestForPersonalID.HasValue == true)) {
+            if ((Original_GrantProposalID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_RequestForPersonalID.Value));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_GrantProposalID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
@@ -14640,8 +14640,8 @@ SELECT DonationID, EventID, DonorID, RequestForPersonalID, Restricted, InKind, D
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> EventID, int DonorID, global::System.Nullable<int> RequestForPersonalID, bool Restricted, bool InKind, decimal DonationAmount, System.DateTime DonationDate, int Original_DonationID, global::System.Nullable<int> Original_EventID, int Original_DonorID, global::System.Nullable<int> Original_RequestForPersonalID, bool Original_Restricted, bool Original_InKind, decimal Original_DonationAmount, System.DateTime Original_DonationDate) {
-            return this.Update(EventID, DonorID, RequestForPersonalID, Restricted, InKind, DonationAmount, DonationDate, Original_DonationID, Original_EventID, Original_DonorID, Original_RequestForPersonalID, Original_Restricted, Original_InKind, Original_DonationAmount, Original_DonationDate, Original_DonationID);
+        public virtual int Update(global::System.Nullable<int> EventID, int DonorID, global::System.Nullable<int> GrantProposalID, bool Restricted, bool InKind, decimal DonationAmount, System.DateTime DonationDate, int Original_DonationID, global::System.Nullable<int> Original_EventID, int Original_DonorID, global::System.Nullable<int> Original_GrantProposalID, bool Original_Restricted, bool Original_InKind, decimal Original_DonationAmount, System.DateTime Original_DonationDate) {
+            return this.Update(EventID, DonorID, GrantProposalID, Restricted, InKind, DonationAmount, DonationDate, Original_DonationID, Original_EventID, Original_DonorID, Original_GrantProposalID, Original_Restricted, Original_InKind, Original_DonationAmount, Original_DonationDate, Original_DonationID);
         }
     }
     
