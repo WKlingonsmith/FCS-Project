@@ -9,6 +9,7 @@ namespace FCS_Funding.Models
         public int DonorID { get; set; }
         public string GrantName { get; set; }
         public System.DateTime SubmissionDueDate { get; set; }
+        public string GrantStatus { get; set; }
         public virtual Donor Donor { get; set; }
     }
 }

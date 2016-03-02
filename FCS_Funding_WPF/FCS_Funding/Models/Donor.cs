@@ -12,10 +12,8 @@ namespace FCS_Funding.Models
             this.GrantProposals = new List<GrantProposal>();
             this.Reminders = new List<Reminder>();
         }
-        public Donor(string fn, string ln, string dt, string on, string a1, string a2, string s, string c, string z)
+        public Donor(string dt, string on, string a1, string a2, string s, string c, string z)
         {
-            this.DonorFirstName = fn;
-            this.DonorLastName = ln;
             this.DonorType = dt;
             this.OrganizationName = on;
             this.DonorAddress1 = a1;
@@ -30,8 +28,6 @@ namespace FCS_Funding.Models
         }
 
         public int DonorID { get; set; }
-        public string DonorFirstName { get; set; }
-        public string DonorLastName { get; set; }
         public string DonorType { get; set; }
         public string OrganizationName { get; set; }
         public string DonorAddress1 { get; set; }

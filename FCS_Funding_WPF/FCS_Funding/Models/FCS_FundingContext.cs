@@ -35,6 +35,7 @@ namespace FCS_Funding.Models
         public DbSet<Reminder> Reminders { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<View_FamilySessionCount> View_FamilySessionCount { get; set; }
+        public DbSet<View_GrantProposals> View_GrantProposals { get; set; }
         public DbSet<View_GroupSessionCount> View_GroupSessionCount { get; set; }
         public DbSet<View_GroupSessionPreCount> View_GroupSessionPreCount { get; set; }
         public DbSet<View_IndividualSessionCount> View_IndividualSessionCount { get; set; }
@@ -62,6 +63,7 @@ namespace FCS_Funding.Models
             modelBuilder.Configurations.Add(new ReminderMap());
             modelBuilder.Configurations.Add(new StaffMap());
             modelBuilder.Configurations.Add(new View_FamilySessionCountMap());
+            modelBuilder.Configurations.Add(new View_GrantProposalsMap());
             modelBuilder.Configurations.Add(new View_GroupSessionCountMap());
             modelBuilder.Configurations.Add(new View_GroupSessionPreCountMap());
             modelBuilder.Configurations.Add(new View_IndividualSessionCountMap());

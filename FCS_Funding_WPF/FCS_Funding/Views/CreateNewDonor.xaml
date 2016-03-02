@@ -74,9 +74,13 @@
             <TextBox  FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="3" Height="30" />
-        <Border Grid.Row="10" Grid.Column="4"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorType, ElementName=ThisWindow}"  />
-        </Border>
+        <ComboBox Name="dType" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                  HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="4" Grid.Row="10" FontSize="20">
+            <ComboBoxItem >Organization</ComboBoxItem>
+            <ComboBoxItem >Individual</ComboBoxItem>
+            <ComboBoxItem >Anonymous</ComboBoxItem>
+            <ComboBoxItem >Government</ComboBoxItem>
+        </ComboBox>
 
         <Button FontSize="18" Grid.Column="3" Grid.Row="13" Content="Add Donor" Click="CreateDonor"    />
     </Grid>

@@ -21,6 +21,7 @@ namespace FCS_Funding.Models
         public bool InKind { get; set; }
         public decimal DonationAmount { get; set; }
         public System.DateTime DonationDate { get; set; }
+        public Nullable<System.DateTime> DonationExpirationDate { get; set; }
         public virtual Donor Donor { get; set; }
         public virtual ICollection<DonationPurpose> DonationPurposes { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }

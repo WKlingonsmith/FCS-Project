@@ -292,12 +292,28 @@ namespace FCS_Funding
         private void Donor_Grid(object sender, RoutedEventArgs e)
         {
             Models.FCS_FundingContext db = new Models.FCS_FundingContext();
-            var join1 = from p in db.Donors
+            var join1 = (from p in db.Donors
+                         join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                         select new DonorsDataGrid
+                         {
+                             DonorID = p.DonorID,
+                             DonorFirstName = dc.ContactFirstName,
+                             DonorLastName = dc.ContactLastName,
+                             DonorAddress1 = p.DonorAddress1,
+                             OrganizationName = p.OrganizationName,
+                             DonorAddress2 = p.DonorAddress2,
+                             DonorCity = p.DonorCity,
+                             DonorState = p.DonorState,
+                             DonorType = p.DonorType,
+                             DonorZip = p.DonorZip
+                         }).Union(
+                        from p in db.Donors
+                        join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                         select new DonorsDataGrid
                         {
                             DonorID = p.DonorID,
-                            DonorFirstName = p.DonorFirstName,
-                            DonorLastName = p.DonorLastName,
+                            DonorFirstName = "",
+                            DonorLastName = "",
                             DonorAddress1 = p.DonorAddress1,
                             OrganizationName = p.OrganizationName,
                             DonorAddress2 = p.DonorAddress2,
@@ -305,7 +321,7 @@ namespace FCS_Funding
                             DonorState = p.DonorState,
                             DonorType = p.DonorType,
                             DonorZip = p.DonorZip
-                        };
+                        });
             //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
             //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
             //Donors = new ObservableCollection<DonorsDataGrid>();

@@ -11,12 +11,6 @@ namespace FCS_Funding.Models.Mapping
             this.HasKey(t => t.DonorID);
 
             // Properties
-            this.Property(t => t.DonorFirstName)
-                .HasMaxLength(50);
-
-            this.Property(t => t.DonorLastName)
-                .HasMaxLength(50);
-
             this.Property(t => t.DonorType)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -42,8 +36,6 @@ namespace FCS_Funding.Models.Mapping
             // Table & Column Mappings
             this.ToTable("Donor");
             this.Property(t => t.DonorID).HasColumnName("DonorID");
-            this.Property(t => t.DonorFirstName).HasColumnName("DonorFirstName");
-            this.Property(t => t.DonorLastName).HasColumnName("DonorLastName");
             this.Property(t => t.DonorType).HasColumnName("DonorType");
             this.Property(t => t.OrganizationName).HasColumnName("OrganizationName");
             this.Property(t => t.DonorAddress1).HasColumnName("DonorAddress1");

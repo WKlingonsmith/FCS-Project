@@ -15,12 +15,17 @@ namespace FCS_Funding.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(50);
 
+            this.Property(t => t.GrantStatus)
+                .IsRequired()
+                .HasMaxLength(15);
+
             // Table & Column Mappings
             this.ToTable("GrantProposal");
             this.Property(t => t.GrantProposalID).HasColumnName("GrantProposalID");
             this.Property(t => t.DonorID).HasColumnName("DonorID");
             this.Property(t => t.GrantName).HasColumnName("GrantName");
             this.Property(t => t.SubmissionDueDate).HasColumnName("SubmissionDueDate");
+            this.Property(t => t.GrantStatus).HasColumnName("GrantStatus");
 
             // Relationships
             this.HasRequired(t => t.Donor)

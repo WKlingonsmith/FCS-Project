@@ -21,6 +21,7 @@ namespace FCS_Funding.Models.Mapping
             this.Property(t => t.InKind).HasColumnName("InKind");
             this.Property(t => t.DonationAmount).HasColumnName("DonationAmount");
             this.Property(t => t.DonationDate).HasColumnName("DonationDate");
+            this.Property(t => t.DonationExpirationDate).HasColumnName("DonationExpirationDate");
 
             // Relationships
             this.HasRequired(t => t.Donor)

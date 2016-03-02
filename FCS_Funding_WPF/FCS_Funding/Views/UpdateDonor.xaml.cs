@@ -52,8 +52,8 @@ namespace FCS_Funding.Views
             var donor = (from p in db.Donors
                            where p.DonorID == DonorID
                            select p).First();
-            donor.DonorFirstName = DonorFirstName;
-            donor.DonorLastName = DonorLastName;
+            //donor.DonorFirstName = DonorFirstName;
+            //donor.DonorLastName = DonorLastName;
             donor.DonorAddress1 = DonorAddress1;
             donor.DonorAddress2 = DonorAddress2;
             donor.DonorCity = DonorCity;

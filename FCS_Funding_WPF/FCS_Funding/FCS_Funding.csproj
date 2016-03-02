@@ -67,11 +67,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FCS_FundingDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FCS_FundingDataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Donation.cs" />
     <Compile Include="Models\DonationPurpose.cs" />
@@ -103,6 +98,7 @@
     <Compile Include="Models\Mapping\ReminderMap.cs" />
     <Compile Include="Models\Mapping\StaffMap.cs" />
     <Compile Include="Models\Mapping\View_FamilySessionCountMap.cs" />
+    <Compile Include="Models\Mapping\View_GrantProposalsMap.cs" />
     <Compile Include="Models\Mapping\View_GroupSessionCountMap.cs" />
     <Compile Include="Models\Mapping\View_GroupSessionPreCountMap.cs" />
     <Compile Include="Models\Mapping\View_IndividualSessionCountMap.cs" />
@@ -116,6 +112,7 @@
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\View_FamilySessionCount.cs" />
+    <Compile Include="Models\View_GrantProposals.cs" />
     <Compile Include="Models\View_GroupSessionCount.cs" />
     <Compile Include="Models\View_GroupSessionPreCount.cs" />
     <Compile Include="Models\View_IndividualSessionCount.cs" />
@@ -126,6 +123,9 @@
     </Compile>
     <Compile Include="Views\CreateHousehold.xaml.cs">
       <DependentUpon>CreateHousehold.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateIndividualContact.xaml.cs">
+      <DependentUpon>CreateIndividualContact.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateNewDonor.xaml.cs">
       <DependentUpon>CreateNewDonor.xaml</DependentUpon>
@@ -158,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateHousehold.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateIndividualContact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,17 +234,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="FCS_FundingDataSet1.xsc">
-      <DependentUpon>FCS_FundingDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="FCS_FundingDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>FCS_FundingDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="FCS_FundingDataSet1.xss">
-      <DependentUpon>FCS_FundingDataSet1.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -262,6 +255,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

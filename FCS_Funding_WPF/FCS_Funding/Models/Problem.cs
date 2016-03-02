@@ -11,7 +11,7 @@ namespace FCS_Funding.Models
         }
 
         public int ProblemID { get; set; }
-        public string ProblemDescription { get; set; }
+        public string ProblemType { get; set; }
         public virtual ICollection<PatientProblem> PatientProblems { get; set; }
     }
 }

@@ -36,25 +36,57 @@ namespace FCS_Funding.Views
 
         private void CreateDonor(object sender, RoutedEventArgs e)
         {
-            if (DonorFirstName != null && DonorFirstName != "" && DonorLastName != null && DonorLastName != ""
-                && DonorType != null && DonorType != "")
+            Determine_DonorType(this.dType.SelectedIndex);
+            //DonorFirstName != null && DonorFirstName != "" && DonorLastName != null && DonorLastName != ""
+            if (DonorType != null && DonorType != "")
             {
-                MessageBox.Show(DonorFirstName + "\n" + DonorLastName + "\n" + DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip 
-                    + "\n" + DonorType + "\n" + OrganizationName);
-
                 FCS_FundingContext db = new FCS_FundingContext();
-                Donor d = new Donor(DonorFirstName, DonorLastName, DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
-                db.Donors.Add(d);
-                db.SaveChanges();
-                MessageBox.Show("Successfully added Donor!");
-                this.Close();
+                if (DonorType == "Organization" || DonorType == "Government")
+                {
+                    MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                        + "\n" + DonorType + "\n" + OrganizationName);
+                    Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
+                    db.Donors.Add(d);
+                    db.SaveChanges();
+                    MessageBox.Show("Successfully added Donor!");
+                    this.Close();
+                }
+                else if(DonorType == "Individual")
+                {
+                    MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                        + "\n" + DonorType + "\n" + OrganizationName);
+                    Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
+                    CreateIndividualContact cic = new CreateIndividualContact(d);
+                    this.Close();
+                    cic.Show();
+                }
+                //its anonymous
+                else
+                {
+
+                }
             }
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you select an income and head of household");
+                MessageBox.Show("Make sure you select Donor Type.");
             }
 
+        }
+
+        private void Determine_DonorType(int selection)
+        {
+            switch (selection)
+            {
+                case 0:
+                    DonorType = "Organization"; break;
+                case 1:
+                    DonorType = "Individual"; break;
+                case 2:
+                    DonorType = "Anonymous"; break;
+                case 3:
+                    DonorType = "Government"; break;
+            }
         }
     }
 }
