@@ -390,8 +390,8 @@ VALUES(2,'1/7/2016 14:00','1/7/2016 14:30')
 -------------------------------Donor---------------------------------
 ---------------------------------------------------------------------
 
-INSERT INTO DONOR(DonorFirstName,DonorLastName,OrganizationName,DonorType,DonorAddress1,DonorAddress2,DonorCity,DonorState,DonorZip)
-VALUES('Bill','Gates','Gates Donation Fund','Donation','123 Somwhere', 'Suite 99', 'Las Vegas', 'IL', '90210')
+INSERT INTO DONOR(OrganizationName,DonorType,DonorAddress1,DonorAddress2,DonorCity,DonorState,DonorZip)
+VALUES('Gates Donation Fund','Donation','123 Somwhere', 'Suite 99', 'Las Vegas', 'IL', '90210')
 
 ---------------------------------------------------------------------
 ----------------------------Donation---------------------------------
@@ -404,7 +404,7 @@ VALUES(1, 0, 0, 1000000, '04/08/2014')
 ----------------------------Expense----------------------------------
 ---------------------------------------------------------------------
 
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,ExpenseAmount)
+INSERT INTO Expense(ExpenseTypeID, DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,ExpenseAmount)
 VALUES(1,1,9,1,'2/4/2016','1/26/2016',45)
 
 INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,ExpenseAmount)
@@ -445,8 +445,8 @@ VALUES(2,1,4,8,'1/7/2016','2/25/2015 ',45)
 ---------------------------------------------------------------------
 --------------------------In-Kind Item-------------------------------
 ---------------------------------------------------------------------
-INSERT INTO Donor(DonorFirstName, DonorLastName, OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
-VALUES('InKind', 'Item Donor', 'Stuff To Give', 'Donor', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
+INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
+VALUES('Stuff To Give', 'Donor', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
 GO
 INSERT INTO Donation (DonorID, Restricted, Inkind, DonationAmount, DonationDate)
 VALUES(2, 1, 1, 150, '12/12/2015')
@@ -457,8 +457,8 @@ VALUES (2, 'Oak Table', 'A very nice table made of oak')
 -------------------------In-Kind Service-----------------------------
 ---------------------------------------------------------------------
 GO
-INSERT INTO Donor(DonorFirstName, DonorLastName, OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
-VALUES('InKind', 'Service Donor', 'Service To Give', 'Volunteer', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
+INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
+VALUES('Service To Give', 'Volunteer', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
 GO
 INSERT INTO Donation (DonorID, Restricted, InKind, DonationAmount, DonationDate)
 VALUES(3,1,1,80,'10/10/2015')
