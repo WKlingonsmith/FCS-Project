@@ -71,8 +71,6 @@ CREATE TABLE DonationPurpose
 CREATE TABLE Donor
 (
 	DonorID					INT				NOT NULL 		IDENTITY(1,1)			PRIMARY KEY,
-    DonorFirstName			VarChar(50)		NULL,
-    DonorLastName			VarChar(50)		NULL,
 	DonorType				Varchar(50)		NOT NULL,
     OrganizationName		VarChar(250)	NULL,
     DonorAddress1			VarChar(50)		NULL,
