@@ -16,17 +16,16 @@ namespace CodedUITestProject
     /// Summary description for CodedUITest1
     /// </summary>
     [CodedUITest]
-    public class CodedUITest1
+    public class OpenProgramTest
     {
-        public CodedUITest1()
+        public OpenProgramTest()
         {
         }
 
         [TestMethod]
-        public void CodedUITestMethod1()
+        public void openProgramTest()
         {
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-            this.UIMap.TestInsertPatientGUI();
         }
 
         #region Additional test attributes

@@ -318,6 +318,114 @@ namespace CodedUITestProject
             Mouse.Click(uIOKButton, new Point(90, 7));
         }
         
+        /// <summary>
+        /// TestOpeningProgram - Use 'TestOpeningProgramParams' to pass parameters into this method.
+        /// </summary>
+        public void TestOpeningProgram()
+        {
+            #region Variable Declarations
+            WpfButton uILoginButton = this.UILoginWindow.UILoginButton;
+            WpfTabPage uIGrantsTabPage = this.UIMainWindowWindow.UIItemTabList.UIGrantsTabPage;
+            #endregion
+
+            // Launch '%USERPROFILE%\Desktop\Spring2016\Software Engineering 3\FCS-Funding\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe'
+            ApplicationUnderTest uILoginWindow = ApplicationUnderTest.Launch(this.TestOpeningProgramParams.UILoginWindowExePath, this.TestOpeningProgramParams.UILoginWindowAlternateExePath);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(105, 26));
+
+            // Click 'Grants' tab
+            Mouse.Click(uIGrantsTabPage, new Point(151, 35));
+        }
+        
+        /// <summary>
+        /// Open the program, insert a patient that is the head of their own household, close the program.
+        /// </summary>
+        public void TestInsertPatientGUI()
+        {
+            #region Variable Declarations
+            WpfButton uILoginButton = this.UILoginWindow.UILoginButton;
+            WpfButton uICreateNewPatientButton = this.UIMainWindowWindow.UIItemTabList.UIPatientsTabPage.UICreateNewPatientButton;
+            WpfEdit uIItemEdit = this.UICreateNewPatientWindow.UIItemEdit;
+            WpfComboBox uIGenderComboBox = this.UICreateNewPatientWindow.UIGenderComboBox;
+            WpfComboBox uIAgeGroupComboBox = this.UICreateNewPatientWindow.UIAgeGroupComboBox;
+            WpfComboBox uIEthnicityComboBox = this.UICreateNewPatientWindow.UIEthnicityComboBox;
+            WpfEdit uIItemEdit1 = this.UICreateNewPatientWindow.UIItemEdit1;
+            WpfEdit uIItemEdit2 = this.UICreateNewPatientWindow.UIItemEdit2;
+            WpfEdit uIItemEdit3 = this.UICreateNewPatientWindow.UIItemEdit3;
+            WpfCheckBox uIIsHeadofHouseholdCheckBox = this.UICreateNewPatientWindow.UIIsHeadofHouseholdCheckBox;
+            WpfCheckBox uIFirstMemberofHousehoCheckBox = this.UICreateNewPatientWindow.UIFirstMemberofHousehoCheckBox;
+            WpfButton uIAddClientButton = this.UICreateNewPatientWindow.UIAddClientButton;
+            WpfEdit uIItemEdit4 = this.UICreateHouseholdWindow.UIItemEdit;
+            WpfEdit uIItemEdit11 = this.UICreateHouseholdWindow.UIItemEdit1;
+            WpfComboBox uIIncomeComboBox = this.UICreateHouseholdWindow.UIIncomeComboBox;
+            WpfButton uIAddHouseholdButton = this.UICreateHouseholdWindow.UIAddHouseholdButton;
+            WinControl uIItemDialog = this.UIItemWindow.UIItemWindow1.UIItemDialog;
+            WinButton uIOKButton = this.UIOKWindow.UIOKButton;
+            WinButton uICloseButton = this.UIMainWindowWindow1.UICloseButton;
+            #endregion
+
+            // Launch '%USERPROFILE%\Desktop\Spring2016\Software Engineering 3\FCS-Funding\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe'
+            ApplicationUnderTest uILoginWindow = ApplicationUnderTest.Launch(this.TestInsertPatientGUIParams.UILoginWindowExePath, this.TestInsertPatientGUIParams.UILoginWindowAlternateExePath);
+
+            // Click 'Login' button
+            Mouse.Click(uILoginButton, new Point(75, 11));
+
+            // Click 'Create New Patient' button
+            Mouse.Click(uICreateNewPatientButton, new Point(224, 36));
+
+            // Type '7562' in text box
+            uIItemEdit.Text = this.TestInsertPatientGUIParams.UIItemEditText;
+
+            // Select 'Male' in 'Gender' combo box
+            uIGenderComboBox.SelectedItem = this.TestInsertPatientGUIParams.UIGenderComboBoxSelectedItem;
+
+            // Select '55-69' in 'AgeGroup' combo box
+            uIAgeGroupComboBox.SelectedItem = this.TestInsertPatientGUIParams.UIAgeGroupComboBoxSelectedItem;
+
+            // Select 'Asian' in 'ethnicity' combo box
+            uIEthnicityComboBox.SelectedItem = this.TestInsertPatientGUIParams.UIEthnicityComboBoxSelectedItem;
+
+            // Type 'Fluffy' in text box numbered 2 in 'CreateNewPatient' window
+            uIItemEdit1.Text = this.TestInsertPatientGUIParams.UIItemEdit1Text;
+
+            // Type 'Kitten' in text box numbered 3 in 'CreateNewPatient' window
+            uIItemEdit2.Text = this.TestInsertPatientGUIParams.UIItemEdit2Text;
+
+            // Type 'Child' in text box numbered 4 in 'CreateNewPatient' window
+            uIItemEdit3.Text = this.TestInsertPatientGUIParams.UIItemEdit3Text;
+
+            // Select 'Is Head of Household?' check box
+            uIIsHeadofHouseholdCheckBox.Checked = this.TestInsertPatientGUIParams.UIIsHeadofHouseholdCheckBoxChecked;
+
+            // Select 'First Member of Household?' check box
+            uIFirstMemberofHousehoCheckBox.Checked = this.TestInsertPatientGUIParams.UIFirstMemberofHousehoCheckBoxChecked;
+
+            // Click 'Add Client' button
+            Mouse.Click(uIAddClientButton, new Point(163, 17));
+
+            // Type '5' in text box
+            uIItemEdit4.Text = this.TestInsertPatientGUIParams.UIItemEditText1;
+
+            // Type 'Davis' in text box numbered 2 in 'CreateHousehold' window
+            uIItemEdit11.Text = this.TestInsertPatientGUIParams.UIItemEdit1Text1;
+
+            // Select '$35,000+' in 'income' combo box
+            uIIncomeComboBox.SelectedItem = this.TestInsertPatientGUIParams.UIIncomeComboBoxSelectedItem;
+
+            // Click 'Add Household' button
+            Mouse.Click(uIAddHouseholdButton, new Point(212, 40));
+
+            // Click Dialog
+            Mouse.Click(uIItemDialog, new Point(202, 402));
+
+            // Click 'OK' button
+            Mouse.Click(uIOKButton, new Point(77, 32));
+
+            // Click 'Close' button
+            Mouse.Click(uICloseButton, new Point(28, 19));
+        }
+        
         #region Properties
         public virtual TestpatientInsertParams TestpatientInsertParams
         {
@@ -352,6 +460,30 @@ namespace CodedUITestProject
                     this.mTestpatientInsert2Params = new TestpatientInsert2Params();
                 }
                 return this.mTestpatientInsert2Params;
+            }
+        }
+        
+        public virtual TestOpeningProgramParams TestOpeningProgramParams
+        {
+            get
+            {
+                if ((this.mTestOpeningProgramParams == null))
+                {
+                    this.mTestOpeningProgramParams = new TestOpeningProgramParams();
+                }
+                return this.mTestOpeningProgramParams;
+            }
+        }
+        
+        public virtual TestInsertPatientGUIParams TestInsertPatientGUIParams
+        {
+            get
+            {
+                if ((this.mTestInsertPatientGUIParams == null))
+                {
+                    this.mTestInsertPatientGUIParams = new TestInsertPatientGUIParams();
+                }
+                return this.mTestInsertPatientGUIParams;
             }
         }
         
@@ -414,6 +546,42 @@ namespace CodedUITestProject
                 return this.mUIOKWindow;
             }
         }
+        
+        public UIDebugWindow UIDebugWindow
+        {
+            get
+            {
+                if ((this.mUIDebugWindow == null))
+                {
+                    this.mUIDebugWindow = new UIDebugWindow();
+                }
+                return this.mUIDebugWindow;
+            }
+        }
+        
+        public UIItemWindow2 UIItemWindow
+        {
+            get
+            {
+                if ((this.mUIItemWindow == null))
+                {
+                    this.mUIItemWindow = new UIItemWindow2();
+                }
+                return this.mUIItemWindow;
+            }
+        }
+        
+        public UIMainWindowWindow1 UIMainWindowWindow1
+        {
+            get
+            {
+                if ((this.mUIMainWindowWindow1 == null))
+                {
+                    this.mUIMainWindowWindow1 = new UIMainWindowWindow1();
+                }
+                return this.mUIMainWindowWindow1;
+            }
+        }
         #endregion
         
         #region Fields
@@ -422,6 +590,10 @@ namespace CodedUITestProject
         private insertTestParams minsertTestParams;
         
         private TestpatientInsert2Params mTestpatientInsert2Params;
+        
+        private TestOpeningProgramParams mTestOpeningProgramParams;
+        
+        private TestInsertPatientGUIParams mTestInsertPatientGUIParams;
         
         private UILoginWindow mUILoginWindow;
         
@@ -432,6 +604,12 @@ namespace CodedUITestProject
         private UICreateHouseholdWindow mUICreateHouseholdWindow;
         
         private UIOKWindow mUIOKWindow;
+        
+        private UIDebugWindow mUIDebugWindow;
+        
+        private UIItemWindow2 mUIItemWindow;
+        
+        private UIMainWindowWindow1 mUIMainWindowWindow1;
         #endregion
     }
     
@@ -689,6 +867,110 @@ namespace CodedUITestProject
         #endregion
     }
     
+    /// <summary>
+    /// Parameters to be passed into 'TestOpeningProgram'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class TestOpeningProgramParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Launch '%USERPROFILE%\Desktop\Spring2016\Software Engineering 3\FCS-Funding\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe'
+        /// </summary>
+        public string UILoginWindowExePath = "C:\\Users\\Kenneth\\Desktop\\Spring2016\\Software Engineering 3\\FCS-Funding\\FCS_Fundin" +
+            "g_WPF\\FCS_Funding\\bin\\Debug\\FCS_Funding.exe";
+        
+        /// <summary>
+        /// Launch '%USERPROFILE%\Desktop\Spring2016\Software Engineering 3\FCS-Funding\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe'
+        /// </summary>
+        public string UILoginWindowAlternateExePath = "%USERPROFILE%\\Desktop\\Spring2016\\Software Engineering 3\\FCS-Funding\\FCS_Funding_W" +
+            "PF\\FCS_Funding\\bin\\Debug\\FCS_Funding.exe";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'TestInsertPatientGUI'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class TestInsertPatientGUIParams
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Launch '%USERPROFILE%\Desktop\Spring2016\Software Engineering 3\FCS-Funding\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe'
+        /// </summary>
+        public string UILoginWindowExePath = "C:\\Users\\Kenneth\\Desktop\\Spring2016\\Software Engineering 3\\FCS-Funding\\FCS_Fundin" +
+            "g_WPF\\FCS_Funding\\bin\\Debug\\FCS_Funding.exe";
+        
+        /// <summary>
+        /// Launch '%USERPROFILE%\Desktop\Spring2016\Software Engineering 3\FCS-Funding\FCS_Funding_WPF\FCS_Funding\bin\Debug\FCS_Funding.exe'
+        /// </summary>
+        public string UILoginWindowAlternateExePath = "%USERPROFILE%\\Desktop\\Spring2016\\Software Engineering 3\\FCS-Funding\\FCS_Funding_W" +
+            "PF\\FCS_Funding\\bin\\Debug\\FCS_Funding.exe";
+        
+        /// <summary>
+        /// Type '7562' in text box
+        /// </summary>
+        public string UIItemEditText = "7562";
+        
+        /// <summary>
+        /// Select 'Male' in 'Gender' combo box
+        /// </summary>
+        public string UIGenderComboBoxSelectedItem = "Male";
+        
+        /// <summary>
+        /// Select '55-69' in 'AgeGroup' combo box
+        /// </summary>
+        public string UIAgeGroupComboBoxSelectedItem = "55-69";
+        
+        /// <summary>
+        /// Select 'Asian' in 'ethnicity' combo box
+        /// </summary>
+        public string UIEthnicityComboBoxSelectedItem = "Asian";
+        
+        /// <summary>
+        /// Type 'Fluffy' in text box numbered 2 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit1Text = "Fluffy";
+        
+        /// <summary>
+        /// Type 'Kitten' in text box numbered 3 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit2Text = "Kitten";
+        
+        /// <summary>
+        /// Type 'Child' in text box numbered 4 in 'CreateNewPatient' window
+        /// </summary>
+        public string UIItemEdit3Text = "Child";
+        
+        /// <summary>
+        /// Select 'Is Head of Household?' check box
+        /// </summary>
+        public bool UIIsHeadofHouseholdCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Select 'First Member of Household?' check box
+        /// </summary>
+        public bool UIFirstMemberofHousehoCheckBoxChecked = true;
+        
+        /// <summary>
+        /// Type '5' in text box
+        /// </summary>
+        public string UIItemEditText1 = "5";
+        
+        /// <summary>
+        /// Type 'Davis' in text box numbered 2 in 'CreateHousehold' window
+        /// </summary>
+        public string UIItemEdit1Text1 = "Davis";
+        
+        /// <summary>
+        /// Select '$35,000+' in 'income' combo box
+        /// </summary>
+        public string UIIncomeComboBoxSelectedItem = "$35,000+";
+        #endregion
+    }
+    
     [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
     public class UILoginWindow : WpfWindow
     {
@@ -816,10 +1098,28 @@ namespace CodedUITestProject
                 return this.mUIPatientsTabPage;
             }
         }
+        
+        public WpfTabPage UIGrantsTabPage
+        {
+            get
+            {
+                if ((this.mUIGrantsTabPage == null))
+                {
+                    this.mUIGrantsTabPage = new WpfTabPage(this);
+                    #region Search Criteria
+                    this.mUIGrantsTabPage.SearchProperties[WpfTabPage.PropertyNames.Name] = "Grants";
+                    this.mUIGrantsTabPage.WindowTitles.Add("MainWindow");
+                    #endregion
+                }
+                return this.mUIGrantsTabPage;
+            }
+        }
         #endregion
         
         #region Fields
         private UIPatientsTabPage mUIPatientsTabPage;
+        
+        private WpfTabPage mUIGrantsTabPage;
         #endregion
     }
     
@@ -1214,6 +1514,208 @@ namespace CodedUITestProject
         
         #region Fields
         private WinButton mUIOKButton;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIDebugWindow : WinWindow
+    {
+        
+        public UIDebugWindow()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "Debug";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "CabinetWClass";
+            this.WindowTitles.Add("Debug");
+            #endregion
+        }
+        
+        #region Properties
+        public UIItemWindow UIItemWindow
+        {
+            get
+            {
+                if ((this.mUIItemWindow == null))
+                {
+                    this.mUIItemWindow = new UIItemWindow(this);
+                }
+                return this.mUIItemWindow;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIItemWindow mUIItemWindow;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow : WinWindow
+    {
+        
+        public UIItemWindow(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.AccessibleName] = "Items View";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "DirectUIHWND";
+            this.WindowTitles.Add("Debug");
+            #endregion
+        }
+        
+        #region Properties
+        public UIFCS_FundingexeListItem UIFCS_FundingexeListItem
+        {
+            get
+            {
+                if ((this.mUIFCS_FundingexeListItem == null))
+                {
+                    this.mUIFCS_FundingexeListItem = new UIFCS_FundingexeListItem(this);
+                }
+                return this.mUIFCS_FundingexeListItem;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIFCS_FundingexeListItem mUIFCS_FundingexeListItem;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIFCS_FundingexeListItem : WinListItem
+    {
+        
+        public UIFCS_FundingexeListItem(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinListItem.PropertyNames.Name] = "FCS_Funding.exe";
+            this.WindowTitles.Add("Debug");
+            #endregion
+        }
+        
+        #region Properties
+        public WinEdit UINameEdit
+        {
+            get
+            {
+                if ((this.mUINameEdit == null))
+                {
+                    this.mUINameEdit = new WinEdit(this);
+                    #region Search Criteria
+                    this.mUINameEdit.SearchProperties[WinEdit.PropertyNames.Name] = "Name";
+                    this.mUINameEdit.WindowTitles.Add("Debug");
+                    #endregion
+                }
+                return this.mUINameEdit;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinEdit mUINameEdit;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow2 : WinWindow
+    {
+        
+        public UIItemWindow2()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.AccessibleName] = "Desktop";
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32769";
+            #endregion
+        }
+        
+        #region Properties
+        public UIItemWindow1 UIItemWindow1
+        {
+            get
+            {
+                if ((this.mUIItemWindow1 == null))
+                {
+                    this.mUIItemWindow1 = new UIItemWindow1(this);
+                }
+                return this.mUIItemWindow1;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private UIItemWindow1 mUIItemWindow1;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIItemWindow1 : WinWindow
+    {
+        
+        public UIItemWindow1(UITestControl searchLimitContainer) : 
+                base(searchLimitContainer)
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.ClassName] = "#32770";
+            #endregion
+        }
+        
+        #region Properties
+        public WinControl UIItemDialog
+        {
+            get
+            {
+                if ((this.mUIItemDialog == null))
+                {
+                    this.mUIItemDialog = new WinControl(this);
+                    #region Search Criteria
+                    this.mUIItemDialog.SearchProperties[UITestControl.PropertyNames.ControlType] = "Dialog";
+                    #endregion
+                }
+                return this.mUIItemDialog;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinControl mUIItemDialog;
+        #endregion
+    }
+    
+    [GeneratedCode("Coded UITest Builder", "14.0.23107.0")]
+    public class UIMainWindowWindow1 : WinWindow
+    {
+        
+        public UIMainWindowWindow1()
+        {
+            #region Search Criteria
+            this.SearchProperties[WinWindow.PropertyNames.Name] = "MainWindow";
+            this.SearchProperties.Add(new PropertyExpression(WinWindow.PropertyNames.ClassName, "HwndWrapper", PropertyExpressionOperator.Contains));
+            this.WindowTitles.Add("MainWindow");
+            #endregion
+        }
+        
+        #region Properties
+        public WinButton UICloseButton
+        {
+            get
+            {
+                if ((this.mUICloseButton == null))
+                {
+                    this.mUICloseButton = new WinButton(this);
+                    #region Search Criteria
+                    this.mUICloseButton.SearchProperties[WinButton.PropertyNames.Name] = "Close";
+                    this.mUICloseButton.WindowTitles.Add("MainWindow");
+                    #endregion
+                }
+                return this.mUICloseButton;
+            }
+        }
+        #endregion
+        
+        #region Fields
+        private WinButton mUICloseButton;
         #endregion
     }
 }
