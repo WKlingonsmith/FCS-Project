@@ -181,13 +181,53 @@ namespace FCS_Funding
             {
                 DataGrid dg = sender as DataGrid;
                 DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonor up = new UpdateDonor(p);
-                //up.firstName = p.FirstName;
-                //up.lastName = p.LastName;
-                //up.patientOQ = p.PatientOQ;
-                //up.relationToHead = p.RelationToHead;
-                up.Topmost = true;
-                up.Show();
+                if (p.DonorType == "Individual" )
+                {
+                    Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                    //Open in individual view
+                    Models.DonorContact query = (from doncontacts in db.DonorContacts
+                                where doncontacts.DonorID == p.DonorID
+                                select doncontacts).First();
+                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query);
+                    id.Show();
+                    id.dType.SelectedIndex = 1;
+                    id.oName.IsEnabled = false;
+                    id.Topmost = true;
+                }
+                else if(p.DonorType == "Anonymous")
+                {
+                    Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                    Models.DonorContact query = (from doncontacts in db.DonorContacts
+                                                 where doncontacts.DonorID == p.DonorID
+                                                 select doncontacts).First();
+                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query);
+                    id.Show();
+                    id.UpdateIndDonor.IsEnabled = false;
+                    id.dType.SelectedIndex = 2;
+                    id.fName.IsEnabled = false;
+                    id.lName.IsEnabled = false;
+                    id.oName.IsEnabled = false;
+                    id.donA1.IsEnabled = false;
+                    id.donA2.IsEnabled = false;
+                    id.cPhone.IsEnabled = false;
+                    id.dCity.IsEnabled = false;
+                    id.cPhone.IsEnabled = false;
+                    id.dState.IsEnabled = false;
+                    id.dZip.IsEnabled = false;
+                    id.cEmail.IsEnabled = false;
+                    id.Topmost = true;
+
+                }
+                else
+                {
+                    UpdateDonor up = new UpdateDonor(p);
+                    //up.firstName = p.FirstName;
+                    //up.lastName = p.LastName;
+                    //up.patientOQ = p.PatientOQ;
+                    //up.relationToHead = p.RelationToHead;
+                    up.Show();
+                    up.Topmost = true;
+                }
             }
         }
         private int Determine_GenderIndex(string selection)
@@ -294,13 +334,14 @@ namespace FCS_Funding
             Models.FCS_FundingContext db = new Models.FCS_FundingContext();
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                         where p.DonorType == "Anonymous" || p.DonorType == "Individual"
                          select new DonorsDataGrid
                          {
                              DonorID = p.DonorID,
                              DonorFirstName = dc.ContactFirstName,
                              DonorLastName = dc.ContactLastName,
                              DonorAddress1 = p.DonorAddress1,
-                             OrganizationName = p.OrganizationName,
+                             OrganizationName = "",
                              DonorAddress2 = p.DonorAddress2,
                              DonorCity = p.DonorCity,
                              DonorState = p.DonorState,
@@ -308,7 +349,7 @@ namespace FCS_Funding
                              DonorZip = p.DonorZip
                          }).Union(
                         from p in db.Donors
-                        join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                        where p.DonorType == "Organization" || p.DonorType == "Government"
                         select new DonorsDataGrid
                         {
                             DonorID = p.DonorID,
@@ -421,7 +462,7 @@ namespace FCS_Funding
             if (Count <= 1)
             {
                 CreateNewDonor ch = new CreateNewDonor();
-                ch.Topmost = true;
+                //ch.Topmost = true;
                 ch.Show();
             }
         }

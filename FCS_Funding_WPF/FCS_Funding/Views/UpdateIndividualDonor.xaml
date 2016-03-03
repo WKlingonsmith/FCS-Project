@@ -1,0 +1,96 @@
+﻿<Window x:Class="FCS_Funding.Views.UpdateIndividualDonor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FCS_Funding.Views"
+        mc:Ignorable="d"
+        Title="UpdateIndividualDonor" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Update Donor" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+
+        <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+        <Border Grid.Row="3" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="fName" FontSize="18" Text="{Binding DonorFirstName, ElementName=ThisWindow}"  />
+        </Border>
+
+        <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Height="30" />
+        <Border Grid.Row="3" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="lName" FontSize="18" Text="{Binding DonorLastName, ElementName=ThisWindow}"/>
+        </Border>
+
+        <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="oName" FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}"  />
+        </Border>
+        <TextBlock Text="Address 1:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
+        <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="donA1" FontSize="18" Text="{Binding DonorAddress1, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="Address 2:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
+        <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="donA2" FontSize="18" Text="{Binding DonorAddress2, ElementName=ThisWindow}"/>
+        </Border>
+
+        <TextBlock Text="Contact Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Height="30" />
+        <Border Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="1" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="cPhone" FontSize="18" Text="{Binding ContactPhone, ElementName=ThisWindow}"  />
+        </Border>
+        <TextBlock Text="Contact Email:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="1" Height="30" />
+        <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="cEmail" FontSize="18" Text="{Binding ContactEmail, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="State:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="1" Height="30" />
+        <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="dState" FontSize="18" Text="{Binding DonorState, ElementName=ThisWindow}"  />
+        </Border>
+
+        <TextBlock Text="City:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="3" Height="30" />
+        <Border Grid.Row="9" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="dCity" FontSize="18" Text="{Binding DonorCity, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="Zip:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" />
+        <Border Grid.Row="10" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox Name="dZip" FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}"  />
+        </Border>
+        <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="3" Height="30" />
+        <ComboBox Name="dType" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False"
+                  HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="4" Grid.Row="10" FontSize="20">
+            <ComboBoxItem >Organization</ComboBoxItem>
+            <ComboBoxItem >Individual</ComboBoxItem>
+            <ComboBoxItem >Anonymous</ComboBoxItem>
+            <ComboBoxItem >Government</ComboBoxItem>
+        </ComboBox>
+
+        <Button Name="UpdateIndDonor" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Add Donor" Click="CreateDonor"    />
+    </Grid>
+</Window>

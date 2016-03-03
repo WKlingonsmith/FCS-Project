@@ -20,8 +20,6 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class UpdateDonor : Window
     {
-        public string DonorFirstName { get; set; }
-        public string DonorLastName { get; set; }
         public string DonorAddress1 { get; set; }
         public string DonorAddress2 { get; set; }
         public string DonorCity { get; set; }
@@ -33,8 +31,6 @@ namespace FCS_Funding.Views
 
         public UpdateDonor(DonorsDataGrid d)
         {
-            DonorFirstName = d.DonorFirstName;
-            DonorLastName = d.DonorLastName;
             DonorAddress1 = d.DonorAddress1;
             DonorAddress2 = d.DonorAddress2;
             DonorCity = d.DonorCity;

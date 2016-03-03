@@ -20,8 +20,6 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class CreateNewDonor : Window
     {
-        public string DonorFirstName { get; set; } //not
-        public string DonorLastName { get; set; } //not
         public string DonorAddress1 { get; set; } //
         public string DonorAddress2 { get; set; } //
         public string DonorCity { get; set; } //
@@ -43,13 +41,20 @@ namespace FCS_Funding.Views
                 FCS_FundingContext db = new FCS_FundingContext();
                 if (DonorType == "Organization" || DonorType == "Government")
                 {
-                    MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
-                        + "\n" + DonorType + "\n" + OrganizationName);
-                    Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
-                    db.Donors.Add(d);
-                    db.SaveChanges();
-                    MessageBox.Show("Successfully added Donor!");
-                    this.Close();
+                    if (OrganizationName != null && OrganizationName != "")
+                    {
+                        MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                            + "\n" + DonorType + "\n" + OrganizationName);
+                        Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
+                        db.Donors.Add(d);
+                        db.SaveChanges();
+                        MessageBox.Show("Successfully added Donor!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Make sure you put in an Organization Name");
+                    }
                 }
                 else if(DonorType == "Individual")
                 {
@@ -61,9 +66,23 @@ namespace FCS_Funding.Views
                     cic.Show();
                 }
                 //its anonymous
-                else
+                else if(DonorType == "Anonymous")
                 {
-
+                    //"Anonymous"
+                    int anony = db.Donors.Where(x => x.DonorType == "Anonymous").Select(x => x.DonorType).Count(); //Distinct().First();
+                    if (anony < 1)
+                    {
+                        Donor d = new Donor("Anonymous", "Anonymous", "Anonymous", "Anonymous", "", "Anonymous", "Anonymous");
+                        DonorContact dc = new DonorContact("Anonymous", "Anonymous", "Anonymous", "Anonymous", d.DonorID);
+                        db.Donors.Add(d);
+                        db.DonorContacts.Add(dc);
+                        db.SaveChanges();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You already have an Anonymous user");
+                    }
                 }
             }
             //add both patient and household
