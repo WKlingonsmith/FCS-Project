@@ -41,7 +41,10 @@ namespace FCS_Funding.Views
                 FCS_FundingContext db = new FCS_FundingContext();
                 if (DonorType == "Organization" || DonorType == "Government")
                 {
-                    if (OrganizationName != null && OrganizationName != "")
+                    var OrgName = from d in db.Donors
+                                  where d.OrganizationName == OrganizationName
+                                  select d;
+                    if (OrgName.Count() == 0)
                     {
                         MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                             + "\n" + DonorType + "\n" + OrganizationName);
@@ -53,7 +56,7 @@ namespace FCS_Funding.Views
                     }
                     else
                     {
-                        MessageBox.Show("Make sure you put in an Organization Name");
+                        MessageBox.Show("There is already an organization with the name you have selected. \nNote: Number your organizations if you have organizations with the same name.");
                     }
                 }
                 else if(DonorType == "Individual")

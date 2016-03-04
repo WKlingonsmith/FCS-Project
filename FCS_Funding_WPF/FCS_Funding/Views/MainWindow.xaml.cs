@@ -439,18 +439,6 @@ namespace FCS_Funding
             Patient_Grid(sender, e);
         }
 
-        private void Open_AddNewGrant(object sender, RoutedEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
-            {
-                AddNewGrant adg = new AddNewGrant();
-                adg.Topmost = true;
-                adg.Show();
-            }
-
-        }
-
         private void Refresh_Donors(object sender, RoutedEventArgs e)
         {
 
@@ -462,8 +450,34 @@ namespace FCS_Funding
             if (Count <= 1)
             {
                 CreateNewDonor ch = new CreateNewDonor();
-                //ch.Topmost = true;
+                ch.Topmost = true;
                 ch.Show();
+            }
+        }
+
+        private void Open_CreateGrantProposal(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 1)
+            {
+                CreateGrantProposal cgp = new CreateGrantProposal();
+                cgp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Close other windows");
+            }
+        }
+
+        private void Open_ViewGrantProposals(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 1)
+            {
+                ViewGrantProposals vgp = new ViewGrantProposals();
+                vgp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Close other windows");
             }
         }
     }

@@ -121,6 +121,9 @@
     <Compile Include="Views\AddNewContact.xaml.cs">
       <DependentUpon>AddNewContact.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateGrantProposal.xaml.cs">
+      <DependentUpon>CreateGrantProposal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateHousehold.xaml.cs">
       <DependentUpon>CreateHousehold.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,9 @@
     </Compile>
     <Compile Include="Views\CreateNewPatient.xaml.cs">
       <DependentUpon>CreateNewPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditGrantProposals.xaml.cs">
+      <DependentUpon>EditGrantProposals.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateContact.xaml.cs">
       <DependentUpon>UpdateContact.xaml</DependentUpon>
@@ -145,6 +151,9 @@
     <Compile Include="Views\UpdatePatient.xaml.cs">
       <DependentUpon>UpdatePatient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewGrantProposals.xaml.cs">
+      <DependentUpon>ViewGrantProposals.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewGrantReminder.xaml.cs">
       <DependentUpon>ViewGrantReminder.xaml</DependentUpon>
     </Compile>
@@ -156,7 +165,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateGrantReminder.xaml">
+    <Page Include="Views\CreateGrantProposal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,6 +185,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditGrantProposals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,9 +204,6 @@
     <Compile Include="Client.cs" />
     <Compile Include="Views\AddNewGrant.xaml.cs">
       <DependentUpon>AddNewGrant.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateGrantReminder.xaml.cs">
-      <DependentUpon>CreateGrantReminder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -215,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdatePatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewGrantProposals.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

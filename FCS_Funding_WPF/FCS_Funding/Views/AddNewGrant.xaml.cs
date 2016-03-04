@@ -25,7 +25,7 @@ namespace FCS_Funding.Views
         public string PurposeName { get; set; }
         public string PurposeDescription { get; set; }
 
-        public AddNewGrant()
+        public AddNewGrant(int DonorID, int GrantProposalID)
         {
             InitializeComponent();
         }

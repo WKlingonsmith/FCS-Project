@@ -44,6 +44,7 @@
     <Compile Include="DonorContactGrid.cs" />
     <Compile Include="DonorsDataGrid.cs" />
     <Compile Include="EventsDataGrid.cs" />
+    <Compile Include="GrantProposalGrid.cs" />
     <Compile Include="GrantsDataGrid.cs" />
     <Compile Include="InKindItem.cs" />
     <Compile Include="InKindService.cs" />

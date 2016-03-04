@@ -5,6 +5,15 @@ namespace FCS_Funding.Models
 {
     public partial class GrantProposal
     {
+        public GrantProposal()
+        { }
+        public GrantProposal(int donorID, string grantName, DateTime subDueDate, string gStatus)
+        {
+            DonorID = donorID;
+            GrantName = grantName;
+            SubmissionDueDate = subDueDate;
+            GrantStatus = gStatus;
+        }
         public int GrantProposalID { get; set; }
         public int DonorID { get; set; }
         public string GrantName { get; set; }
