@@ -20,40 +20,50 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class AddNewGrant : Window
     {
-        public string GrantName { get; set; }
+        /// <summary>
+        /// Needed properties
+        /// </summary>
         public decimal DonationAmount { get; set; }
         public string PurposeName { get; set; }
         public string PurposeDescription { get; set; }
+        
+        //Helper ID's
+        public int DonorID { get; set; }
+        public int GrantProposalID { get; set; }
 
-        public AddNewGrant(int DonorID, int GrantProposalID)
+        public AddNewGrant(int dID, int gpID)
         {
+            DonorID = dID;
+            GrantProposalID = gpID;
             InitializeComponent();
         }
 
         private void AddGrant(object sender, RoutedEventArgs e)
         {
-            if(GrantName != null && GrantName != "" && DonationAmount != 0 && PurposeName != null && 
-                PurposeName != "" && PurposeDescription != null && PurposeDescription != "" && DonationDate != null)
+            if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && PurposeDescription != null && PurposeDescription != "" 
+                && DonationDate.ToString() != "" && DonationExpirationDate.ToString() != "")
             {
                 try
                 {
-                    MessageBox.Show(GrantName + "\n" + DonationAmount.ToString() + "\n" + DonationDate + "\n" + PurposeName + "\n" + PurposeDescription);
+                    MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" + 
+                        DonationExpirationDate + "\n" + PurposeName + "\n" + PurposeDescription);
                     FCS_FundingContext db = new FCS_FundingContext();
                     Purpose p = new Purpose(PurposeName, PurposeDescription);
-                    DonationPurpose dp = new DonationPurpose();
-                    Donation d = new Donation();
-                    Donor don = new Donor();
-                    GrantProposal gp = new GrantProposal();
-                    //db.Purposes.Add(p);
-                    //db.SaveChanges();
+                    Donation d = new Donation(DonorID, GrantProposalID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()), 
+                        Convert.ToDateTime(DonationExpirationDate.ToString()));
+                    DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
+                    db.Donations.Add(d);
 
-                    //db.Patients.Add(pat);
-                    //db.SaveChanges();
+                    db.Purposes.Add(p);
+
+                    db.DonationPurposes.Add(dp);
+                    db.SaveChanges();
+                    MessageBox.Show("Successfully added Grant");
                     this.Close();
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show("Cannot add Grant");
+                    MessageBox.Show("Cannot add Grant" + "\n" + ex);
                 }
             }
             else

@@ -50,9 +50,29 @@ namespace FCS_Funding.Views
             InitializeComponent();
         }
 
-        private void CreateDonor(object sender, RoutedEventArgs e)
+        private void UpdateDonor(object sender, RoutedEventArgs e)
         {
+            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            var donor = (from d in db.Donors
+                           where d.DonorID == DonorID
+                           select d).First();
+            var contact = (from c in db.DonorContacts
+                           where c.ContactID == ContactID
+                           select c).First();
 
+            contact.ContactFirstName = DonorFirstName;
+            contact.ContactLastName = DonorLastName;
+            donor.OrganizationName = OrganizationName;
+            donor.DonorAddress1 = DonorAddress1;
+            donor.DonorAddress2 = DonorAddress2;
+            contact.ContactPhone = ContactPhone;
+            contact.ContactEmail = ContactEmail;
+            donor.DonorState = DonorState;
+            donor.DonorCity = DonorCity;
+            donor.DonorZip = DonorZip;
+            db.SaveChanges();
+            MessageBox.Show("You successfully updated this Donor");
+            this.Close();
         }
     }
 }

@@ -5,6 +5,12 @@ namespace FCS_Funding.Models
 {
     public partial class DonationPurpose
     {
+        public DonationPurpose(int donationID, int purposeID, decimal donationpurposeAmount)
+        {
+            DonationID = donationID;
+            PurposeID = purposeID;
+            DonationPurposeAmount = donationpurposeAmount;
+        }
         public int DonationPurposeID { get; set; }
         public int DonationID { get; set; }
         public int PurposeID { get; set; }

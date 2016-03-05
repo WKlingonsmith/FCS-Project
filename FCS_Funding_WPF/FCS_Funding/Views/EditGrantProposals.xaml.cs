@@ -59,12 +59,17 @@ namespace FCS_Funding.Views
                 grantproposal.GrantName = GrantName;
                 if (Status.IsEnabled == true)
                 {
+                    
                     grantproposal.GrantStatus = GrantStatus;
                     db.SaveChanges();
-                    ///OPEN ANOTHER WINDOW TO ADD THIS PROPOSAL TO DONATION & PURPOSE TABLE
-                    AddNewGrant adg = new AddNewGrant(DonorID, GrantProposalID);
-                    adg.Topmost = true;
-                    adg.Show();
+                    if (GrantStatus == "Accepted")
+                    {
+                        ///OPEN ANOTHER WINDOW TO ADD THIS PROPOSAL TO DONATION & PURPOSE TABLE
+                        AddNewGrant adg = new AddNewGrant(DonorID, GrantProposalID);
+                        adg.Show();
+                        adg.Topmost = true;
+                    }
+                    this.Close();
                 }
                 else
                 {
@@ -76,5 +81,22 @@ namespace FCS_Funding.Views
                 MessageBox.Show("Select a date");
             }
             }
+
+        private void Delete_Grant_Proposal(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Patient?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                var grantproposal = (from p in db.GrantProposals
+                                    where p.GrantProposalID == GrantProposalID
+                                    select p).First();
+
+                db.GrantProposals.Remove(grantproposal);
+                db.SaveChanges();
+                MessageBox.Show("You successfully deleted this Grant Proposal.");
+                this.Close();
+            }
+        }
     }
 }

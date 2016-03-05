@@ -37,8 +37,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="View Grant Proposals" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
         <DataGrid Name="GrantProposals" Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="10" CanUserResizeColumns="True" Loaded="Grant_Proposal_Grid"  AutoGenerateColumns="False"
-                         IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditGrantProposal">
-            <!-- PreviewMouseDoubleClick="EditPatient"-->
+                         IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditGrantProposal" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Grant Name" Width="200" Binding="{Binding Path=GrantName}"/>
                 <DataGridTextColumn Header="Organization Name" Width="200" Binding="{Binding Path=OrganizationName}"/>

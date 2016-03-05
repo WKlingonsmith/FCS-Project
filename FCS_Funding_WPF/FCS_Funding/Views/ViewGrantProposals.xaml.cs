@@ -70,6 +70,7 @@ namespace FCS_Funding.Views
                 Models.FCS_FundingContext db = new Models.FCS_FundingContext();
                 EditGrantProposals dgp = new EditGrantProposals(p);
                 dgp.Show();
+                dgp.Topmost = true;
                 dgp.oName.IsEnabled = false;
                 if(index == 1 || index == 2)
                 {

@@ -154,9 +154,6 @@
     <Compile Include="Views\ViewGrantProposals.xaml.cs">
       <DependentUpon>ViewGrantProposals.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewGrantReminder.xaml.cs">
-      <DependentUpon>ViewGrantReminder.xaml</DependentUpon>
-    </Compile>
     <Page Include="Views\AddNewContact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,10 +226,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewGrantProposals.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ViewGrantReminder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

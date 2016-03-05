@@ -91,6 +91,6 @@
             <ComboBoxItem >Government</ComboBoxItem>
         </ComboBox>
 
-        <Button Name="UpdateIndDonor" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Add Donor" Click="CreateDonor"    />
+        <Button Name="UpdateIndDonor" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Update Donor" Click="UpdateDonor"    />
     </Grid>
 </Window>
