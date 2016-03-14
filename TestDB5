@@ -17,6 +17,7 @@ CREATE TABLE Donation
     Restricted              bit             NOT NULL,
     InKind                  bit             NOT NULL,
     DonationAmount          Money           NOT NULL,
+    DonationAmountRemaining Money           NOT NULL,
     DonationDate            date            NOT NULL,
     DonationExpirationDate  date            NULL
 );
@@ -172,7 +173,10 @@ Create Table Staff
     StaffID                     INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     StaffFirstName              varchar(50)     NOT NULL,
     StaffLastName               varchar(50)     NOT NULL,
-    StaffTitle                  varchar(50)     NOT NULL
+    StaffTitle                  varchar(50)     NOT NULL,
+    StaffUserName               varchar(50)     NULL,
+    StaffPassword               varchar(50)     NULL,
+    StaffDBRole                 varchar(50)     NOT NULL
 );
 
 
