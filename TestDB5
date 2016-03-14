@@ -17,6 +17,7 @@ CREATE TABLE Donation
     Restricted              bit             NOT NULL,
     InKind                  bit             NOT NULL,
     DonationAmount          Money           NOT NULL,
+    DonationAmountRemaining Money           NOT NULL,
     DonationDate            date            NOT NULL,
     DonationExpirationDate  date            NULL
 );
@@ -93,8 +94,8 @@ CREATE TABLE DonorContact
     ContactID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     DonorID                 INT             NOT NULL,
     ContactFirstName        VarChar(30)     NOT NULL,
-    ContactLastName         VarChar(30)     NULL,
-    ContactPhone            VarChar(10)     NULL,
+    ContactLastName         VarChar(30)     NOT NULL,
+    ContactPhone            VarChar(10)     NOT NULL,
     ContactEmail            VarChar(700)    NULL
 );
 
@@ -172,7 +173,10 @@ Create Table Staff
     StaffID                     INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     StaffFirstName              varchar(50)     NOT NULL,
     StaffLastName               varchar(50)     NOT NULL,
-    StaffTitle                  varchar(50)     NOT NULL
+    StaffTitle                  varchar(50)     NOT NULL,
+    StaffUserName               varchar(50)     NULL,
+    StaffPassword               varchar(50)     NULL,
+    StaffDBRole                 varchar(50)     NOT NULL
 );
 
 
@@ -351,11 +355,11 @@ VALUES('Iliana', 'Hernandez', 1986, 2, 'Female', 'Hispanic', '5-10',0, '1/26/201
 -------------------------------Staff---------------------------------
 ---------------------------------------------------------------------
 
-INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle)
-VALUES ('Claudius','Ptolemy', 'Doctor')
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
+VALUES ('Claudius','Ptolemy', 'Doctor', 'User')
 
-INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle)
-VALUES ('Marc','Antony', 'Doctor')
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
+VALUES ('Marc','Antony', 'Doctor', 'User')
 
 ---------------------------------------------------------------------
 ----------------------------Appointment------------------------------
@@ -397,8 +401,8 @@ VALUES('Gates Donation Fund','Donation','123 Somwhere', 'Suite 99', 'Las Vegas',
 ----------------------------Donation---------------------------------
 ---------------------------------------------------------------------
 
-INSERT INTO DONATION (DonorID, Restricted, InKind, DonationAmount, DonationDate)
-VALUES(1, 0, 0, 1000000, '04/08/2014')
+INSERT INTO DONATION (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
+VALUES(1, 0, 0, 1000000, '04/08/2014', 1000000)
 
 ---------------------------------------------------------------------
 ----------------------------Expense----------------------------------
@@ -448,8 +452,8 @@ VALUES(2,1,4,8,'1/7/2016','2/25/2015 ',45)
 INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
 VALUES('Stuff To Give', 'Donor', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
 GO
-INSERT INTO Donation (DonorID, Restricted, Inkind, DonationAmount, DonationDate)
-VALUES(2, 1, 1, 150, '12/12/2015')
+INSERT INTO Donation (DonorID, Restricted, Inkind, DonationAmount, DonationDate, DonationAmountRemaining)
+VALUES(2, 1, 1, 150, '12/12/2015', 0)
 GO
 INSERT INTO In_Kind_Item (DonationID, ItemName, ItemDescription)
 VALUES (2, 'Oak Table', 'A very nice table made of oak')
@@ -460,8 +464,8 @@ GO
 INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
 VALUES('Service To Give', 'Volunteer', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
 GO
-INSERT INTO Donation (DonorID, Restricted, InKind, DonationAmount, DonationDate)
-VALUES(3,1,1,80,'10/10/2015')
+INSERT INTO Donation (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
+VALUES(3,1,1,80,'10/10/2015', 0)
 GO
 INSERT INTO In_Kind_Service (DonationID, StartDateTime, EndDateTime, RatePerHour, ServiceDescription)
 VALUES(3, '10/10/2015 9:00', '10/10/2015 17:00', 10, 'Helped out around the office and input data into new database')
