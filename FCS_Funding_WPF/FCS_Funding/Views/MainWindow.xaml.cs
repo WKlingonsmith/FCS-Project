@@ -311,6 +311,7 @@ namespace FCS_Funding
                         join d in db.Donations on dp.DonationID equals d.DonationID
                         join dr in db.Donors on d.DonorID equals dr.DonorID
                         join gp in db.GrantProposals on dr.DonorID equals gp.DonorID
+                        where gp.GrantStatus == "Accepted" && d.GrantProposalID == gp.GrantProposalID
                         select new GrantsDataGrid
                         {
                             GrantName = gp.GrantName,

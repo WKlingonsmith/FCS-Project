@@ -64,8 +64,8 @@ namespace FCS_Funding.Views
                 Models.GrantProposal gp = new Models.GrantProposal(DonorID, GrantName, datet, "Pending");
                 db.GrantProposals.Add(gp);
                 db.SaveChanges();
-                MessageBox.Show("Successfully added grant proposal");
-                this.Close();
+                //MessageBox.Show("Successfully added grant proposal");
+                //this.Close();
             }
             else
             {

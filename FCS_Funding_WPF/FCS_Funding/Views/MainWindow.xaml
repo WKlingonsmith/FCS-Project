@@ -144,9 +144,10 @@
                            IsReadOnly="True" CanUserDeleteRows="False" >
                     <!-- PreviewMouseDoubleClick="EditPatient"-->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Grant Name" Width="400" Binding="{Binding Path=GrantName}"/>
+                        <DataGridTextColumn Header="Grant Name" Width="300" Binding="{Binding Path=GrantName}"/>
                         <!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
                         <DataGridTextColumn Header="Donation Amount" Width="200" Binding="{Binding Path=DonationAmount}"/>
+                        <DataGridTextColumn Header="Amount Remaining" Width="200" Binding="{Binding Path=DonationAmountRemaining}"/>
                         <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DonationDate}"/>
                         <DataGridTextColumn Header="Purpose" Width="100" Binding="{Binding Path=PurposeName}"/>
                         <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
