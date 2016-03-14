@@ -93,8 +93,8 @@ CREATE TABLE DonorContact
     ContactID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     DonorID                 INT             NOT NULL,
     ContactFirstName        VarChar(30)     NOT NULL,
-    ContactLastName         VarChar(30)     NULL,
-    ContactPhone            VarChar(10)     NULL,
+    ContactLastName         VarChar(30)     NOT NULL,
+    ContactPhone            VarChar(10)     NOT NULL,
     ContactEmail            VarChar(700)    NULL
 );
 
