@@ -3,6 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="CreateHousehold" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FFB5EEFF" Offset="0.407"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -32,7 +38,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!--<CheckBox Margin="0 5 0 0" x:Name="chkConfirmDel" Checked="chkHousholdExists" FontSize="20" Grid.Column="2" Grid.Row="4">Household Exists</CheckBox>-->
-        <TextBlock Text="Create Household" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="Create Household" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" FontFamily="Razer Header Regular" TextDecorations="Underline" Margin="179,0,0.4,40.6" Grid.RowSpan="3" FontWeight="Bold" />
         <TextBlock Text="Household Population:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" />
         <Border Grid.Row="4" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding HouseholdPopulation, ElementName=ThisWindow}"/>
