@@ -5,6 +5,15 @@ namespace FCS_Funding.Models
 {
     public partial class In_Kind_Item
     {
+        public In_Kind_Item(int donationID, string itemName, string itemDescription)
+        {
+            DonationID = donationID;
+            ItemName = itemName;
+            ItemDescription = itemDescription;
+        }
+        public In_Kind_Item()
+        { }
+
         public int ItemID { get; set; }
         public int DonationID { get; set; }
         public string ItemName { get; set; }

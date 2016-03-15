@@ -316,12 +316,18 @@ namespace FCS_Funding
                         {
                             GrantName = gp.GrantName,
                             DonationAmount = d.DonationAmount,
+                            DonationAmountRemaining = d.DonationAmountRemaining,
                             DonationDate = d.DonationDate,
+                            ExpirationDate = d.DonationExpirationDate,
                             PurposeName = p.PurposeName,
-                            PurposeDescription = p.PurposeDescription
+                            PurposeDescription = p.PurposeDescription,
+                            PurposeID = p.PurposeID,
+                            DonationID = d.DonationID,
+                            DonorID = dr.DonorID,
+                            GrantProposalID = gp.GrantProposalID
                         };
         
-            GrantsDataGrid g1 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, "Charitable Minds", "We wanted to donate");
+            GrantsDataGrid g1 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, DateTime.Now, "Charitable Minds", "We wanted to donate", 1024.25M);
             Grants = new ObservableCollection<GrantsDataGrid>();
             Grants.Add(g1);
 
@@ -375,13 +381,51 @@ namespace FCS_Funding
 
         private void InKindItemGrid(object sender, RoutedEventArgs e)
         {
-            InKindItem in1 = new InKindItem("TV", "Tom", "Fronberg", "HAFB", DateTime.Now, "Includes a remote");
-            InKindItem in2 = new InKindItem("Couch", "Chris", "Johnson", "Clearfield Clinic", DateTime.Now, "Has a hole in it");
-            InKindItems = new ObservableCollection<InKindItem>();
-            InKindItems.Add(in1);
-            InKindItems.Add(in2);
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.Donors
+                         join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                         join d in db.Donations on  p.DonorID equals d.DonorID
+                         join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
+                         where p.DonorType == "Anonymous" || p.DonorType == "Individual"
+                         select new InKindItem
+                         {
+                             DonorID = p.DonorID,
+                             ItemName = ki.ItemName,
+                             DonorFirstName = dc.ContactFirstName,
+                             DonorLastName = dc.ContactLastName,
+                             OrganizationName = "",
+                             DateRecieved = d.DonationDate,
+                             Description = ki.ItemDescription
+                         }).Union(
+                        from p in db.Donors
+                        join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                        join d in db.Donations on p.DonorID equals d.DonorID
+                        join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
+                        where p.DonorType == "Organization" || p.DonorType == "Government"
+                        select new InKindItem
+                        {
+                            DonorID = p.DonorID,
+                            ItemName = ki.ItemName,
+                            DonorFirstName = "",
+                            DonorLastName = "",
+                            OrganizationName = p.OrganizationName,
+                            DateRecieved = d.DonationDate,
+                            Description = ki.ItemDescription
+                        });
+            //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
+            //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
+            //Donors = new ObservableCollection<DonorsDataGrid>();
+            //Donors.Add(d1);
+            //Donors.Add(d2);
             var grid = sender as DataGrid;
-            grid.ItemsSource = InKindItems;
+            grid.ItemsSource = join1.ToList();
+            //InKindItem in1 = new InKindItem("TV", "Tom", "Fronberg", "HAFB", DateTime.Now, "Includes a remote");
+            //InKindItem in2 = new InKindItem("Couch", "Chris", "Johnson", "Clearfield Clinic", DateTime.Now, "Has a hole in it");
+            //InKindItems = new ObservableCollection<InKindItem>();
+            //InKindItems.Add(in1);
+            //InKindItems.Add(in2);
+            //var grid = sender as DataGrid;
+            //grid.ItemsSource = InKindItems;
         }
 
         private void Events_Grid(object sender, RoutedEventArgs e)
@@ -479,6 +523,32 @@ namespace FCS_Funding
             else
             {
                 MessageBox.Show("Close other windows");
+            }
+        }
+
+        private void EditGrant(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                DataGrid dg = sender as DataGrid;
+                GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateGrant up = new UpdateGrant(p);
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.DonationExpirationDate.SelectedDate = p.ExpirationDate;
+                up.Topmost = true;
+                up.Show();
+            }
+        }
+
+        private void Add_InKind_Item(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 1)
+            {
+                AddInKindItem iki = new AddInKindItem();
+                iki.Show();
+                //iki.Topmost = true;
+                iki.Organization.IsEnabled = false;
             }
         }
     }

@@ -5,6 +5,10 @@ namespace FCS_Funding.Models
 {
     public partial class PatientHousehold
     {
+        public PatientHousehold()
+        {
+            this.Patients = new List<Patient>();
+        }
         public PatientHousehold(int hpop, string inc, string houseCounty)
         {
             HouseholdPopulation = hpop;

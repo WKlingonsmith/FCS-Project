@@ -70,8 +70,9 @@ namespace FCS_Funding.Views
             patient.PatientAgeGroup = ageGroup;
             patient.PatientEthnicity = ethnicGroup;
             patient.IsHead =  TheHead.IsChecked.Value;
-            int changes = db.SaveChanges();
-            MessageBox.Show(changes.ToString());
+            db.SaveChanges();
+            MessageBox.Show("Successfully Updated Patient");
+            this.Close();
             //int householdID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.HouseholdID).Distinct().First();
             //FCS_Funding.Models.Patient update = new FCS_Funding.Models.Patient(patientOQ, householdID, firstName, lastName, PatientGender,
             //    ageGroup, ethnicGroup, date, TheHead.IsChecked.Value, relationToHead);

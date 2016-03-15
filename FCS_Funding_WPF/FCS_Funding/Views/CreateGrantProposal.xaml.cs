@@ -42,6 +42,7 @@ namespace FCS_Funding.Views
             Models.FCS_FundingContext db = new Models.FCS_FundingContext();
             var query = (from o in db.Donors
                          where o.OrganizationName != null && o.OrganizationName != ""
+                         orderby o.OrganizationName
                          select o.OrganizationName).ToList();
 
             var box = sender as ComboBox;

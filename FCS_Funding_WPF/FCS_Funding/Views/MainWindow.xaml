@@ -148,14 +148,14 @@
                     <TextBox FontSize="18" Grid.Column="2" Margin="212.8,41,10,0.2" Grid.ColumnSpan="3" Grid.RowSpan="2" />
                     <Button Width="210" Grid.Column="5" Content="Filter" Margin="0,41,3.6,0.2" Grid.RowSpan="2" />
                     <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="15" CanUserResizeColumns="True" Loaded="Grants_Grid"  
-                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,0,0.6,41.4" >
-                        <!-- PreviewMouseDoubleClick="EditPatient"-->
+                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,0,0.6,41.4" PreviewMouseDoubleClick="EditGrant">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Grant Name" Width="300" Binding="{Binding Path=GrantName}"/>
+                            <DataGridTextColumn Header="Grant Name" Width="200" Binding="{Binding Path=GrantName}"/>
                             <!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
-                            <DataGridTextColumn Header="Donation Amount" Width="200" Binding="{Binding Path=DonationAmount}"/>
-                            <DataGridTextColumn Header="Amount Remaining" Width="200" Binding="{Binding Path=DonationAmountRemaining}"/>
-                            <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DonationDate}"/>
+                            <DataGridTextColumn Header="Donation Amount" Width="160" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Amount Remaining" Width="180" Binding="{Binding Path=DonationAmountRemaining, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Date Recieved" Width="130" Binding="{Binding Path=DonationDate}"/>
+                            <DataGridTextColumn Header="Expiration Date" Width="140" Binding="{Binding Path=ExpirationDate}"/>
                             <DataGridTextColumn Header="Purpose" Width="100" Binding="{Binding Path=PurposeName}"/>
                             <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
                         </DataGrid.Columns>
@@ -251,7 +251,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Content="Add In-Kind Item" HorizontalAlignment="Right" Width="209" Margin="0,43,4.6,30.4" Grid.Row="2" Grid.RowSpan="3"/>
+                    <Button Content="Add In-Kind Item" HorizontalAlignment="Right" Width="209" Margin="0,43,4.6,30.4" Grid.Row="2" Grid.RowSpan="3" Click="Add_InKind_Item"/>
                     <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                     <ComboBox Name="InKindItemSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="rantID">Client OQ</ComboBoxItem>
@@ -268,8 +268,8 @@
                             <DataGridTextColumn Header="Donator Name" Width="150" Binding="{Binding Path=DonorFirstName}"/>
                             <DataGridTextColumn Header="Donator Name" Width="150" Binding="{Binding Path=DonorLastName}"/>
                             <DataGridTextColumn Header="Organization" Width="150" Binding="{Binding Path=OrganizationName}"/>
-                            <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DonationDate}"/>
-                            <DataGridTextColumn Header="Description" Width="250" Binding="{Binding Path=ItemDescription}"/>
+                            <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DateRecieved}"/>
+                            <DataGridTextColumn Header="Description" Width="250" Binding="{Binding Path=Description}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -322,7 +322,7 @@
                             <DataGridTextColumn Header="Start Date Time" Width="150" Binding="{Binding Path=StartDateTime}"/>
                             <DataGridTextColumn Header="End Date Time" Width="150" Binding="{Binding Path=EndDateTime}"/>
                             <DataGridTextColumn Header="Length (Hrs)" Width="120" Binding="{Binding Path=Length}"/>
-                            <DataGridTextColumn Header="Rate/Hour" Width="110" Binding="{Binding Path=RatePerHour}"/>
+                            <DataGridTextColumn Header="Rate/Hour" Width="110" Binding="{Binding Path=RatePerHour, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Value (hours * rate)" Width="180" Binding="{Binding Path=Value, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Description" Width="250" Binding="{Binding Path=ServiceDescription}"/>
                         </DataGrid.Columns>

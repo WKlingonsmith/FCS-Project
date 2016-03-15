@@ -16,9 +16,11 @@ namespace FCS_Funding.Models.Mapping
                 .HasMaxLength(30);
 
             this.Property(t => t.ContactLastName)
+                .IsRequired()
                 .HasMaxLength(30);
 
             this.Property(t => t.ContactPhone)
+                .IsRequired()
                 .HasMaxLength(10);
 
             this.Property(t => t.ContactEmail)

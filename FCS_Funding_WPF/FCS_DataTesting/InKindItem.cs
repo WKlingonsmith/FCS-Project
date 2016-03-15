@@ -14,6 +14,9 @@ namespace FCS_DataTesting
         public string OrganizationName { get; set; }
         public DateTime DonationDate { get; set; }
         public string ItemDescription { get; set; }
+        public int DonorID { get; set; }
+        public DateTime DateRecieved { get; set; }
+        public string Description { get; set; }
         public InKindItem(string iName, string dFName, string dLName, string oName, DateTime t, string desc)
         {
             ItemName = iName;
@@ -22,6 +25,9 @@ namespace FCS_DataTesting
             OrganizationName = oName;
             DonationDate = t;
             ItemDescription = desc;
+        }
+        public InKindItem()
+        {
         }
     }
 }

@@ -49,8 +49,8 @@ namespace FCS_Funding.Views
                         DonationExpirationDate + "\n" + PurposeName + "\n" + PurposeDescription);
                     FCS_FundingContext db = new FCS_FundingContext();
                     Purpose p = new Purpose(PurposeName, PurposeDescription);
-                    Donation d = new Donation(DonorID, GrantProposalID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()), 
-                        Convert.ToDateTime(DonationExpirationDate.ToString()));
+                    Donation d = new Donation(DonorID, GrantProposalID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()),
+                        Convert.ToDateTime(DonationExpirationDate.ToString()), DonationAmount);
                     DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
                     db.Donations.Add(d);
 

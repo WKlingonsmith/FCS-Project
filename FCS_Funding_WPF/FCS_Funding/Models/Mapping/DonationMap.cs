@@ -20,6 +20,7 @@ namespace FCS_Funding.Models.Mapping
             this.Property(t => t.Restricted).HasColumnName("Restricted");
             this.Property(t => t.InKind).HasColumnName("InKind");
             this.Property(t => t.DonationAmount).HasColumnName("DonationAmount");
+            this.Property(t => t.DonationAmountRemaining).HasColumnName("DonationAmountRemaining");
             this.Property(t => t.DonationDate).HasColumnName("DonationDate");
             this.Property(t => t.DonationExpirationDate).HasColumnName("DonationExpirationDate");
 

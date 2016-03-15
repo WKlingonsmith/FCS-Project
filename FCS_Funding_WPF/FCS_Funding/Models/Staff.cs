@@ -14,6 +14,9 @@ namespace FCS_Funding.Models
         public string StaffFirstName { get; set; }
         public string StaffLastName { get; set; }
         public string StaffTitle { get; set; }
+        public string StaffUserName { get; set; }
+        public string StaffPassword { get; set; }
+        public string StaffDBRole { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

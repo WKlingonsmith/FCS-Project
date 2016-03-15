@@ -11,17 +11,26 @@ namespace FCS_DataTesting
         public string GrantName { get; set; }
         public decimal DonationAmount { get; set; }
         public DateTime DonationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
         public string PurposeName { get; set; }
         public string PurposeDescription { get; set; }
+        public decimal DonationAmountRemaining { get; set; }
 
-        public GrantsDataGrid(string name, decimal remain, DateTime date, string purp, string purpDes)
+        public int PurposeID { get; set; }
+        public int DonationID { get; set; }
+        public int DonorID { get; set; }
+        public int GrantProposalID { get; set; }
+
+        public GrantsDataGrid(string name, decimal remain, DateTime date, DateTime exdate, string purp, string purpDes, decimal donamountremain)
 	    {
             GrantName = name;
             DonationAmount = remain;
             DonationDate = date;
             PurposeName = purp;
             PurposeDescription = purpDes;
-	    }
+            DonationAmountRemaining = donamountremain;
+            ExpirationDate = exdate;
+        }
         public GrantsDataGrid()
         { }
     }

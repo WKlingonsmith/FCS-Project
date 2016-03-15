@@ -11,6 +11,9 @@ namespace FCS_Funding.Models
             PurposeID = purposeID;
             DonationPurposeAmount = donationpurposeAmount;
         }
+        public DonationPurpose()
+        {
+        }
         public int DonationPurposeID { get; set; }
         public int DonationID { get; set; }
         public int PurposeID { get; set; }

@@ -118,6 +118,9 @@
     <Compile Include="Models\View_IndividualSessionCount.cs" />
     <Compile Include="Models\View_NewPatientByDoctor.cs" />
     <Compile Include="Models\View_OnGoingPatientByDoctor.cs" />
+    <Compile Include="Views\AddInKindItem.xaml.cs">
+      <DependentUpon>AddInKindItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddNewContact.xaml.cs">
       <DependentUpon>AddNewContact.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
     <Compile Include="Views\UpdateDonor.xaml.cs">
       <DependentUpon>UpdateDonor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateGrant.xaml.cs">
+      <DependentUpon>UpdateGrant.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateIndividualDonor.xaml.cs">
       <DependentUpon>UpdateIndividualDonor.xaml</DependentUpon>
     </Compile>
@@ -154,6 +160,10 @@
     <Compile Include="Views\ViewGrantProposals.xaml.cs">
       <DependentUpon>ViewGrantProposals.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddInKindItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddNewContact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdateDonor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateGrant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
