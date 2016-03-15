@@ -72,7 +72,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Button Content="Create New Patient" Click="Open_CreateNewPatient" Margin="2,0.4,2.6,52.2" Grid.Row="2" Grid.RowSpan="2" />
-                    <ComboBox Name="SeachBy_Patients" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42" Text="Search By" Grid.Column="1" Margin="213.4,10,10.8,0.8" Grid.ColumnSpan="2">
+                    <TextBlock Grid.Column="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="46.6,20,167.2,8.6" />
+                    <ComboBox Name="SeachBy_Patients" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42"  Grid.Column="1" Margin="213.4,10,10.8,0.8" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="cbi1">Patient OQ</ComboBoxItem>
                         <ComboBoxItem Name="cbi2">First Name</ComboBoxItem>
                         <ComboBoxItem Name="cbi3">Last Name</ComboBoxItem>
@@ -82,7 +83,7 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0.2,10,10,0.8" Grid.ColumnSpan="2"/>
                     <Button Height="45" Width="210" Grid.Column="5" Content="Filter" Click="Filter_Patients" Margin="0,10,3.6,50.6" Grid.RowSpan="2" />
-                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Patients" Margin="212,10,5.2,50.6" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Patients" Margin="213.4,4.4,4.6,4.2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" />
                     <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Patient_Grid" CanUserResizeColumns="True"  IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient" Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Patient OQ" Width="110" Binding="{Binding Path=PatientOQ}"/>
@@ -134,9 +135,11 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="3" Content="Create Grant Proposal" Click="Open_CreateGrantProposal" Margin="0,0,4.6,24.4" Grid.RowSpan="2" />
-                <Button Grid.Column="0" Grid.Row="4" Content="View Grant Proposals" Click="Open_ViewGrantProposals" Margin="0,27.4,4.6,0" Grid.RowSpan="2"/>
-                    <ComboBox Name="GrantSeachBy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="40" Text="Search By" Grid.Column="1" Margin="213.4,1.4,13.8,0.2" Grid.ColumnSpan="2" Grid.Row="1">
+                    <Button Grid.Column="0" Grid.Row="3" Content="Create Grant Proposal" Click="Open_CreateGrantProposal" Margin="0,0,4.6,24.4" Grid.RowSpan="2" />
+                    <Button Grid.Column="0" Grid.Row="4" Content="View Grant Proposals" Click="Open_ViewGrantProposals" Margin="0,27.4,4.6,0" Grid.RowSpan="2"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox Name="GrantSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                              Width="200" Height="40"  Grid.Column="1" Margin="213.4,1.4,13.8,0.2" Grid.ColumnSpan="2" Grid.Row="1">
                         <ComboBoxItem Name="GrantID">Client OQ</ComboBoxItem>
                         <ComboBoxItem Name="name">Name</ComboBoxItem>
                         <ComboBoxItem Name="DateRange">Date Range</ComboBoxItem>
@@ -144,13 +147,16 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="2" Margin="212.8,41,10,0.2" Grid.ColumnSpan="3" Grid.RowSpan="2" />
                     <Button Width="210" Grid.Column="5" Content="Filter" Margin="0,41,3.6,0.2" Grid.RowSpan="2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="15" CanUserResizeColumns="True" Loaded="Grants_Grid"  AutoGenerateColumns="False" Margin="0.4,0,0.6,41.4">
+                    <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="15" CanUserResizeColumns="True" Loaded="Grants_Grid"  
+                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,0,0.6,41.4" >
+                        <!-- PreviewMouseDoubleClick="EditPatient"-->
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Grant Name" Width="400" Binding="{Binding Path=GrantName}"/>
+                            <DataGridTextColumn Header="Grant Name" Width="300" Binding="{Binding Path=GrantName}"/>
                             <!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
-                            <DataGridTextColumn Header="Amount Remaining" Width="200" Binding="{Binding Path=AmountRemaining}"/>
-                            <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DateReceived}"/>
-                            <DataGridTextColumn Header="Purpose" Width="100" Binding="{Binding Path=Purpose}"/>
+                            <DataGridTextColumn Header="Donation Amount" Width="200" Binding="{Binding Path=DonationAmount}"/>
+                            <DataGridTextColumn Header="Amount Remaining" Width="200" Binding="{Binding Path=DonationAmountRemaining}"/>
+                            <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DonationDate}"/>
+                            <DataGridTextColumn Header="Purpose" Width="100" Binding="{Binding Path=PurposeName}"/>
                             <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -185,8 +191,9 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="2" Content="Create New Donor" Click="Open_CreateNewDonor" Margin="0,43,4.6,30.4" Grid.RowSpan="3"/>
-                    <ComboBox Name="DonorSeachBy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
+                    <Button Grid.Column="0" Grid.Row="2" Content="Create New Donor" Click="Open_CreateNewDonor" Margin="0,43,4.6,30.4" Grid.RowSpan="3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox Name="DonorSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="FirstName">First Name</ComboBoxItem>
                         <ComboBoxItem Name="LastName">Last Name</ComboBoxItem>
                         <ComboBoxItem Name="OrganizationName">Organiztion Name</ComboBoxItem>
@@ -199,7 +206,8 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
                     <Button Grid.Column="4" Grid.Row="1" Content="Filter" Margin="212.6,0,0.6,0" Grid.ColumnSpan="2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
+                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                              IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
                             <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
@@ -244,7 +252,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Button Content="Add In-Kind Item" HorizontalAlignment="Right" Width="209" Margin="0,43,4.6,30.4" Grid.Row="2" Grid.RowSpan="3"/>
-                    <ComboBox Name="InKindItemSeachBy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox Name="InKindItemSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="rantID">Client OQ</ComboBoxItem>
                         <ComboBoxItem Name="ame">Name</ComboBoxItem>
                         <ComboBoxItem Name="ateRange">Date Range</ComboBoxItem>
@@ -252,7 +261,8 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
                     <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,0" />
-                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindItemGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
+                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
+                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Item" Width="100" Binding="{Binding Path=ItemName}"/>
                             <DataGridTextColumn Header="Donator Name" Width="150" Binding="{Binding Path=DonorFirstName}"/>
@@ -294,7 +304,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Button Content="Add In-Kind Donation" Margin="0,43,4.6,29.4" Grid.Row="2" Grid.RowSpan="3" />
-                    <ComboBox Name="InKindServiceSeachBy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox Name="InKindServiceSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44"  Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="antID">Client OQ</ComboBoxItem>
                         <ComboBoxItem Name="me">Name</ComboBoxItem>
                         <ComboBoxItem Name="teRange">Date Range</ComboBoxItem>
@@ -302,7 +313,8 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Margin="0.2,0,10,0" Grid.ColumnSpan="2" Grid.Row="1" />
                     <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,42.2" Grid.RowSpan="2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
+                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" 
+                              IsReadOnly="True" CanUserDeleteRows="False" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Volunteer FN" Width="110" Binding="{Binding Path=DonorFirstName}"/>
                             <DataGridTextColumn Header="Volunteer LN" Width="110" Binding="{Binding Path=DonorLastName}"/>
@@ -346,11 +358,13 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Button Content="Create New Event" Margin="0,46.2,5.6,31" Grid.Row="2" Grid.RowSpan="3" />
-                    <ComboBox x:Name="SeachBy_Copy" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="46" Text="Search By" Grid.Column="1" Margin="213.4,0.6,9.8,46.2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox x:Name="SeachBy_Copy"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="46"  Grid.Column="1" Margin="213.4,0.6,9.8,46.2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
                         <ComboBoxItem x:Name="cb1" Content="Event ID"/>
                         <ComboBoxItem x:Name="cb2" Content="Event Name"/>
                     </ComboBox>
-                    <DataGrid  Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="13" Loaded="Events_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False" Margin="213,46.2,0.6,0">
+                    <DataGrid  Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="13" Loaded="Events_Grid" CanUserResizeColumns="True" 
+                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="213,46.2,0.6,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Event Name" Width="350" Binding="{Binding EventName}"/>
                             <DataGridTextColumn Header="Event ID" Width="200" Binding="{Binding EventID}"/>
@@ -392,22 +406,24 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                   
-                <Button Grid.Column="0" Grid.Row="3" Content="Client Revenue" Margin="2,0.8,2.6,23.4" Grid.RowSpan="2"  />
+
+                    <Button Grid.Column="0" Grid.Row="3" Content="Client Revenue" Margin="2,0.8,2.6,23.4" Grid.RowSpan="2"  />
                     <Button Grid.Column="0" Grid.Row="4" Content="Client YTD" Margin="2,27.8,4.6,0.4" Grid.RowSpan="2"/>
                     <Button Grid.Column="0" Grid.Row="6" Content="Donations" Margin="4,19.6,2.6,9.8" Grid.RowSpan="2"/>
                     <Button Grid.Column="0" Grid.Row="8" Content="In-Kind Donations" Margin="6,8.2,2.6,19.8" Grid.RowSpan="2"/>
                     <Button Grid.Column="0" Grid.Row="10" Content="Grant Donations" Margin="4,0.2,4.6,27" Grid.RowSpan="2"/>
                     <Button Grid.Column="0" Grid.Row="11" Content="Grant Fiscal Year" Margin="4,0,4.6,40.2" Grid.RowSpan="3" Height="62" VerticalAlignment="Bottom"/>
                     <Button Grid.Column="0" Grid.Row="13" Content="Accounting Sheet" Margin="4,23.8,6.6,0.2" Grid.RowSpan="2"/>
-                    <ComboBox x:Name="SeachBy_Copy1" IsEditable="True" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="43" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0.2" Grid.ColumnSpan="2" Grid.Row="1">
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox x:Name="SeachBy_Copy1" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="43"  Grid.Column="1" Margin="213.4,0,9.8,0.2" Grid.ColumnSpan="2" Grid.Row="1">
                         <ComboBoxItem x:Name="cbr1" Content="Event ID"/>
                         <ComboBoxItem x:Name="cbr2" Content="Event Name"/>
                         <ComboBoxItem x:Name="cbr3" Content="Event Date"/>
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Margin="0.2,0,10,0.2" Grid.ColumnSpan="2" Grid.Row="1" />
                     <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,0.2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="13" Loaded="Reports_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False" Margin="0.4,0.6,0.6,43">
+                    <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="13" Loaded="Reports_Grid" 
+                              IsReadOnly="True" CanUserDeleteRows="False" CanUserResizeColumns="True"  AutoGenerateColumns="False" Margin="0.4,0.6,0.6,43">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Event Name" Width="500" Binding="{Binding EventName}"/>
                             <DataGridTextColumn Header="Event Description" Width="250" Binding="{Binding EventDescription}"/>
@@ -443,7 +459,8 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Column="0" Grid.Row="2" Content="Create New Account" Margin="0,9.4,9.6,39.2" Grid.RowSpan="2"/>
                     <Button Grid.Column="0" Grid.Row="3" Content="Create Backup" Margin="2,24.6,9.6,24" Grid.RowSpan="2"/>
-                    <DataGrid  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Admin_Grid" CanUserResizeColumns="True"  AutoGenerateColumns="False" Margin="3.4,9.4,0.6,53.4" Grid.Column="1">
+                    <DataGrid  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Admin_Grid" CanUserResizeColumns="True" 
+                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="3.4,9.4,0.6,53.4" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Staff ID" Width="500" Binding="{Binding StaffID}"/>
                             <DataGridTextColumn Header="First Name" Width="250" Binding="{Binding FirstName}"/>
