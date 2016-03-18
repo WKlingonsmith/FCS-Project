@@ -121,9 +121,12 @@
     <Compile Include="Views\AddInKindItem.xaml.cs">
       <DependentUpon>AddInKindItem.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Views\AddInKindService.xaml.cs">
       <DependentUpon>AddInKindService.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> parent of 6022924... Starting the event form I think?
     <Compile Include="Views\AddNewContact.xaml.cs">
       <DependentUpon>AddNewContact.xaml</DependentUpon>
     </Compile>
@@ -157,12 +160,15 @@
     <Compile Include="Views\UpdateIndividualDonor.xaml.cs">
       <DependentUpon>UpdateIndividualDonor.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Views\UpdateInKindItem.xaml.cs">
       <DependentUpon>UpdateInKindItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateInKindService.xaml.cs">
       <DependentUpon>UpdateInKindService.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> parent of 6022924... Starting the event form I think?
     <Compile Include="Views\UpdatePatient.xaml.cs">
       <DependentUpon>UpdatePatient.xaml</DependentUpon>
     </Compile>
@@ -173,10 +179,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\AddInKindService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> parent of 6022924... Starting the event form I think?
     <Page Include="Views\AddNewContact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -248,6 +257,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\UpdateInKindItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,6 +266,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> parent of 6022924... Starting the event form I think?
     <Page Include="Views\UpdatePatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
