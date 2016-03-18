@@ -10,25 +10,30 @@ namespace FCS_DataTesting
     {
         public string DonorFirstName  { get; set;}
         public string DonorLastName { get; set; }
-        public string OrganizationName { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
-        public decimal Length { get; set; }
+        public double Length { get; set; }
         public decimal RatePerHour { get; set; }
         public decimal Value { get; set; }
-        public string ServiceDescription { get; set;}
+        public string ServiceDescription { get; set; }
+        //ID's
+        public int DonorID { get; set; }
+        public int DonationID { get; set; }
+        public int ServiceID { get; set; }
 
-        public InKindService(string dfn, string dln, string o, DateTime sdt, DateTime edt, decimal rph, string sd)
+        public InKindService()
+        { }
+
+        public InKindService(string dfn, string dln, DateTime sdt, DateTime edt, decimal rph, string sd, double length, decimal value)
         {
             decimal timeDiff = (decimal)(edt - sdt).TotalHours;
             DonorFirstName = dfn;
             DonorLastName = dln;
-            OrganizationName = o;
             StartDateTime = sdt;
             EndDateTime = edt;
-            Length = Math.Round(timeDiff, 2);
+            Length = length;
             RatePerHour = rph;
-            Value = Math.Round(rph * timeDiff, 2);
+            Value = value;
             ServiceDescription = sd;
         }
 

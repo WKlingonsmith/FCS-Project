@@ -58,20 +58,23 @@ namespace FCS_Funding.Views
             {
                 Models.FCS_FundingContext db = new Models.FCS_FundingContext();
                 //Then its an organization
-                if (OrgOrIndividual.IsChecked.Value)
+                if (OrgOrIndividual.IsChecked.Value && Organization.SelectedIndex != -1)
                 {
                     string Organiz = Organization.SelectedValue.ToString();
-                    MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Organiz);
+                    MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Organiz + "\n" + "You got HERE");
                     var donorID = (from d in db.Donors
                                    where d.OrganizationName == Organiz
                                    select d.DonorID).Distinct().First();
+                    MessageBox.Show(donorID.ToString());
                     Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
-                    Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
                     db.Donations.Add(donation);
+                    db.SaveChanges();
+                    MessageBox.Show(donation.DonationID.ToString());
+                    Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
                     db.In_Kind_Item.Add(inKind);
                 }
                 //then its an individual
-                else
+                else if(Individual.SelectedIndex != -1)
                 {
                     string Indiv = Individual.SelectedValue.ToString();
                     MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
@@ -89,6 +92,11 @@ namespace FCS_Funding.Views
                     Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
                     db.Donations.Add(donation);
                     db.In_Kind_Item.Add(inKind);
+                }
+                else
+                {
+                    MessageBox.Show("Make sure to select an organization or an individual");
+                    return;
                 }
                 db.SaveChanges();
                 MessageBox.Show("Successfully added In_Kind Item");

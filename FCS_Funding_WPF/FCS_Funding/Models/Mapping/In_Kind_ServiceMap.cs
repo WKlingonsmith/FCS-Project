@@ -23,6 +23,8 @@ namespace FCS_Funding.Models.Mapping
             this.Property(t => t.EndDateTime).HasColumnName("EndDateTime");
             this.Property(t => t.RatePerHour).HasColumnName("RatePerHour");
             this.Property(t => t.ServiceDescription).HasColumnName("ServiceDescription");
+            this.Property(t => t.ServiceLength).HasColumnName("ServiceLength");
+            this.Property(t => t.ServiceValue).HasColumnName("ServiceValue");
 
             // Relationships
             this.HasRequired(t => t.Donation)

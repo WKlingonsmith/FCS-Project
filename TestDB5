@@ -27,9 +27,11 @@ CREATE TABLE In_Kind_Service
     ServiceID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     DonationID              INT             NOT NULL,
     StartDateTime           datetime        NOT NULL,
-    EndDateTime             datetime        NULL,
+    EndDateTime             datetime        NOT NULL,
     RatePerHour             Money           NOT NULL,
-    ServiceDescription      VarChar(5000)   NOT NULL
+    ServiceDescription      VarChar(5000)   NOT NULL,
+    ServiceLength           FLOAT           NOT NULL,
+    ServiceValue            Money           NOT NULL
 );
 
 CREATE TABLE In_Kind_Item
@@ -395,7 +397,7 @@ VALUES(2,'1/7/2016 14:00','1/7/2016 14:30')
 ---------------------------------------------------------------------
 
 INSERT INTO DONOR(OrganizationName,DonorType,DonorAddress1,DonorAddress2,DonorCity,DonorState,DonorZip)
-VALUES('Gates Donation Fund','Donation','123 Somwhere', 'Suite 99', 'Las Vegas', 'IL', '90210')
+VALUES('Gates Donation Fund','Organization','123 Somwhere', 'Suite 99', 'Las Vegas', 'IL', '90210')
 
 ---------------------------------------------------------------------
 ----------------------------Donation---------------------------------
@@ -450,7 +452,7 @@ VALUES(2,1,4,8,'1/7/2016','2/25/2015 ',45)
 --------------------------In-Kind Item-------------------------------
 ---------------------------------------------------------------------
 INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
-VALUES('Stuff To Give', 'Donor', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
+VALUES('Stuff To Give', 'Organization', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
 GO
 INSERT INTO Donation (DonorID, Restricted, Inkind, DonationAmount, DonationDate, DonationAmountRemaining)
 VALUES(2, 1, 1, 150, '12/12/2015', 0)
@@ -462,13 +464,13 @@ VALUES (2, 'Oak Table', 'A very nice table made of oak')
 ---------------------------------------------------------------------
 GO
 INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
-VALUES('Service To Give', 'Volunteer', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
+VALUES('Service To Give', 'Organization', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
 GO
 INSERT INTO Donation (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
 VALUES(3,1,1,80,'10/10/2015', 0)
 GO
-INSERT INTO In_Kind_Service (DonationID, StartDateTime, EndDateTime, RatePerHour, ServiceDescription)
-VALUES(3, '10/10/2015 9:00', '10/10/2015 17:00', 10, 'Helped out around the office and input data into new database')
+INSERT INTO In_Kind_Service (DonationID, StartDateTime, EndDateTime, RatePerHour, ServiceDescription, ServiceLength, ServiceValue)
+VALUES(3, '10/10/2015 9:00', '10/10/2015 17:00', 10, 'Helped out around the office and input data into new database', 10, 100)
 
 ---------------------------------------------------------------------
 -----------------------------Views-----------------------------------

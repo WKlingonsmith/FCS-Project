@@ -1,0 +1,69 @@
+﻿<Window x:Class="FCS_Funding.Views.UpdateInKindService"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="UpdateInKindService" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Update In-Kind Service" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="Servie Description:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" />
+        <Border Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3"  BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
+            <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding ServiceDescription, ElementName=ThisWindow}"  />
+        </Border>
+        <TextBlock Text="Rate Per Hour:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" />
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding RatePerHour, ElementName=ThisWindow}"  />
+        </Border>
+
+        <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="178,6,0.4,4" Grid.ColumnSpan="2" />
+        <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
+                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="21,0,10,5" >
+            <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
+        </DatePicker>
+        <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="179,8,177.8,2" Grid.ColumnSpan="3" />
+        <TextBox LostFocus="Hour_LostFocus" Grid.Row="9" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginHour, ElementName=ThisWindow}"  />
+        <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="9" Height="30" Margin="39.6,0,128.8,10"  />
+        <TextBox LostFocus="Minute_LostFocus"  Grid.Row="9" MaxLength="2" Grid.Column="2" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
+                 VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
+        <ComboBox Name="AMPM_Start"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+                  Height="40"  Grid.Column="2"  Grid.Row="9" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
+
+        <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="178,8,0.4,2" Grid.ColumnSpan="2" />
+        <TextBox LostFocus="Hour_LostFocus"  Grid.Row="10" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndHour, ElementName=ThisWindow}"  />
+        <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="10" Height="30" Margin="39.6,0,128.8,10"  />
+        <TextBox LostFocus="Minute_LostFocus"  Grid.Row="10" MaxLength="2" Grid.Column="2" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
+                 VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
+        <ComboBox Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+                  Height="40"  Grid.Column="2"  Grid.Row="10" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
+        <Button FontSize="18" Grid.Column="1" Grid.Row="14" Content="Update In-Kind Service" Click="Update_InKind_Service" Grid.ColumnSpan="2" Margin="104.8,0,44.8,1"   />
+        <Button FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete In-Kind Item" Click="Delete_InKind_Service" Grid.ColumnSpan="2" Margin="78.2,39.8,101.4,0" Height="40" VerticalAlignment="Top" Grid.RowSpan="2"    />
+    </Grid>
+</Window>

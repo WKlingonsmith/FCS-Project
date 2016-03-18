@@ -17,6 +17,9 @@ namespace FCS_DataTesting
         public int DonorID { get; set; }
         public DateTime DateRecieved { get; set; }
         public string Description { get; set; }
+
+        public int ItemID { get; set; }
+        public int DonationID { get; set; }
         public InKindItem(string iName, string dFName, string dLName, string oName, DateTime t, string desc)
         {
             ItemName = iName;
