@@ -551,5 +551,17 @@ namespace FCS_Funding
                 iki.Organization.IsEnabled = false;
             }
         }
+
+        private void Create_New_Event(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 1)
+            {
+                //code for the create new event button
+                //open create new event
+                CreateNewEvent myEvent = new CreateNewEvent();
+                myEvent.Show();
+                myEvent.Topmost = true;
+            }
+        }
     }
 }
