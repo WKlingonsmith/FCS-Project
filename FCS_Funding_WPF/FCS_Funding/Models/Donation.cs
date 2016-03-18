@@ -23,6 +23,7 @@ namespace FCS_Funding.Models
             DonationDate = donationdate;
             DonationExpirationDate = donationExDate;
             DonationAmountRemaining = amountremaining;
+
             this.DonationPurposes = new List<DonationPurpose>();
             this.Expenses = new List<Expense>();
             this.In_Kind_Item = new List<In_Kind_Item>();

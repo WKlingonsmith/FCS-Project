@@ -262,7 +262,7 @@
                     <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
                     <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,0" />
                     <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
-                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
+                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" PreviewMouseDoubleClick="Update_InKindItem">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Item" Width="100" Binding="{Binding Path=ItemName}"/>
                             <DataGridTextColumn Header="Donator Name" Width="150" Binding="{Binding Path=DonorFirstName}"/>
@@ -303,7 +303,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Content="Add In-Kind Donation" Margin="0,43,4.6,29.4" Grid.Row="2" Grid.RowSpan="3" />
+                    <Button Content="Add In-Kind Service" Margin="0,43,4.6,29.4" Grid.Row="2" Grid.RowSpan="3" Click="Add_InKind_Service" />
                     <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                     <ComboBox Name="InKindServiceSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44"  Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="antID">Client OQ</ComboBoxItem>
@@ -313,18 +313,17 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Margin="0.2,0,10,0" Grid.ColumnSpan="2" Grid.Row="1" />
                     <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,42.2" Grid.RowSpan="2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" 
+                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" PreviewMouseDoubleClick="Update_InKindService"
                               IsReadOnly="True" CanUserDeleteRows="False" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Volunteer FN" Width="110" Binding="{Binding Path=DonorFirstName}"/>
                             <DataGridTextColumn Header="Volunteer LN" Width="110" Binding="{Binding Path=DonorLastName}"/>
-                            <DataGridTextColumn Header="Organization" Width="130" Binding="{Binding Path=OrganizationName}"/>
                             <DataGridTextColumn Header="Start Date Time" Width="150" Binding="{Binding Path=StartDateTime}"/>
                             <DataGridTextColumn Header="End Date Time" Width="150" Binding="{Binding Path=EndDateTime}"/>
                             <DataGridTextColumn Header="Length (Hrs)" Width="120" Binding="{Binding Path=Length}"/>
                             <DataGridTextColumn Header="Rate/Hour" Width="110" Binding="{Binding Path=RatePerHour, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Value (hours * rate)" Width="180" Binding="{Binding Path=Value, StringFormat={}{0:C}}"/>
-                            <DataGridTextColumn Header="Description" Width="250" Binding="{Binding Path=ServiceDescription}"/>
+                            <DataGridTextColumn Header="Service Description" Width="250" Binding="{Binding Path=ServiceDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

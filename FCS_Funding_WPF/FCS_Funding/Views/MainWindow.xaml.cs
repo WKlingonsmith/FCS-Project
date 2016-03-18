@@ -268,7 +268,6 @@ namespace FCS_Funding
                     return 0;
             }
         }
-
         private int Determine_EthnicGroupIndex(string selection)
         {
             switch (selection)
@@ -390,6 +389,8 @@ namespace FCS_Funding
                          select new InKindItem
                          {
                              DonorID = p.DonorID,
+                             ItemID = ki.ItemID,
+                             DonationID = d.DonationID,
                              ItemName = ki.ItemName,
                              DonorFirstName = dc.ContactFirstName,
                              DonorLastName = dc.ContactLastName,
@@ -398,13 +399,14 @@ namespace FCS_Funding
                              Description = ki.ItemDescription
                          }).Union(
                         from p in db.Donors
-                        join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                         join d in db.Donations on p.DonorID equals d.DonorID
                         join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
                         where p.DonorType == "Organization" || p.DonorType == "Government"
                         select new InKindItem
                         {
                             DonorID = p.DonorID,
+                            ItemID = ki.ItemID,
+                            DonationID = d.DonationID,
                             ItemName = ki.ItemName,
                             DonorFirstName = "",
                             DonorLastName = "",
@@ -468,13 +470,35 @@ namespace FCS_Funding
 
         private void InKindServiceGrid(object sender, RoutedEventArgs e)
         {
-            DateTime start = new DateTime(2016, 2, 17, 8, 24, 32);
-            DateTime end = new DateTime(2016, 2, 17, 16, 17, 8);
-            InKindService s1 = new InKindService("Spencer", "Fronberg", "HAFB", start, end, 10.75M, "Coding");
-            InKindServices = new ObservableCollection<InKindService>();
-            InKindServices.Add(s1);
+            //DateTime start = new DateTime(2016, 2, 17, 8, 24, 32);
+            //DateTime end = new DateTime(2016, 2, 17, 16, 17, 8);
+            //InKindService s1 = new InKindService("Spencer", "Fronberg", "HAFB", start, end, 10.75M, "Coding");
+            //InKindServices = new ObservableCollection<InKindService>();
+            //InKindServices.Add(s1);
+            //var grid = sender as DataGrid;
+            //grid.ItemsSource = InKindServices;
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.Donors
+                         join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                         join d in db.Donations on p.DonorID equals d.DonorID
+                         join ki in db.In_Kind_Service on d.DonationID equals ki.DonationID
+                         where p.DonorType == "Anonymous" || p.DonorType == "Individual"
+                         select new InKindService
+                         {
+                             DonorID = p.DonorID,
+                             DonationID = d.DonationID,
+                             ServiceID = ki.ServiceID,
+                             DonorFirstName = dc.ContactFirstName,
+                             DonorLastName = dc.ContactLastName,
+                             StartDateTime = ki.StartDateTime,
+                             EndDateTime = ki.EndDateTime,
+                             RatePerHour = ki.RatePerHour,
+                             ServiceDescription = ki.ServiceDescription,
+                             Length = ki.ServiceLength,
+                             Value = ki.ServiceValue
+                         });
             var grid = sender as DataGrid;
-            grid.ItemsSource = InKindServices;
+            grid.ItemsSource = join1.ToList();
         }
 
         private void Refresh_Patients(object sender, RoutedEventArgs e)
@@ -495,7 +519,7 @@ namespace FCS_Funding
             if (Count <= 1)
             {
                 CreateNewDonor ch = new CreateNewDonor();
-                ch.Topmost = true;
+                //ch.Topmost = true;
                 ch.Show();
             }
         }
@@ -549,6 +573,65 @@ namespace FCS_Funding
                 iki.Show();
                 //iki.Topmost = true;
                 iki.Organization.IsEnabled = false;
+            }
+        }
+
+        private void Add_InKind_Service(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 1)
+            {
+                AddInKindService iks = new AddInKindService();
+                iks.Show();
+                //iks.Topmost = true;
+                iks.AMPM_End.SelectedIndex = 0;
+                iks.AMPM_Start.SelectedIndex = 0;             
+            }
+        }
+
+        private void Update_InKindItem(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                DataGrid dg = sender as DataGrid;
+                InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateInKindItem up = new UpdateInKindItem(p);
+                up.DateRecieved.SelectedDate = p.DateRecieved;
+                up.Topmost = true;
+                up.Show();
+            }
+        }
+
+        private void Update_InKindService(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1)
+            {
+                DataGrid dg = sender as DataGrid;
+                InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateInKindService up = new UpdateInKindService(p);
+                up.DateRecieved.SelectedDate = p.StartDateTime;
+                up.Topmost = true;
+
+                if (p.StartDateTime.Hour >= 12)
+                {
+                    up.AMPM_Start.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_Start.SelectedIndex = 0;
+                }
+                if (p.EndDateTime.Hour >= 12)
+                {
+                    up.AMPM_End.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_End.SelectedIndex = 0;
+                }
+
+
+                up.Show();
             }
         }
     }

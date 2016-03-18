@@ -13,7 +13,6 @@ namespace FCS_Funding.Models
         }
         public In_Kind_Item()
         { }
-
         public int ItemID { get; set; }
         public int DonationID { get; set; }
         public string ItemName { get; set; }
