@@ -356,7 +356,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Content="Create New Event" Margin="0,46.2,5.6,31" Grid.Row="2" Grid.RowSpan="3" Click="Create_New_Event" />
+                    <Button Content="Create New Event" Margin="0,46.2,5.6,31" Grid.Row="2" Grid.RowSpan="3" />
                     <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                     <ComboBox x:Name="SeachBy_Copy"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="46"  Grid.Column="1" Margin="213.4,0.6,9.8,46.2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
                         <ComboBoxItem x:Name="cb1" Content="Event ID"/>
@@ -456,14 +456,17 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Grid.Column="0" Grid.Row="2" Content="Create New Account" Margin="0,9.4,9.6,39.2" Grid.RowSpan="2"/>
+                    <Button Grid.Column="0" Grid.Row="2" Content="Create New Account" Margin="0,9.4,9.6,39.2" Grid.RowSpan="2" Click="CreateNewAccount"/>
                     <Button Grid.Column="0" Grid.Row="3" Content="Create Backup" Margin="2,24.6,9.6,24" Grid.RowSpan="2"/>
                     <DataGrid  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Admin_Grid" CanUserResizeColumns="True" 
                                IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="3.4,9.4,0.6,53.4" Grid.Column="1">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Staff ID" Width="500" Binding="{Binding StaffID}"/>
-                            <DataGridTextColumn Header="First Name" Width="250" Binding="{Binding FirstName}"/>
-                            <DataGridTextColumn Header="Last Name" Width="250" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Staff ID" Width="100" Binding="{Binding StaffID}"/>
+                            <DataGridTextColumn Header="Username" Width="180" Binding="{Binding UserName}"/>
+                            <DataGridTextColumn Header="First Name" Width="150" Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="150" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Staff Title" Width="150" Binding="{Binding StaffTitle}"/>
+                            <DataGridTextColumn Header="Staff Role" Width="150" Binding="{Binding StaffRole}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="43" Margin="0.2,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="408" Text="Search By Username" Grid.RowSpan="2"/>

@@ -575,7 +575,6 @@ namespace FCS_Funding
                 iki.Organization.IsEnabled = false;
             }
         }
-<<<<<<< HEAD
 
         private void Add_InKind_Service(object sender, RoutedEventArgs e)
         {
@@ -635,7 +634,10 @@ namespace FCS_Funding
                 up.Show();
             }
         }
-=======
->>>>>>> parent of 6022924... Starting the event form I think?
+
+        private void CreateNewAccount(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
