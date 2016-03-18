@@ -26,12 +26,14 @@ namespace FCS_Funding.Views
 
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
-
+            string pw = Password.Password.ToString();
+            MessageBox.Show(pw);
         }
 
         private void UserType_DropdownLoaded(object sender, RoutedEventArgs e)
         {
-
+            var box = sender as ComboBox;
+            box.ItemsSource = new List<string>() { "Admin", "User", "Basic", "No Access" };
         }
     }
 }

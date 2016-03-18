@@ -637,7 +637,12 @@ namespace FCS_Funding
 
         private void CreateNewAccount(object sender, RoutedEventArgs e)
         {
-
+            if (Application.Current.Windows.Count <= 1)
+            {
+                CreateNewAccount cna = new CreateNewAccount();
+                cna.Show();
+                cna.Topmost = true;
+            }
         }
     }
 }
