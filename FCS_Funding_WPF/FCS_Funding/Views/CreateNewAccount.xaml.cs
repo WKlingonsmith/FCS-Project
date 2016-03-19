@@ -35,8 +35,13 @@ namespace FCS_Funding.Views
             Models.FCS_FundingContext db = new Models.FCS_FundingContext();
             string Role = UserRole.SelectedValue.ToString();
 
-            string pw = Password.Password.ToString();
-            string hashedPassword = PasswordHashing.GetHashString(pw);
+            string password = Password.Password.ToString();
+            string verifiedPW = VerifyPassword.Password.ToString();
+            string hashedPassword = PasswordHashing.GetHashString(password);
+
+            int usernameVerify = (from uv in db.Staffs
+                                  where uv.StaffUserName == UserName
+                                  select uv).Count();
             if (Role == "No Access")
             {
                 if (FirstName == null || FirstName == "" || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
@@ -52,19 +57,25 @@ namespace FCS_Funding.Views
             }
             else
             {
-                if (pw.Length < 5)
+                if (password.Length < 5)
                 {
                     MessageBox.Show("Please pick a longer password (Minimum length of 5)");
+                }
+                else if (password != verifiedPW)
+                {
+                    MessageBox.Show("Your Passwords do not match!");
                 }
                 else if (UserName == null || UserName == "" || FirstName == null || FirstName == ""
                     || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
                 {
                     MessageBox.Show("Make sure you input the correct data");
                 }
+                else if(usernameVerify != 0)
+                {
+                    MessageBox.Show("The username you selected is already taken");
+                }
                 else
                 {
-                    MessageBox.Show(pw + "\n" + hashedPassword);
-
                     Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
                     db.Staffs.Add(account);
                     db.SaveChanges();

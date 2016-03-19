@@ -42,23 +42,27 @@
         <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding UserName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="0.8,2,176.8,8" />
-        <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding FirstName, ElementName=ThisWindow}"/>
-        </Border>
-        <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,2,177.8,8" />
-        <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding LastName, ElementName=ThisWindow}"/>
-        </Border>
-        <TextBlock Text="Staff Title:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="1" Height="30" />
-        <Border Grid.Row="8" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding StaffTitle, ElementName=ThisWindow}"  />
-        </Border>
-
         <TextBlock Text="Password:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" />
         <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <PasswordBox Name="Password"  FontSize="18" />
         </Border>
+        <TextBlock Text="Verify Password:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" />
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <PasswordBox Name="VerifyPassword"  FontSize="18" />
+        </Border>
+        <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" />
+        <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding FirstName, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" />
+        <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding LastName, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="Staff Title:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Grid.ColumnSpan="3" Margin="179,5,178.6,5" />
+        <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding StaffTitle, ElementName=ThisWindow}"  />
+        </Border>
+
         <TextBlock Text="User Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Grid.ColumnSpan="3" Margin="179,0,177.8,10" />
         <ComboBox Name="UserRole" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="UserType_DropdownLoaded"
                   HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="1" Grid.Row="10" FontSize="20" Grid.ColumnSpan="2" Margin="178.8,0,3.8,0">
