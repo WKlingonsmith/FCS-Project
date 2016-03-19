@@ -60,7 +60,7 @@
             <PasswordBox Name="Password"  FontSize="18" />
         </Border>
         <TextBlock Text="User Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Grid.ColumnSpan="3" Margin="179,0,177.8,10" />
-        <ComboBox Name="dType" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="UserType_DropdownLoaded"
+        <ComboBox Name="UserRole" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="UserType_DropdownLoaded"
                   HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="1" Grid.Row="10" FontSize="20" Grid.ColumnSpan="2" Margin="178.8,0,3.8,0">
         </ComboBox>
 

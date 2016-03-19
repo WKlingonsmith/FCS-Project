@@ -146,9 +146,7 @@ namespace FCS_Funding
                         //MessageBox.Show("Make sure you select a filter.");
                     }
                 }
-            }
-            
-
+            }    
         }
         private void Filter_Patients(object sender, RoutedEventArgs e)
         {
@@ -290,7 +288,6 @@ namespace FCS_Funding
                     return 0;
             }
         }
-
         private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
@@ -459,13 +456,24 @@ namespace FCS_Funding
 
         private void Admin_Grid(object sender, RoutedEventArgs e)
         {
-            AdminDataGrid a1 = new AdminDataGrid("13224", "Billy", "Joel");
-            AdminDataGrid a2 = new AdminDataGrid("12347", "Lionnel", "Messi");
-            Admins = new ObservableCollection<AdminDataGrid>();
-            Admins.Add(a1);
-            Admins.Add(a2);
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.Staffs
+                         select new AdminDataGrid
+                         {
+                             StaffID = p.StaffID,
+                             StaffUserName = p.StaffUserName,
+                             StaffFirstName = p.StaffFirstName,
+                             StaffLastName = p.StaffLastName,
+                             StaffTitle = p.StaffTitle,
+                             StaffDBRole = p.StaffDBRole
+                         });
+            //AdminDataGrid a1 = new AdminDataGrid("13224", "Billy", "Joel");
+            //AdminDataGrid a2 = new AdminDataGrid("12347", "Lionnel", "Messi");
+            //Admins = new ObservableCollection<AdminDataGrid>();
+            //Admins.Add(a1);
+            //Admins.Add(a2);
             var grid = sender as DataGrid;
-            grid.ItemsSource = Admins;
+            grid.ItemsSource = join1.ToList();
         }
 
         private void InKindServiceGrid(object sender, RoutedEventArgs e)
@@ -512,7 +520,6 @@ namespace FCS_Funding
         {
 
         }
-
         private void Open_CreateNewDonor(object sender, RoutedEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
@@ -641,6 +648,7 @@ namespace FCS_Funding
             {
                 CreateNewAccount cna = new CreateNewAccount();
                 cna.Show();
+                cna.UserRole.SelectedIndex = 0;
                 cna.Topmost = true;
             }
         }

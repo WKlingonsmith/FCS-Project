@@ -8,15 +8,26 @@ namespace FCS_DataTesting
 {
     public class AdminDataGrid
     {
-        public string StaffID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int StaffID { get; set; }
+        public string StaffUserName { get; set; }
+        public string StaffFirstName { get; set; }
+        public string StaffLastName { get; set; }
+        public string StaffTitle { get; set; }
+        public string StaffDBRole { get; set; }
 
-        public AdminDataGrid(string sID, string fName, string lName)
+        public AdminDataGrid()
+        { }
+
+        public AdminDataGrid(int sID, string fName, string lName, string username, string title, string role)
         {
             StaffID = sID;
-            FirstName = fName;
-            LastName = lName;
+            StaffFirstName = fName;
+            StaffLastName = lName;
+            StaffUserName = username;
+            StaffTitle = title;
+            StaffDBRole = role;
         }
     }
 }
+
+

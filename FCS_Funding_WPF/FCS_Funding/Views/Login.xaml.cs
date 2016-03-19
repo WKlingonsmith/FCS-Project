@@ -31,13 +31,24 @@ namespace FCS_Funding
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //if credentials are correct
-            if (true)
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            string pw = Password.Password.ToString();
+            string us = Username.Text;
+            string hashedPassword = FCS_DataTesting.PasswordHashing.GetHashString(pw);
+            try
             {
+                var query = (from p in db.Staffs
+                             where p.StaffUserName == us && p.StaffPassword == hashedPassword
+                             select p).Distinct().First();
                 MainWindow mw = new MainWindow();
                 mw.Show();
                 this.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Incorrect Credentials");
+            }
+            
         }
     }
 }

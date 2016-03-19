@@ -9,6 +9,16 @@ namespace FCS_Funding.Models
         {
             this.Appointments = new List<Appointment>();
         }
+        public Staff(string firstName, string lastName, string title, string userName, string password, string role)
+        {
+            StaffFirstName = firstName;
+            StaffLastName = lastName;
+            StaffTitle = title;
+            StaffUserName = userName;
+            StaffPassword = password;
+            StaffDBRole = role;
+            this.Appointments = new List<Appointment>();
+        }
 
         public int StaffID { get; set; }
         public string StaffFirstName { get; set; }

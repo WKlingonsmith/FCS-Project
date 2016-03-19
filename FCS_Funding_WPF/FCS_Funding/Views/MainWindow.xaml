@@ -462,11 +462,11 @@
                                IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="3.4,9.4,0.6,53.4" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Staff ID" Width="100" Binding="{Binding StaffID}"/>
-                            <DataGridTextColumn Header="Username" Width="180" Binding="{Binding UserName}"/>
-                            <DataGridTextColumn Header="First Name" Width="150" Binding="{Binding FirstName}"/>
-                            <DataGridTextColumn Header="Last Name" Width="150" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Username" Width="180" Binding="{Binding StaffUserName}"/>
+                            <DataGridTextColumn Header="First Name" Width="150" Binding="{Binding StaffFirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="150" Binding="{Binding StaffLastName}"/>
                             <DataGridTextColumn Header="Staff Title" Width="150" Binding="{Binding StaffTitle}"/>
-                            <DataGridTextColumn Header="Staff Role" Width="150" Binding="{Binding StaffRole}"/>
+                            <DataGridTextColumn Header="Staff Role" Width="150" Binding="{Binding StaffDBRole}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="43" Margin="0.2,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="408" Text="Search By Username" Grid.RowSpan="2"/>

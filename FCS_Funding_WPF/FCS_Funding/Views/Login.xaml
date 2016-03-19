@@ -48,8 +48,8 @@
         </Border>
         <TextBlock Text="Username:" Padding="110, 0, 0, 0" FontSize="18" Grid.Row="5" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" />
         <TextBlock Text="Password:" Padding="110, 0, 0, 0" FontSize="18" Grid.Row="6"  Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox  FontSize="18" Grid.Row="5" Grid.Column="2" Height="30" />
-        <PasswordBox FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" />
+        <TextBox Name="Username"  FontSize="18" Grid.Row="5" Grid.Column="2" Height="30" />
+        <PasswordBox Name="Password" FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" />
         <Button Height="45" Width="105" Grid.Column="2" Grid.Row="7" Content="Login" FontSize="20" Click="Button_Click" />
     </Grid>
 </Window>

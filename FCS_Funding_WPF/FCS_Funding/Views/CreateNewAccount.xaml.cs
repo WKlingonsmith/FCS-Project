@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FCS_DataTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,11 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class CreateNewAccount : Window
     {
+        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string StaffTitle { get; set; }
+
         public CreateNewAccount()
         {
             InitializeComponent();
@@ -26,14 +32,50 @@ namespace FCS_Funding.Views
 
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            string Role = UserRole.SelectedValue.ToString();
+
             string pw = Password.Password.ToString();
-            MessageBox.Show(pw);
+            string hashedPassword = PasswordHashing.GetHashString(pw);
+            if (Role == "No Access")
+            {
+                if (FirstName == null || FirstName == "" || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
+                {
+                    MessageBox.Show("Make sure you input the correct data");
+                }
+                else
+                {
+                    Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
+                    db.Staffs.Add(account);
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                if (pw.Length < 5)
+                {
+                    MessageBox.Show("Please pick a longer password (Minimum length of 5)");
+                }
+                else if (UserName == null || UserName == "" || FirstName == null || FirstName == ""
+                    || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
+                {
+                    MessageBox.Show("Make sure you input the correct data");
+                }
+                else
+                {
+                    MessageBox.Show(pw + "\n" + hashedPassword);
+
+                    Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
+                    db.Staffs.Add(account);
+                    db.SaveChanges();
+                }
+            }
         }
 
         private void UserType_DropdownLoaded(object sender, RoutedEventArgs e)
         {
             var box = sender as ComboBox;
-            box.ItemsSource = new List<string>() { "Admin", "User", "Basic", "No Access" };
+            box.ItemsSource = new List<string>() { "No Access", "Basic", "User", "Admin" };
         }
     }
 }
