@@ -40,7 +40,32 @@ namespace FCS_Funding
                 var query = (from p in db.Staffs
                              where p.StaffUserName == us && p.StaffPassword == hashedPassword
                              select p).Distinct().First();
-                MainWindow mw = new MainWindow();
+                MainWindow mw = new MainWindow(query.StaffDBRole);
+                if(query.StaffDBRole == "No Access")
+                {
+                    MessageBox.Show("You do not have access to Login");
+                    return;
+                }
+                else if(query.StaffDBRole == "Basic")
+                {
+                    mw.CreateNewPat.IsEnabled = false;
+                    mw.CreateGrantProp.IsEnabled = false;
+                    mw.CreateNewDon.IsEnabled = false;
+                    mw.AddItem.IsEnabled = false;
+                    mw.AddService.IsEnabled = false;
+                    mw.CreateEven.IsEnabled = false;
+                    mw.AdminTab.IsEnabled = false;
+                    mw.AdminTab.Visibility = Visibility.Collapsed;
+                }
+                else if (query.StaffDBRole == "User")
+                {
+                    mw.AdminTab.Visibility = Visibility.Collapsed;
+
+                }
+                else if (query.StaffDBRole == "Admin")
+                {
+
+                }
                 mw.Show();
                 this.Close();
             }

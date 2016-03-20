@@ -86,7 +86,13 @@ namespace FCS_Funding.Views
         private void UserType_DropdownLoaded(object sender, RoutedEventArgs e)
         {
             var box = sender as ComboBox;
-            box.ItemsSource = new List<string>() { "No Access", "Basic", "User", "Admin" };
+            box.ItemsSource = new List<string>()
+            {
+                "No Access", //User cannot login
+                "Basic",    //Read
+                "User",     //Read, Insert, Update
+                "Admin"     //Read, Insert, Update, Delete
+            };
         }
     }
 }

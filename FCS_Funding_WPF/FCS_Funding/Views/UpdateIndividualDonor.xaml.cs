@@ -32,6 +32,7 @@ namespace FCS_Funding.Views
         public string DonorZip          { get; set; }
         public int    DonorID           { get; set; }
         public int ContactID { get; set; }
+
         public UpdateIndividualDonor(DonorsDataGrid p, Models.DonorContact d)
         {
             DonorFirstName = p.DonorFirstName;
@@ -73,6 +74,26 @@ namespace FCS_Funding.Views
             db.SaveChanges();
             MessageBox.Show("You successfully updated this Donor");
             this.Close();
+        }
+
+        private void DeleteDonor(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Donor?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                var donor = (from d in db.Donors
+                             where d.DonorID == DonorID
+                             select d).First();
+                var contact = (from c in db.DonorContacts
+                               where c.ContactID == ContactID
+                               select c).First();
+                db.DonorContacts.Remove(contact);
+                db.Donors.Remove(donor);
+                db.SaveChanges();
+                MessageBox.Show("You successfully deleted this Donor.");
+                this.Close();
+            }
         }
     }
 }

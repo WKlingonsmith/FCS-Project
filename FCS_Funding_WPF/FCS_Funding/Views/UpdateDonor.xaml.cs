@@ -28,9 +28,12 @@ namespace FCS_Funding.Views
         public string DonorZip { get; set; }
         public string OrganizationName { get; set; }
         private int DonorID { get; set; }
+        
+        public string StaffDBRole { get; set; }
 
-        public UpdateDonor(DonorsDataGrid d)
+        public UpdateDonor(DonorsDataGrid d , string StaffRole)
         {
+            StaffDBRole = StaffRole;
             DonorAddress1 = d.DonorAddress1;
             DonorAddress2 = d.DonorAddress2;
             DonorCity = d.DonorCity;
@@ -126,6 +129,10 @@ namespace FCS_Funding.Views
                 DataGrid dg = sender as DataGrid;
                 DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                 UpdateContact up = new UpdateContact(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteCon.IsEnabled = false;
+                }
                 up.Show();
                 this.Topmost = false;
                 up.Topmost = true;

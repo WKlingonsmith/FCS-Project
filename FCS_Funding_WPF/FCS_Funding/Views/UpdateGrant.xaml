@@ -71,7 +71,7 @@
 
 
         <Button FontSize="18" Grid.Column="1" Grid.Row="16" Content="Update Grant" Click="Update_Grant" Grid.ColumnSpan="2" Margin="93.8,0,84.8,0"    />
-        <Button FontSize="18" Grid.Column="3" Grid.Row="16" Content="Delete Grant" Click="Delete_Grant" Grid.ColumnSpan="2" Margin="88.2,0,91.4,0" Height="40" VerticalAlignment="Top"    />
+        <Button Name="DeleteGran" FontSize="18" Grid.Column="3" Grid.Row="16" Content="Delete Grant" Click="Delete_Grant" Grid.ColumnSpan="2" Margin="88.2,0,91.4,0" Height="40" VerticalAlignment="Top"    />
 
     </Grid>
 </Window>

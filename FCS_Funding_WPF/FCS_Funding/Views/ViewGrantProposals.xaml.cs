@@ -23,10 +23,12 @@ namespace FCS_Funding.Views
         public string GrantName { get; set; }
         public string OrganizationName { get; set; }
         public DateTime SubmissionDueDate { get; set; }
-        public string GrantStatus { get; set; }
+        public string GrantStatus { get; set; } 
+        public string StaffDBRole { get; set; }
 
-        public ViewGrantProposals()
+        public ViewGrantProposals(string StaffRole)
         {
+            StaffDBRole = StaffRole;
             InitializeComponent();
         }
 
@@ -58,7 +60,7 @@ namespace FCS_Funding.Views
         private void EditGrantProposal(object sender, MouseButtonEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count <= 2)
+            if (Count < 3 && StaffDBRole != "Basic")
             {
                 int index;
                 DataGrid dg = sender as DataGrid;
@@ -69,10 +71,14 @@ namespace FCS_Funding.Views
 
                 Models.FCS_FundingContext db = new Models.FCS_FundingContext();
                 EditGrantProposals dgp = new EditGrantProposals(p);
+                if (StaffDBRole != "Admin")
+                {
+                    dgp.Deletegrantprop.IsEnabled = false;
+                }
                 dgp.Show();
                 dgp.Topmost = true;
                 dgp.oName.IsEnabled = false;
-                if(index == 1 || index == 2)
+                if (index == 1 || index == 2)
                 {
                     dgp.Status.IsEnabled = false;
                 }

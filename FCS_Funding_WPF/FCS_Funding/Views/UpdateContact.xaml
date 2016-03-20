@@ -57,6 +57,6 @@
             <TextBox  FontSize="18" Text="{Binding ContactEmail, ElementName=ThisWindow}"/>
         </Border>
         <Button FontSize="18" Grid.Column="2" Grid.Row="11" Content="Update Contact" Click="Update_Contact"   />
-        <Button FontSize="18" Grid.Column="3" Grid.Row="11" Content="Delete Contact" Click="Delete_Contact" Grid.ColumnSpan="2" Margin="42.2,0,136.4,0"   />
+        <Button Name="DeleteCon" FontSize="18" Grid.Column="3" Grid.Row="11" Content="Delete Contact" Click="Delete_Contact" Grid.ColumnSpan="2" Margin="42.2,0,136.4,0"   />
     </Grid>
 </Window>

@@ -39,9 +39,12 @@ namespace FCS_Funding
         private bool ShouldLoadPatient { get; set; }
         private bool ShouldRefreshPatients { get; set; }
 
-        public MainWindow()
+        //Accessablity
+        private string StaffDBRole { get; set; }
+
+        public MainWindow(string StaffRole)
         {
-            
+            StaffDBRole = StaffRole;
             //DGrid.ItemsSource = data;
             ShouldLoadPatient = true;
             ShouldRefreshPatients = false;
@@ -152,14 +155,19 @@ namespace FCS_Funding
         {
             Patient_Grid(sender, e);           
         }
+
         private void EditPatient(object sender, RoutedEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
+            if (Count < 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
                 PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                 UpdatePatient up = new UpdatePatient(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteClien.IsEnabled = false;
+                }
                 up.TheHead.IsChecked = p.IsHead;
                 up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
                 up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
@@ -175,7 +183,7 @@ namespace FCS_Funding
         private void EditDonor(object sender, MouseButtonEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
+            if (Count < 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
                 DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
@@ -187,6 +195,10 @@ namespace FCS_Funding
                                 where doncontacts.DonorID == p.DonorID
                                 select doncontacts).First();
                     UpdateIndividualDonor id = new UpdateIndividualDonor(p, query);
+                    if (StaffDBRole != "Admin")
+                    {
+                        id.DeleteIndDonor.IsEnabled = false;
+                    }
                     id.Show();
                     id.dType.SelectedIndex = 1;
                     id.oName.IsEnabled = false;
@@ -199,6 +211,10 @@ namespace FCS_Funding
                                                  where doncontacts.DonorID == p.DonorID
                                                  select doncontacts).First();
                     UpdateIndividualDonor id = new UpdateIndividualDonor(p, query);
+                    if (StaffDBRole != "Admin")
+                    {
+                        id.DeleteIndDonor.IsEnabled = false;
+                    }
                     id.Show();
                     id.UpdateIndDonor.IsEnabled = false;
                     id.dType.SelectedIndex = 2;
@@ -218,7 +234,11 @@ namespace FCS_Funding
                 }
                 else
                 {
-                    UpdateDonor up = new UpdateDonor(p);
+                    UpdateDonor up = new UpdateDonor(p, StaffDBRole);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteDon.IsEnabled = false;
+                    }
                     //up.firstName = p.FirstName;
                     //up.lastName = p.LastName;
                     //up.patientOQ = p.PatientOQ;
@@ -228,66 +248,78 @@ namespace FCS_Funding
                 }
             }
         }
-        private int Determine_GenderIndex(string selection)
+        private void EditGrant(object sender, MouseButtonEventArgs e)
         {
-            switch (selection)
+            int Count = Application.Current.Windows.Count;
+            if (Count < 2 && StaffDBRole != "Basic")
             {
-                case "Male":
-                    return 0;
-                case "Female":
-                    return 1;
-                case "Other":
-                    return 2;
-                default:
-                    return 2;
+                DataGrid dg = sender as DataGrid;
+                GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateGrant up = new UpdateGrant(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteGran.IsEnabled = false;
+                }
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.DonationExpirationDate.SelectedDate = p.ExpirationDate;
+                up.Topmost = true;
+                up.Show();
             }
         }
-        private int Determine_AgeGroupIndex(string selection)
+        private void Edit_InKindItem(object sender, MouseButtonEventArgs e)
         {
-            switch (selection)
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1 && StaffDBRole != "Basic")
             {
-                case "0-5":
-                    return 0;
-                case "6-11":
-                    return 1;
-                case "12-17":
-                    return 2;
-                case "18-23":
-                    return 3;
-                case "24-44":
-                    return 4;
-                case "45-54":
-                    return 5;
-                case "55-69":
-                    return 6;
-                case "70+":
-                    return 7;
-                default:
-                    return 0;
+                DataGrid dg = sender as DataGrid;
+                InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateInKindItem up = new UpdateInKindItem(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteItem.IsEnabled = false;
+                }
+                up.DateRecieved.SelectedDate = p.DateRecieved;
+                up.Topmost = true;
+                up.Show();
             }
         }
-        private int Determine_EthnicGroupIndex(string selection)
+        private void Edit_InKindService(object sender, MouseButtonEventArgs e)
         {
-            switch (selection)
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1 && StaffDBRole != "Basic")
             {
-                case "African American":
-                    return 0;
-                case "Native/Alaskan":
-                    return 1;
-                case "Pacific Islander":
-                    return 2;
-                case "Asian":
-                    return 3;
-                case "Caucasian":
-                    return 4;
-                case "Hispanic":
-                    return 5;
-                case "Other":
-                    return 6;
-                default:
-                    return 0;
+                DataGrid dg = sender as DataGrid;
+                InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateInKindService up = new UpdateInKindService(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteService.IsEnabled = false;
+                }
+                up.DateRecieved.SelectedDate = p.StartDateTime;
+                up.Topmost = true;
+
+                if (p.StartDateTime.Hour >= 12)
+                {
+                    up.AMPM_Start.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_Start.SelectedIndex = 0;
+                }
+                if (p.EndDateTime.Hour >= 12)
+                {
+                    up.AMPM_End.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_End.SelectedIndex = 0;
+                }
+
+
+                up.Show();
             }
         }
+
         private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
@@ -548,7 +580,7 @@ namespace FCS_Funding
         {
             if (Application.Current.Windows.Count <= 1)
             {
-                ViewGrantProposals vgp = new ViewGrantProposals();
+                ViewGrantProposals vgp = new ViewGrantProposals(StaffDBRole);
                 vgp.Show();
             }
             else
@@ -557,20 +589,6 @@ namespace FCS_Funding
             }
         }
 
-        private void EditGrant(object sender, MouseButtonEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
-            {
-                DataGrid dg = sender as DataGrid;
-                GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateGrant up = new UpdateGrant(p);
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.DonationExpirationDate.SelectedDate = p.ExpirationDate;
-                up.Topmost = true;
-                up.Show();
-            }
-        }
 
         private void Add_InKind_Item(object sender, RoutedEventArgs e)
         {
@@ -595,53 +613,6 @@ namespace FCS_Funding
             }
         }
 
-        private void Update_InKindItem(object sender, MouseButtonEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
-            {
-                DataGrid dg = sender as DataGrid;
-                InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateInKindItem up = new UpdateInKindItem(p);
-                up.DateRecieved.SelectedDate = p.DateRecieved;
-                up.Topmost = true;
-                up.Show();
-            }
-        }
-
-        private void Update_InKindService(object sender, MouseButtonEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
-            {
-                DataGrid dg = sender as DataGrid;
-                InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateInKindService up = new UpdateInKindService(p);
-                up.DateRecieved.SelectedDate = p.StartDateTime;
-                up.Topmost = true;
-
-                if (p.StartDateTime.Hour >= 12)
-                {
-                    up.AMPM_Start.SelectedIndex = 1;
-                }
-                else
-                {
-                    up.AMPM_Start.SelectedIndex = 0;
-                }
-                if (p.EndDateTime.Hour >= 12)
-                {
-                    up.AMPM_End.SelectedIndex = 1;
-                }
-                else
-                {
-                    up.AMPM_End.SelectedIndex = 0;
-                }
-
-
-                up.Show();
-            }
-        }
-
         private void CreateNewAccount(object sender, RoutedEventArgs e)
         {
             if (Application.Current.Windows.Count <= 1)
@@ -650,6 +621,67 @@ namespace FCS_Funding
                 cna.Show();
                 cna.UserRole.SelectedIndex = 0;
                 cna.Topmost = true;
+            }
+        }
+
+        private int Determine_GenderIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "Male":
+                    return 0;
+                case "Female":
+                    return 1;
+                case "Other":
+                    return 2;
+                default:
+                    return 2;
+            }
+        }
+        private int Determine_AgeGroupIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "0-5":
+                    return 0;
+                case "6-11":
+                    return 1;
+                case "12-17":
+                    return 2;
+                case "18-23":
+                    return 3;
+                case "24-44":
+                    return 4;
+                case "45-54":
+                    return 5;
+                case "55-69":
+                    return 6;
+                case "70+":
+                    return 7;
+                default:
+                    return 0;
+            }
+        }
+        private int Determine_EthnicGroupIndex(string selection)
+        {
+            switch (selection)
+            {
+                case "African American":
+                    return 0;
+                case "Native/Alaskan":
+                    return 1;
+                case "Pacific Islander":
+                    return 2;
+                case "Asian":
+                    return 3;
+                case "Caucasian":
+                    return 4;
+                case "Hispanic":
+                    return 5;
+                case "Other":
+                    return 6;
+                default:
+                    return 0;
             }
         }
     }

@@ -358,10 +358,13 @@ VALUES('Iliana', 'Hernandez', 1986, 2, 'Female', 'Hispanic', '5-10',0, '1/26/201
 ---------------------------------------------------------------------
 
 INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
-VALUES ('Claudius','Ptolemy', 'Doctor', 'User')
+VALUES ('Claudius','Ptolemy', 'Doctor', 'No Access')
 
 INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
-VALUES ('Marc','Antony', 'Doctor', 'User')
+VALUES ('Marc','Antony', 'Doctor', 'No Access')
+
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffUserName, StaffPassword, StaffDBRole)
+VALUES ('Trevor','Booker', 'Team Lead', 'Admin', 'E3AFED0047B08059D0FADA10F400C1E5', 'Admin')
 
 ---------------------------------------------------------------------
 ----------------------------Appointment------------------------------

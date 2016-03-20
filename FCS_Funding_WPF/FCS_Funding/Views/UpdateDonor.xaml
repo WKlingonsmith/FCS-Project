@@ -81,6 +81,6 @@
 
         <Button FontSize="18" Grid.Column="1" Grid.Row="16" Content="Update Donor" Click="Update_Donor"    />
         <Button FontSize="18" Grid.Column="2" Grid.Row="16" Content="Add Contact" Click="Add_New_Contact" Grid.ColumnSpan="2" Margin="91.6,0,88,0"    />
-        <Button FontSize="18" Grid.Column="4" Grid.Row="16" Content="Delete Donor" Click="Delete_Donor"    />
+        <Button Name="DeleteDon" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Delete Donor" Click="Delete_Donor"    />
     </Grid>
 </Window>

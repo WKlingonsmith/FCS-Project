@@ -93,7 +93,7 @@
         </CheckBox>
 
         <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Update Client" Click="Update_Patient"    />
-        <Button FontSize="18" Grid.Column="4" Grid.Row="13" Content="Delete Client" Click="Detete_Patient"    />
+        <Button Name="DeleteClien" FontSize="18" Grid.Column="4" Grid.Row="13" Content="Delete Client" Click="Detete_Patient"    />
     </Grid>
 
 </Window>
