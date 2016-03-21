@@ -15,6 +15,8 @@ namespace FCS_DataTesting
         public string EventName { get; set; }
         public string EventDescription { get; set; }
 
+        public EventsDataGrid()
+        { }
         //Pass in values for Events Data Grid
         public EventsDataGrid(int eID, DateTime eStartDate, DateTime eEndDate, string eName, string eDescription)
         {

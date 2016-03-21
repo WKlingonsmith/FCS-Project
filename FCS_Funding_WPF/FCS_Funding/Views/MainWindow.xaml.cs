@@ -461,17 +461,18 @@ namespace FCS_Funding
 
         private void Events_Grid(object sender, RoutedEventArgs e)
         {
-            EventsDataGrid e1 = new EventsDataGrid(1234, DateTime.Now, DateTime.Now, "Fall Fundraiser", "Held at Marriot Ballroom");
-            EventsDataGrid e2 = new EventsDataGrid(2345, DateTime.Now, DateTime.Now, "Spring Fundraiser", "Mayor of Ogden attending");
-            EventsDataGrid e3 = new EventsDataGrid(3456, DateTime.Now, DateTime.Now, "Summer Fundraiser", "Focusing on mental health");
-            EventsDataGrid e4 = new EventsDataGrid(1234, DateTime.Now, DateTime.Now, "Winter Fundraiser", "Give us money");
-            Events = new ObservableCollection<EventsDataGrid>();
-            Events.Add(e1);
-            Events.Add(e2);
-            Events.Add(e3);
-            Events.Add(e4);
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.FundRaisingEvents
+                         select new EventsDataGrid
+                         {
+                             EventID = p.EventID,
+                             EventStartDateTime = p.EventStartDateTime,
+                             EventEndDateTime = p.EventEndDateTime,
+                             EventName = p.EventName,
+                             EventDescription = p.EventDescription
+                         });
             var grid = sender as DataGrid;
-            grid.ItemsSource = Events;
+            grid.ItemsSource = join1.ToList();
 
         }
 
@@ -682,6 +683,16 @@ namespace FCS_Funding
                     return 6;
                 default:
                     return 0;
+            }
+        }
+
+        private void CreateNewEvent(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 1)
+            {
+                CreateNewEvent ne = new CreateNewEvent();
+                ne.Show();
+                ne.Topmost = true;
             }
         }
     }

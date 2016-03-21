@@ -15,26 +15,26 @@ using System.Windows.Shapes;
 namespace FCS_Funding.Views
 {
     /// <summary>
-    /// Interaction logic for AddInKindService.xaml
+    /// Interaction logic for CreateNewEvent.xaml
     /// </summary>
-    public partial class AddInKindService : Window
+    public partial class CreateNewEvent : Window
     {
-        public string ServiceDescription { get; set; }
-        public decimal RatePerHour { get; set; }
-        public string BeginHour {get; set; }
-        public string BeginMinute {get; set; }
-        public string EndHour {get; set; }
+        public string EventName { get; set; }
+        public string EventDescription { get; set; }
+
+        public string BeginHour { get; set; }
+        public string BeginMinute { get; set; }
+        public string EndHour { get; set; }
         public string EndMinute { get; set; }
 
-        public AddInKindService()
+        public CreateNewEvent()
         {
-            
-            RatePerHour = 0.00M;
             InitializeComponent();
         }
-        private void Add_InKind_Service(object sender, RoutedEventArgs e)
+
+        private void Add_Event(object sender, RoutedEventArgs e)
         {
-            if(AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
+            if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
             {
                 BeginHour = (Convert.ToInt32(BeginHour) + 12).ToString();
             }
@@ -50,30 +50,20 @@ namespace FCS_Funding.Views
             {
                 EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
             }
-
             DateTime help = Convert.ToDateTime(DateRecieved.ToString());
             DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
             DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
             decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
-            if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0 && Individual.SelectedIndex != -1)
-            {
-                string Indiv = Individual.SelectedValue.ToString();
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
-                MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
-                string[] words = Indiv.Split('\t');
-                string FName = words[0]; string LName = words[1]; string FNumber = words[2];
-                var donorID = (from dc in db.DonorContacts
-                               where dc.ContactFirstName == FName && dc.ContactLastName == LName && dc.ContactPhone == FNumber
-                               select dc.DonorID).Distinct().FirstOrDefault();
 
-                Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
-                db.Donations.Add(donation);
+            if (EventName != null && EventName != "" && timeDiff > 0 )
+            {
+                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
+                
+                Models.FundRaisingEvent event1 = new Models.FundRaisingEvent(startDateTime, endDateTime, EventName, EventDescription);
+                db.FundRaisingEvents.Add(event1);
                 db.SaveChanges();
-                Models.In_Kind_Service inKind = new Models.In_Kind_Service(donation.DonationID, startDateTime, endDateTime,
-                    RatePerHour, ServiceDescription,  (double)Math.Round(timeDiff, 2), Math.Round(RatePerHour * timeDiff, 2));
-                db.In_Kind_Service.Add(inKind);
-                db.SaveChanges();
-                MessageBox.Show("Successfully added In_Kind Service");
+                MessageBox.Show("Successfully added Event");
                 this.Close();
             }
             else
@@ -81,26 +71,12 @@ namespace FCS_Funding.Views
                 MessageBox.Show("Make sure you input correct data.");
             }
         }
-
-        private void Individual_DropDown(object sender, RoutedEventArgs e)
-        {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
-            var query = (from o in db.Donors
-                         join c in db.DonorContacts on o.DonorID equals c.DonorID
-                         where o.DonorType == "Individual" || o.DonorType == "Anonymous"
-                         orderby c.ContactLastName
-                         select c.ContactFirstName + "\t" + c.ContactLastName + "\t" + c.ContactPhone).ToList();
-
-            var box = sender as ComboBox;
-            box.ItemsSource = query;
-        }
-
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
         {
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>() { "AM", "PM" };
         }
-        
+
 
         private void Hour_LostFocus(object sender, RoutedEventArgs e)
         {

@@ -356,7 +356,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Name="CreateEven" Content="Create New Event" Margin="0,46.2,5.6,31" Grid.Row="2" Grid.RowSpan="3" />
+                    <Button Name="CreateEven" Content="Create New Event" Margin="0,46.2,5.6,31" Grid.Row="2" Grid.RowSpan="3" Click="CreateNewEvent" />
                     <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                     <ComboBox x:Name="SeachBy_Copy"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="46"  Grid.Column="1" Margin="213.4,0.6,9.8,46.2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
                         <ComboBoxItem x:Name="cb1" Content="Event ID"/>
@@ -366,9 +366,8 @@
                                IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="213,46.2,0.6,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Event Name" Width="350" Binding="{Binding EventName}"/>
-                            <DataGridTextColumn Header="Event ID" Width="200" Binding="{Binding EventID}"/>
-                            <DataGridTextColumn Header="Event Date" Width="200" Binding="{Binding EventStartDateTime}"/>
-                            <DataGridTextColumn Header="Event Date" Width="200" Binding="{Binding EventEndDateTime}"/>
+                            <DataGridTextColumn Header="Event Start" Width="200" Binding="{Binding EventStartDateTime}"/>
+                            <DataGridTextColumn Header="Event End" Width="200" Binding="{Binding EventEndDateTime}"/>
                             <DataGridTextColumn Header="Event Description" Width="315" Binding="{Binding EventDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
