@@ -50,7 +50,7 @@ FCS_Funding.sln
 /FCS_Funding_WPF/FCS_Funding_Test/obj/
 #App.config files
 /FCS_Funding_WPF/FCS_DataTesting/App.config
-/FCS_Funding_WPF/FCS_Funding/App.config
+#FCS_Funding_WPF/FCS_Funding/App.config
 /FCS_Funding_WPF/FCS_Funding_Test/App.config
 #Coded Test bin and obj
 /FCS_Funding_WPF/CodedUITestProject/bin/
