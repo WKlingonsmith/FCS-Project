@@ -319,6 +319,10 @@ namespace FCS_Funding
                 up.Show();
             }
         }
+        private void Edit_Events(object sender, MouseButtonEventArgs e)
+        {
+
+        }
 
         private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
         {

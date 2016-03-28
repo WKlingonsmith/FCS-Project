@@ -363,7 +363,7 @@
                         <ComboBoxItem x:Name="cb2" Content="Event Name"/>
                     </ComboBox>
                     <DataGrid  Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="13" Loaded="Events_Grid" CanUserResizeColumns="True" 
-                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="213,46.2,0.6,0">
+                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="213,46.2,0.6,0" PreviewMouseDoubleClick="Edit_Events">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Event Name" Width="350" Binding="{Binding EventName}"/>
                             <DataGridTextColumn Header="Event Start" Width="200" Binding="{Binding EventStartDateTime}"/>

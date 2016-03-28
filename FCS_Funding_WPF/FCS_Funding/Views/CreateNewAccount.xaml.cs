@@ -53,6 +53,7 @@ namespace FCS_Funding.Views
                     Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
                     db.Staffs.Add(account);
                     db.SaveChanges();
+                    this.Close();
                 }
             }
             else
@@ -79,6 +80,7 @@ namespace FCS_Funding.Views
                     Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
                     db.Staffs.Add(account);
                     db.SaveChanges();
+                    this.Close();
                 }
             }
         }

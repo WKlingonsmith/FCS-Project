@@ -31,6 +31,7 @@ namespace FCS_Funding
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int none = 5;
             Models.FCS_FundingContext db = new Models.FCS_FundingContext();
             string pw = Password.Password.ToString();
             string us = Username.Text;
