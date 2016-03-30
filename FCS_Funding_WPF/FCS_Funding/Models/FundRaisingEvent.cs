@@ -12,6 +12,8 @@ namespace FCS_Funding.Models
             EventName = name;
             EventDescription = des;
         }
+        public FundRaisingEvent()
+        { }
 
         public int EventID { get; set; }
         public System.DateTime EventStartDateTime { get; set; }

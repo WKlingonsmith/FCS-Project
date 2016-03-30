@@ -164,6 +164,9 @@
     <Compile Include="Views\UpdateDonor.xaml.cs">
       <DependentUpon>UpdateDonor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateEvent.xaml.cs">
+      <DependentUpon>UpdateEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateGrant.xaml.cs">
       <DependentUpon>UpdateGrant.xaml</DependentUpon>
     </Compile>
@@ -266,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdateDonor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

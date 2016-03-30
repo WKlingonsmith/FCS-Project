@@ -321,7 +321,36 @@ namespace FCS_Funding
         }
         private void Edit_Events(object sender, MouseButtonEventArgs e)
         {
-
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 1 && StaffDBRole != "Basic")
+            {
+                DataGrid dg = sender as DataGrid;
+                EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateEvent up = new UpdateEvent(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.Delete.IsEnabled = false;
+                }
+                if (p.EventStartDateTime.Hour >= 12)
+                {
+                    up.AMPM_Start.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_Start.SelectedIndex = 0;
+                }
+                if (p.EventEndDateTime.Hour >= 12)
+                {
+                    up.AMPM_End.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_End.SelectedIndex = 0;
+                }
+                up.DateRecieved.SelectedDate = p.EventStartDateTime;
+                up.Topmost = true;
+                up.Show();
+            }
         }
 
         private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
