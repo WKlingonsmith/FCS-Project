@@ -35,52 +35,155 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="18" >
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid Name="Panel">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Panel" Property="Background" Value="#FFA500" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Panel" Property="Background" Value="#EEE8AA" />
+                                        <Setter TargetName="Panel" Property="Margin" Value="1"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Update Donor" Background="Orange" Height="30">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Update Donor" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
 
-        <TextBlock Text="Update Donor" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
+                    <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}"  />
+                    </Border>
+                    <TextBlock Text="Address 1:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
+                    <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding DonorAddress1, ElementName=ThisWindow}"/>
+                    </Border>
+                    <TextBlock Text="Address 2:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
+                    <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding DonorAddress2, ElementName=ThisWindow}"/>
+                    </Border>
+                    <TextBlock Text="State:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" />
+                    <Border Grid.Row="7" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding DonorState, ElementName=ThisWindow}"  />
+                    </Border>
 
-        <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Address 1:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
-        <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorAddress1, ElementName=ThisWindow}"/>
-        </Border>
-        <TextBlock Text="Address 2:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
-        <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorAddress2, ElementName=ThisWindow}"/>
-        </Border>
-        <TextBlock Text="State:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" />
-        <Border Grid.Row="7" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorState, ElementName=ThisWindow}"  />
-        </Border>
-
-        <TextBlock Text="City:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Height="30" Grid.ColumnSpan="2" Margin="0.2,7,177.4,3" RenderTransformOrigin="0.534,0.013" />
-        <Border Grid.Row="7" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorCity, ElementName=ThisWindow}"/>
-        </Border>
-        <TextBlock Text="Zip:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,2,177.8,8" />
-        <Border Grid.Row="8" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Grid.ColumnSpan="2" Margin="173.6,2,4,8" />
-        <Border Grid.Row="8" Grid.Column="4"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonorType, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Contacts:" TextAlignment="Center"  FontSize="18" Grid.Column="1" FontWeight="Bold" Grid.Row="9" Height="30"   />
-        <DataGrid Name="ContactsGrid" Grid.Column="1"  Grid.Row="10" Grid.ColumnSpan="4" Grid.RowSpan="5" CanUserResizeColumns="True" Loaded="Load_Contacts_Grid"  AutoGenerateColumns="False" 
-                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="Edit_Contact"  > <!--PreviewMouseDoubleClick="EditPatient"-->
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Contact First Name" Width="150" Binding="{Binding Path=ContactFirstName}"/>
-                <DataGridTextColumn Header="Contact Last Name" Width="150" Binding="{Binding Path=ContactLastName}"/>
-                <DataGridTextColumn Header="Contact Phone" Width="150" Binding="{Binding Path=ContactPhone}"/>
-                <DataGridTextColumn Header="Contact Email" Width="150" Binding="{Binding Path=ContactEmail}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <TextBlock Text="City:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Height="30" Grid.ColumnSpan="2" Margin="0.2,7,177.4,3" RenderTransformOrigin="0.534,0.013" />
+                    <Border Grid.Row="7" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding DonorCity, ElementName=ThisWindow}"/>
+                    </Border>
+                    <TextBlock Text="Zip:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,2,177.8,8" />
+                    <Border Grid.Row="8" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}"  />
+                    </Border>
+                    <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Grid.ColumnSpan="2" Margin="173.6,2,4,8" />
+                    <Border Grid.Row="8" Grid.Column="4"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+                        <TextBox  FontSize="18" Text="{Binding DonorType, ElementName=ThisWindow}"  />
+                    </Border>
+                    <TextBlock Text="Contacts:" TextAlignment="Center"  FontSize="18" Grid.Column="1" FontWeight="Bold" Grid.Row="9" Height="30"   />
+                    <DataGrid Name="ContactsGrid" Grid.Column="1"  Grid.Row="10" Grid.ColumnSpan="4" Grid.RowSpan="5" CanUserResizeColumns="True" Loaded="Load_Contacts_Grid"  AutoGenerateColumns="False" 
+                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="Edit_Contact"  >
+                        <!--PreviewMouseDoubleClick="EditPatient"-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Contact First Name" Width="150" Binding="{Binding Path=ContactFirstName}"/>
+                            <DataGridTextColumn Header="Contact Last Name" Width="150" Binding="{Binding Path=ContactLastName}"/>
+                            <DataGridTextColumn Header="Contact Phone" Width="150" Binding="{Binding Path=ContactPhone}"/>
+                            <DataGridTextColumn Header="Contact Email" Width="150" Binding="{Binding Path=ContactEmail}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
 
-        <Button FontSize="18" Grid.Column="1" Grid.Row="16" Content="Update Donor" Click="Update_Donor"    />
-        <Button FontSize="18" Grid.Column="2" Grid.Row="16" Content="Add Contact" Click="Add_New_Contact" Grid.ColumnSpan="2" Margin="91.6,0,88,0"    />
-        <Button Name="DeleteDon" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Delete Donor" Click="Delete_Donor"    />
+                    <Button FontSize="18" Grid.Column="1" Grid.Row="16" Content="Update Donor" Click="Update_Donor"    />
+                    <Button FontSize="18" Grid.Column="2" Grid.Row="16" Content="Add Contact" Click="Add_New_Contact" Grid.ColumnSpan="2" Margin="91.6,0,88,0"    />
+                    <Button Name="DeleteDon" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Delete Donor" Click="Delete_Donor"    />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Donations"  Height="30">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Donations" TextAlignment="Center"  FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Donation Amount" Width="110" Binding="{Binding Path=DonationAmount}"/>
+                            <DataGridTextColumn Header="Donation Date" Width="110" Binding="{Binding Path=DonationDate}"/>
+                            <DataGridTextColumn Header="Purpose Name" Width="200" Binding="{Binding Path=PurposeName}"/>
+                            <DataGridTextColumn Header="Purpose Description" Width="280" Binding="{Binding Path=PurposeDescription}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="AddDonation" FontSize="18"  Content="Add New Donation" Click="AddNewDonation" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2"     />
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

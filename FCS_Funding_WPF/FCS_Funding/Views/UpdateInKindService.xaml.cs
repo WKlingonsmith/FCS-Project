@@ -42,11 +42,11 @@ namespace FCS_Funding.Views
 
             if (BeginMinute.Length == 1) 
             {
-                BeginMinute += "0"; 
+                BeginMinute = "0" + BeginMinute; 
             }
             if (EndMinute.Length == 1) 
             {
-                EndMinute += "0"; 
+                EndMinute = "0" + EndMinute; 
             }
             if (p.StartDateTime.Hour > 12)  
             {

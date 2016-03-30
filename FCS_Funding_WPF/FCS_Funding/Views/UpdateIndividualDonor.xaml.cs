@@ -33,7 +33,9 @@ namespace FCS_Funding.Views
         public int    DonorID           { get; set; }
         public int ContactID { get; set; }
 
-        public UpdateIndividualDonor(DonorsDataGrid p, Models.DonorContact d)
+        public string StaffDBRole { get; set; }
+
+        public UpdateIndividualDonor(DonorsDataGrid p, Models.DonorContact d, string staffDBRole)
         {
             DonorFirstName = p.DonorFirstName;
             DonorLastName = p.DonorLastName;
@@ -47,6 +49,7 @@ namespace FCS_Funding.Views
             DonorZip = p.DonorZip;
             DonorID = p.DonorID;
             ContactID = d.ContactID;
+            StaffDBRole = staffDBRole;
 
             InitializeComponent();
         }
@@ -94,6 +97,56 @@ namespace FCS_Funding.Views
                 MessageBox.Show("You successfully deleted this Donor.");
                 this.Close();
             }
+        }
+
+        private void AddNewDonation(object sender, RoutedEventArgs e)
+        {
+            CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID);
+            cmd.Show();
+            cmd.Topmost = true;
+        }
+
+        private void EditDonation(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 3)
+            {
+                DataGrid dg = sender as DataGrid;
+                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateDonation up = new UpdateDonation(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteDon.IsEnabled = false;
+                }
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.Show();
+                this.Topmost = false;
+                up.Topmost = true;
+            }
+        }
+
+        private void Donations_Grid(object sender, RoutedEventArgs e)
+        {
+            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            var join1 = from p in db.Purposes
+                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                        join d in db.Donations on dp.DonationID equals d.DonationID
+                        where d.DonorID == DonorID
+                        select new DonationsGrid
+                        {
+                            DonationAmount = d.DonationAmount,
+                            DonationDate = d.DonationDate,
+                            PurposeName = p.PurposeName,
+                            PurposeDescription = p.PurposeDescription,
+                            DonorID = d.DonorID,
+                            DonationPurposeID = dp.DonationPurposeID,
+                            PurposeID = p.PurposeID,
+                            DonationID = d.DonationID
+                        };
+
+            // ... Assign ItemsSource of DataGrid.
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join1.ToList();
         }
     }
 }

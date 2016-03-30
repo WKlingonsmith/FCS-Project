@@ -192,34 +192,132 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Button Name="CreateNewDon" Grid.Column="0" Grid.Row="2" Content="Create New Donor" Click="Open_CreateNewDonor" Margin="0,43,4.6,30.4" Grid.RowSpan="3"/>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
-                    <ComboBox Name="DonorSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
-                        <ComboBoxItem Name="FirstName">First Name</ComboBoxItem>
-                        <ComboBoxItem Name="LastName">Last Name</ComboBoxItem>
-                        <ComboBoxItem Name="OrganizationName">Organiztion Name</ComboBoxItem>
-                        <ComboBoxItem Name="DonorType">Donor Type</ComboBoxItem>
-                        <ComboBoxItem Name="DonorAddress1">Donor Address 1</ComboBoxItem>
-                        <ComboBoxItem Name="DonorAddress2">Donor Address 2</ComboBoxItem>
-                        <ComboBoxItem Name="DonorState">Donor State</ComboBoxItem>
-                        <ComboBoxItem Name="DonorCity">Donor City</ComboBoxItem>
-                        <ComboBoxItem Name="DonorZip">Donor Zip Code</ComboBoxItem>
-                    </ComboBox>
-                    <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
-                    <Button Grid.Column="4" Grid.Row="1" Content="Filter" Margin="212.6,0,0.6,0" Grid.ColumnSpan="2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
-                              IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
-                            <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
-                            <DataGridTextColumn Header="Organization Name" Width="200" Binding="{Binding Path=OrganizationName}"/>
-                            <DataGridTextColumn Header="Donor Type" Width="110" Binding="{Binding Path=DonorType}"/>
-                            <DataGridTextColumn Header="Address 1" Width="110" Binding="{Binding Path=DonorAddress1}"/>
-                            <DataGridTextColumn Header="Address 2" Width="110" Binding="{Binding Path=DonorAddress2}"/>
-                            <DataGridTextColumn Header="State" Width="70" Binding="{Binding Path=DonorState}"/>
-                            <DataGridTextColumn Header="City" Width="100" Binding="{Binding Path=DonorCity}"/>
-                            <DataGridTextColumn Header="Zipcode" Width="100" Binding="{Binding Path=DonorZip}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+
+                    <TabControl Width="1050" Height="754" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="18" >
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TabItem">
+                                            <Grid Name="Panel">
+                                                <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Panel" Property="Background" Value="#FFA500" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="Panel" Property="Background" Value="#EEE8AA" />
+                                                    <Setter TargetName="Panel" Property="Margin" Value="1"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.Resources>
+                        <TabItem Header="Donors" Background="Orange">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                                <ComboBox Name="DonorSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Row="0" Grid.ColumnSpan="2" Margin="176,10,37.6,1.2" >
+                                    <ComboBoxItem Name="FirstName">First Name</ComboBoxItem>
+                                    <ComboBoxItem Name="LastName">Last Name</ComboBoxItem>
+                                    <ComboBoxItem Name="OrganizationName">Organiztion Name</ComboBoxItem>
+                                    <ComboBoxItem Name="DonorType">Donor Type</ComboBoxItem>
+                                    <ComboBoxItem Name="DonorAddress1">Donor Address 1</ComboBoxItem>
+                                    <ComboBoxItem Name="DonorAddress2">Donor Address 2</ComboBoxItem>
+                                    <ComboBoxItem Name="DonorState">Donor State</ComboBoxItem>
+                                    <ComboBoxItem Name="DonorCity">Donor City</ComboBoxItem>
+                                    <ComboBoxItem Name="DonorZip">Donor Zip Code</ComboBoxItem>
+                                </ComboBox>
+                                <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />
+                                <Button Grid.Column="4" Grid.Row="0" Content="Filter"  />
+                                <DataGrid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
+                                        <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
+                                        <DataGridTextColumn Header="Organization Name" Width="200" Binding="{Binding Path=OrganizationName}"/>
+                                        <DataGridTextColumn Header="Donor Type" Width="110" Binding="{Binding Path=DonorType}"/>
+                                        <DataGridTextColumn Header="Address 1" Width="110" Binding="{Binding Path=DonorAddress1}"/>
+                                        <DataGridTextColumn Header="Address 2" Width="110" Binding="{Binding Path=DonorAddress2}"/>
+                                        <DataGridTextColumn Header="State" Width="70" Binding="{Binding Path=DonorState}"/>
+                                        <DataGridTextColumn Header="City" Width="100" Binding="{Binding Path=DonorCity}"/>
+                                        <DataGridTextColumn Header="Zipcode" Width="100" Binding="{Binding Path=DonorZip}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Donations" Background="Orange">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                                <ComboBox Name="DonationSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Row="0" Grid.ColumnSpan="2" Margin="176,10,37.6,1.2" >
+                                </ComboBox>
+                                <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />
+                                <Button Grid.Column="4" Grid.Row="0" Content="Filter"  />
+                                <DataGrid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donation_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
+                                        <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
+                                        <DataGridTextColumn Header="Organization Name" Width="180" Binding="{Binding Path=OrganizationName}"/>
+                                        <DataGridTextColumn Header="Donation Amount" Width="160" Binding="{Binding Path=DonationAmount}"/>
+                                        <DataGridTextColumn Header="Donation Date" Width="130" Binding="{Binding Path=DonationDate}"/>
+                                        <DataGridTextColumn Header="Purpose Name" Width="130" Binding="{Binding Path=PurposeName}"/>
+                                        <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </TabItem>
             <TabItem Width="160" Height="50" Header="In-Kind Item" FontSize="20" FontFamily="Calibri" Margin="0,0,0.2,-0.4" VerticalAlignment="Bottom">

@@ -137,6 +137,9 @@
     <Compile Include="Views\CreateIndividualContact.xaml.cs">
       <DependentUpon>CreateIndividualContact.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateMoneyDonation.xaml.cs">
+      <DependentUpon>CreateMoneyDonation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateNewAccount.xaml.cs">
       <DependentUpon>CreateNewAccount.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,9 @@
     </Compile>
     <Compile Include="Views\UpdateContact.xaml.cs">
       <DependentUpon>UpdateContact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateDonation.xaml.cs">
+      <DependentUpon>UpdateDonation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateDonor.xaml.cs">
       <DependentUpon>UpdateDonor.xaml</DependentUpon>
@@ -204,6 +210,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CreateMoneyDonation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreateNewAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -248,6 +258,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\UpdateContact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateDonation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

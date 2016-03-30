@@ -194,7 +194,7 @@ namespace FCS_Funding
                     Models.DonorContact query = (from doncontacts in db.DonorContacts
                                 where doncontacts.DonorID == p.DonorID
                                 select doncontacts).First();
-                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query);
+                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffDBRole);
                     if (StaffDBRole != "Admin")
                     {
                         id.DeleteIndDonor.IsEnabled = false;
@@ -210,7 +210,7 @@ namespace FCS_Funding
                     Models.DonorContact query = (from doncontacts in db.DonorContacts
                                                  where doncontacts.DonorID == p.DonorID
                                                  select doncontacts).First();
-                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query);
+                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffDBRole);
                     if (StaffDBRole != "Admin")
                     {
                         id.DeleteIndDonor.IsEnabled = false;
@@ -402,11 +402,6 @@ namespace FCS_Funding
                             DonorType = p.DonorType,
                             DonorZip = p.DonorZip
                         });
-            //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
-            //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
-            //Donors = new ObservableCollection<DonorsDataGrid>();
-            //Donors.Add(d1);
-            //Donors.Add(d2);
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
         }
@@ -697,6 +692,74 @@ namespace FCS_Funding
                 CreateNewEvent ne = new CreateNewEvent();
                 ne.Show();
                 ne.Topmost = true;
+            }
+        }
+
+        private void Donation_Grid(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join2 = (from p in db.Purposes
+                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                         join d in db.Donations on dp.DonationID equals d.DonationID
+                         join dr in db.Donors on d.DonorID equals dr.DonorID
+                         join c in db.DonorContacts on dr.DonorID equals c.DonorID
+                         where dr.DonorType == "Anonymous" || dr.DonorType == "Individual"
+                         select new DonationsGrid
+                         {
+                             DonationAmount = d.DonationAmount,
+                             DonationDate = d.DonationDate,
+                             PurposeName = p.PurposeName,
+                             PurposeDescription = p.PurposeDescription,
+                             PurposeID = p.PurposeID,
+                             DonationID = d.DonationID,
+                             DonorID = dr.DonorID,
+                             DonorFirstName = c.ContactFirstName,
+                             DonorLastName = c.ContactLastName,
+                             OrganizationName = ""
+                         }).Union(
+                       from p in db.Purposes
+                       join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                       join d in db.Donations on dp.DonationID equals d.DonationID
+                       join dr in db.Donors on d.DonorID equals dr.DonorID
+                       where dr.DonorType == "Organization" || dr.DonorType == "Government"
+                       select new DonationsGrid
+                       {
+                           DonationAmount = d.DonationAmount,
+                           DonationDate = d.DonationDate,
+                           PurposeName = p.PurposeName,
+                           PurposeDescription = p.PurposeDescription,
+                           PurposeID = p.PurposeID,
+                           DonationID = d.DonationID,
+                           DonorID = dr.DonorID,
+                           DonorFirstName = "",
+                           DonorLastName = "",
+                           OrganizationName = dr.OrganizationName
+                       });
+            //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
+            //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
+            //Donors = new ObservableCollection<DonorsDataGrid>();
+            //Donors.Add(d1);
+            //Donors.Add(d2);
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join2.ToList();
+        }
+
+        private void EditDonation(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count < 2)
+            {
+                DataGrid dg = sender as DataGrid;
+                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateDonation up = new UpdateDonation(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteDon.IsEnabled = false;
+                }
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.Show();
+                this.Topmost = false;
+                up.Topmost = true;
             }
         }
     }

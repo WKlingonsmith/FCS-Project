@@ -19,8 +19,10 @@ namespace FCS_Funding
     /// </summary>
     public partial class Login : Window
     {
+        public string username { get; set; }
         public Login()
         {
+            username = "Admin";
             InitializeComponent();
         }
 
@@ -31,7 +33,6 @@ namespace FCS_Funding
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int none = 5;
             Models.FCS_FundingContext db = new Models.FCS_FundingContext();
             string pw = Password.Password.ToString();
             string us = Username.Text;
@@ -75,6 +76,11 @@ namespace FCS_Funding
                 MessageBox.Show("Incorrect Credentials");
             }
             
+        }
+
+        private void Username_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
