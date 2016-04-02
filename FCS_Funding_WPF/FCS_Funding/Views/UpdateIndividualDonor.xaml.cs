@@ -101,7 +101,7 @@ namespace FCS_Funding.Views
 
         private void AddNewDonation(object sender, RoutedEventArgs e)
         {
-            CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID);
+            CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID, false, -1);
             cmd.Show();
             cmd.Topmost = true;
         }

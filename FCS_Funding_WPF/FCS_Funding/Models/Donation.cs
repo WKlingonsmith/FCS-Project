@@ -45,6 +45,24 @@ namespace FCS_Funding.Models
             this.In_Kind_Item = new List<In_Kind_Item>();
             this.In_Kind_Service = new List<In_Kind_Service>();
         }
+        /// <summary>
+        /// For in kind Donations and money donations
+        /// </summary>
+        public Donation(int donorID, bool resticted, bool inkind, decimal donationamount,
+            DateTime donationdate, int eventID)
+        {
+            DonorID = donorID;
+            Restricted = resticted;
+            InKind = inkind;
+            DonationAmount = donationamount;
+            DonationDate = donationdate;
+            EventID = eventID;
+
+            this.DonationPurposes = new List<DonationPurpose>();
+            this.Expenses = new List<Expense>();
+            this.In_Kind_Item = new List<In_Kind_Item>();
+            this.In_Kind_Service = new List<In_Kind_Service>();
+        }
 
         public int DonationID { get; set; }
         public Nullable<int> EventID { get; set; }

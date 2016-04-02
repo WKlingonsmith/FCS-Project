@@ -30,8 +30,10 @@ namespace FCS_Funding.Views
         public string EndMinute { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
-        public UpdateEvent(EventsDataGrid p)
+        public string StaffDBRole { get; set; }
+        public UpdateEvent(EventsDataGrid p, string staffDBRole)
         {
+            StaffDBRole = staffDBRole;
             EventID = p.EventID;
             EventName = p.EventName;
             EventDescription = p.EventDescription;
@@ -200,6 +202,231 @@ namespace FCS_Funding.Views
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
                 }
+            }
+        }
+
+        private void Donations_Grid(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.Purposes
+                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                         join d in db.Donations on dp.DonationID equals d.DonationID
+                         join dr in db.Donors on d.DonorID equals dr.DonorID
+                         join dc in db.DonorContacts on dr.DonorID equals dc.DonorID
+                         where d.EventID == EventID
+                         && (dr.DonorType == "Anonymous" || dr.DonorType == "Individual")
+                         select new DonationsGrid
+                         {
+                             DonorFirstName = dc.ContactFirstName,
+                             DonorLastName = dc.ContactLastName,
+                             OrganizationName = "",
+                             DonationAmount = d.DonationAmount,
+                             DonationDate = d.DonationDate,
+                             PurposeName = p.PurposeName,
+                             PurposeDescription = p.PurposeDescription,
+                             DonorID = d.DonorID,
+                             DonationPurposeID = dp.DonationPurposeID,
+                             PurposeID = p.PurposeID,
+                             DonationID = d.DonationID
+                         }).Union(
+                         from p in db.Purposes
+                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                         join d in db.Donations on dp.DonationID equals d.DonationID
+                         join dr in db.Donors on d.DonorID equals dr.DonorID
+                         where d.EventID == EventID
+                         && (dr.DonorType == "Organization" || dr.DonorType == "Government")
+                         select new DonationsGrid
+                         {
+                             DonorFirstName = "",
+                             DonorLastName = "",
+                             OrganizationName = dr.OrganizationName,
+                             DonationAmount = d.DonationAmount,
+                             DonationDate = d.DonationDate,
+                             PurposeName = p.PurposeName,
+                             PurposeDescription = p.PurposeDescription,
+                             DonorID = d.DonorID,
+                             DonationPurposeID = dp.DonationPurposeID,
+                             PurposeID = p.PurposeID,
+                             DonationID = d.DonationID
+                         });
+            // ... Assign ItemsSource of DataGrid.
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join1.ToList();
+        }
+
+        private void EditDonation(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 3)
+            {
+                DataGrid dg = sender as DataGrid;
+                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateDonation up = new UpdateDonation(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteDon.IsEnabled = false;
+                }
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.Show();
+                this.Topmost = false;
+                up.Topmost = true;
+            }
+        }
+
+        private void Edit_InKindItem(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 2 && StaffDBRole != "Basic")
+            {
+                DataGrid dg = sender as DataGrid;
+                InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateInKindItem up = new UpdateInKindItem(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteItem.IsEnabled = false;
+                }
+                up.DateRecieved.SelectedDate = p.DateRecieved;
+                this.Topmost = false;
+                up.Topmost = true;
+                up.Show();
+            }
+        }
+
+        private void InKindItemGrid(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.Donors
+                         join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                         join d in db.Donations on p.DonorID equals d.DonorID
+                         join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
+                         where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
+                         && d.EventID == EventID && d.EventID != null
+                         select new InKindItem
+                         {
+                             EventID = d.EventID,
+                             DonorID = p.DonorID,
+                             ItemID = ki.ItemID,
+                             DonationID = d.DonationID,
+                             ItemName = ki.ItemName,
+                             DonorFirstName = dc.ContactFirstName,
+                             DonorLastName = dc.ContactLastName,
+                             OrganizationName = "",
+                             DateRecieved = d.DonationDate,
+                             Description = ki.ItemDescription
+                         }).Union(
+                        from p in db.Donors
+                        join d in db.Donations on p.DonorID equals d.DonorID
+                        join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
+                        where (p.DonorType == "Organization" || p.DonorType == "Government")
+                        && d.EventID == EventID && d.EventID != null
+                        select new InKindItem
+                        {
+                            EventID = d.EventID,
+                            DonorID = p.DonorID,
+                            ItemID = ki.ItemID,
+                            DonationID = d.DonationID,
+                            ItemName = ki.ItemName,
+                            DonorFirstName = "",
+                            DonorLastName = "",
+                            OrganizationName = p.OrganizationName,
+                            DateRecieved = d.DonationDate,
+                            Description = ki.ItemDescription
+                        });
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join1.ToList();
+        }
+
+        private void Edit_InKindService(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count <= 2 && StaffDBRole != "Basic")
+            {
+                DataGrid dg = sender as DataGrid;
+                InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateInKindService up = new UpdateInKindService(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteService.IsEnabled = false;
+                }
+                up.DateRecieved.SelectedDate = p.StartDateTime;
+                this.Topmost = false;
+                up.Topmost = true;
+
+                if (p.StartDateTime.Hour >= 12)
+                {
+                    up.AMPM_Start.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_Start.SelectedIndex = 0;
+                }
+                if (p.EndDateTime.Hour >= 12)
+                {
+                    up.AMPM_End.SelectedIndex = 1;
+                }
+                else
+                {
+                    up.AMPM_End.SelectedIndex = 0;
+                }
+                up.Show();
+            }
+        }
+
+        private void InKindServiceGrid(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            var join1 = (from p in db.Donors
+                         join dc in db.DonorContacts on p.DonorID equals dc.DonorID
+                         join d in db.Donations on p.DonorID equals d.DonorID
+                         join ki in db.In_Kind_Service on d.DonationID equals ki.DonationID
+                         where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
+                         && d.EventID == EventID
+                         select new InKindService
+                         {
+                             DonorID = p.DonorID,
+                             DonationID = d.DonationID,
+                             ServiceID = ki.ServiceID,
+                             DonorFirstName = dc.ContactFirstName,
+                             DonorLastName = dc.ContactLastName,
+                             StartDateTime = ki.StartDateTime,
+                             EndDateTime = ki.EndDateTime,
+                             RatePerHour = ki.RatePerHour,
+                             ServiceDescription = ki.ServiceDescription,
+                             Length = ki.ServiceLength,
+                             Value = ki.ServiceValue
+                         });
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join1.ToList();
+        }
+
+        private void AddNewDonation(object sender, RoutedEventArgs e)
+        {
+            EventDonorDonation cmd = new EventDonorDonation(EventID);
+            cmd.Show();
+            cmd.Topmost = true;
+            cmd.Organization.IsEnabled = false;
+        }
+
+        private void AddInKindItem(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 2)
+            {
+                AddInKindItem iki = new AddInKindItem(true, EventID);
+                iki.Show();
+                iki.Topmost = true;
+                iki.Organization.IsEnabled = false;
+            }
+        }
+
+        private void AddInKindService(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count <= 2)
+            {
+                AddInKindService iks = new AddInKindService(true, EventID);
+                iks.Show();
+                iks.Topmost = true;
+                iks.AMPM_End.SelectedIndex = 0;
+                iks.AMPM_Start.SelectedIndex = 0;
             }
         }
     }

@@ -21,9 +21,13 @@ namespace FCS_Funding.Views
     {
          public string ItemName { get; set; }
          public string ItemDescription { get; set; }
+        public bool IsEvent { get; set; }
+        public int EventID { get; set; }
 
-        public AddInKindItem()
+        public AddInKindItem(bool isEvent, int eventID)
         {
+            EventID = eventID;
+            IsEvent = isEvent;
             InitializeComponent();
         }
 
@@ -34,7 +38,7 @@ namespace FCS_Funding.Views
                          join c in db.DonorContacts on o.DonorID equals c.DonorID
                          where o.DonorType == "Individual" || o.DonorType == "Anonymous"
                          orderby c.ContactLastName
-                         select c.ContactFirstName + "\t" + c.ContactLastName + "\t" + c.ContactPhone).ToList();
+                         select c.ContactFirstName + ", " + c.ContactLastName + ", " + c.ContactPhone).ToList();
 
             var box = sender as ComboBox;
             box.ItemsSource = query;
@@ -66,39 +70,68 @@ namespace FCS_Funding.Views
                                    where d.OrganizationName == Organiz
                                    select d.DonorID).Distinct().First();
                     MessageBox.Show(donorID.ToString());
-                    Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
-                    db.Donations.Add(donation);
-                    db.SaveChanges();
-                    MessageBox.Show(donation.DonationID.ToString());
-                    Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
-                    db.In_Kind_Item.Add(inKind);
+
+                    if (IsEvent)
+                    {
+                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()), EventID);
+                        db.Donations.Add(donation);
+                        db.SaveChanges();
+                        
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        db.In_Kind_Item.Add(inKind);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
+                        db.Donations.Add(donation);
+                        db.SaveChanges();
+                        
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        db.In_Kind_Item.Add(inKind);
+                        db.SaveChanges();
+                    }
                 }
                 //then its an individual
                 else if(Individual.SelectedIndex != -1)
                 {
+                    string[] separators = new string[] { ", " };
                     string Indiv = Individual.SelectedValue.ToString();
                     MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
-                    string[] words = Indiv.Split('\t');
+                    string[] words = Indiv.Split(separators, StringSplitOptions.None);
                     string FName = words[0]; string LName = words[1]; string FNumber = words[2];
-                    MessageBox.Show("|" + FName + "|");
-                    MessageBox.Show("|" + LName + "|");
-                    MessageBox.Show("|" + FNumber + "|");
                     var donorID = (from dc in db.DonorContacts
+                                   join d in db.Donors on dc.DonorID equals d.DonorID
                                    where dc.ContactFirstName == FName && dc.ContactLastName == LName && dc.ContactPhone == FNumber
+                                   && (d.DonorType == "Individual" || d.DonorType == "Anonymous")
                                    select dc.DonorID).Distinct().FirstOrDefault();
 
-                    //int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
-                    Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
-                    Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
-                    db.Donations.Add(donation);
-                    db.In_Kind_Item.Add(inKind);
+                    if (IsEvent)
+                    {
+                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()), EventID);
+                        db.Donations.Add(donation);
+                        db.SaveChanges();
+
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        db.In_Kind_Item.Add(inKind);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
+                        db.Donations.Add(donation);
+                        db.SaveChanges();
+
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        db.In_Kind_Item.Add(inKind);
+                        db.SaveChanges();
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Make sure to select an organization or an individual");
                     return;
                 }
-                db.SaveChanges();
                 MessageBox.Show("Successfully added In_Kind Item");
                 this.Close();
                 

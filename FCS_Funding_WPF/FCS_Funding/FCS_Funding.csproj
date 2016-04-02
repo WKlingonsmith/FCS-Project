@@ -155,6 +155,9 @@
     <Compile Include="Views\EditGrantProposals.xaml.cs">
       <DependentUpon>EditGrantProposals.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EventDonorDonation.xaml.cs">
+      <DependentUpon>EventDonorDonation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateContact.xaml.cs">
       <DependentUpon>UpdateContact.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditGrantProposals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventDonorDonation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

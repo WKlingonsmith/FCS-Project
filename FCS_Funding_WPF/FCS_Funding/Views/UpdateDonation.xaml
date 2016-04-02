@@ -36,7 +36,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Create Donation" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="Update Donation" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
 
         <TextBlock Text="Donation Amount:" TextAlignment="Center" FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" Padding="10, 0, 0, 0"/>
         <Border Grid.Row="6" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >

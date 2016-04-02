@@ -309,7 +309,7 @@
                                         <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
                                         <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
                                         <DataGridTextColumn Header="Organization Name" Width="180" Binding="{Binding Path=OrganizationName}"/>
-                                        <DataGridTextColumn Header="Donation Amount" Width="160" Binding="{Binding Path=DonationAmount}"/>
+                                        <DataGridTextColumn Header="Donation Amount" Width="160" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
                                         <DataGridTextColumn Header="Donation Date" Width="130" Binding="{Binding Path=DonationDate}"/>
                                         <DataGridTextColumn Header="Purpose Name" Width="130" Binding="{Binding Path=PurposeName}"/>
                                         <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
@@ -363,8 +363,8 @@
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" PreviewMouseDoubleClick="Edit_InKindItem">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Item" Width="100" Binding="{Binding Path=ItemName}"/>
-                            <DataGridTextColumn Header="Donator Name" Width="150" Binding="{Binding Path=DonorFirstName}"/>
-                            <DataGridTextColumn Header="Donator Name" Width="150" Binding="{Binding Path=DonorLastName}"/>
+                            <DataGridTextColumn Header="First Name" Width="150" Binding="{Binding Path=DonorFirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="150" Binding="{Binding Path=DonorLastName}"/>
                             <DataGridTextColumn Header="Organization" Width="150" Binding="{Binding Path=OrganizationName}"/>
                             <DataGridTextColumn Header="Date Recieved" Width="150" Binding="{Binding Path=DateRecieved}"/>
                             <DataGridTextColumn Header="Description" Width="250" Binding="{Binding Path=Description}"/>
@@ -414,8 +414,8 @@
                     <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" PreviewMouseDoubleClick="Edit_InKindService"
                               IsReadOnly="True" CanUserDeleteRows="False" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Volunteer FN" Width="110" Binding="{Binding Path=DonorFirstName}"/>
-                            <DataGridTextColumn Header="Volunteer LN" Width="110" Binding="{Binding Path=DonorLastName}"/>
+                            <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
                             <DataGridTextColumn Header="Start Date Time" Width="150" Binding="{Binding Path=StartDateTime}"/>
                             <DataGridTextColumn Header="End Date Time" Width="150" Binding="{Binding Path=EndDateTime}"/>
                             <DataGridTextColumn Header="Length (Hrs)" Width="120" Binding="{Binding Path=Length}"/>
@@ -510,21 +510,21 @@
                     <Button Grid.Column="0" Grid.Row="10" Content="Grant Donations" Margin="4,0.2,4.6,27" Grid.RowSpan="2"/>
                     <Button Grid.Column="0" Grid.Row="11" Content="Grant Fiscal Year" Margin="4,0,4.6,40.2" Grid.RowSpan="3" Height="62" VerticalAlignment="Bottom"/>
                     <Button Grid.Column="0" Grid.Row="13" Content="Accounting Sheet" Margin="4,23.8,6.6,0.2" Grid.RowSpan="2"/>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                    <!--<TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                     <ComboBox x:Name="SeachBy_Copy1" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="43"  Grid.Column="1" Margin="213.4,0,9.8,0.2" Grid.ColumnSpan="2" Grid.Row="1">
                         <ComboBoxItem x:Name="cbr1" Content="Event ID"/>
                         <ComboBoxItem x:Name="cbr2" Content="Event Name"/>
                         <ComboBoxItem x:Name="cbr3" Content="Event Date"/>
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Margin="0.2,0,10,0.2" Grid.ColumnSpan="2" Grid.Row="1" />
-                    <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,0.2" />
-                    <DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="13" Loaded="Reports_Grid" 
+                    <Button Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0,3.6,0.2" />-->
+                    <!--<DataGrid Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="5" Grid.RowSpan="13" Loaded="Reports_Grid" 
                               IsReadOnly="True" CanUserDeleteRows="False" CanUserResizeColumns="True"  AutoGenerateColumns="False" Margin="0.4,0.6,0.6,43">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Event Name" Width="500" Binding="{Binding EventName}"/>
                             <DataGridTextColumn Header="Event Description" Width="250" Binding="{Binding EventDescription}"/>
                         </DataGrid.Columns>
-                    </DataGrid>
+                    </DataGrid>-->
                 </Grid>
             </TabItem>
             <TabItem Name="AdminTab" Width="160" Height="50" Header="Administrative" FontSize="20" FontFamily="Calibri">

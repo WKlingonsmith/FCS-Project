@@ -23,12 +23,16 @@ namespace FCS_Funding.Views
         public decimal DonationAmount { get; set; }
         public string PurposeName { get; set; }
         public string PurposeDescription { get; set; }
+        public bool IsEvent { get; set; }
+        public int EventID { get; set; }
 
         //Helper ID's
         public int DonorID { get; set; }
 
-        public CreateMoneyDonation(int donorID)
+        public CreateMoneyDonation(int donorID, bool isEvent, int eventID)
         {
+            EventID = eventID;
+            IsEvent = isEvent;
             DonorID = donorID;
             InitializeComponent();
         }
@@ -38,29 +42,43 @@ namespace FCS_Funding.Views
             if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && PurposeDescription != null && PurposeDescription != ""
                 && DonationDate.ToString() != "")
             {
-                try
-                {
+                //try
+                //{
                     MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
                         PurposeName + "\n" + PurposeDescription);
                     FCS_FundingContext db = new FCS_FundingContext();
+
                     Purpose p = new Purpose(PurposeName, PurposeDescription);
                     db.Purposes.Add(p);
                     db.SaveChanges();
 
-                    Donation d = new Donation(DonorID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()));
-                    db.Donations.Add(d);
-                    db.SaveChanges();
-                    DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
+                    if (IsEvent)
+                    {
+                        Donation d = new Donation(DonorID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()), EventID);
+                        db.Donations.Add(d);
+                        db.SaveChanges();
 
-                    db.DonationPurposes.Add(dp);
-                    db.SaveChanges();
+                        DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
+                        db.DonationPurposes.Add(dp);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Donation d = new Donation(DonorID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()));
+                        db.Donations.Add(d);
+                        db.SaveChanges();
+
+                        DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
+                        db.DonationPurposes.Add(dp);
+                        db.SaveChanges();
+                    }
                     MessageBox.Show("Successfully added Donation");
                     this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Cannot add Grant" + "\n" + ex);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Cannot add Grant" + "\n" + ex);
+                //}
             }
             else
             {

@@ -25,10 +25,13 @@ namespace FCS_Funding.Views
         public string BeginMinute {get; set; }
         public string EndHour {get; set; }
         public string EndMinute { get; set; }
+        public bool IsEvent { get; set; }
+        public int EventID { get; set; }
 
-        public AddInKindService()
+        public AddInKindService(bool isEvent, int eventID)
         {
-            
+            EventID = eventID;
+            IsEvent = isEvent;
             RatePerHour = 0.00M;
             InitializeComponent();
         }
@@ -57,22 +60,41 @@ namespace FCS_Funding.Views
             decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
             if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0 && Individual.SelectedIndex != -1)
             {
+                string[] separators = new string[] { ", " };
                 string Indiv = Individual.SelectedValue.ToString();
                 Models.FCS_FundingContext db = new Models.FCS_FundingContext();
                 MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
-                string[] words = Indiv.Split('\t');
+                string[] words = Indiv.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string FNumber = words[2];
                 var donorID = (from dc in db.DonorContacts
+                               join d in db.Donors on dc.DonorID equals d.DonorID
                                where dc.ContactFirstName == FName && dc.ContactLastName == LName && dc.ContactPhone == FNumber
+                               && (d.DonorType == "Individual" || d.DonorType == "Anonymous")
                                select dc.DonorID).Distinct().FirstOrDefault();
 
-                Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
-                db.Donations.Add(donation);
-                db.SaveChanges();
-                Models.In_Kind_Service inKind = new Models.In_Kind_Service(donation.DonationID, startDateTime, endDateTime,
-                    RatePerHour, ServiceDescription,  (double)Math.Round(timeDiff, 2), Math.Round(RatePerHour * timeDiff, 2));
-                db.In_Kind_Service.Add(inKind);
-                db.SaveChanges();
+                if (IsEvent)
+                {
+                    Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()), EventID);
+                    db.Donations.Add(donation);
+                    db.SaveChanges();
+
+                    Models.In_Kind_Service inKind = new Models.In_Kind_Service(donation.DonationID, startDateTime, endDateTime,
+                        RatePerHour, ServiceDescription, (double)Math.Round(timeDiff, 2), Math.Round(RatePerHour * timeDiff, 2));
+                    db.In_Kind_Service.Add(inKind);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
+                    db.Donations.Add(donation);
+                    db.SaveChanges();
+
+                    Models.In_Kind_Service inKind = new Models.In_Kind_Service(donation.DonationID, startDateTime, endDateTime,
+                        RatePerHour, ServiceDescription, (double)Math.Round(timeDiff, 2), Math.Round(RatePerHour * timeDiff, 2));
+                    db.In_Kind_Service.Add(inKind);
+                    db.SaveChanges();
+                }
+
                 MessageBox.Show("Successfully added In_Kind Service");
                 this.Close();
             }
@@ -89,7 +111,7 @@ namespace FCS_Funding.Views
                          join c in db.DonorContacts on o.DonorID equals c.DonorID
                          where o.DonorType == "Individual" || o.DonorType == "Anonymous"
                          orderby c.ContactLastName
-                         select c.ContactFirstName + "\t" + c.ContactLastName + "\t" + c.ContactPhone).ToList();
+                         select c.ContactFirstName + ", " + c.ContactLastName + ", " + c.ContactPhone).ToList();
 
             var box = sender as ComboBox;
             box.ItemsSource = query;

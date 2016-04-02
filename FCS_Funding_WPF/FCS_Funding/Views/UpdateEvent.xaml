@@ -153,8 +153,22 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
+                    <TextBlock Text="Donations" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
+                            <DataGridTextColumn Header="Organization Name" Width="200" Binding="{Binding Path=OrganizationName}"/>
+                            <DataGridTextColumn Header="Donation Amount" Width="110" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Donation Date" Width="110" Binding="{Binding Path=DonationDate}"/>
+                            <DataGridTextColumn Header="Purpose Name" Width="200" Binding="{Binding Path=PurposeName}"/>
+                            <DataGridTextColumn Header="Purpose Description" Width="280" Binding="{Binding Path=PurposeDescription}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="AddDonation" FontSize="18"  Content="Add New Donation" Click="AddNewDonation" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2"     />
                 </Grid>
             </TabItem>
             <TabItem Header="In-Kind Item" Height="30">
@@ -185,7 +199,21 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    <TextBlock Text="In-Kind Items" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
+                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" PreviewMouseDoubleClick="Edit_InKindItem">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Item" Width="100" Binding="{Binding Path=ItemName}"/>
+                            <DataGridTextColumn Header="First Name" Width="100" Binding="{Binding Path=DonorFirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="100" Binding="{Binding Path=DonorLastName}"/>
+                            <DataGridTextColumn Header="Organization" Width="100" Binding="{Binding Path=OrganizationName}"/>
+                            <DataGridTextColumn Header="Date Recieved" Width="100" Binding="{Binding Path=DateRecieved}"/>
+                            <DataGridTextColumn Header="Description" Width="250" Binding="{Binding Path=Description}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="AddItem" FontSize="18"  Content="Add In-Kind Item" Click="AddInKindItem" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,2.4,93,0" Grid.Row="16" Grid.RowSpan="2" Height="33" VerticalAlignment="Top"     />
                 </Grid>
             </TabItem>
             <TabItem Header="In-Kind Service" Height="30">
@@ -216,8 +244,23 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
+                    <TextBlock Text="In-Kind Services" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" PreviewMouseDoubleClick="Edit_InKindService"
+                              IsReadOnly="True" CanUserDeleteRows="False" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="First Name" Width="70" Binding="{Binding Path=DonorFirstName}"/>
+                            <DataGridTextColumn Header="Last Name" Width="70" Binding="{Binding Path=DonorLastName}"/>
+                            <DataGridTextColumn Header="Start Date Time" Width="100" Binding="{Binding Path=StartDateTime}"/>
+                            <DataGridTextColumn Header="End Date Time" Width="90" Binding="{Binding Path=EndDateTime}"/>
+                            <DataGridTextColumn Header="Length (Hrs)" Width="80" Binding="{Binding Path=Length}"/>
+                            <DataGridTextColumn Header="Rate/Hour" Width="70" Binding="{Binding Path=RatePerHour, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Value (hours * rate)" Width="110" Binding="{Binding Path=Value, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Service Description" Width="250" Binding="{Binding Path=ServiceDescription}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Name="AddService" FontSize="18"  Content="Add In Kind Service" Click="AddInKindService" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2"     />
                 </Grid>
             </TabItem>
         </TabControl>

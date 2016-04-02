@@ -326,7 +326,7 @@ namespace FCS_Funding
             {
                 DataGrid dg = sender as DataGrid;
                 EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateEvent up = new UpdateEvent(p);
+                UpdateEvent up = new UpdateEvent(p, StaffDBRole);
                 if (StaffDBRole != "Admin")
                 {
                     up.Delete.IsEnabled = false;
@@ -442,7 +442,8 @@ namespace FCS_Funding
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on  p.DonorID equals d.DonorID
                          join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
-                         where p.DonorType == "Anonymous" || p.DonorType == "Individual"
+                         where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
+                         && d.EventID == null
                          select new InKindItem
                          {
                              DonorID = p.DonorID,
@@ -458,7 +459,8 @@ namespace FCS_Funding
                         from p in db.Donors
                         join d in db.Donations on p.DonorID equals d.DonorID
                         join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
-                        where p.DonorType == "Organization" || p.DonorType == "Government"
+                        where (p.DonorType == "Organization" || p.DonorType == "Government")
+                         && d.EventID == null
                         select new InKindItem
                         {
                             DonorID = p.DonorID,
@@ -471,20 +473,8 @@ namespace FCS_Funding
                             DateRecieved = d.DonationDate,
                             Description = ki.ItemDescription
                         });
-            //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
-            //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
-            //Donors = new ObservableCollection<DonorsDataGrid>();
-            //Donors.Add(d1);
-            //Donors.Add(d2);
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
-            //InKindItem in1 = new InKindItem("TV", "Tom", "Fronberg", "HAFB", DateTime.Now, "Includes a remote");
-            //InKindItem in2 = new InKindItem("Couch", "Chris", "Johnson", "Clearfield Clinic", DateTime.Now, "Has a hole in it");
-            //InKindItems = new ObservableCollection<InKindItem>();
-            //InKindItems.Add(in1);
-            //InKindItems.Add(in2);
-            //var grid = sender as DataGrid;
-            //grid.ItemsSource = InKindItems;
         }
 
         private void Events_Grid(object sender, RoutedEventArgs e)
@@ -504,16 +494,16 @@ namespace FCS_Funding
 
         }
 
-        private void Reports_Grid(object sender, RoutedEventArgs e)
-        {
-            ReportsDataGrid r1 = new ReportsDataGrid("Summer Fund Raiser", "It was great");
-            ReportsDataGrid r2 = new ReportsDataGrid("Fall Fund Raiser", "It was great");
-            Reports = new ObservableCollection<ReportsDataGrid>();
-            Reports.Add(r1);
-            Reports.Add(r2);
-            var grid = sender as DataGrid;
-            grid.ItemsSource = Reports;
-        }
+        //private void Reports_Grid(object sender, RoutedEventArgs e)
+        //{
+        //    ReportsDataGrid r1 = new ReportsDataGrid("Summer Fund Raiser", "It was great");
+        //    ReportsDataGrid r2 = new ReportsDataGrid("Fall Fund Raiser", "It was great");
+        //    Reports = new ObservableCollection<ReportsDataGrid>();
+        //    Reports.Add(r1);
+        //    Reports.Add(r2);
+        //    var grid = sender as DataGrid;
+        //    grid.ItemsSource = Reports;
+        //}
 
         private void Admin_Grid(object sender, RoutedEventArgs e)
         {
@@ -551,7 +541,8 @@ namespace FCS_Funding
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on p.DonorID equals d.DonorID
                          join ki in db.In_Kind_Service on d.DonationID equals ki.DonationID
-                         where p.DonorType == "Anonymous" || p.DonorType == "Individual"
+                         where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
+                         && d.EventID == null
                          select new InKindService
                          {
                              DonorID = p.DonorID,
@@ -623,9 +614,9 @@ namespace FCS_Funding
         {
             if (Application.Current.Windows.Count <= 1)
             {
-                AddInKindItem iki = new AddInKindItem();
+                AddInKindItem iki = new AddInKindItem(false, -1);
                 iki.Show();
-                //iki.Topmost = true;
+                iki.Topmost = true;
                 iki.Organization.IsEnabled = false;
             }
         }
@@ -634,9 +625,9 @@ namespace FCS_Funding
         {
             if (Application.Current.Windows.Count <= 1)
             {
-                AddInKindService iks = new AddInKindService();
+                AddInKindService iks = new AddInKindService(false, -1);
                 iks.Show();
-                //iks.Topmost = true;
+                iks.Topmost = true;
                 iks.AMPM_End.SelectedIndex = 0;
                 iks.AMPM_Start.SelectedIndex = 0;             
             }
@@ -732,7 +723,8 @@ namespace FCS_Funding
                          join d in db.Donations on dp.DonationID equals d.DonationID
                          join dr in db.Donors on d.DonorID equals dr.DonorID
                          join c in db.DonorContacts on dr.DonorID equals c.DonorID
-                         where dr.DonorType == "Anonymous" || dr.DonorType == "Individual"
+                         where (dr.DonorType == "Anonymous" || dr.DonorType == "Individual")
+                         && d.EventID == null
                          select new DonationsGrid
                          {
                              DonationAmount = d.DonationAmount,
@@ -750,7 +742,8 @@ namespace FCS_Funding
                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                        join d in db.Donations on dp.DonationID equals d.DonationID
                        join dr in db.Donors on d.DonorID equals dr.DonorID
-                       where dr.DonorType == "Organization" || dr.DonorType == "Government"
+                       where (dr.DonorType == "Organization" || dr.DonorType == "Government")
+                       && d.EventID == null
                        select new DonationsGrid
                        {
                            DonationAmount = d.DonationAmount,
