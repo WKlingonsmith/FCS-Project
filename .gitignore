@@ -48,19 +48,31 @@ FCS_Funding.sln
 /FCS_Funding_WPF/FCS_Funding/obj/
 /FCS_Funding_WPF/FCS_Funding_Test/bin/
 /FCS_Funding_WPF/FCS_Funding_Test/obj/
+
 #App.config files
-/FCS_Funding_WPF/FCS_DataTesting/App.config
-/FCS_Funding_WPF/FCS_Funding/App.config
-/FCS_Funding_WPF/FCS_Funding_Test/App.config
+#Commented these out because we changed the project so it CAN download App.config files.
+#We don't need to ignore the Connection String line anymore as of 4/4/16
+#/FCS_Funding_WPF/FCS_DataTesting/App.config
+#/FCS_Funding_WPF/FCS_Funding/App.config
+#/FCS_Funding_WPF/FCS_Funding_Test/App.config
+
 #Coded Test bin and obj
 /FCS_Funding_WPF/CodedUITestProject/bin/
 /FCS_Funding_WPF/CodedUITestProject/obj/
+
 #Random file added by Ken because I don't want it to commit
 FCS_Funding_WPF/.vs/FCS_Funding/v14/.suo
 FCS_Funding_WPF/.vs/FCS_Funding/v14/.suo
+
 #Random TestResults folder I don't want
 /FCS_Funding_WPF/TestResults
 /FCS_Funding_WPF\TestResults
 /FCS_Funding_WPF/FCS_UI_Testing/FCS_UI_Testing/obj/
 \FCS-Funding\FCS_Funding_WPF\FCS_Funding\App.config
 /FCS-Funding/FCS_Funding_WPF/FCS_Funding/App.config
+
+#Removing the tests since we don't want them anymore.  
+#Coded UI Tests should be done in a seperate Visual Studio project
+\FCS_Funding_WPF\CodedUITestProject
+\FCS_Funding_WPF\FCS_Funding_Test
+\FCS_Funding_WPF\FCS_UI_Testing
