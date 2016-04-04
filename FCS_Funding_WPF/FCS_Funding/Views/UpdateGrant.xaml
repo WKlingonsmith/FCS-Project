@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="UpdateGrant" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -36,42 +42,42 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Update Grant" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="Update Grant" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,27.8" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
 
-        <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
+        <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" FontWeight="Bold" />
         <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox IsEnabled="False" FontSize="18" Text="{Binding GrantName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Donation Amount:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
+        <TextBlock Text="Donation Amount:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" FontWeight="Bold" />
         <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding DonationAmount, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="Amount Remaining:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
+        <TextBlock Text="Amount Remaining:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" FontWeight="Bold" />
         <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding DonationAmountRemaining, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="Grant Date:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0"/>
+        <TextBlock Text="Grant Date:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold"/>
         <DatePicker Name="DonationDate"  HorizontalAlignment="Center" VerticalAlignment="Center"
                    HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="8" FontSize="20" >
         </DatePicker>
         <!--Width="170" Height="40"-->
-        <TextBlock Text="Grant Expiration:" TextAlignment="Center" FontSize="18" Grid.Row="9" Grid.Column="2" Height="30"/>
+        <TextBlock Text="Grant Expiration:" TextAlignment="Center" FontSize="18" Grid.Row="9" Grid.Column="2" Height="30" FontWeight="Bold"/>
         <DatePicker Name="DonationExpirationDate"  HorizontalAlignment="Center" VerticalAlignment="Center"
                    HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="9" FontSize="20" >
         </DatePicker>
         <!--Width="170" Height="40"-->
-        <TextBlock Text="Purpose Name:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" />
+        <TextBlock Text="Purpose Name:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" FontWeight="Bold" />
         <Border Grid.Row="10" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding PurposeName, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="Purpose Description:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Grid.ColumnSpan="3" Margin="167,2,177.8,8" />
+        <TextBlock Text="Purpose Description:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Grid.ColumnSpan="3" Margin="167,2,177.8,8" FontWeight="Bold" />
         <Border Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding PurposeDescription, ElementName=ThisWindow}"/>
         </Border>
 
 
-        <Button FontSize="18" Grid.Column="1" Grid.Row="16" Content="Update Grant" Click="Update_Grant" Grid.ColumnSpan="2" Margin="93.8,0,84.8,0"    />
-        <Button Name="DeleteGran" FontSize="18" Grid.Column="3" Grid.Row="16" Content="Delete Grant" Click="Delete_Grant" Grid.ColumnSpan="2" Margin="88.2,0,91.4,0" Height="40" VerticalAlignment="Top"    />
+        <Button FontSize="18" Grid.Column="1" Grid.Row="14" Content="Update Grant" Click="Update_Grant" Grid.ColumnSpan="2" Margin="88.8,12.4,89.8,26.6" Grid.RowSpan="2"    />
+        <Button Name="DeleteGran" FontSize="18" Grid.Column="3" Grid.Row="14" Content="Delete Grant" Click="Delete_Grant" Grid.ColumnSpan="2" Margin="90.2,13.4,89.4,0" Height="40" VerticalAlignment="Top" Grid.RowSpan="2"    />
 
     </Grid>
 </Window>

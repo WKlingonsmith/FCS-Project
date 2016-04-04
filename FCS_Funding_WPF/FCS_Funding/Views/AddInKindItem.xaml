@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="AddInKindItem" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -34,36 +40,36 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Create In-Kind Item" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
-        <TextBlock Text="Item Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" />
+        <TextBlock Text="Create In-Kind Item" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" Margin="179,0,0.4,27" Grid.RowSpan="2" />
+        <TextBlock Text="Item Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
         <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding ItemName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Item Description:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" />
+        <TextBlock Text="Item Description:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
         <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding ItemDescription, ElementName=ThisWindow}"  />
         </Border>
         <CheckBox Name="OrgOrIndividual" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Content="Is Organization or Goverment?" FontSize="18" HorizontalAlignment="Right" 
-                  VerticalAlignment="Center" Click="Change_Organization_Individual" Margin="0,6,19,12" Checked="Change_Organization_Individual" >
+                  VerticalAlignment="Center" Click="Change_Organization_Individual" Margin="0,7,19,8" Checked="Change_Organization_Individual" FontWeight="Bold" Height="25" >
             <!---->
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
             </CheckBox.LayoutTransform>
         </CheckBox>
-        <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Margin="169,5,9.4,5" Grid.ColumnSpan="2" />
+        <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="169,5,9.4,5" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Organization" IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="6" FontSize="20" Loaded="Organization_DropDown" Margin="178.8,0,0.4,0" >
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" FontSize="20" Loaded="Organization_DropDown" Margin="178.8,0,0.4,0" >
         </ComboBox>
-        <TextBlock Text="Individual Name/Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" />
+        <TextBlock Text="Individual Name/Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Individual"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" FontSize="20" Loaded="Individual_DropDown" Margin="178.8,0,0.4,0" />
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="8" FontSize="20" Loaded="Individual_DropDown" Margin="178.8,0,0.4,0" />
 
-        <TextBlock Text="Date Recieved:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="152,6,26.4,4" Grid.ColumnSpan="2" />
+        <TextBlock Text="Date Recieved:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="152,6,26.4,4" Grid.ColumnSpan="2" FontWeight="Bold" />
         <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="21,0,10,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="10" FontSize="20" Margin="21,0,10,5" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
             </DatePicker>
             <!--Width="170" Height="40"-->
-            <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Add In-Kind Item" Click="Add_InKind_Item" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
+            <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Add In-Kind Item" Click="Add_InKind_Item" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
     </Grid>
 </Window>

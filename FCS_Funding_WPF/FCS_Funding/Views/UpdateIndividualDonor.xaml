@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="UpdateIndividualDonor" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFB5EEFF" Offset="0.423"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -50,7 +56,7 @@
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Panel" Property="Background" Value="#FFA500" />
+                                        <Setter TargetName="Panel" Property="Background" Value="#FFB5EEFF" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="False">
                                         <Setter TargetName="Panel" Property="Background" Value="#EEE8AA" />
@@ -62,7 +68,13 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Update Donor" Background="Orange" Height="30">
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
+            <TabItem Header="Update Donor" Height="30" Background="#FF00FFDF">
                 <Grid>
 
                     <Grid.ColumnDefinitions>
@@ -94,53 +106,53 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Update Donor" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <TextBlock Text="Update Donor" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="0.4,0.4,0.2,23.6" Grid.RowSpan="2" FontFamily="Razer Header Regular" TextDecorations="Underline" FontWeight="Bold" />
 
-                    <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+                    <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="3" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="fName" FontSize="18" Text="{Binding DonorFirstName, ElementName=ThisWindow}"  />
                     </Border>
 
-                    <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Height="30" />
+                    <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="3" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="lName" FontSize="18" Text="{Binding DonorLastName, ElementName=ThisWindow}"/>
                     </Border>
 
-                    <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="oName" FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}"  />
                     </Border>
-                    <TextBlock Text="Address 1:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Address 1:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="donA1" FontSize="18" Text="{Binding DonorAddress1, ElementName=ThisWindow}"/>
                     </Border>
-                    <TextBlock Text="Address 2:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Address 2:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="donA2" FontSize="18" Text="{Binding DonorAddress2, ElementName=ThisWindow}"/>
                     </Border>
 
-                    <TextBlock Text="Contact Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Contact Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="1" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="cPhone" FontSize="18" Text="{Binding ContactPhone, ElementName=ThisWindow}"  />
                     </Border>
-                    <TextBlock Text="Contact Email:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Contact Email:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="cEmail" FontSize="18" Text="{Binding ContactEmail, ElementName=ThisWindow}"/>
                     </Border>
-                    <TextBlock Text="State:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="1" Height="30" />
+                    <TextBlock Text="State:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="dState" FontSize="18" Text="{Binding DonorState, ElementName=ThisWindow}"  />
                     </Border>
 
-                    <TextBlock Text="City:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="3" Height="30" />
+                    <TextBlock Text="City:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="3" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="9" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="dCity" FontSize="18" Text="{Binding DonorCity, ElementName=ThisWindow}"/>
                     </Border>
-                    <TextBlock Text="Zip:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Zip:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="10" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox Name="dZip" FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}"  />
                     </Border>
-                    <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="3" Height="30" />
+                    <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="3" Height="30" FontWeight="Bold" />
                     <ComboBox Name="dType" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False"
                   HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="4" Grid.Row="10" FontSize="20">
                         <ComboBoxItem >Organization</ComboBoxItem>
@@ -184,7 +196,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Donations" TextAlignment="Center"  FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <TextBlock Text="Donations" TextAlignment="Center"  FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="0.4,0,0.2,25" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
                     <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
                         <DataGrid.Columns>

@@ -73,8 +73,8 @@ namespace FCS_Funding.Views
             {
                 string Organiz = Organization.SelectedValue.ToString();
                 var donorID = (from d in db.Donors
-                                where d.OrganizationName == Organiz
-                                select d.DonorID).Distinct().First();
+                               where d.OrganizationName == Organiz
+                               select d.DonorID).Distinct().First();
 
                 CreateMoneyDonation cmd = new CreateMoneyDonation(donorID, true, EventID);
                 cmd.Show();

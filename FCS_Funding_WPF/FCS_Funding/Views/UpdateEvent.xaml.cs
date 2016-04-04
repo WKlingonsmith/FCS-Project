@@ -104,13 +104,13 @@ namespace FCS_Funding.Views
                 MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
 
                 var event1 = (from p in db.FundRaisingEvents
-                                     where p.EventID == EventID
-                                     select p).First();
+                              where p.EventID == EventID
+                              select p).First();
                 event1.EventName = EventName;
                 event1.EventDescription = EventDescription;
                 event1.EventStartDateTime = startDateTime;
                 event1.EventEndDateTime = endDateTime;
-                                
+
                 db.SaveChanges();
                 MessageBox.Show("Successfully updated Event");
                 this.Close();
@@ -130,8 +130,8 @@ namespace FCS_Funding.Views
             {
                 FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
                 var event1 = (from d in db.FundRaisingEvents
-                                where d.EventID == EventID
-                                select d).First();
+                              where d.EventID == EventID
+                              select d).First();
                 var donations = (from p in db.Donations
                                  where p.EventID == EventID
                                  select p);
@@ -424,7 +424,7 @@ namespace FCS_Funding.Views
             {
                 AddInKindService iks = new AddInKindService(true, EventID);
                 iks.Show();
-                iks.Topmost = true;
+                //iks.Topmost = true;
                 iks.AMPM_End.SelectedIndex = 0;
                 iks.AMPM_Start.SelectedIndex = 0;
             }

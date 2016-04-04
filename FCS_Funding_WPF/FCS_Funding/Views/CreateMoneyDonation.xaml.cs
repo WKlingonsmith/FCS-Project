@@ -44,36 +44,57 @@ namespace FCS_Funding.Views
             {
                 //try
                 //{
-                    MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
-                        PurposeName + "\n" + PurposeDescription);
-                    FCS_FundingContext db = new FCS_FundingContext();
+                MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
+                    PurposeName + "\n" + PurposeDescription);
+                FCS_FundingContext db = new FCS_FundingContext();
 
-                    Purpose p = new Purpose(PurposeName, PurposeDescription);
-                    db.Purposes.Add(p);
+                Purpose p = new Purpose();
+                p.PurposeName = PurposeName;
+                p.PurposeDescription = PurposeDescription;
+                db.Purposes.Add(p);
+                db.SaveChanges();
+
+                if (IsEvent)
+                {
+                    Donation d = new Donation();
+                    d.DonorID = DonorID;
+                    d.Restricted = true;
+                    d.InKind = false;
+                    d.DonationAmount = DonationAmount;
+                    d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
+                    d.EventID = EventID;
+                    db.Donations.Add(d);
                     db.SaveChanges();
 
-                    if (IsEvent)
-                    {
-                        Donation d = new Donation(DonorID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()), EventID);
-                        db.Donations.Add(d);
-                        db.SaveChanges();
+                    DonationPurpose dp = new DonationPurpose();
+                    dp.DonationID = d.DonationID;
+                    dp.PurposeID = p.PurposeID;
+                    dp.DonationPurposeAmount = DonationAmount;
+                    db.DonationPurposes.Add(dp);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Donation d = new Donation();
+                    d.DonorID = DonorID;
+                    d.Restricted = true;
+                    d.InKind = false;
+                    d.DonationAmount = DonationAmount;
+                    d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
+                    d.EventID = EventID;
 
-                        DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
-                        db.DonationPurposes.Add(dp);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        Donation d = new Donation(DonorID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()));
-                        db.Donations.Add(d);
-                        db.SaveChanges();
+                    db.Donations.Add(d);
+                    db.SaveChanges();
 
-                        DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
-                        db.DonationPurposes.Add(dp);
-                        db.SaveChanges();
-                    }
-                    MessageBox.Show("Successfully added Donation");
-                    this.Close();
+                    DonationPurpose dp = new DonationPurpose();
+                    dp.DonationID = d.DonationID;
+                    dp.PurposeID = p.PurposeID;
+                    dp.DonationPurposeAmount = DonationAmount;
+                    db.DonationPurposes.Add(dp);
+                    db.SaveChanges();
+                }
+                MessageBox.Show("Successfully added Donation");
+                this.Close();
                 //}
                 //catch (Exception ex)
                 //{
