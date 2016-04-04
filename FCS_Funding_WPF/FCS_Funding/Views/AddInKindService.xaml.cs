@@ -75,8 +75,6 @@ namespace FCS_Funding.Views
                 if (IsEvent)
                 {
                     Models.Donation donation = new Models.Donation();
-                    db.Donations.Add(donation);
-                    db.SaveChanges();
 
                     donation.DonorID = donorID;
                     donation.Restricted = false;
@@ -85,6 +83,9 @@ namespace FCS_Funding.Views
                     donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
                     donation.EventID = EventID;
 
+                    db.Donations.Add(donation);
+                    db.SaveChanges();
+
                     Models.In_Kind_Service inKind = new Models.In_Kind_Service();
 
                     inKind.DonationID = donation.DonationID;
@@ -92,8 +93,8 @@ namespace FCS_Funding.Views
                     inKind.EndDateTime = endDateTime;
                     inKind.RatePerHour = RatePerHour;
                     inKind.ServiceDescription = ServiceDescription;
-                    inKind.ServiceLength = (double)Math.Round(timeDiff, 2);
-                    inKind.ServiceValue = Math.Round(RatePerHour * timeDiff, 2);
+                    inKind.ServiceLength = (double)timeDiff;
+                    inKind.ServiceValue = RatePerHour * timeDiff;
 
                     db.In_Kind_Service.Add(inKind);
                     db.SaveChanges();
@@ -118,8 +119,8 @@ namespace FCS_Funding.Views
                     inKind.EndDateTime = endDateTime;
                     inKind.RatePerHour = RatePerHour;
                     inKind.ServiceDescription = ServiceDescription;
-                    inKind.ServiceLength = (double)Math.Round(timeDiff, 2);
-                    inKind.ServiceValue = Math.Round(RatePerHour * timeDiff, 2);
+                    inKind.ServiceLength = (double)timeDiff;
+                    inKind.ServiceValue = RatePerHour * timeDiff;
 
                     db.In_Kind_Service.Add(inKind);
                     db.SaveChanges();

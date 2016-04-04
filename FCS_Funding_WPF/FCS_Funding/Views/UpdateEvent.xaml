@@ -254,7 +254,7 @@
                             <DataGridTextColumn Header="Last Name" Width="70" Binding="{Binding Path=DonorLastName}"/>
                             <DataGridTextColumn Header="Start Date Time" Width="100" Binding="{Binding Path=StartDateTime}"/>
                             <DataGridTextColumn Header="End Date Time" Width="90" Binding="{Binding Path=EndDateTime}"/>
-                            <DataGridTextColumn Header="Length (Hrs)" Width="80" Binding="{Binding Path=Length}"/>
+                            <DataGridTextColumn Header="Length (Hrs)" Width="80" Binding="{Binding Path=Length, StringFormat=N3}"/>
                             <DataGridTextColumn Header="Rate/Hour" Width="70" Binding="{Binding Path=RatePerHour, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Value (hours * rate)" Width="110" Binding="{Binding Path=Value, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Service Description" Width="250" Binding="{Binding Path=ServiceDescription}"/>
