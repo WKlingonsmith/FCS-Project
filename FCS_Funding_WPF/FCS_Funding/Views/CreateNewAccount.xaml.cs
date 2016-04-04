@@ -32,7 +32,7 @@ namespace FCS_Funding.Views
 
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             string Role = UserRole.SelectedValue.ToString();
 
             string password = Password.Password.ToString();
@@ -50,7 +50,13 @@ namespace FCS_Funding.Views
                 }
                 else
                 {
-                    Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
+                    Models.Staff account = new Models.Staff();
+                    account.StaffFirstName = FirstName;
+                    account.StaffLastName = LastName;
+                    account.StaffTitle = StaffTitle;
+                    account.StaffUserName = UserName;
+                    account.StaffPassword = hashedPassword;
+                    account.StaffDBRole = Role;
                     db.Staffs.Add(account);
                     db.SaveChanges();
                     this.Close();
@@ -77,7 +83,13 @@ namespace FCS_Funding.Views
                 }
                 else
                 {
-                    Models.Staff account = new Models.Staff(FirstName, LastName, StaffTitle, UserName, hashedPassword, Role);
+                    Models.Staff account = new Models.Staff();
+                    account.StaffFirstName = FirstName;
+                    account.StaffLastName = LastName;
+                    account.StaffTitle = StaffTitle;
+                    account.StaffUserName = UserName;
+                    account.StaffPassword = hashedPassword;
+                    account.StaffDBRole = Role;
                     db.Staffs.Add(account);
                     db.SaveChanges();
                     this.Close();

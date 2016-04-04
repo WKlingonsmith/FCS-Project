@@ -47,7 +47,7 @@ namespace FCS_Funding.Views
 
         private void Update_Donor(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
             var donor = (from p in db.Donors
                            where p.DonorID == DonorID
                            select p).First();
@@ -70,7 +70,7 @@ namespace FCS_Funding.Views
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Patient?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var donorContact = (from p in db.DonorContacts
                                     where p.DonorID == DonorID
                                     select p);
@@ -91,7 +91,7 @@ namespace FCS_Funding.Views
 
         private void Load_Contacts_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var join1 = from c in db.DonorContacts
                         where c.DonorID == DonorID
                         select new DonorContactGrid
@@ -167,7 +167,7 @@ namespace FCS_Funding.Views
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
             var join1 = from p in db.Purposes
                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                         join d in db.Donations on dp.DonationID equals d.DonationID

@@ -38,7 +38,7 @@ namespace FCS_Funding.Views
             //DonorFirstName != null && DonorFirstName != "" && DonorLastName != null && DonorLastName != ""
             if (DonorType != null && DonorType != "")
             {
-                FCS_FundingContext db = new FCS_FundingContext();
+                FCS_FundingDBModel db = new FCS_FundingDBModel();
                 if (DonorType == "Organization" || DonorType == "Government")
                 {
                     var OrgName = from d in db.Donors
@@ -48,7 +48,16 @@ namespace FCS_Funding.Views
                     {
                         MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                             + "\n" + DonorType + "\n" + OrganizationName);
-                        Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
+                        Donor d = new Donor();
+
+                        d.DonorType = DonorType;
+                        d.OrganizationName = OrganizationName;
+                        d.DonorAddress1 = DonorAddress1;
+                        d.DonorAddress2 = DonorAddress2;
+                        d.DonorState = DonorState;
+                        d.DonorCity = DonorCity;
+                        d.DonorZip = DonorZip;
+
                         db.Donors.Add(d);
                         db.SaveChanges();
                         MessageBox.Show("Successfully added Donor!");
@@ -63,7 +72,16 @@ namespace FCS_Funding.Views
                 {
                     MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                         + "\n" + DonorType + "\n" + OrganizationName);
-                    Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
+                    Donor d = new Donor();
+
+                    d.DonorType = DonorType;
+                    d.OrganizationName = OrganizationName;
+                    d.DonorAddress1 = DonorAddress1;
+                    d.DonorAddress2 = DonorAddress2;
+                    d.DonorState = DonorState;
+                    d.DonorCity = DonorCity;
+                    d.DonorZip = DonorZip;
+
                     CreateIndividualContact cic = new CreateIndividualContact(d);
                     this.Close();
                     cic.Show();
@@ -73,10 +91,24 @@ namespace FCS_Funding.Views
                 {
                     //"Anonymous"
                     int anony = db.Donors.Where(x => x.DonorType == "Anonymous").Select(x => x.DonorType).Count(); //Distinct().First();
+                    string Anon = "Anonymous";
                     if (anony < 1)
                     {
-                        Donor d = new Donor("Anonymous", "Anonymous", "Anonymous", "Anonymous", "", "Anonymous", "Anonymous");
-                        DonorContact dc = new DonorContact("Anonymous", "Anonymous", "Anonymous", "Anonymous", d.DonorID);
+                        Donor d = new Donor();
+                        d.DonorType = Anon;
+                        d.OrganizationName = Anon;
+                        d.DonorAddress1 = Anon;
+                        d.DonorAddress2 = Anon;
+                        d.DonorState = "";
+                        d.DonorCity = Anon;
+                        d.DonorZip = "";
+                        DonorContact dc = new DonorContact();
+                        dc.ContactFirstName = Anon;
+                        dc.ContactLastName = Anon;
+                        dc.ContactPhone = Anon;
+                        dc.ContactEmail = Anon;
+                        dc.DonorID = d.DonorID;
+
                         db.Donors.Add(d);
                         db.DonorContacts.Add(dc);
                         db.SaveChanges();

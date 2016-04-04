@@ -47,13 +47,27 @@ namespace FCS_Funding.Views
                 {
                     MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" + 
                         DonationExpirationDate + "\n" + PurposeName + "\n" + PurposeDescription);
-                    FCS_FundingContext db = new FCS_FundingContext();
-                    Purpose p = new Purpose(PurposeName, PurposeDescription);
-                    Donation d = new Donation(DonorID, GrantProposalID, true, false, DonationAmount, Convert.ToDateTime(DonationDate.ToString()),
-                        Convert.ToDateTime(DonationExpirationDate.ToString()), DonationAmount);
-                    DonationPurpose dp = new DonationPurpose(d.DonationID, p.PurposeID, DonationAmount);
-                    db.Donations.Add(d);
+                    FCS_FundingDBModel db = new FCS_FundingDBModel();
+                    Purpose p = new Purpose();
+                    p.PurposeName = PurposeName;
+                    p.PurposeDescription = PurposeDescription;
 
+                    Donation d = new Donation();
+                    d.DonorID = DonorID;
+                    d.GrantProposalID = GrantProposalID;
+                    d.Restricted = true;
+                    d.InKind = false;
+                    d.DonationAmount = DonationAmount;
+                    d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
+                    d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
+                    d.DonationAmount = DonationAmount;
+
+                    DonationPurpose dp = new DonationPurpose();
+                    dp.DonationID = d.DonationID;
+                    dp.PurposeID = p.PurposeID;
+                    dp.DonationPurposeAmount = DonationAmount;
+
+                    db.Donations.Add(d);
                     db.Purposes.Add(p);
 
                     db.DonationPurposes.Add(dp);

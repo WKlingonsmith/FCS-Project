@@ -7,12 +7,6 @@
         mc:Ignorable="d"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         Title="CreateGrantProposal" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
-            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
-        </LinearGradientBrush>
-    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -41,19 +35,19 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Create Grant Proposal" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,27" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
-        <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" FontWeight="Bold" Grid.ColumnSpan="3" Margin="179,0,178.6,10" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <TextBlock Text="Create Grant Proposal" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding GrantName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Margin="179,5,178.6,5" FontWeight="Bold" Grid.ColumnSpan="3" />
+        <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" Margin="0,0,0,10" />
         <ComboBox Name="Organization" IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="6" FontSize="20" Loaded="Organization_DropDown" Margin="0.6,0,177.6,0" >
+                  Height="40"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="5" FontSize="20" Loaded="Organization_DropDown" >
         </ComboBox>
 
-        <TextBlock Text="Submission Due Date:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="179,0,177.8,10" FontWeight="Bold" Grid.ColumnSpan="3" />
+        <TextBlock Text="Submission Due Date:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Height="30" Margin="0,0,0,10" />
         <DatePicker Name="SubmissionDueDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="21.6,0,9.6,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="21,0,10,5" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
         <!--Width="170" Height="40"-->

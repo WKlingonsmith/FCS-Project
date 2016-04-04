@@ -57,10 +57,16 @@ namespace FCS_Funding.Views
 
             if (EventName != null && EventName != "" && timeDiff > 0 )
             {
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
                 
-                Models.FundRaisingEvent event1 = new Models.FundRaisingEvent(startDateTime, endDateTime, EventName, EventDescription);
+                Models.FundRaisingEvent event1 = new Models.FundRaisingEvent();
+
+                event1.EventStartDateTime = startDateTime;
+                event1.EventEndDateTime = endDateTime;
+                event1.EventName = EventName;
+                event1.EventDescription = EventDescription;
+
                 db.FundRaisingEvents.Add(event1);
                 db.SaveChanges();
                 MessageBox.Show("Successfully added Event");

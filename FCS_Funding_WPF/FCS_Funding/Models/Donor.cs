@@ -1,43 +1,57 @@
-using System;
-using System.Collections.Generic;
-
 namespace FCS_Funding.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Donor")]
     public partial class Donor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Donor()
         {
-            this.Donations = new List<Donation>();
-            this.DonorContacts = new List<DonorContact>();
-            this.GrantProposals = new List<GrantProposal>();
-            this.Reminders = new List<Reminder>();
-        }
-        public Donor(string dt, string on, string a1, string a2, string s, string c, string z)
-        {
-            this.DonorType = dt;
-            this.OrganizationName = on;
-            this.DonorAddress1 = a1;
-            this.DonorAddress2 = a2;
-            this.DonorState = s;
-            this.DonorCity = c;
-            this.DonorZip = z;
-            this.Donations = new List<Donation>();
-            this.DonorContacts = new List<DonorContact>();
-            this.GrantProposals = new List<GrantProposal>();
-            this.Reminders = new List<Reminder>();
+            Donations = new HashSet<Donation>();
+            DonorContacts = new HashSet<DonorContact>();
+            GrantProposals = new HashSet<GrantProposal>();
+            Reminders = new HashSet<Reminder>();
         }
 
         public int DonorID { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string DonorType { get; set; }
+
+        [StringLength(250)]
         public string OrganizationName { get; set; }
+
+        [StringLength(50)]
         public string DonorAddress1 { get; set; }
+
+        [StringLength(50)]
         public string DonorAddress2 { get; set; }
+
+        [StringLength(2)]
         public string DonorState { get; set; }
+
+        [StringLength(200)]
         public string DonorCity { get; set; }
+
+        [StringLength(10)]
         public string DonorZip { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donation> Donations { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonorContact> DonorContacts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GrantProposal> GrantProposals { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reminder> Reminders { get; set; }
     }
 }

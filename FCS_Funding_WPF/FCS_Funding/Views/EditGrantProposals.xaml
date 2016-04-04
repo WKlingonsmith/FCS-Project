@@ -6,19 +6,7 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="EditGrantProposals" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="0"/>
-            <GradientStop Color="#FFB5EEFF" Offset="1"/>
-        </LinearGradientBrush>
-    </Window.Background>
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
-                <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
-            </LinearGradientBrush>
-        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -46,18 +34,18 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Edit Grant Proposal" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Height="53" Margin="179,0,0.4,0" VerticalAlignment="Top" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
-        <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="3" Margin="179,0,177.8,10" FontWeight="Bold" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <TextBlock Text="Edit Grant Proposal" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding GrantName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="3" Margin="179,2,177.8,8" FontWeight="Bold" />
-        <Border Name="oName" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" />
+        <Border Name="oName" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Status:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="179,0,177.8,10" Grid.ColumnSpan="3" FontWeight="Bold" />
+        <TextBlock Text="Status:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" Margin="0,0,0,10" />
         <ComboBox Name="Status" IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Height="40"  Grid.Column="1" Grid.Row="7" FontSize="20" Loaded="Status_DropDown" Grid.ColumnSpan="3" Margin="178.8,0,179,0" >
+                  Height="40"  Grid.Column="2" Grid.Row="5" FontSize="20" Loaded="Status_DropDown" >
         </ComboBox>
         <Button FontSize="18" Grid.Column="1" Grid.Row="11" Content="Update Grant Proposal" Click="Update_Grant_Proposal" Grid.ColumnSpan="2" Margin="89.8,1,58.8,0"   />
         <Button Name="Deletegrantprop" FontSize="18" Grid.Column="3" Grid.Row="11" Content="Delete Grant Proposal" Click="Delete_Grant_Proposal" Grid.ColumnSpan="2" Margin="34.2,0,144.4,0" />

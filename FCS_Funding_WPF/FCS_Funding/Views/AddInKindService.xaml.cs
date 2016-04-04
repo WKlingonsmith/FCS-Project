@@ -62,7 +62,7 @@ namespace FCS_Funding.Views
             {
                 string[] separators = new string[] { ", " };
                 string Indiv = Individual.SelectedValue.ToString();
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
                 string[] words = Indiv.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string FNumber = words[2];
@@ -74,23 +74,53 @@ namespace FCS_Funding.Views
 
                 if (IsEvent)
                 {
-                    Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()), EventID);
+                    Models.Donation donation = new Models.Donation();
                     db.Donations.Add(donation);
                     db.SaveChanges();
 
-                    Models.In_Kind_Service inKind = new Models.In_Kind_Service(donation.DonationID, startDateTime, endDateTime,
-                        RatePerHour, ServiceDescription, (double)Math.Round(timeDiff, 2), Math.Round(RatePerHour * timeDiff, 2));
+                    donation.DonorID = donorID;
+                    donation.Restricted = false;
+                    donation.InKind = true;
+                    donation.DonationAmount = 0M;
+                    donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
+                    donation.EventID = EventID;
+
+                    Models.In_Kind_Service inKind = new Models.In_Kind_Service();
+
+                    inKind.DonationID = donation.DonationID;
+                    inKind.StartDateTime = startDateTime;
+                    inKind.EndDateTime = endDateTime;
+                    inKind.RatePerHour = RatePerHour;
+                    inKind.ServiceDescription = ServiceDescription;
+                    inKind.ServiceLength = (double)Math.Round(timeDiff, 2);
+                    inKind.ServiceValue = Math.Round(RatePerHour * timeDiff, 2);
+
                     db.In_Kind_Service.Add(inKind);
                     db.SaveChanges();
                 }
                 else
                 {
-                    Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
+                    Models.Donation donation = new Models.Donation();
+
+                    donation.DonorID = donorID;
+                    donation.InKind = false;
+                    donation.Restricted = true;
+                    donation.DonationAmount = 0M;
+                    donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
+
                     db.Donations.Add(donation);
                     db.SaveChanges();
 
-                    Models.In_Kind_Service inKind = new Models.In_Kind_Service(donation.DonationID, startDateTime, endDateTime,
-                        RatePerHour, ServiceDescription, (double)Math.Round(timeDiff, 2), Math.Round(RatePerHour * timeDiff, 2));
+                    Models.In_Kind_Service inKind = new Models.In_Kind_Service();
+
+                    inKind.DonationID = donation.DonationID;
+                    inKind.StartDateTime = startDateTime;
+                    inKind.EndDateTime = endDateTime;
+                    inKind.RatePerHour = RatePerHour;
+                    inKind.ServiceDescription = ServiceDescription;
+                    inKind.ServiceLength = (double)Math.Round(timeDiff, 2);
+                    inKind.ServiceValue = Math.Round(RatePerHour * timeDiff, 2);
+
                     db.In_Kind_Service.Add(inKind);
                     db.SaveChanges();
                 }
@@ -106,7 +136,7 @@ namespace FCS_Funding.Views
 
         private void Individual_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var query = (from o in db.Donors
                          join c in db.DonorContacts on o.DonorID equals c.DonorID
                          where o.DonorType == "Individual" || o.DonorType == "Anonymous"

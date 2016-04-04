@@ -40,7 +40,7 @@ namespace FCS_Funding.Views
         private void Update_InKind_Item(object sender, RoutedEventArgs e)
         {
 
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
             var inkinditem = (from p in db.In_Kind_Item
                            where p.ItemID == ItemID
                            select p).First();
@@ -62,7 +62,7 @@ namespace FCS_Funding.Views
                 "Are you sure that you want to delete this Grant?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var inkinditem = (from p in db.In_Kind_Item
                                         where p.ItemID == ItemID
                                         select p).First();

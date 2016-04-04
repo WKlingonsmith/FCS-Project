@@ -28,7 +28,7 @@ namespace FCS_Funding.Views
 
         private void Individual_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var query = (from o in db.Donors
                          join c in db.DonorContacts on o.DonorID equals c.DonorID
                          where o.DonorType == "Individual" || o.DonorType == "Anonymous"
@@ -41,7 +41,7 @@ namespace FCS_Funding.Views
 
         private void Organization_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var query = (from o in db.Donors
                          where o.OrganizationName != null && o.OrganizationName != ""
                          orderby o.OrganizationName
@@ -67,14 +67,14 @@ namespace FCS_Funding.Views
 
         private void Continue(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             //Then its an organization
             if (OrgOrIndividual.IsChecked.Value && Organization.SelectedIndex != -1)
             {
                 string Organiz = Organization.SelectedValue.ToString();
                 var donorID = (from d in db.Donors
-                               where d.OrganizationName == Organiz
-                               select d.DonorID).Distinct().First();
+                                where d.OrganizationName == Organiz
+                                select d.DonorID).Distinct().First();
 
                 CreateMoneyDonation cmd = new CreateMoneyDonation(donorID, true, EventID);
                 cmd.Show();

@@ -59,9 +59,24 @@ namespace FCS_Funding.Views
                 MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
                     + "\n"  + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n"  + Income);
 
-                FCS_FundingContext db = new FCS_FundingContext();
-                PatientHousehold p = new PatientHousehold(HouseholdPopulation, Income, County);
-                Patient pat = new Patient(patientOQ, p.HouseholdID, firstName, lastName, gender, ageGroup, ethnicGroup, date, headOfHouse, relationToHead);
+                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                PatientHousehold p = new PatientHousehold();
+                p.HouseholdCounty = County;
+                p.HouseholdPopulation = HouseholdPopulation;
+                p.HouseholdIncomeBracket = Income;
+
+                Patient pat = new Patient();
+                pat.PatientOQ = patientOQ;
+                pat.HouseholdID = p.HouseholdID;
+                pat.PatientFirstName = firstName;
+                pat.PatientLastName = lastName;
+                pat.PatientGender = gender;
+                pat.PatientAgeGroup = ageGroup;
+                pat.PatientEthnicity = ethnicGroup;
+                pat.NewClientIntakeHour = date;
+                pat.IsHead = headOfHouse;
+                pat.RelationToHead = relationToHead;
+
                 db.PatientHouseholds.Add(p);
                 db.Patients.Add(pat);
                 db.SaveChanges();

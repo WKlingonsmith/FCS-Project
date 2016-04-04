@@ -33,7 +33,7 @@ namespace FCS_Funding
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             string pw = Password.Password.ToString();
             string us = Username.Text;
             string hashedPassword = FCS_DataTesting.PasswordHashing.GetHashString(pw);

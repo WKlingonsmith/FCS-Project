@@ -56,7 +56,7 @@ namespace FCS_Funding.Views
 
         private void UpdateDonor(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
             var donor = (from d in db.Donors
                            where d.DonorID == DonorID
                            select d).First();
@@ -84,7 +84,7 @@ namespace FCS_Funding.Views
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Donor?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var donor = (from d in db.Donors
                              where d.DonorID == DonorID
                              select d).First();
@@ -127,7 +127,7 @@ namespace FCS_Funding.Views
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
             var join1 = from p in db.Purposes
                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                         join d in db.Donations on dp.DonationID equals d.DonationID

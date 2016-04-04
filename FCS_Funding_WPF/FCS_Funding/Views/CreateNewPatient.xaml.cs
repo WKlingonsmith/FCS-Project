@@ -70,11 +70,22 @@ namespace FCS_Funding.Views
                         familyOQNumber + "\n" + "\n" + relationToHead + "\n" + date);
                     //this.Close();
 
-                    FCS_FundingContext db = new FCS_FundingContext();
+                    FCS_FundingDBModel db = new FCS_FundingDBModel();
                     try
                     {
                         int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
-                        Patient pat2 = new Patient(patientOQ, householdID, firstName, lastName, PatientGender, ageGroup, ethnicGroup, date, headOfHouse, relationToHead);
+                        Patient pat2 = new Patient();
+
+                        pat2.PatientOQ = patientOQ;
+                        pat2.HouseholdID = householdID;
+                        pat2.PatientFirstName = firstName;
+                        pat2.PatientLastName = lastName;
+                        pat2.PatientAgeGroup = ageGroup;
+                        pat2.PatientEthnicity = ethnicGroup;
+                        pat2.NewClientIntakeHour = date;
+                        pat2.IsHead = headOfHouse;
+                        pat2.RelationToHead = relationToHead;
+
                         db.Patients.Add(pat2);
                         db.SaveChanges();
                         MessageBox.Show("Successfully added client.");

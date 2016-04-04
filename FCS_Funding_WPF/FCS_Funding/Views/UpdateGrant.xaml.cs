@@ -48,7 +48,7 @@ namespace FCS_Funding.Views
 
         private void Update_Grant(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
             var purpose = (from p in db.Purposes
                            where p.PurposeID == PurposeID
                            select p).First();
@@ -75,7 +75,7 @@ namespace FCS_Funding.Views
                 "Are you sure that you want to delete this Grant?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var donationPurposes = (from p in db.DonationPurposes
                                     where p.PurposeID == PurposeID
                                     select p);

@@ -39,7 +39,7 @@ namespace FCS_Funding.Views
             {
                 "HAFB", "Weber", "Clearfield"
             };
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var query = (from o in db.Donors
                          where o.OrganizationName != null && o.OrganizationName != ""
                          orderby o.OrganizationName
@@ -57,12 +57,18 @@ namespace FCS_Funding.Views
                 DateTime datet = Convert.ToDateTime(SubmissionDueDate.ToString());
 
                 MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 int DonorID = (from d in db.Donors
                                where d.OrganizationName == organiz
                                select d.DonorID).Distinct().First();
 
-                Models.GrantProposal gp = new Models.GrantProposal(DonorID, GrantName, datet, "Pending");
+                Models.GrantProposal gp = new Models.GrantProposal();
+
+                gp.DonorID = DonorID;
+                gp.GrantName = GrantName;
+                gp.SubmissionDueDate = datet;
+                gp.GrantStatus = "Pending";
+
                 db.GrantProposals.Add(gp);
                 db.SaveChanges();
                 MessageBox.Show("Successfully added grant proposal");

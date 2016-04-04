@@ -1,83 +1,59 @@
-using System;
-using System.Collections.Generic;
-
 namespace FCS_Funding.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Donation")]
     public partial class Donation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Donation()
         {
-            this.DonationPurposes = new List<DonationPurpose>();
-            this.Expenses = new List<Expense>();
-            this.In_Kind_Item = new List<In_Kind_Item>();
-            this.In_Kind_Service = new List<In_Kind_Service>();
-        }
-        public Donation(int donorID, int grantPropID, bool resticted, bool inkind, decimal donationamount,
-            DateTime donationdate, DateTime donationExDate, decimal amountremaining)
-        {
-            DonorID = donorID;
-            GrantProposalID = grantPropID;
-            Restricted = resticted;
-            InKind = inkind;
-            DonationAmount = donationamount;
-            DonationDate = donationdate;
-            DonationExpirationDate = donationExDate;
-            DonationAmountRemaining = amountremaining;
-
-            this.DonationPurposes = new List<DonationPurpose>();
-            this.Expenses = new List<Expense>();
-            this.In_Kind_Item = new List<In_Kind_Item>();
-            this.In_Kind_Service = new List<In_Kind_Service>();
-        }
-        /// <summary>
-        /// For in kind Donations and money donations
-        /// </summary>
-        public Donation(int donorID, bool resticted, bool inkind, decimal donationamount,
-            DateTime donationdate)
-        {
-            DonorID = donorID;
-            Restricted = resticted;
-            InKind = inkind;
-            DonationAmount = donationamount;
-            DonationDate = donationdate;
-            this.DonationPurposes = new List<DonationPurpose>();
-            this.Expenses = new List<Expense>();
-            this.In_Kind_Item = new List<In_Kind_Item>();
-            this.In_Kind_Service = new List<In_Kind_Service>();
-        }
-        /// <summary>
-        /// For in kind Donations and money donations
-        /// </summary>
-        public Donation(int donorID, bool resticted, bool inkind, decimal donationamount,
-            DateTime donationdate, int eventID)
-        {
-            DonorID = donorID;
-            Restricted = resticted;
-            InKind = inkind;
-            DonationAmount = donationamount;
-            DonationDate = donationdate;
-            EventID = eventID;
-
-            this.DonationPurposes = new List<DonationPurpose>();
-            this.Expenses = new List<Expense>();
-            this.In_Kind_Item = new List<In_Kind_Item>();
-            this.In_Kind_Service = new List<In_Kind_Service>();
+            DonationPurposes = new HashSet<DonationPurpose>();
+            Expenses = new HashSet<Expense>();
+            In_Kind_Item = new HashSet<In_Kind_Item>();
+            In_Kind_Service = new HashSet<In_Kind_Service>();
         }
 
         public int DonationID { get; set; }
-        public Nullable<int> EventID { get; set; }
+
+        public int? EventID { get; set; }
+
         public int DonorID { get; set; }
-        public Nullable<int> GrantProposalID { get; set; }
+
+        public int? GrantProposalID { get; set; }
+
         public bool Restricted { get; set; }
+
         public bool InKind { get; set; }
+
+        [Column(TypeName = "money")]
         public decimal DonationAmount { get; set; }
+
+        [Column(TypeName = "money")]
         public decimal DonationAmountRemaining { get; set; }
-        public System.DateTime DonationDate { get; set; }
-        public Nullable<System.DateTime> DonationExpirationDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime DonationDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? DonationExpirationDate { get; set; }
+
         public virtual Donor Donor { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonationPurpose> DonationPurposes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expense> Expenses { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<In_Kind_Item> In_Kind_Item { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<In_Kind_Service> In_Kind_Service { get; set; }
     }
 }

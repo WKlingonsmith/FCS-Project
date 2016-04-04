@@ -38,8 +38,15 @@ namespace FCS_Funding.Views
             {
                 MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
 
-                FCS_FundingContext db = new FCS_FundingContext();
-                DonorContact d = new DonorContact(ContactFirstName, ContactLastName, ContactPhone, ContactEmail, DonorID);
+                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                DonorContact d = new DonorContact();
+
+                d.ContactFirstName = ContactFirstName;
+                d.ContactLastName = ContactLastName;
+                d.ContactPhone = ContactPhone;
+                d.ContactEmail = ContactEmail;
+                d.DonorID = DonorID;
+
                 db.DonorContacts.Add(d);
                 if (ContactPhone.Length < 11)
                 {

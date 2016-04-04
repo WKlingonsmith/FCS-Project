@@ -14,6 +14,21 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -75,7 +90,7 @@
     <Compile Include="Models\DonorContact.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\ExpenseType.cs" />
-    <Compile Include="Models\FCS_FundingContext.cs" />
+    <Compile Include="Models\FCS_FundingDBModel.cs" />
     <Compile Include="Models\FundRaisingEvent.cs" />
     <Compile Include="Models\GrantProposal.cs" />
     <Compile Include="Models\In_Kind_Item.cs" />
@@ -119,194 +134,37 @@
     <Compile Include="Models\View_IndividualSessionCount.cs" />
     <Compile Include="Models\View_NewPatientByDoctor.cs" />
     <Compile Include="Models\View_OnGoingPatientByDoctor.cs" />
-    <Compile Include="Views\AddInKindItem.xaml.cs">
-      <DependentUpon>AddInKindItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddInKindService.xaml.cs">
-      <DependentUpon>AddInKindService.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddNewContact.xaml.cs">
-      <DependentUpon>AddNewContact.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateGrantProposal.xaml.cs">
-      <DependentUpon>CreateGrantProposal.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateHousehold.xaml.cs">
-      <DependentUpon>CreateHousehold.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateIndividualContact.xaml.cs">
-      <DependentUpon>CreateIndividualContact.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateMoneyDonation.xaml.cs">
-      <DependentUpon>CreateMoneyDonation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateNewAccount.xaml.cs">
-      <DependentUpon>CreateNewAccount.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateNewDonor.xaml.cs">
-      <DependentUpon>CreateNewDonor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateNewEvent.xaml.cs">
-      <DependentUpon>CreateNewEvent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateNewPatient.xaml.cs">
-      <DependentUpon>CreateNewPatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditGrantProposals.xaml.cs">
-      <DependentUpon>EditGrantProposals.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EventDonorDonation.xaml.cs">
-      <DependentUpon>EventDonorDonation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateContact.xaml.cs">
-      <DependentUpon>UpdateContact.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateDonation.xaml.cs">
-      <DependentUpon>UpdateDonation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateDonor.xaml.cs">
-      <DependentUpon>UpdateDonor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateEvent.xaml.cs">
-      <DependentUpon>UpdateEvent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateGrant.xaml.cs">
-      <DependentUpon>UpdateGrant.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateIndividualDonor.xaml.cs">
-      <DependentUpon>UpdateIndividualDonor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateInKindItem.xaml.cs">
-      <DependentUpon>UpdateInKindItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdateInKindService.xaml.cs">
-      <DependentUpon>UpdateInKindService.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UpdatePatient.xaml.cs">
-      <DependentUpon>UpdatePatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ViewGrantProposals.xaml.cs">
-      <DependentUpon>ViewGrantProposals.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Views\AddInKindItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddInKindService.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddNewContact.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AddNewGrant.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateGrantProposal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateHousehold.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateIndividualContact.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateMoneyDonation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateNewAccount.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateNewDonor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateNewEvent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CreateNewPatient.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditGrantProposals.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EventDonorDonation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Client.cs" />
-    <Compile Include="Views\AddNewGrant.xaml.cs">
-      <DependentUpon>AddNewGrant.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Views\UpdateContact.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateDonation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateDonor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateEvent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateGrant.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateIndividualDonor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateInKindItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdateInKindService.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UpdatePatient.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ViewGrantProposals.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Views\AddInKindItem.xaml.cs" />
+    <Compile Include="Views\AddInKindService.xaml.cs" />
+    <Compile Include="Views\AddNewContact.xaml.cs" />
+    <Compile Include="Views\AddNewGrant.xaml.cs" />
+    <Compile Include="Views\CreateGrantProposal.xaml.cs" />
+    <Compile Include="Views\CreateHousehold.xaml.cs" />
+    <Compile Include="Views\CreateIndividualContact.xaml.cs" />
+    <Compile Include="Views\CreateMoneyDonation.xaml.cs" />
+    <Compile Include="Views\CreateNewAccount.xaml.cs" />
+    <Compile Include="Views\CreateNewDonor.xaml.cs" />
+    <Compile Include="Views\CreateNewEvent.xaml.cs" />
+    <Compile Include="Views\CreateNewPatient.xaml.cs" />
+    <Compile Include="Views\EditGrantProposals.xaml.cs" />
+    <Compile Include="Views\EventDonorDonation.xaml.cs" />
+    <Compile Include="Views\Login.xaml.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs" />
+    <Compile Include="Views\UpdateContact.xaml.cs" />
+    <Compile Include="Views\UpdateDonation.xaml.cs" />
+    <Compile Include="Views\UpdateDonor.xaml.cs" />
+    <Compile Include="Views\UpdateEvent.xaml.cs" />
+    <Compile Include="Views\UpdateGrant.xaml.cs" />
+    <Compile Include="Views\UpdateIndividualDonor.xaml.cs" />
+    <Compile Include="Views\UpdateInKindItem.xaml.cs" />
+    <Compile Include="Views\UpdateInKindService.xaml.cs" />
+    <Compile Include="Views\UpdatePatient.xaml.cs" />
+    <Compile Include="Views\ViewGrantProposals.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -326,6 +184,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControl1.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -347,7 +206,128 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Views\AddInKindItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddInKindService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddNewContact.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddNewGrant.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateGrantProposal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateHousehold.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateIndividualContact.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateMoneyDonation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateNewAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateNewDonor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateNewEvent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateNewPatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditGrantProposals.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EventDonorDonation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateContact.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateDonation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateDonor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateEvent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateGrant.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateIndividualDonor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateInKindItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateInKindService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdatePatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ViewGrantProposals.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FCS_Funding.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FCS_Funding_log.ldf">
+      <DependentUpon>FCS_Funding.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

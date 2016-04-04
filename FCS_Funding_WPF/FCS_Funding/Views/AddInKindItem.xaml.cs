@@ -33,7 +33,7 @@ namespace FCS_Funding.Views
 
         private void Individual_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var query = (from o in db.Donors
                          join c in db.DonorContacts on o.DonorID equals c.DonorID
                          where o.DonorType == "Individual" || o.DonorType == "Anonymous"
@@ -46,7 +46,7 @@ namespace FCS_Funding.Views
 
         private void Organization_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var query = (from o in db.Donors
                          where o.OrganizationName != null && o.OrganizationName != ""
                          orderby o.OrganizationName
@@ -60,7 +60,7 @@ namespace FCS_Funding.Views
         {
             if (ItemName != null && ItemName != "" && ItemDescription != null && ItemDescription != "")
             {
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 //Then its an organization
                 if (OrgOrIndividual.IsChecked.Value && Organization.SelectedIndex != -1)
                 {
@@ -73,21 +73,38 @@ namespace FCS_Funding.Views
 
                     if (IsEvent)
                     {
-                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()), EventID);
+                        Models.Donation donation = new Models.Donation();
+                        donation.DonorID = donorID;
+                        donation.Restricted = false;
+                        donation.InKind = true;
+                        donation.DonationAmount = 0M;
+                        donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
+                        donation.EventID = EventID;
                         db.Donations.Add(donation);
                         db.SaveChanges();
                         
-                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item();
+                        inKind.DonationID = donation.DonationID;
+                        inKind.ItemName = ItemName;
+                        inKind.ItemDescription = ItemDescription;
                         db.In_Kind_Item.Add(inKind);
-                        db.SaveChanges();
+                        db.SaveChanges();                       
                     }
                     else
                     {
-                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
+                        Models.Donation donation = new Models.Donation();
+                        donation.DonorID = donorID;
+                        donation.Restricted = false;
+                        donation.InKind = true;
+                        donation.DonationAmount = 0M;
+                        donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
                         db.Donations.Add(donation);
                         db.SaveChanges();
                         
-                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item();
+                        inKind.DonationID = donation.DonationID;
+                        inKind.ItemName = ItemName;
+                        inKind.ItemDescription = ItemDescription;
                         db.In_Kind_Item.Add(inKind);
                         db.SaveChanges();
                     }
@@ -108,21 +125,38 @@ namespace FCS_Funding.Views
 
                     if (IsEvent)
                     {
-                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()), EventID);
+                        Models.Donation donation = new Models.Donation();
+                        donation.DonorID = donorID;
+                        donation.Restricted = false;
+                        donation.InKind = true;
+                        donation.DonationAmount = 0M;
+                        donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
+                        donation.EventID = EventID;
                         db.Donations.Add(donation);
                         db.SaveChanges();
 
-                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item();
+                        inKind.DonationID = donation.DonationID;
+                        inKind.ItemName = ItemName;
+                        inKind.ItemDescription = ItemDescription;
                         db.In_Kind_Item.Add(inKind);
                         db.SaveChanges();
                     }
                     else
                     {
-                        Models.Donation donation = new Models.Donation(donorID, false, true, 0M, Convert.ToDateTime(DateRecieved.ToString()));
+                        Models.Donation donation = new Models.Donation();
+                        donation.DonorID = donorID;
+                        donation.Restricted = false;
+                        donation.InKind = true;
+                        donation.DonationAmount = 0M;
+                        donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
                         db.Donations.Add(donation);
                         db.SaveChanges();
 
-                        Models.In_Kind_Item inKind = new Models.In_Kind_Item(donation.DonationID, ItemName, ItemDescription);
+                        Models.In_Kind_Item inKind = new Models.In_Kind_Item();
+                        inKind.DonationID = donation.DonationID;
+                        inKind.ItemName = ItemName;
+                        inKind.ItemDescription = ItemDescription;
                         db.In_Kind_Item.Add(inKind);
                         db.SaveChanges();
                     }

@@ -100,7 +100,7 @@ namespace FCS_Funding.Views
             decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
             if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0)
             {
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
 
                 var inkindservice = (from p in db.In_Kind_Service
@@ -136,7 +136,7 @@ namespace FCS_Funding.Views
                 "Are you sure that you want to delete this In-Kind Service?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var inkindservice = (from p in db.In_Kind_Service
                                   where p.ServiceID == ServiceID
                                   select p).First();

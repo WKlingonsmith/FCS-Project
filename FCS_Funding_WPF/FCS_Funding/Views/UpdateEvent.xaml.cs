@@ -100,17 +100,17 @@ namespace FCS_Funding.Views
             decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
             if (EventName != null && EventName != "" && EventDescription != null && EventDescription != "" && timeDiff > 0)
             {
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
 
                 var event1 = (from p in db.FundRaisingEvents
-                              where p.EventID == EventID
-                              select p).First();
+                                     where p.EventID == EventID
+                                     select p).First();
                 event1.EventName = EventName;
                 event1.EventDescription = EventDescription;
                 event1.EventStartDateTime = startDateTime;
                 event1.EventEndDateTime = endDateTime;
-
+                                
                 db.SaveChanges();
                 MessageBox.Show("Successfully updated Event");
                 this.Close();
@@ -128,10 +128,10 @@ namespace FCS_Funding.Views
                 "Are you sure that you want to delete this In-Kind Service?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var event1 = (from d in db.FundRaisingEvents
-                              where d.EventID == EventID
-                              select d).First();
+                                where d.EventID == EventID
+                                select d).First();
                 var donations = (from p in db.Donations
                                  where p.EventID == EventID
                                  select p);
@@ -207,7 +207,7 @@ namespace FCS_Funding.Views
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var join1 = (from p in db.Purposes
                          join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                          join d in db.Donations on dp.DonationID equals d.DonationID
@@ -294,7 +294,7 @@ namespace FCS_Funding.Views
 
         private void InKindItemGrid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on p.DonorID equals d.DonorID
@@ -374,7 +374,7 @@ namespace FCS_Funding.Views
 
         private void InKindServiceGrid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingContext db = new Models.FCS_FundingContext();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on p.DonorID equals d.DonorID
@@ -424,7 +424,7 @@ namespace FCS_Funding.Views
             {
                 AddInKindService iks = new AddInKindService(true, EventID);
                 iks.Show();
-                //iks.Topmost = true;
+                iks.Topmost = true;
                 iks.AMPM_End.SelectedIndex = 0;
                 iks.AMPM_Start.SelectedIndex = 0;
             }

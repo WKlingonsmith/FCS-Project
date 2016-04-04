@@ -51,11 +51,26 @@ namespace FCS_Funding.Views
             if (DonorFirstName != null && DonorFirstName != "" && DonorLastName != null && DonorLastName != "" && ContactPhone != null && ContactPhone != ""
                 && ContactEmail != null && ContactEmail != "")
             {
-                FCS_FundingContext db = new FCS_FundingContext();
+                FCS_FundingDBModel db = new FCS_FundingDBModel();
                 MessageBox.Show(DonorFirstName + "\n" + DonorLastName + "\n" + ContactPhone + "\n" + ContactEmail + "\n" + DonorAddress1 + "\n" + DonorAddress2
                     + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip + "\n" + DonorType + "\n" + OrganizationName);
-                Donor d = new Donor(DonorType, OrganizationName, DonorAddress1, DonorAddress2, DonorState, DonorCity, DonorZip);
-                DonorContact dc = new DonorContact(DonorFirstName, DonorLastName, ContactPhone, ContactEmail, d.DonorID);
+                Donor d = new Donor();
+                DonorContact dc = new DonorContact();
+
+                d.DonorType = DonorType;
+                d.OrganizationName = OrganizationName;
+                d.DonorAddress1 = DonorAddress1;
+                d.DonorAddress2 = DonorAddress2;
+                d.DonorState = DonorState;
+                d.DonorCity = DonorCity;
+                d.DonorZip = DonorZip;
+
+                dc.ContactFirstName = DonorFirstName;
+                dc.ContactLastName = DonorLastName;
+                dc.ContactPhone = ContactPhone;
+                dc.ContactEmail = ContactEmail;
+                dc.DonorID = d.DonorID;
+
                 db.Donors.Add(d);
                 db.DonorContacts.Add(dc);
                 db.SaveChanges();

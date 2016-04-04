@@ -1,24 +1,26 @@
-using System;
-using System.Collections.Generic;
-
 namespace FCS_Funding.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("FundRaisingEvent")]
     public partial class FundRaisingEvent
     {
-        public FundRaisingEvent(DateTime start, DateTime end, string name, string des)
-        {
-            EventStartDateTime = start;
-            EventEndDateTime = end;
-            EventName = name;
-            EventDescription = des;
-        }
-        public FundRaisingEvent()
-        { }
-
+        [Key]
         public int EventID { get; set; }
-        public System.DateTime EventStartDateTime { get; set; }
-        public System.DateTime EventEndDateTime { get; set; }
+
+        public DateTime EventStartDateTime { get; set; }
+
+        public DateTime EventEndDateTime { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string EventName { get; set; }
+
+        [StringLength(5000)]
         public string EventDescription { get; set; }
     }
 }

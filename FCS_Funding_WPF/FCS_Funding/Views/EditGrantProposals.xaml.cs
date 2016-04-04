@@ -51,7 +51,7 @@ namespace FCS_Funding.Views
                 string GrantStatus = Status.SelectedValue.ToString();
                 MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
 
-                Models.FCS_FundingContext db = new Models.FCS_FundingContext();                                
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();                                
                 var grantproposal = (from p in db.GrantProposals
                                      where p.GrantProposalID == GrantProposalID
                                      select p).First();
@@ -86,7 +86,7 @@ namespace FCS_Funding.Views
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Patient?", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingContext db = new FCS_Funding.Models.FCS_FundingContext();
+                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
                 var grantproposal = (from p in db.GrantProposals
                                     where p.GrantProposalID == GrantProposalID
                                     select p).First();
