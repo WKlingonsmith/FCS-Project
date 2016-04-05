@@ -25,6 +25,7 @@ namespace FCS_Funding.Views
         public string lastName { get; set; }
         public string relationToHead { get; set; }
         public string gender { get; set; }
+        public int PatientID { get; set; }
 
         //setter values
         private string ageGroup { get; set; }
@@ -48,6 +49,7 @@ namespace FCS_Funding.Views
             relationToHead = p.RelationToHead;
             date = p.Time;
             pOQ = p.PatientOQ;
+            PatientID = p.PatientID;
             InitializeComponent();
         }
 
@@ -150,6 +152,13 @@ namespace FCS_Funding.Views
                 case 6:
                     ethnicGroup = "Other"; break;
             }
+        }
+
+        private void AddNewSession(object sender, RoutedEventArgs e)
+        {            
+            AddSession ans = new AddSession(PatientID);
+            ans.Show();
+            ans.Topmost = true;
         }
     }
 }

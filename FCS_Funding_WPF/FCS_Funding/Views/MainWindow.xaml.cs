@@ -59,6 +59,7 @@ namespace FCS_Funding
                         select new PatientGrid
                         {
                             PatientOQ = patient.PatientOQ,
+                            PatientID = patient.PatientID,
                             FirstName = patient.PatientFirstName,
                             LastName = patient.PatientLastName,
                             Gender = patient.PatientGender,

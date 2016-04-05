@@ -17,6 +17,7 @@ namespace FCS_DataTesting
         public DateTime Time { get; set; }
         public Boolean IsHead { get; set; }
         public string RelationToHead { get;  set; }
+        public int PatientID { get; set; }
 
         public PatientGrid(int p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth)
         {

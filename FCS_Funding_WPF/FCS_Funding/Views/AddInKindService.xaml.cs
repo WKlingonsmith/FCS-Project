@@ -147,13 +147,11 @@ namespace FCS_Funding.Views
             var box = sender as ComboBox;
             box.ItemsSource = query;
         }
-
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
         {
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>() { "AM", "PM" };
         }
-        
 
         private void Hour_LostFocus(object sender, RoutedEventArgs e)
         {

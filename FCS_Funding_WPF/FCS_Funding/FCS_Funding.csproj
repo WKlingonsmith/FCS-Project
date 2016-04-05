@@ -143,6 +143,9 @@
     <Compile Include="Views\AddInKindService.xaml.cs" />
     <Compile Include="Views\AddNewContact.xaml.cs" />
     <Compile Include="Views\AddNewGrant.xaml.cs" />
+    <Compile Include="Views\AddSession.xaml.cs">
+      <DependentUpon>AddSession.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CreateGrantProposal.xaml.cs" />
     <Compile Include="Views\CreateHousehold.xaml.cs" />
     <Compile Include="Views\CreateIndividualContact.xaml.cs" />
@@ -222,6 +225,10 @@
     <Page Include="Views\AddNewGrant.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddSession.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateGrantProposal.xaml">
       <Generator>MSBuild:Compile</Generator>

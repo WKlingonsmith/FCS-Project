@@ -58,6 +58,7 @@ namespace FCS_Funding.Views
                     d.Restricted = true;
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
+                    d.DonationAmountRemaining = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
                     d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
                     d.DonationAmount = DonationAmount;
