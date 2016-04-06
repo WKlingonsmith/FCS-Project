@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="UpdateEvent" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Window.Background>
+        <RadialGradientBrush>
+            <GradientStop Color="Black"/>
+            <GradientStop Color="#FFB5EEFF" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -49,7 +55,7 @@
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Panel" Property="Background" Value="#FFA500" />
+                                        <Setter TargetName="Panel" Property="Background" Value="#FFB5EEFF" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="False">
                                         <Setter TargetName="Panel" Property="Background" Value="#EEE8AA" />
@@ -61,7 +67,13 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Update Event" Height="30" Margin="0,0,0.2,0.4">
+            <TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFB5EEFF" Offset="0.422"/>
+                </LinearGradientBrush>
+            </TabControl.Background>
+            <TabItem Header="Update Event" Height="30" Background="Black">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -90,21 +102,21 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Update Event" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
-                    <TextBlock Text="Event Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="146,10,32.4,0" />
+                    <TextBlock Text="Update Event" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="0.4,0.4,0.2,22.8" Grid.RowSpan="2" FontFamily="Razer Header Regular Oblique" FontWeight="Bold" TextDecorations="Underline" />
+                    <TextBlock Text="Event Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="146,10,32.4,0" FontWeight="Bold" />
                     <Border Grid.Row="3" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="3"  BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
                         <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding EventName, ElementName=ThisWindow}"  />
                     </Border>
-                    <TextBlock Text="Event Description:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="146,10,32.4,0" />
+                    <TextBlock Text="Event Description:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="146,10,32.4,0" FontWeight="Bold" />
                     <Border Grid.Row="4" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="3"  BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
                         <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding EventDescription, ElementName=ThisWindow}"  />
                     </Border>
 
-                    <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="178,6,0.4,4" Grid.ColumnSpan="2" />
+                    <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="178,6,0.4,4" Grid.ColumnSpan="2" FontWeight="Bold" />
                     <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
                    HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="21,0,10,5" >
                     </DatePicker>
-                    <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="179,8,177.8,2" Grid.ColumnSpan="3" />
+                    <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="179,8,177.8,2" Grid.ColumnSpan="3" FontWeight="Bold" />
                     <TextBox LostFocus="Hour_LostFocus"  Grid.Row="9" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginHour, ElementName=ThisWindow}"  />
                     <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="9" Height="30" Margin="39.6,0,128.8,10"  />
@@ -113,7 +125,7 @@
                     <ComboBox Name="AMPM_Start"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="2"  Grid.Row="9" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
 
-                    <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="178,8,0.4,2" Grid.ColumnSpan="2" />
+                    <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="178,8,0.4,2" Grid.ColumnSpan="2" FontWeight="Bold" />
                     <TextBox LostFocus="Hour_LostFocus" Grid.Row="10" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndHour, ElementName=ThisWindow}"  />
                     <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="10" Height="30" Margin="39.6,0,128.8,10"  />
@@ -155,7 +167,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Donations" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <TextBlock Text="Donations" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" FontFamily="Razer Header Regular Oblique" FontWeight="Bold" TextDecorations="Underline" Height="52" Margin="0.4,-4,0.2,22.4" Grid.RowSpan="2" />
                     <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
                         <DataGrid.Columns>
@@ -201,7 +213,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="In-Kind Items" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <TextBlock Text="In-Kind Items" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Height="54" Margin="0.4,-6,0.2,22.4" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
                     <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" PreviewMouseDoubleClick="Edit_InKindItem">
                         <DataGrid.Columns>
@@ -246,7 +258,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="In-Kind Services" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+                    <TextBlock Text="In-Kind Services" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Height="54" Margin="0.4,-6,0.2,22.4" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
                     <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" PreviewMouseDoubleClick="Edit_InKindService"
                               IsReadOnly="True" CanUserDeleteRows="False" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
                         <DataGrid.Columns>
