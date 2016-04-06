@@ -95,6 +95,9 @@ namespace FCS_Funding.Views
             expense.PatientID = PatientID;
             expense.AppointmentID = a.AppointmentID;
             expense.ExpenseDueDate = expenseDueDate;
+            expense.DonorBill = DonorBill;
+            expense.PatientBill = PatientBill;
+            expense.TotalExpenseAmount = DonorBill + PatientBill;
             db.Expenses.Add(expense);
             db.SaveChanges();
 

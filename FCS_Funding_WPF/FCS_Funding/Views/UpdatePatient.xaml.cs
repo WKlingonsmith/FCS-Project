@@ -175,9 +175,9 @@ namespace FCS_Funding.Views
                             AppointmentStart = a.AppointmentStartDate,
                             AppointmentEnd = a.AppointmentEndDate,
                             ExpenseDueDate = ex.ExpenseDueDate,
-                            DonorBill = 0,
-                            PatientBill = 0,
-                            TotalExpense = 0
+                            DonorBill = ex.DonorBill,
+                            PatientBill = ex.PatientBill,
+                            TotalExpense = ex.TotalExpenseAmount
                         };
             // ... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
