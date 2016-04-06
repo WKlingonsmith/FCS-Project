@@ -1,0 +1,75 @@
+﻿<Window x:Class="FCS_Funding.Views.UpdateAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FCS_Funding.Views"
+        mc:Ignorable="d"
+        Title="Update_Account" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Update Account" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+
+        <TextBlock Text="User Name:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="178,0,0.4,10" RenderTransformOrigin="0.546,3.147" />
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding UserName, ElementName=ThisWindow}"  />
+        </Border>
+        <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" />
+        <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding FirstName, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" />
+        <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding LastName, ElementName=ThisWindow}"/>
+        </Border>
+        <TextBlock Text="Staff Title:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Grid.ColumnSpan="3" Margin="179,5,178.6,5" />
+        <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding StaffTitle, ElementName=ThisWindow}"  />
+        </Border>
+
+        <TextBlock Text="User Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Grid.ColumnSpan="3" Margin="179,0,177.8,10" />
+        <ComboBox Name="UserRole" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="UserType_DropdownLoaded"
+                  HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="1" Grid.Row="10" FontSize="20" Grid.ColumnSpan="2" Margin="178.8,0,3.8,0">
+        </ComboBox>
+
+        <Button FontSize="18" Grid.Column="2" Grid.Row="11" Content="Update Account" Click="Update_Account" Grid.ColumnSpan="2" Margin="85.6,13,94,27" Grid.RowSpan="2" />
+        <TextBlock Text="Password:" TextAlignment="Center"  FontSize="18" Grid.Row="13" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" />
+        <Border Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <PasswordBox Name="Password"  FontSize="18" />
+        </Border>
+        <TextBlock Text="Verify Password:" TextAlignment="Center"  FontSize="18" Grid.Row="14" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" />
+        <Border Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <PasswordBox Name="VerifyPassword"  FontSize="18" />
+        </Border>
+        <Button FontSize="18" Grid.Column="2" Grid.Row="15" Content="Update Password" Click="UpdatePasword" Grid.ColumnSpan="2" Margin="85.6,13,94,27" Grid.RowSpan="2" />
+    </Grid>
+
+</Window>

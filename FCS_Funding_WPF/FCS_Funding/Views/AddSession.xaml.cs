@@ -24,6 +24,12 @@ namespace FCS_Funding.Views
         public string EndHour { get; set; }
         public string EndMinute { get; set; }
         public int PatientID { get; set; }
+        public decimal PatientBill { get; set; }
+        public decimal DonorBill { get; set; }
+        public string ExpenseType { get; set; }
+        public string ExpenseDescription { get; set; }
+
+
         public AddSession(int patientID)
         {
             PatientID = patientID;
@@ -48,10 +54,53 @@ namespace FCS_Funding.Views
             {
                 EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
             }
+            DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
             DateTime help = Convert.ToDateTime(DateRecieved.ToString());
             DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
             DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
-            decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
+            string[] separators = new string[] { ", " };
+            string staff = Staff.SelectedValue.ToString();
+            string grant = Grant.SelectedValue.ToString();            
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            MessageBox.Show(PatientBill + "\n" + DonorBill + "\n" + startDateTime + "\n" + endDateTime + "\n" + expenseDueDate + "\n" + staff, grant);
+            string[] words = staff.Split(separators, StringSplitOptions.None);
+            string FName = words[0]; string LName = words[1]; string username = words[2];
+            var staffID = (from dc in db.Staffs
+                            where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
+                           select dc.StaffID).Distinct().FirstOrDefault();
+            var grantID = (from g in db.GrantProposals
+                           where g.GrantName == grant
+                           select g.GrantProposalID).Distinct().FirstOrDefault();
+            var donationID = (from d in db.Donations
+                              where d.GrantProposalID == grantID
+                              select d.DonationID).Distinct().FirstOrDefault();
+
+            Models.ExpenseType extype = new Models.ExpenseType();
+            extype.ExpenseType1 = ExpenseType;
+            extype.ExpenseDescription = ExpenseDescription;
+            db.ExpenseTypes.Add(extype);
+            db.SaveChanges();
+
+            Models.Appointment a = new Models.Appointment();
+            a.StaffID = staffID;
+            a.AppointmentStartDate = startDateTime;
+            a.AppointmentEndDate = endDateTime;
+            db.Appointments.Add(a);
+            db.SaveChanges();
+
+            Models.Expense expense = new Models.Expense();
+
+            expense.ExpenseTypeID = extype.ExpenseTypeID;
+            expense.DonationID = donationID;
+            expense.PatientID = PatientID;
+            expense.AppointmentID = a.AppointmentID;
+            expense.ExpenseDueDate = expenseDueDate;
+            db.Expenses.Add(expense);
+            db.SaveChanges();
+
+           
+            MessageBox.Show("Successfully added In_Kind Service");
+            this.Close();
         }
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
         {
@@ -131,6 +180,16 @@ namespace FCS_Funding.Views
             var query = (from o in db.GrantProposals
                          where o.GrantStatus == "Accepted"
                          select o.GrantName).ToList();
+
+            var box = sender as ComboBox;
+            box.ItemsSource = query;
+        }
+
+        private void Staff_DropDown(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            var query = (from o in db.Staffs
+                         select o.StaffFirstName + ", " + o.StaffLastName + ", " + o.StaffUserName).ToList();
 
             var box = sender as ComboBox;
             box.ItemsSource = query;

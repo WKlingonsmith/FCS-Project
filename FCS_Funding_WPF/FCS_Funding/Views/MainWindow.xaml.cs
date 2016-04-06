@@ -785,5 +785,34 @@ namespace FCS_Funding
                 up.Topmost = true;
             }
         }
+
+        private void EditAccount(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (Count < 2 && StaffDBRole != "Basic")
+            {
+                DataGrid dg = sender as DataGrid;
+                AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateAccount up = new UpdateAccount(p);
+                if(p.StaffDBRole == "No Access")
+                {
+                    up.UserRole.SelectedIndex = 0;
+                }
+                else if(p.StaffDBRole == "Basic")
+                {
+                    up.UserRole.SelectedIndex = 1;
+                }
+                else if (p.StaffDBRole == "User")
+                {
+                    up.UserRole.SelectedIndex = 2;
+                }
+                else if (p.StaffDBRole == "Admin")
+                {
+                    up.UserRole.SelectedIndex = 3;
+                }
+                up.Topmost = true;
+                up.Show();
+            }
+        }
     }
 }

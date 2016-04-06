@@ -46,6 +46,7 @@ namespace FCS_Funding
                 if(query.StaffDBRole == "No Access")
                 {
                     MessageBox.Show("You do not have access to Login");
+                    mw.Close();
                     return;
                 }
                 else if(query.StaffDBRole == "Basic")
@@ -66,7 +67,14 @@ namespace FCS_Funding
                 }
                 else if (query.StaffDBRole == "Admin")
                 {
-
+                    mw.CreateNewPat.IsEnabled = true;
+                    mw.CreateGrantProp.IsEnabled = true;
+                    mw.CreateNewDon.IsEnabled = true;
+                    mw.AddItem.IsEnabled = true;
+                    mw.AddService.IsEnabled = true;
+                    mw.CreateEven.IsEnabled = true;
+                    mw.AdminTab.IsEnabled = true;
+                    mw.AdminTab.Visibility = Visibility.Visible;
                 }
                 mw.Show();
                 this.Close();
@@ -77,10 +85,6 @@ namespace FCS_Funding
             }
             
         }
-
-        private void Username_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

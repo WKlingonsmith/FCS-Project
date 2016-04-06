@@ -160,5 +160,28 @@ namespace FCS_Funding.Views
             ans.Show();
             ans.Topmost = true;
         }
+
+        private void SessionsGrid(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            var join1 = from s in db.Staffs
+                        join a in db.Appointments on s.StaffID equals a.StaffID
+                        join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
+                        where ex.PatientID == PatientID
+                        select new SessionsGrid
+                        {
+                            StaffFirstName = s.StaffFirstName,
+                            StaffLastName = s.StaffLastName,
+                            AppointmentStart = a.AppointmentStartDate,
+                            AppointmentEnd = a.AppointmentEndDate,
+                            ExpenseDueDate = ex.ExpenseDueDate,
+                            DonorBill = 0,
+                            PatientBill = 0,
+                            TotalExpense = 0
+                        };
+            // ... Assign ItemsSource of DataGrid.
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join1.ToList();
+        }
     }
 }

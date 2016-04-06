@@ -555,7 +555,7 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Column="0" Grid.Row="2" Content="Create New Account" Margin="0,9.4,9.6,39.2" Grid.RowSpan="2" Click="CreateNewAccount"/>
                     <Button Grid.Column="0" Grid.Row="3" Content="Create Backup" Margin="2,24.6,9.6,24" Grid.RowSpan="2"/>
-                    <DataGrid  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Admin_Grid" CanUserResizeColumns="True" 
+                    <DataGrid  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Admin_Grid" CanUserResizeColumns="True" PreviewMouseDoubleClick="EditAccount"
                                IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="3.4,9.4,0.6,53.4" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Staff ID" Width="100" Binding="{Binding StaffID}"/>
