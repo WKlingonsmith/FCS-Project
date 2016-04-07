@@ -8,7 +8,7 @@ namespace FCS_Funding.Models
     public partial class FCS_FundingDBModel : DbContext
     {
         public FCS_FundingDBModel()
-            : base("name=FCS_FundingDBConnection")
+            : base("name=FCS_FundingDBModel1")
         {
         }
 
