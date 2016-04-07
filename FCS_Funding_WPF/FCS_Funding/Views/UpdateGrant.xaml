@@ -44,11 +44,11 @@
         </Border>
         <TextBlock Text="Donation Amount:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" />
         <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonationAmount, ElementName=ThisWindow}"/>
+            <TextBox Name="DonAmount"  FontSize="18" Text="{Binding DonationAmount, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Amount Remaining:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" />
         <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding DonationAmountRemaining, ElementName=ThisWindow}"/>
+            <TextBox Name="AmountRem" FontSize="18" Text="{Binding DonationAmountRemaining, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Grant Date:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0"/>
         <DatePicker Name="DonationDate"  HorizontalAlignment="Center" VerticalAlignment="Center"

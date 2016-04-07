@@ -68,42 +68,56 @@ namespace FCS_Funding.Views
             var staffID = (from dc in db.Staffs
                             where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
                            select dc.StaffID).Distinct().FirstOrDefault();
-            var grantID = (from g in db.GrantProposals
+            var grantproposalID = (from g in db.GrantProposals
                            where g.GrantName == grant
                            select g.GrantProposalID).Distinct().FirstOrDefault();
             var donationID = (from d in db.Donations
-                              where d.GrantProposalID == grantID
+                              where d.GrantProposalID == grantproposalID
                               select d.DonationID).Distinct().FirstOrDefault();
+            var donation = (from d in db.Donations
+                              where d.GrantProposalID == grantproposalID
+                              select d).First();
+            if (donation.DonationAmountRemaining >= DonorBill)
+            {
 
-            Models.ExpenseType extype = new Models.ExpenseType();
-            extype.ExpenseType1 = ExpenseType;
-            extype.ExpenseDescription = ExpenseDescription;
-            db.ExpenseTypes.Add(extype);
-            db.SaveChanges();
+                Models.ExpenseType extype = new Models.ExpenseType();
+                extype.ExpenseType1 = ExpenseType;
+                extype.ExpenseDescription = ExpenseDescription;
+                db.ExpenseTypes.Add(extype);
+                db.SaveChanges();
 
-            Models.Appointment a = new Models.Appointment();
-            a.StaffID = staffID;
-            a.AppointmentStartDate = startDateTime;
-            a.AppointmentEndDate = endDateTime;
-            db.Appointments.Add(a);
-            db.SaveChanges();
+                Models.Appointment a = new Models.Appointment();
+                a.StaffID = staffID;
+                a.AppointmentStartDate = startDateTime;
+                a.AppointmentEndDate = endDateTime;
+                db.Appointments.Add(a);
+                db.SaveChanges();
 
-            Models.Expense expense = new Models.Expense();
+                Models.Expense expense = new Models.Expense();
 
-            expense.ExpenseTypeID = extype.ExpenseTypeID;
-            expense.DonationID = donationID;
-            expense.PatientID = PatientID;
-            expense.AppointmentID = a.AppointmentID;
-            expense.ExpenseDueDate = expenseDueDate;
-            expense.DonorBill = DonorBill;
-            expense.PatientBill = PatientBill;
-            expense.TotalExpenseAmount = DonorBill + PatientBill;
-            db.Expenses.Add(expense);
-            db.SaveChanges();
+                expense.ExpenseTypeID = extype.ExpenseTypeID;
+                expense.DonationID = donationID;
+                expense.PatientID = PatientID;
+                expense.AppointmentID = a.AppointmentID;
+                expense.ExpenseDueDate = expenseDueDate;
+                expense.DonorBill = DonorBill;
+                expense.PatientBill = PatientBill;
+                expense.TotalExpenseAmount = DonorBill + PatientBill;
+                if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                db.Expenses.Add(expense);
+                db.SaveChanges();
 
-           
-            MessageBox.Show("Successfully added In_Kind Service");
-            this.Close();
+                donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
+                db.SaveChanges();
+
+
+                MessageBox.Show("Successfully added In_Kind Service");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("That grant does not have enough money.");
+            }
         }
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
         {
@@ -196,6 +210,17 @@ namespace FCS_Funding.Views
 
             var box = sender as ComboBox;
             box.ItemsSource = query;
+        }
+        private void Change_Paid_Bill(object sender, RoutedEventArgs e)
+        {
+            if (IsPaid.IsChecked.Value)
+            {
+                ExpensePaidDate.IsEnabled = true;
+            }
+            else
+            {
+                ExpensePaidDate.IsEnabled = false;
+            }
         }
     }
 }

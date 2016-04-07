@@ -40,6 +40,7 @@ namespace FCS_Funding.Views
             DonorAddress1 = d.DonorAddress1;
             DonorAddress2 = d.DonorAddress2;
             DonorCity = d.DonorCity;
+            DonorState = d.DonorState;
             DonorType = d.DonorType;
             DonorZip = d.DonorZip;
             OrganizationName = d.OrganizationName;
@@ -64,16 +65,17 @@ namespace FCS_Funding.Views
                 d.DonorState = DonorState;
                 d.DonorCity = DonorCity;
                 d.DonorZip = DonorZip;
+                db.Donors.Add(d);
+                db.SaveChanges();
 
                 dc.ContactFirstName = DonorFirstName;
                 dc.ContactLastName = DonorLastName;
                 dc.ContactPhone = ContactPhone;
                 dc.ContactEmail = ContactEmail;
                 dc.DonorID = d.DonorID;
-
-                db.Donors.Add(d);
                 db.DonorContacts.Add(dc);
                 db.SaveChanges();
+
                 MessageBox.Show("Successfully added Donor!");
                 this.Close();
             }

@@ -162,95 +162,111 @@ namespace FCS_Funding
             int Count = Application.Current.Windows.Count;
             if (Count < 2 && StaffDBRole != "Basic")
             {
-                DataGrid dg = sender as DataGrid;
-                PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdatePatient up = new UpdatePatient(p);
-                if (StaffDBRole != "Admin")
+                try
                 {
-                    up.DeleteClien.IsEnabled = false;
-                }
-                up.TheHead.IsChecked = p.IsHead;
-                up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
-                up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
-                up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
-                //up.firstName = p.FirstName;
-                //up.lastName = p.LastName;
-                //up.patientOQ = p.PatientOQ;
-                //up.relationToHead = p.RelationToHead;
-                up.Topmost = true;
-                up.Show();
-            }
-        }
-        private void EditDonor(object sender, MouseButtonEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count < 2 && StaffDBRole != "Basic")
-            {
-                DataGrid dg = sender as DataGrid;
-                DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                if (p.DonorType == "Individual" )
-                {
-                    Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                    //Open in individual view
-                    Models.DonorContact query = (from doncontacts in db.DonorContacts
-                                where doncontacts.DonorID == p.DonorID
-                                select doncontacts).First();
-                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffDBRole);
+                    DataGrid dg = sender as DataGrid;
+                    PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdatePatient up = new UpdatePatient(p);
                     if (StaffDBRole != "Admin")
                     {
-                        id.DeleteIndDonor.IsEnabled = false;
+                        up.DeleteClien.IsEnabled = false;
                     }
-                    id.Show();
-                    id.dType.SelectedIndex = 1;
-                    id.oName.IsEnabled = false;
-                    id.Topmost = true;
-                }
-                else if(p.DonorType == "Anonymous")
-                {
-                    Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                    Models.DonorContact query = (from doncontacts in db.DonorContacts
-                                                 where doncontacts.DonorID == p.DonorID
-                                                 select doncontacts).First();
-                    UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffDBRole);
-                    if (StaffDBRole != "Admin")
-                    {
-                        id.DeleteIndDonor.IsEnabled = false;
-                    }
-                    id.Show();
-                    id.UpdateIndDonor.IsEnabled = false;
-                    id.dType.SelectedIndex = 2;
-                    id.fName.IsEnabled = false;
-                    id.lName.IsEnabled = false;
-                    id.oName.IsEnabled = false;
-                    id.donA1.IsEnabled = false;
-                    id.donA2.IsEnabled = false;
-                    id.cPhone.IsEnabled = false;
-                    id.dCity.IsEnabled = false;
-                    id.cPhone.IsEnabled = false;
-                    id.dState.IsEnabled = false;
-                    id.dZip.IsEnabled = false;
-                    id.cEmail.IsEnabled = false;
-                    id.Topmost = true;
-
-                }
-                else
-                {
-                    UpdateDonor up = new UpdateDonor(p, StaffDBRole);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteDon.IsEnabled = false;
-                    }
+                    up.TheHead.IsChecked = p.IsHead;
+                    up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
+                    up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
+                    up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
                     //up.firstName = p.FirstName;
                     //up.lastName = p.LastName;
                     //up.patientOQ = p.PatientOQ;
                     //up.relationToHead = p.RelationToHead;
-                    up.Show();
                     up.Topmost = true;
+                    up.Show();
                 }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("You already deleted this Patient");
+                }
+            }
+        }
+        private void EditDonor(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                int Count = Application.Current.Windows.Count;
+                if (Count < 2 && StaffDBRole != "Basic")
+                {
+                    DataGrid dg = sender as DataGrid;
+                    DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    if (p.DonorType == "Individual")
+                    {
+                        Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                        //Open in individual view
+                        Models.DonorContact query = (from doncontacts in db.DonorContacts
+                                                     where doncontacts.DonorID == p.DonorID
+                                                     select doncontacts).First();
+                        UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffDBRole);
+                        if (StaffDBRole != "Admin")
+                        {
+                            id.DeleteIndDonor.IsEnabled = false;
+                        }
+                        id.Show();
+                        id.dType.SelectedIndex = 1;
+                        id.oName.IsEnabled = false;
+                        id.Topmost = true;
+                    }
+                    else if (p.DonorType == "Anonymous")
+                    {
+                        Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                        Models.DonorContact query = (from doncontacts in db.DonorContacts
+                                                     where doncontacts.DonorID == p.DonorID
+                                                     select doncontacts).First();
+                        UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffDBRole);
+                        if (StaffDBRole != "Admin")
+                        {
+                            id.DeleteIndDonor.IsEnabled = false;
+                        }
+                        id.Show();
+                        id.UpdateIndDonor.IsEnabled = false;
+                        id.dType.SelectedIndex = 2;
+                        id.fName.IsEnabled = false;
+                        id.lName.IsEnabled = false;
+                        id.oName.IsEnabled = false;
+                        id.donA1.IsEnabled = false;
+                        id.donA2.IsEnabled = false;
+                        id.cPhone.IsEnabled = false;
+                        id.dCity.IsEnabled = false;
+                        id.cPhone.IsEnabled = false;
+                        id.dState.IsEnabled = false;
+                        id.dZip.IsEnabled = false;
+                        id.cEmail.IsEnabled = false;
+                        id.Topmost = true;
+
+                    }
+                    else
+                    {
+                        UpdateDonor up = new UpdateDonor(p, StaffDBRole);
+                        if (StaffDBRole != "Admin")
+                        {
+                            up.DeleteDon.IsEnabled = false;
+                        }
+                        //up.firstName = p.FirstName;
+                        //up.lastName = p.LastName;
+                        //up.patientOQ = p.PatientOQ;
+                        //up.relationToHead = p.RelationToHead;
+                        up.Show();
+                        up.Topmost = true;
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("You already deleted this Donor");
             }
         }
         private void EditGrant(object sender, MouseButtonEventArgs e)
         {
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
             int Count = Application.Current.Windows.Count;
             if (Count < 2 && StaffDBRole != "Basic")
             {
@@ -261,6 +277,12 @@ namespace FCS_Funding
                 {
                     up.DeleteGran.IsEnabled = false;
                 }
+                //Grant prop ID & donation ID with expense
+                //p.DonationID
+                var expenseTotal = (from ex in db.Expenses
+                                    where ex.DonationID == p.DonationID
+                                    select ex).Count();
+                if(expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
                 up.DonationDate.SelectedDate = p.DonationDate;
                 up.DonationExpirationDate.SelectedDate = p.ExpirationDate;
                 up.Topmost = true;
