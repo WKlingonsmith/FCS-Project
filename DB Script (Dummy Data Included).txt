@@ -1,0 +1,605 @@
+GO
+Use Master
+GO
+IF EXISTS (SELECT name FROM master.sys.databases WHERE name = N'FCS_Funding')
+DROP Database FCS_Funding
+GO
+CREATE DATABASE FCS_Funding;
+GO
+USE FCS_Funding;
+
+CREATE TABLE Donation
+(
+    DonationID              INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    EventID                 INT             NULL,
+    DonorID                 INT             NOT NULL,
+    GrantProposalID INT                     NULL,
+    Restricted              bit             NOT NULL,
+    InKind                  bit             NOT NULL,
+    DonationAmount          Money           NOT NULL,
+    DonationAmountRemaining Money           NOT NULL,
+    DonationDate            date            NOT NULL,
+    DonationExpirationDate  date            NULL
+);
+
+CREATE TABLE In_Kind_Service
+(
+    ServiceID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    DonationID              INT             NOT NULL,
+    StartDateTime           datetime        NOT NULL,
+    EndDateTime             datetime        NOT NULL,
+    RatePerHour             Money           NOT NULL,
+    ServiceDescription      VarChar(5000)   NOT NULL,
+    ServiceLength           FLOAT           NOT NULL,
+    ServiceValue            Money           NOT NULL
+);
+
+CREATE TABLE In_Kind_Item
+(
+    ItemID                  INT             NOT NULL            IDENTITY(1,1)           PRIMARY KEY,
+    DonationID              INT             NOT NULL,
+    ItemName                VarChar(50)     NOT NULL,
+    ItemDescription         VarChar(5000)   NOT NULL
+);
+
+CREATE TABLE FundRaisingEvent
+(
+    EventID                 INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    EventStartDateTime      datetime        NOT NULL,
+    EventEndDateTime        datetime        NOT NULL,
+    EventName               VarChar(50)     NOT NULL,
+    EventDescription        VarChar(5000)   NULL
+);
+
+CREATE TABLE Expense
+(
+    ExpenseID                   INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    ExpenseTypeID               INT             NOT NULL,
+    DonationID                  INT             NULL,
+    PatientID                   INT             NULL,
+    AppointmentID               INT             NULL,
+    ExpenseDueDate              Date            NOT NULL,
+    ExpensePaidDate             Date            NULL,
+    DonorBill                   Money           NOT NULL,
+    PatientBill                 Money           NOT NULL,
+    TotalExpenseAmount          Money           NOT NULL
+);
+
+CREATE TABLE DonationPurpose
+(
+    DonationPurposeID       INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    DonationID              INT             NOT NULL,
+    PurposeID               INT             NOT NULL,
+    DonationPurposeAmount   Money           NOT NULL
+);
+
+CREATE TABLE Donor
+(
+    DonorID                 INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    DonorType               Varchar(50)     NOT NULL,
+    OrganizationName        VarChar(250)    NULL,
+    DonorAddress1           VarChar(50)     NULL,
+    DonorAddress2           VarChar(50)     NULL,
+    DonorState              VarChar(2)      NULL,
+    DonorCity               VarChar(200)    NULL,
+    DonorZip                varchar(10)     NULL
+);
+
+CREATE TABLE Reminder
+(
+    ReminderID              INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    DonorID                 INT             NOT NULL,
+    ReminderDate            datetime        NOT NULL,
+    ReminderDescription     VarChar(5000)   NULL
+);
+
+CREATE TABLE DonorContact
+(
+    ContactID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    DonorID                 INT             NOT NULL,
+    ContactFirstName        VarChar(30)     NOT NULL,
+    ContactLastName         VarChar(30)     NOT NULL,
+    ContactPhone            VarChar(10)     NOT NULL,
+    ContactEmail            VarChar(700)    NULL
+);
+
+CREATE TABLE GrantProposal
+(
+    GrantProposalID         INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    DonorID                 INT             NOT NULL,
+    GrantName               VarChar(50)     NOT NULL,
+    SubmissionDueDate       date            NOT NULL,
+    GrantStatus             varchar(15)     NOT NULL        
+);
+
+CREATE TABLE Purpose
+(
+    PurposeID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    PurposeName             VarChar(100)    NOT NULL,
+    PurposeDescription      VarChar(5000)   NOT NULL
+);
+
+CREATE TABLE Problem
+(
+    ProblemID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    ProblemType             VarChar(50)     NOT NULL        
+)
+
+CREATE TABLE PatientProblem
+(
+    PatientProblemID        INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    PatientID               INT             NOT NULL,
+    ProblemID               INT             NOT NULL,
+    ProbelmType             Varchar(50)     NOT NULL                
+);
+
+CREATE TABLE Patient
+(
+    PatientID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    PatientOQ               INT             NOT NULL,
+    HouseholdID             INT             NOT NULL,
+    PatientFirstName        VarChar(50)     NOT NULL,
+    PatientLastName         VarChar(50)     NOT NULL,
+    PatientGender           Varchar(6)      NULL,
+    PatientAgeGroup         varchar(6)      NULL,
+    PatientEthnicity        Varchar(50)     NULL,
+    NewClientIntakeHour     DateTime        NOT NULL,
+    IsHead                  bit             NOT NULL,
+    RelationToHead          Varchar(30)     NOT NULL            
+);
+
+CREATE TABLE ExpenseType
+(
+    ExpenseTypeID           INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    ExpenseType             VarChar(50)     NOT NULL,
+    ExpenseDescription      VarChar(5000)   NULL
+);
+
+Create Table PatientHousehold
+(
+    HouseholdID             INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    HouseholdPopulation     INT             NOT NULL,
+    HouseholdIncomeBracket  varchar(15)     NOT NULL,
+    HouseholdCounty         Varchar(50)     NOT NULL        
+);
+
+Create Table Appointment
+(
+    AppointmentID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    StaffID                     INT             NOT NULL,
+    AppointmentStartDate        DateTime        NOT NULL,
+    AppointmentEndDate          DateTime        NOT NULL,
+    AppointmentCancelationType  varchar(12)     NULL
+);
+
+Create Table Staff
+(
+    StaffID                     INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
+    StaffFirstName              varchar(50)     NOT NULL,
+    StaffLastName               varchar(50)     NOT NULL,
+    StaffTitle                  varchar(50)     NOT NULL,
+    StaffUserName               varchar(50)     NULL,
+    StaffPassword               varchar(50)     NULL,
+    StaffDBRole                 varchar(50)     NOT NULL
+);
+
+
+GO
+ALTER TABLE Appointment
+    ADD
+    CONSTRAINT FK_StaffID
+    FOREIGN KEY(StaffID) REFERENCES Staff(StaffID);
+
+ALTER TABLE Donation
+    ADD
+    CONSTRAINT FK_Donation_DonorID
+    FOREIGN KEY(DonorID) REFERENCES Donor(DonorID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE In_Kind_Item
+    ADD
+    CONSTRAINT FK_Item_DonationID
+    FOREIGN KEY(DonationID) REFERENCES Donation(DonationID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE In_Kind_Service
+    ADD
+    CONSTRAINT FK_Service_DonationID
+    FOREIGN KEY(DonationID) REFERENCES Donation(DonationID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE Expense
+    ADD
+    CONSTRAINT FK_Expense_ExpenseTypeID
+    FOREIGN KEY(ExpenseTypeID) REFERENCES ExpenseType(ExpenseTypeID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE Expense
+    ADD
+    CONSTRAINT FK_Expense_DonationID
+    FOREIGN KEY(DonationID) REFERENCES Donation(DonationID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE Expense
+    ADD
+    CONSTRAINT FK_Expense_PatientID
+    FOREIGN KEY(PatientID) REFERENCES Patient(PatientID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+Alter Table Expense
+    ADD 
+    CONSTRAINT FK_AppointmentID
+    FOREIGN KEY(AppointmentID) REFERENCES Appointment(AppointmentID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+    
+ALTER TABLE DonationPurpose
+    ADD 
+    CONSTRAINT FK_DonationPurpose_DonationID
+    FOREIGN KEY(DonationID) REFERENCES Donation(DonationID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE DonationPurpose
+    ADD 
+    CONSTRAINT FK_DonationPurpose_PurposeID
+    FOREIGN KEY(PurposeID) REFERENCES Purpose(PurposeID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+    
+ALTER TABLE Reminder
+    ADD 
+    CONSTRAINT FK_Reminder_DonorID
+    FOREIGN KEY(DonorID) REFERENCES Donor(DonorID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE DonorContact
+    ADD 
+    CONSTRAINT FK_DonorContact_DonorID
+    FOREIGN KEY(DonorID) REFERENCES Donor(DonorID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+ALTER TABLE GrantProposal
+    ADD 
+    CONSTRAINT FK_GrantProposal_DonorID
+    FOREIGN KEY(DonorID) REFERENCES Donor(DonorID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+    
+Alter Table Patient
+    ADD 
+    CONSTRAINT FK_HouseholdID
+    FOREIGN KEY(HouseholdID) REFERENCES PatientHousehold(HouseholdID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+Alter Table PatientProblem
+    ADD 
+    CONSTRAINT FK_PatientID
+    FOREIGN KEY(PatientID) REFERENCES Patient(PatientID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+
+Alter Table PatientProblem
+    ADD 
+    CONSTRAINT FK_ProblemID
+    FOREIGN KEY(ProblemID) REFERENCES Problem(ProblemID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE;
+GO
+---------------------------------------------------------------------
+------------------------------ExpenseTypes---------------------------
+---------------------------------------------------------------------
+INSERT INTO ExpenseType(ExpenseDescription,ExpenseType)
+VALUES('Individual Appointment','Individual')
+
+INSERT INTO ExpenseType(ExpenseDescription,ExpenseType)
+VALUES('Group Appointment','Group')
+
+INSERT INTO ExpenseType(ExpenseDescription,ExpenseType)
+VALUES('Family Appointment','Family')
+
+INSERT INTO ExpenseType(ExpenseDescription,ExpenseType)
+VALUES('Miscellaneous Expense','Misc')
+
+---------------------------------------------------------------------
+------------------------------Households-----------------------------
+---------------------------------------------------------------------
+
+INSERT INTO PatientHousehold (HouseholdPopulation,HouseholdIncomeBracket,HouseholdCounty)
+VALUES(5,'20,000-30,000','Weber')
+
+INSERT INTO PatientHousehold (HouseholdPopulation,HouseholdIncomeBracket,HouseholdCounty)
+VALUES(4,'10,000-25,000','Davis')
+
+---------------------------------------------------------------------
+------------------------Patients in Household 1----------------------
+---------------------------------------------------------------------
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
+VALUES('James', 'Jackson', 1332, 1, 'Male', 'African American', '35-40',1, '2/12/2015 13:00', 'Head')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
+VALUES('Julia', 'Jackson', 12443, 1, 'Female', 'African American', '35-40',0,'2/12/2015 13:00', 'Wife')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
+VALUES('Jerome', 'Jackson', 1221, 1, 'Male', 'African American', '15-18',0,'2/12/2015 13:00', 'Son')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
+VALUES('Denise', 'Jackson', 1123, 1, 'Female', 'African American', '15-18',0,'2/25/2015 13:00', 'Daughter')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
+VALUES('Benjamin', 'Jackson', 4432, 1, 'Male', 'African American', '5-10',0,'2/25/2015 13:00', 'Grandson')
+
+---------------------------------------------------------------------
+------------------------Patients in Household 2----------------------
+---------------------------------------------------------------------
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
+VALUES('Adriana', 'Hernandez', 1444, 2, 'Female', 'Hispanic', '35-40',1, '1/16/2016 15:00', 'Head')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
+VALUES('Francisco', 'Hernandez', 1543, 2, 'Male', 'Hispanic', '10-15',0, '1/16/2016 15:00', 'Son')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
+VALUES('Guermo', 'Hernandez', 1674, 2, 'Male', 'Hispanic', '15-18',0, '1/16/2016 15:00', 'Son')
+
+INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
+VALUES('Iliana', 'Hernandez', 1986, 2, 'Female', 'Hispanic', '5-10',0, '1/26/2016 13:00', 'Daughter')
+
+---------------------------------------------------------------------
+-------------------------------Staff---------------------------------
+---------------------------------------------------------------------
+
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
+VALUES ('Claudius','Ptolemy', 'Doctor', 'No Access')
+
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
+VALUES ('Marc','Antony', 'Doctor', 'No Access')
+
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffUserName, StaffPassword, StaffDBRole)
+VALUES ('Trevor','Booker', 'Team Lead', 'Admin', 'E3AFED0047B08059D0FADA10F400C1E5', 'Admin')
+
+---------------------------------------------------------------------
+----------------------------Appointment------------------------------
+---------------------------------------------------------------------
+
+--This goes with Patients 9 as individual
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(2,'1/26/2016 13:00','1/26/2016 13:30')
+--This goes with Patient 6, 7, 8 as Famil
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(2,'1/16/2016 15:00','1/16/2016 15:30')
+
+--This goes with Patients 1, 2, and 3 as family
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(1,'2/12/2015 13:00','2/12/2015 13:30')
+--This goes with Patient 4 as individual
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(1,'2/25/2015 13:00','2/25/2015 13:30')
+--This goes with Patient 5 as individual
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(1,'2/25/2015 13:30','2/25/2015 14:00')
+--This goes with Patient 4 and 5 as Group
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(1,'2/25/2015 14:00','2/25/2015 14:30')
+
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(2,'1/6/2016 14:00','1/6/2016 14:30')
+
+INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
+VALUES(2,'1/7/2016 14:00','1/7/2016 14:30')
+---------------------------------------------------------------------
+-------------------------------Donor---------------------------------
+---------------------------------------------------------------------
+
+INSERT INTO DONOR(OrganizationName,DonorType,DonorAddress1,DonorAddress2,DonorCity,DonorState,DonorZip)
+VALUES('Gates Donation Fund','Organization','123 Somwhere', 'Suite 99', 'Las Vegas', 'IL', '90210')
+
+---------------------------------------------------------------------
+----------------------------Donation---------------------------------
+---------------------------------------------------------------------
+
+INSERT INTO DONATION (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
+VALUES(1, 0, 0, 1000000, '04/08/2014', 1000000)
+
+---------------------------------------------------------------------
+----------------------------Expense----------------------------------
+---------------------------------------------------------------------
+
+INSERT INTO Expense(ExpenseTypeID, DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(1,1,9,1,'2/4/2016','1/26/2016',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(3,1,6,2,'1/25/2016','1/16/2016',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(3,1,7,2,'1/25/2016','1/16/2016',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(3,1,8,2,'1/25/2016','1/16/2016',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(3,1,1,3,'2/25/2015','2/12/2015',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(3,1,2,3,'2/25/2015','2/12/2015',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(3,1,3,3,'2/25/2015','2/12/2015',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(1,1,4,4,'1/5/2016','2/25/2015 ',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(1,1,5,5,'1/5/2016','2/25/2015 ',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(1,1,4,6,'1/5/2016','2/25/2015 ',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(1,1,5,6,'1/5/2016','2/25/2015 ',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(2,1,5,7,'1/6/2016','2/25/2015 ',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(2,1,6,7,'1/6/2016','2/25/2015 ',45, 12, 33)
+
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(2,1,3,8,'1/6/2016','2/25/2015 ',45, 12, 33)
+INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
+VALUES(2,1,4,8,'1/7/2016','2/25/2015 ',45, 12, 33)
+
+---------------------------------------------------------------------
+--------------------------In-Kind Item-------------------------------
+---------------------------------------------------------------------
+INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
+VALUES('Stuff To Give', 'Organization', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
+GO
+INSERT INTO Donation (DonorID, Restricted, Inkind, DonationAmount, DonationDate, DonationAmountRemaining)
+VALUES(2, 1, 1, 150, '12/12/2015', 0)
+GO
+INSERT INTO In_Kind_Item (DonationID, ItemName, ItemDescription)
+VALUES (2, 'Oak Table', 'A very nice table made of oak')
+---------------------------------------------------------------------
+-------------------------In-Kind Service-----------------------------
+---------------------------------------------------------------------
+GO
+INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
+VALUES('Service To Give', 'Organization', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
+GO
+INSERT INTO Donation (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
+VALUES(3,1,1,80,'10/10/2015', 0)
+GO
+INSERT INTO In_Kind_Service (DonationID, StartDateTime, EndDateTime, RatePerHour, ServiceDescription, ServiceLength, ServiceValue)
+VALUES(3, '10/10/2015 9:00', '10/10/2015 17:00', 10, 'Helped out around the office and input data into new database', 10, 100)
+
+---------------------------------------------------------------------
+-----------------------------Views-----------------------------------
+---------------------------------------------------------------------
+GO
+Create View View_GrantProposals AS(
+SELECT do.OrganizationName, g.GrantName, g.SubmissionDueDate, d.DonationAmount
+FROM Donation d
+JOIN Donor do on do.DonorID = d.DonorID
+JOIN GrantProposal g on g.DonorID = do.DonorID
+UNION
+SELECT do.OrganizationName, g.grantName, g.SubmissionDueDate, '' 
+FROM Donor do 
+JOIN Donation d 
+ON do.DonorID = d.DonorID
+JOIN GrantProposal g 
+ON g.DonorID = d.DonorID )
+GO
+
+CREATE VIEW [View_FamilySessionCount] AS 
+(
+(SELECT s.StaffID, s.StaffFirstName as StaffFirstName, s.StaffLastName as StaffLastName, COUNT(*) AS [Family Sessions]
+FROM Staff s 
+JOIN Appointment a ON a.StaffID = s.StaffID
+JOIN Expense e on e.AppointmentID = a.AppointmentID
+JOIN ExpenseType et on et.ExpenseTypeID = e.ExpenseTypeID
+WHERE et.ExpenseTypeID = 3
+GROUP BY s.StaffID, s.StaffFirstName, s.StaffLastName)
+)
+
+GO
+
+CREATE VIEW [VIEW_Female_Head_Of_HouseHold]
+AS(
+SELECT Count(*) AS [Female_Head_Of_HouseHold]
+FROM Patient p
+WHERE p.IsHead = 1
+AND p.PatientGender LIKE 'Female'
+GROUP BY p.PatientFirstName, p.PatientLastName, p.IsHead, p.PatientGender
+)
+GO
+
+CREATE VIEW View_GroupSessionPreCount AS 
+(SELECT Distinct s.StaffID, s.StaffFirstName as StaffFirstName, s.StaffLastName as StaffLastName, a.AppointmentID
+FROM Staff s 
+JOIN Appointment a ON a.StaffID = s.StaffID
+JOIN Expense e on e.AppointmentID = a.AppointmentID
+JOIN ExpenseType et on et.ExpenseTypeID = e.ExpenseTypeID
+WHERE et.ExpenseTypeID = 2
+GROUP BY s.StaffID, s.StaffFirstName, s.StaffLastName, a.AppointmentID)
+GO
+CREATE VIEW [View_GroupSessionCount] AS(
+SELECT StaffID, StaffFirstName, StaffLastName, COUNT(*) AS [Group Sessions] FROM View_GroupSessionPreCount
+GROUP BY StaffID, StaffFirstName, StaffLastName)
+
+
+GO
+
+CREATE VIEW [View_IndividualSessionCount] AS 
+(SELECT s.StaffID, s.StaffFirstName as StaffFirstName, s.StaffLastName as StaffLastName, COUNT(*) AS [Individual Sessions]
+FROM Staff s 
+JOIN Appointment a ON a.StaffID = s.StaffID
+JOIN Expense e on e.AppointmentID = a.AppointmentID
+JOIN ExpenseType et on et.ExpenseTypeID = e.ExpenseTypeID
+WHERE et.ExpenseTypeID = 1
+GROUP BY s.StaffID, s.StaffFirstName, s.StaffLastName)
+
+GO
+CREATE VIEW VIEW_TotalSessionCount AS(
+SELECT Sum([Family Sessions]) AS [Total Sessions] FROM View_FamilySessionCount
+UNION
+SELECT Sum([Group Sessions])  FROM View_GroupSessionCount
+UNION
+SELECT Sum([Individual Sessions])  FROM View_IndividualSessionCount)
+GO
+
+CREATE VIEW [VIEW_Male_Head_Of_HouseHold]
+AS(
+SELECT Count(*) AS [Male_Head_Of_HouseHold]
+FROM Patient p
+WHERE p.IsHead = 1
+AND p.PatientGender LIKE 'Male'
+GROUP BY p.PatientFirstName, p.PatientLastName, p.IsHead, p.PatientGender
+)
+GO
+
+CREATE VIEW [View_NewPatientByDoctor] AS
+(SELECT s.StaffID,s.StaffFirstName, s.StaffLastName, Count(*) AS New_Patients FROM 
+(SELECT s.StaffID, s.StaffFirstName as StaffFirstName, s.StaffLastName as StaffLastName
+FROM Staff s 
+JOIN Appointment a ON a.StaffID = s.StaffID
+JOIN Expense e on e.AppointmentID = a.AppointmentID
+JOIN Patient p on e.PatientID = p.PatientID
+WHERE p.NewClientIntakeHour >= '1/1/2016' 
+GROUP BY s.StaffID, s.StaffFirstName, s.StaffLastName, p.PatientID) AS NewPatientCount 
+JOIN Staff s ON NewPatientCount.StaffID = s.StaffID
+GROUP BY s.StaffID,s.StaffFirstName, s.StaffLastName)
+GO
+
+CREATE VIEW [View_OnGoingPatientByDoctor] AS
+(SELECT s.StaffID,s.StaffFirstName, s.StaffLastName, Count(*) AS On_Going_Patients FROM 
+(SELECT s.StaffID, s.StaffFirstName as StaffFirstName, s.StaffLastName as StaffLastName
+FROM Staff s 
+JOIN Appointment a ON a.StaffID = s.StaffID
+JOIN Expense e on e.AppointmentID = a.AppointmentID
+JOIN Patient p on e.PatientID = p.PatientID
+WHERE p.NewClientIntakeHour < '1/1/2016' 
+GROUP BY s.StaffID, s.StaffFirstName, s.StaffLastName, p.PatientID) AS NewPatientCount 
+JOIN Staff s ON NewPatientCount.StaffID = s.StaffID
+GROUP BY s.StaffID,s.StaffFirstName, s.StaffLastName)
+GO
+
+CREATE VIEW View_TotalSessionCountByGroup AS(
+SELECT SUM([family Sessions]) 
+AS [Family Sessions], 
+(SELECT SUM([Group Sessions]) 
+FROM View_GroupSessionCount) 
+AS [Group Sessions], 
+(SELECT SUM([Individual Sessions]) 
+FROM View_IndividualSessionCount)
+AS [Individual Sessions] , 
+(SELECT SUM([Total Sessions]) 
+FROM VIEW_TotalSessionCount) 
+AS [Total Sessions] 
+FROM View_FamilySessionCount)
+
+GO
