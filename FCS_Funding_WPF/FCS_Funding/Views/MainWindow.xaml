@@ -45,7 +45,7 @@
                     <GradientStop Color="#FFB5EEFF"/>
                 </LinearGradientBrush>
             </TabControl.Background>
-            <TabItem Width="160" Height="50" Header="Patients" FontSize="20" Background="Black" FontFamily="Calibri" >
+            <TabItem Width="142" Height="50" Header="Patients" FontSize="20" Background="Black" FontFamily="Calibri" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -84,7 +84,8 @@
                     <TextBox FontSize="18" Grid.Column="3" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0.2,10,10,0.8" Grid.ColumnSpan="2"/>
                     <Button Height="45" Width="210" Grid.Column="5" Content="Filter" Click="Filter_Patients" Margin="0,10,3.6,50.6" Grid.RowSpan="2" />
                     <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Patients" Margin="213.4,4.4,4.6,4.2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" />
-                    <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Patient_Grid" CanUserResizeColumns="True"  IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient" Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
+                    <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Patient_Grid" CanUserResizeColumns="True"  IsReadOnly="True"
+                              CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient" Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Patient OQ" Width="110" Binding="{Binding Path=PatientOQ}"/>
                             <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=FirstName}"/>
@@ -105,7 +106,59 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Width="160" Height="50" Header="Grants" FontSize="20" FontFamily="Calibri" Margin="-1,0,1,-0.4">
+
+            <TabItem Width="143" Height="50" Header="Sessions" FontSize="20" Background="Black" FontFamily="Calibri" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Button Name="CreateNewsession" Content="Create New Session" Click="Open_CreateNewSession" Margin="2,0.4,2.6,52.2" Grid.Row="2" Grid.RowSpan="2" />
+                    <TextBlock Grid.Column="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="46.6,20,167.2,8.6" />
+                    <ComboBox Name="SeachBy_Sessions" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42"  Grid.Column="1" Margin="213.4,10,10.8,0.8" Grid.ColumnSpan="2">
+                    </ComboBox>
+                    <TextBox FontSize="18" Grid.Column="3" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0.2,10,10,0.8" Grid.ColumnSpan="2"/>
+                    <Button Height="45" Width="210" Grid.Column="5" Content="Filter" Click="Filter_Patients" Margin="0,10,3.6,50.6" Grid.RowSpan="2" />
+                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Patients" Margin="213.4,4.4,4.6,4.2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" />
+                    <DataGrid Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Sessions_Grid"
+                              AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Staff First Name"  HeaderStringFormat="" Width="90" Binding="{Binding Path=StaffFirstName}"/>
+                            <DataGridTextColumn Header="Staff Last Name" Width="90" Binding="{Binding Path=StaffLastName}"/>
+                            <DataGridTextColumn Header="Appointment Start" Width="110" Binding="{Binding Path=AppointmentStart}"/>
+                            <DataGridTextColumn Header="Appointment End" Width="110" Binding="{Binding Path=AppointmentEnd}"/>
+                            <DataGridTextColumn Header="Expense Due Date" Width="110" Binding="{Binding Path=ExpenseDueDate}"/>
+                            <DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/>
+                            <DataGridTextColumn Header="Donor Bill" Width="63" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Patient Bill" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Total Expense" Width="70" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Expense Type" Width="110" Binding="{Binding Path=ExpenseType}"/>
+                            <DataGridTextColumn Header="Expense Description" Width="140" Binding="{Binding Path=ExpenseDescription}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Width="143" Height="50" Header="Grants" FontSize="20" FontFamily="Calibri" Margin="-1,0,1,-0.4">
                 <Grid Margin="0,0,0.2,-0.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -162,7 +215,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Width="160" Height="50" Header="Donors" FontSize="20" FontFamily="Calibri">
+            <TabItem Width="143" Height="50" Header="Donors" FontSize="20" FontFamily="Calibri">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -320,7 +373,7 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Width="160" Height="50" Header="In-Kind Item" FontSize="20" FontFamily="Calibri" Margin="0,0,0.2,-0.4" VerticalAlignment="Bottom">
+            <TabItem Width="143" Height="50" Header="In-Kind Item" FontSize="20" FontFamily="Calibri" Margin="0,0,0.2,-0.4" VerticalAlignment="Bottom">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -372,7 +425,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Width="160" Height="50" Header="In-Kind Service" FontSize="20" FontFamily="Calibri">
+            <TabItem Width="143" Height="50" Header="In-Kind Service" FontSize="20" FontFamily="Calibri">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -426,7 +479,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Width="160" Height="50" Header="Events" FontSize="20" FontFamily="Calibri" HorizontalAlignment="Left" Margin="0,0,0,-0.4">
+            <TabItem Width="142" Height="50" Header="Events" FontSize="20" FontFamily="Calibri" HorizontalAlignment="Left" Margin="0,0,0,-0.4">
                 <Grid Margin="0,0,0.2,0.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -473,7 +526,7 @@
                     <Button Height="45" Width="210" Grid.Column="5" Grid.Row="1" Content="Filter" Margin="0,0.6,3.6,0.8" />
                 </Grid>
             </TabItem>
-            <TabItem Width="160" Height="50" Header="Reports" FontSize="20" FontFamily="Calibri">
+            <TabItem Width="143" Height="50" Header="Reports" FontSize="20" FontFamily="Calibri">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -527,7 +580,7 @@
                     </DataGrid>-->
                 </Grid>
             </TabItem>
-            <TabItem Name="AdminTab" Width="160" Height="50" Header="Administrative" FontSize="20" FontFamily="Calibri">
+            <TabItem Name="AdminTab" Width="143" Height="50" Header="Administrative" FontSize="20" FontFamily="Calibri">
                 <Grid Margin="0,0,0.2,-0.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

@@ -836,5 +836,35 @@ namespace FCS_Funding
                 up.Show();
             }
         }
+
+        private void Open_CreateNewSession(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Sessions_Grid(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            var join1 = from s in db.Staffs
+                        join a in db.Appointments on s.StaffID equals a.StaffID
+                        join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
+                        join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID
+                        select new SessionsGrid
+                        {
+                            StaffFirstName = s.StaffFirstName,
+                            StaffLastName = s.StaffLastName,
+                            AppointmentStart = a.AppointmentStartDate,
+                            AppointmentEnd = a.AppointmentEndDate,
+                            ExpenseDueDate = ex.ExpenseDueDate,
+                            ExpensePaidDate = ex.ExpensePaidDate,
+                            DonorBill = ex.DonorBill,
+                            PatientBill = ex.PatientBill,
+                            TotalExpense = ex.TotalExpenseAmount,
+                            ExpenseType = et.ExpenseType1,
+                            ExpenseDescription = et.ExpenseDescription
+                        };
+            // ... Assign ItemsSource of DataGrid.
+            var grid = sender as DataGrid;
+            grid.ItemsSource = join1.ToList();
+        }
     }
 }
