@@ -97,13 +97,12 @@
                         <ComboBoxItem Name="cbi6">Ethnicity</ComboBoxItem>
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0.2,10,10,0.8" Grid.ColumnSpan="2"/>
-
-                    <Button Height="45" Width="210" Grid.Column="5" Content="Filter" Click="Filter_Patients" Margin="0,10,3.6,50.6" Grid.RowSpan="2" />
-                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Patients" Margin="213.4,4.4,4.6,4.2" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" />
-                    <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Patient_Grid" CanUserResizeColumns="True"  IsReadOnly="True"
-                              CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient" Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
-
-                        <DataGrid.Columns>
+                    <Button Height="42" Grid.Column="5" Content="Filter" Click="Filter_Patients"/>
+                    <Button Content="Refresh" Click="Refresh_Patients" Margin="3.4,2,0.2,5" Grid.Column="5" Grid.Row="1" />
+                        <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Patient_Grid" CanUserResizeColumns="True"  
+                              IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"
+                              Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
+                            <DataGrid.Columns>
                             <DataGridTextColumn Header="Patient OQ" Width="110" Binding="{Binding Path=PatientOQ}"/>
                             <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=FirstName}"/>
                             <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=LastName}"/>
@@ -597,7 +596,9 @@
                     </DataGrid>-->
                 </Grid>
             </TabItem>
-            <TabItem Name="AdminTab" Width="143" Height="50" Header="Administrative" FontSize="20" FontFamily="Calibri">
+
+            <TabItem Name="AdminTab" Width="140" Height="50" Header="Administrative" FontSize="20" FontFamily="Calibri">
+
                 <Grid Margin="0,0,0.2,-0.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
