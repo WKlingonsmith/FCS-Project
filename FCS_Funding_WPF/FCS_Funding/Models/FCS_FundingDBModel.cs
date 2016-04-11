@@ -8,7 +8,7 @@ namespace FCS_Funding.Models
     public partial class FCS_FundingDBModel : DbContext
     {
         public FCS_FundingDBModel()
-            : base("name=FCS_FundingDBModel1")
+            : base("name=FCS_FundingDBModel")
         {
         }
 
@@ -201,10 +201,6 @@ namespace FCS_Funding.Models
 
             modelBuilder.Entity<PatientHousehold>()
                 .Property(e => e.HouseholdCounty)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<PatientProblem>()
-                .Property(e => e.ProbelmType)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Problem>()
