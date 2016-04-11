@@ -16,6 +16,10 @@ namespace FCS_DataTesting
         public decimal DonorBill { get; set; }
         public decimal PatientBill { get; set; }
         public decimal TotalExpense { get; set; }
+        public DateTime? ExpensePaidDate { get; set; }
+        public string ExpenseType { get; set; }
+        public string ExpenseDescription { get; set; }
+
 
         public SessionsGrid()
         { }

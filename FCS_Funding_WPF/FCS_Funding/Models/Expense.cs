@@ -26,7 +26,13 @@ namespace FCS_Funding.Models
         public DateTime? ExpensePaidDate { get; set; }
 
         [Column(TypeName = "money")]
-        public decimal ExpenseAmount { get; set; }
+        public decimal DonorBill { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal PatientBill { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal TotalExpenseAmount { get; set; }
 
         public virtual Appointment Appointment { get; set; }
 

@@ -158,6 +158,7 @@ namespace FCS_Funding.Views
         {            
             AddSession ans = new AddSession(PatientID);
             ans.Show();
+            ans.ExpensePaidDate.IsEnabled = false;
             ans.Topmost = true;
         }
 
@@ -167,6 +168,7 @@ namespace FCS_Funding.Views
             var join1 = from s in db.Staffs
                         join a in db.Appointments on s.StaffID equals a.StaffID
                         join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
+                        join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID
                         where ex.PatientID == PatientID
                         select new SessionsGrid
                         {
@@ -175,9 +177,12 @@ namespace FCS_Funding.Views
                             AppointmentStart = a.AppointmentStartDate,
                             AppointmentEnd = a.AppointmentEndDate,
                             ExpenseDueDate = ex.ExpenseDueDate,
-                            DonorBill = 0,
-                            PatientBill = 0,
-                            TotalExpense = 0
+                            ExpensePaidDate = ex.ExpensePaidDate,
+                            DonorBill = ex.DonorBill,
+                            PatientBill = ex.PatientBill,
+                            TotalExpense = ex.TotalExpenseAmount,
+                            ExpenseType = et.ExpenseType1,
+                            ExpenseDescription = et.ExpenseDescription
                         };
             // ... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;

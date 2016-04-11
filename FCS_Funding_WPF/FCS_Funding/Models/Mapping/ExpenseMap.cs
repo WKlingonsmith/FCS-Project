@@ -20,7 +20,9 @@ namespace FCS_Funding.Models.Mapping
             this.Property(t => t.AppointmentID).HasColumnName("AppointmentID");
             this.Property(t => t.ExpenseDueDate).HasColumnName("ExpenseDueDate");
             this.Property(t => t.ExpensePaidDate).HasColumnName("ExpensePaidDate");
-            this.Property(t => t.ExpenseAmount).HasColumnName("ExpenseAmount");
+            this.Property(t => t.TotalExpenseAmount).HasColumnName("ExpenseAmount");
+            this.Property(t => t.PatientBill).HasColumnName("PatientBill");
+            this.Property(t => t.DonorBill).HasColumnName("DonorBill");
 
             // Relationships
             this.HasOptional(t => t.Appointment)

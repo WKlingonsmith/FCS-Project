@@ -190,7 +190,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="Sessions" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
-                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="SessionsGrid"
+                    <DataGrid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="SessionsGrid"
                               AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" IsReadOnly="True" CanUserDeleteRows="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Staff First Name" Width="90" Binding="{Binding Path=StaffFirstName}"/>
@@ -198,9 +198,12 @@
                             <DataGridTextColumn Header="Appointment Start" Width="110" Binding="{Binding Path=AppointmentStart}"/>
                             <DataGridTextColumn Header="Appointment End" Width="110" Binding="{Binding Path=AppointmentEnd}"/>
                             <DataGridTextColumn Header="Expense Due Date" Width="110" Binding="{Binding Path=ExpenseDueDate}"/>
+                            <DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/> 
                             <DataGridTextColumn Header="Donor Bill" Width="63" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Patient Bill" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Total Expense" Width="70" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Expense Type" Width="110" Binding="{Binding Path=ExpenseType}"/>
+                            <DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button Name="AddSession" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2" Height="38" VerticalAlignment="Top"     />

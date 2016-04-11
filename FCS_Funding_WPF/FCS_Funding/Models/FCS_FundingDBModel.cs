@@ -8,7 +8,7 @@ namespace FCS_Funding.Models
     public partial class FCS_FundingDBModel : DbContext
     {
         public FCS_FundingDBModel()
-            : base("name=FCS_FundingDBContext")
+            : base("name=FCS_FundingDBModel1")
         {
         }
 
@@ -111,7 +111,15 @@ namespace FCS_Funding.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Expense>()
-                .Property(e => e.ExpenseAmount)
+                .Property(e => e.DonorBill)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Expense>()
+                .Property(e => e.PatientBill)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Expense>()
+                .Property(e => e.TotalExpenseAmount)
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<ExpenseType>()

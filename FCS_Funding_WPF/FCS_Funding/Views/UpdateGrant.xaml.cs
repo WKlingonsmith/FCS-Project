@@ -58,8 +58,14 @@ namespace FCS_Funding.Views
             var donation = (from d in db.Donations
                          where d.DonationID == DonationID
                          select d).First();
-            donation.DonationAmount = DonationAmount;
-            donation.DonationAmountRemaining = DonationAmountRemaining;
+            if(DonAmount.IsEnabled)
+            {
+                donation.DonationAmount = DonationAmount;
+            }
+            if(AmountRem.IsEnabled)
+            {
+                donation.DonationAmountRemaining = DonationAmountRemaining;
+            }
             donation.DonationDate = Convert.ToDateTime(DonationDate.ToString());
             donation.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
 
