@@ -18,8 +18,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!-- <Image x:Name="Logo" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/FCS_Funding;component/FCS logo.PNG" Width="750" Height="132" />
-       -->
         <UserControl>
             <UserControl.Resources>
                 <ResourceDictionary>
@@ -28,7 +26,6 @@
             </UserControl.Resources>
 
             <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="750" Height="132" Source="{StaticResource logo}"/>
-
         </UserControl>
         <TabControl Margin="0,130,0,0"  >
             <TabControl.Resources>
