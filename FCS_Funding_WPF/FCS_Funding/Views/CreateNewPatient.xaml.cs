@@ -43,6 +43,7 @@ namespace FCS_Funding.Views
             disableTexbox = 0;
             headOfHouse = false;
             InitializeComponent();
+            Determine_PatientProblem();
         }
 
         private void Add_Client(object sender, RoutedEventArgs e)
@@ -192,6 +193,25 @@ namespace FCS_Funding.Views
                 case 2:
                     PatientGender = "Other"; break;
             }
+        }
+       
+        private void Determine_PatientProblem()
+        {
+            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            List<string> problems = new List<string>();
+            foreach (var item in db.Problems)
+            {
+                problems.Add(item.ProblemType);
+            }
+            MessageBox.Show("This has been hit");
+            Patient_Problem.ItemsSource = problems.AsEnumerable();
+          
+            //}
+        }
+
+        private void Patient_Problem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
         }
     }
 }
