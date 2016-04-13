@@ -129,8 +129,7 @@ CREATE TABLE PatientProblem
 (
     PatientProblemID        INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     PatientID               INT             NOT NULL,
-    ProblemID               INT             NOT NULL,
-    ProbelmType             Varchar(50)     NOT NULL                
+    ProblemID               INT             NOT NULL     
 );
 
 CREATE TABLE Patient
