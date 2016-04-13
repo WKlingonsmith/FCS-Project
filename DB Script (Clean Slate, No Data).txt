@@ -129,8 +129,7 @@ CREATE TABLE PatientProblem
 (
     PatientProblemID        INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
     PatientID               INT             NOT NULL,
-    ProblemID               INT             NOT NULL,
-    ProbelmType             Varchar(50)     NOT NULL                
+    ProblemID               INT             NOT NULL     
 );
 
 CREATE TABLE Patient
@@ -295,9 +294,29 @@ Alter Table PatientProblem
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 GO
----------------------------------------------------------------------
-------------------------------ExpenseTypes---------------------------
----------------------------------------------------------------------
+Insert Into Problem Values ('Depression')  
+Insert Into Problem Values ('Bereavement/Loss')  
+Insert Into Problem Values ('Communication')  
+Insert Into Problem Values ('Domestic Violence')  
+Insert Into Problem Values ('Hopelessness')  
+Insert Into Problem Values ('Work Problems')  
+Insert Into Problem Values ('Parent Problems')  
+Insert Into Problem Values ('Substance Abuse')  
+Insert Into Problem Values ('Problems w/ School')  
+Insert Into Problem Values ('Marriage/Relationship/Family')  
+Insert Into Problem Values ('Thoughts of Hurting Self')  
+Insert Into Problem Values ('Angry Feelings')  
+Insert Into Problem Values ('Sexual Abuse')  
+Insert Into Problem Values ('Emotional Abuse')  
+Insert Into Problem Values ('Physical Abuse')  
+Insert Into Problem Values ('Problems with the law')  
+Insert Into Problem Values ('Unhappy with Life')  
+Insert Into Problem Values ('Anxiety')  
+Insert Into Problem Values ('Other')  
+
+INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffUserName, StaffPassword, StaffDBRole)
+VALUES ('Trevor','Booker', 'Team Lead', 'Admin', 'E3AFED0047B08059D0FADA10F400C1E5', 'Admin')
+
 INSERT INTO ExpenseType(ExpenseDescription,ExpenseType)
 VALUES('Individual Appointment','Individual')
 
@@ -309,174 +328,6 @@ VALUES('Family Appointment','Family')
 
 INSERT INTO ExpenseType(ExpenseDescription,ExpenseType)
 VALUES('Miscellaneous Expense','Misc')
-
----------------------------------------------------------------------
-------------------------------Households-----------------------------
----------------------------------------------------------------------
-
-INSERT INTO PatientHousehold (HouseholdPopulation,HouseholdIncomeBracket,HouseholdCounty)
-VALUES(5,'20,000-30,000','Weber')
-
-INSERT INTO PatientHousehold (HouseholdPopulation,HouseholdIncomeBracket,HouseholdCounty)
-VALUES(4,'10,000-25,000','Davis')
-
----------------------------------------------------------------------
-------------------------Patients in Household 1----------------------
----------------------------------------------------------------------
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
-VALUES('James', 'Jackson', 1332, 1, 'Male', 'African American', '35-40',1, '2/12/2015 13:00', 'Head')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
-VALUES('Julia', 'Jackson', 12443, 1, 'Female', 'African American', '35-40',0,'2/12/2015 13:00', 'Wife')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
-VALUES('Jerome', 'Jackson', 1221, 1, 'Male', 'African American', '15-18',0,'2/12/2015 13:00', 'Son')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
-VALUES('Denise', 'Jackson', 1123, 1, 'Female', 'African American', '15-18',0,'2/25/2015 13:00', 'Daughter')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
-VALUES('Benjamin', 'Jackson', 4432, 1, 'Male', 'African American', '5-10',0,'2/25/2015 13:00', 'Grandson')
-
----------------------------------------------------------------------
-------------------------Patients in Household 2----------------------
----------------------------------------------------------------------
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
-VALUES('Adriana', 'Hernandez', 1444, 2, 'Female', 'Hispanic', '35-40',1, '1/16/2016 15:00', 'Head')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead, NewClientIntakeHour, RelationToHead)
-VALUES('Francisco', 'Hernandez', 1543, 2, 'Male', 'Hispanic', '10-15',0, '1/16/2016 15:00', 'Son')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
-VALUES('Guermo', 'Hernandez', 1674, 2, 'Male', 'Hispanic', '15-18',0, '1/16/2016 15:00', 'Son')
-
-INSERT INTO Patient(PatientFirstName,PatientLastName,PatientOQ,HouseholdID,PatientGender,PatientEthnicity,PatientAgeGroup,IsHead,NewClientIntakeHour, RelationToHead)
-VALUES('Iliana', 'Hernandez', 1986, 2, 'Female', 'Hispanic', '5-10',0, '1/26/2016 13:00', 'Daughter')
-
----------------------------------------------------------------------
--------------------------------Staff---------------------------------
----------------------------------------------------------------------
-
-INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
-VALUES ('Claudius','Ptolemy', 'Doctor', 'No Access')
-
-INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffDBRole)
-VALUES ('Marc','Antony', 'Doctor', 'No Access')
-
-INSERT INTO Staff (StaffFirstName, StaffLastName, StaffTitle, StaffUserName, StaffPassword, StaffDBRole)
-VALUES ('Trevor','Booker', 'Team Lead', 'Admin', 'E3AFED0047B08059D0FADA10F400C1E5', 'Admin')
-
----------------------------------------------------------------------
-----------------------------Appointment------------------------------
----------------------------------------------------------------------
-
---This goes with Patients 9 as individual
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(2,'1/26/2016 13:00','1/26/2016 13:30')
---This goes with Patient 6, 7, 8 as Famil
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(2,'1/16/2016 15:00','1/16/2016 15:30')
-
---This goes with Patients 1, 2, and 3 as family
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(1,'2/12/2015 13:00','2/12/2015 13:30')
---This goes with Patient 4 as individual
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(1,'2/25/2015 13:00','2/25/2015 13:30')
---This goes with Patient 5 as individual
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(1,'2/25/2015 13:30','2/25/2015 14:00')
---This goes with Patient 4 and 5 as Group
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(1,'2/25/2015 14:00','2/25/2015 14:30')
-
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(2,'1/6/2016 14:00','1/6/2016 14:30')
-
-INSERT INTO Appointment (StaffID, AppointmentStartDate, AppointmentEndDate)
-VALUES(2,'1/7/2016 14:00','1/7/2016 14:30')
----------------------------------------------------------------------
--------------------------------Donor---------------------------------
----------------------------------------------------------------------
-
-INSERT INTO DONOR(OrganizationName,DonorType,DonorAddress1,DonorAddress2,DonorCity,DonorState,DonorZip)
-VALUES('Gates Donation Fund','Organization','123 Somwhere', 'Suite 99', 'Las Vegas', 'IL', '90210')
-
----------------------------------------------------------------------
-----------------------------Donation---------------------------------
----------------------------------------------------------------------
-
-INSERT INTO DONATION (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
-VALUES(1, 0, 0, 1000000, '04/08/2014', 1000000)
-
----------------------------------------------------------------------
-----------------------------Expense----------------------------------
----------------------------------------------------------------------
-
-INSERT INTO Expense(ExpenseTypeID, DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(1,1,9,1,'2/4/2016','1/26/2016',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(3,1,6,2,'1/25/2016','1/16/2016',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(3,1,7,2,'1/25/2016','1/16/2016',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(3,1,8,2,'1/25/2016','1/16/2016',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(3,1,1,3,'2/25/2015','2/12/2015',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(3,1,2,3,'2/25/2015','2/12/2015',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(3,1,3,3,'2/25/2015','2/12/2015',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(1,1,4,4,'1/5/2016','2/25/2015 ',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(1,1,5,5,'1/5/2016','2/25/2015 ',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(1,1,4,6,'1/5/2016','2/25/2015 ',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(1,1,5,6,'1/5/2016','2/25/2015 ',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(2,1,5,7,'1/6/2016','2/25/2015 ',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(2,1,6,7,'1/6/2016','2/25/2015 ',45, 12, 33)
-
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(2,1,3,8,'1/6/2016','2/25/2015 ',45, 12, 33)
-INSERT INTO Expense(ExpenseTypeID,DonationID, PatientID, AppointmentID, ExpenseDueDate,ExpensePaidDate,TotalExpenseAmount, DonorBill, PatientBill)
-VALUES(2,1,4,8,'1/7/2016','2/25/2015 ',45, 12, 33)
-
----------------------------------------------------------------------
---------------------------In-Kind Item-------------------------------
----------------------------------------------------------------------
-INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
-VALUES('Stuff To Give', 'Organization', '123 S Maple Street', 'Los Angelas', 'NY', '84128')
-GO
-INSERT INTO Donation (DonorID, Restricted, Inkind, DonationAmount, DonationDate, DonationAmountRemaining)
-VALUES(2, 1, 1, 150, '12/12/2015', 0)
-GO
-INSERT INTO In_Kind_Item (DonationID, ItemName, ItemDescription)
-VALUES (2, 'Oak Table', 'A very nice table made of oak')
----------------------------------------------------------------------
--------------------------In-Kind Service-----------------------------
----------------------------------------------------------------------
-GO
-INSERT INTO Donor(OrganizationName, DonorType, DonorAddress1, DonorCity,DonorState, DonorZip)
-VALUES('Service To Give', 'Organization', '145 S Sugar Street', 'New Orleans', 'OR', '84403')
-GO
-INSERT INTO Donation (DonorID, Restricted, InKind, DonationAmount, DonationDate, DonationAmountRemaining)
-VALUES(3,1,1,80,'10/10/2015', 0)
-GO
-INSERT INTO In_Kind_Service (DonationID, StartDateTime, EndDateTime, RatePerHour, ServiceDescription, ServiceLength, ServiceValue)
-VALUES(3, '10/10/2015 9:00', '10/10/2015 17:00', 10, 'Helped out around the office and input data into new database', 10, 100)
-
 ---------------------------------------------------------------------
 -----------------------------Views-----------------------------------
 ---------------------------------------------------------------------

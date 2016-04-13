@@ -15,10 +15,6 @@ namespace FCS_Funding.Models
 
         public int ProblemID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string ProbelmType { get; set; }
-
         public virtual Patient Patient { get; set; }
 
         public virtual Problem Problem { get; set; }
