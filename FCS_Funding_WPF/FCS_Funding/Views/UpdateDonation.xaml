@@ -44,26 +44,26 @@
 
         <TextBlock Text="Update Donation" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,26.8" Grid.RowSpan="2" FontFamily="Razer Header Regular" TextDecorations="Underline" FontWeight="Bold" />
 
-        <TextBlock Text="Donation Amount:" TextAlignment="Center" FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" Padding="10, 0, 0, 0" FontWeight="Bold"/>
-        <Border Grid.Row="6" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
+        <TextBlock Text="Donation Amount:" TextAlignment="Center" FontSize="18" Grid.Row="4" Grid.Column="2" Height="30" Padding="10, 0, 0, 0" FontWeight="Bold"/>
+        <Border Grid.Row="4" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding DonationAmount, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="Donation Date:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold"/>
+        <TextBlock Text="Donation Date:" TextAlignment="Center" FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold"/>
         <DatePicker Name="DonationDate"  HorizontalAlignment="Center" VerticalAlignment="Center"
-                   HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="8" FontSize="20" >
+                   HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="6" FontSize="20" >
         </DatePicker>
         <!--Width="170" Height="40"-->
 
         <!--Width="170" Height="40"-->
-        <TextBlock Text="Purpose Name:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" FontWeight="Bold" />
-        <Border Grid.Row="10" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
+        <TextBlock Text="Purpose Name:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" FontWeight="Bold" />
+        <Border Grid.Row="8" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding PurposeName, ElementName=ThisWindow}"/>
         </Border>
-        <TextBlock Text="Purpose Description:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" FontWeight="Bold" />
-        <Border Grid.Row="12" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
+        <TextBlock Text="Purpose Description:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Grid.Column="1" Height="30" Grid.ColumnSpan="2" Margin="156.8,8,9.6,2" FontWeight="Bold" />
+        <Border Grid.Row="10" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding PurposeDescription, ElementName=ThisWindow}"/>
         </Border>
-        <Button FontSize="18" Grid.Column="2" Grid.Row="16" Content="Update Donation" Click="UpdateThisDonation" />
-        <Button Name="DeleteDon" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Delete Donation" Click="DeleteDonation" />
+        <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Update Donation" Click="UpdateThisDonation" />
+        <Button Name="DeleteDon" FontSize="18" Grid.Column="4" Grid.Row="14" Content="Delete Donation" Click="DeleteDonation" />
     </Grid>
 </Window>

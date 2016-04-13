@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="AddInKindService" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -35,25 +41,25 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Create In-Kind Service" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
-        <TextBlock Text="Servie Description:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" />
+        <TextBlock Text="Create In-Kind Service" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,27" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
+        <TextBlock Text="Servie Description:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
         <Border Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3"  BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding ServiceDescription, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Rate Per Hour:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" />
+        <TextBlock Text="Rate Per Hour:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
         <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding RatePerHour, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Individual Name/Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" />
+        <TextBlock Text="Individual Name/Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Individual"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" FontSize="20" Loaded="Individual_DropDown" Margin="178.8,0,0.4,0" />
 
-        <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="178,6,0.4,4" Grid.ColumnSpan="2" />
+        <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="178,6,0.4,4" Grid.ColumnSpan="2" FontWeight="Bold" />
         <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
                    HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="21,0,10,5" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
-        <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="179,8,177.8,2" Grid.ColumnSpan="3" />
+        <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="179,8,177.8,2" Grid.ColumnSpan="3" FontWeight="Bold" />
         <TextBox LostFocus="Hour_LostFocus" Loaded="Hour_Loaded" Grid.Row="9" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginHour, ElementName=ThisWindow}"  />
         <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="9" Height="30" Margin="39.6,0,128.8,10"  />
@@ -62,7 +68,7 @@
         <ComboBox Name="AMPM_Start"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="2"  Grid.Row="9" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
 
-        <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="178,8,0.4,2" Grid.ColumnSpan="2" />
+        <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="178,8,0.4,2" Grid.ColumnSpan="2" FontWeight="Bold" />
         <TextBox LostFocus="Hour_LostFocus" Loaded="Hour_Loaded" Grid.Row="10" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndHour, ElementName=ThisWindow}"  />
         <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="10" Height="30" Margin="39.6,0,128.8,10"  />

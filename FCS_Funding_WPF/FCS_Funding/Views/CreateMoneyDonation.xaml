@@ -63,6 +63,6 @@
         <Border Grid.Row="12" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
             <TextBox  FontSize="18"  Text="{Binding PurposeDescription, ElementName=ThisWindow}"/>
         </Border>
-        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Content="Submit Donation" Click="AddGrant" />
+        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="15" Content="Submit Donation" Click="AddGrant" />
     </Grid>
 </Window>

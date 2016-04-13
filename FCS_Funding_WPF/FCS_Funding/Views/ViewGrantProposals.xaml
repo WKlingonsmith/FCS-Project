@@ -6,6 +6,12 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="ViewGrantProposals" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -35,7 +41,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="View Grant Proposals" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+        <TextBlock Text="View Grant Proposals" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,26.8" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
         <DataGrid Name="GrantProposals" Grid.Column="1"  Grid.Row="3" Grid.ColumnSpan="4" Grid.RowSpan="10" CanUserResizeColumns="True" Loaded="Grant_Proposal_Grid"  AutoGenerateColumns="False"
                          IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditGrantProposal" >
             <DataGrid.Columns>
