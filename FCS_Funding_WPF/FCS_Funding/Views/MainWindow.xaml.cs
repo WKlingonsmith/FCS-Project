@@ -839,7 +839,12 @@ namespace FCS_Funding
 
         private void Open_CreateNewSession(object sender, RoutedEventArgs e)
         {
-
+            if (Application.Current.Windows.Count <= 1)
+            {
+                AppointmentType at = new AppointmentType();
+                at.Show();
+                at.Topmost = true;
+            }
         }
         private void Sessions_Grid(object sender, RoutedEventArgs e)
         {
