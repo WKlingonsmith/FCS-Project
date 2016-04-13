@@ -36,14 +36,8 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Create Individual Appointment" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
-        <TextBlock Text="Expense Type:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" />
-        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding ExpenseType, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Expense Description:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox  FontSize="18" Text="{Binding ExpenseDescription, ElementName=ThisWindow}"  />
-        </Border>
+        
+        
         <TextBlock Text="Patient Bill:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" />
         <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
