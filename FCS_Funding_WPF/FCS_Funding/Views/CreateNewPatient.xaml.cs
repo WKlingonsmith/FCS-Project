@@ -48,6 +48,7 @@ namespace FCS_Funding.Views
 
         private void Add_Client(object sender, RoutedEventArgs e)
         {
+            
             Determine_AgeGroup(this.AgeGroup.SelectedIndex);
             Determine_EthnicGroup(this.ethnicity.SelectedIndex);
             Determine_Gender(this.Gender.SelectedIndex);

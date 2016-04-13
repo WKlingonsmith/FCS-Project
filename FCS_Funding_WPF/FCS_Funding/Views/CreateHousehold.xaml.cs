@@ -55,6 +55,7 @@ namespace FCS_Funding.Views
             Determine_Income(this.income.SelectedIndex);
             if (Income != null && HouseholdPopulation > 0 && County != null && County != "")
             {
+                
                 date = DateTime.Now;
                 MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
                     + "\n"  + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n"  + Income);
