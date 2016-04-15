@@ -81,7 +81,6 @@ namespace FCS_Funding.Views
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
-                    d.EventID = EventID;
 
                     db.Donations.Add(d);
                     db.SaveChanges();

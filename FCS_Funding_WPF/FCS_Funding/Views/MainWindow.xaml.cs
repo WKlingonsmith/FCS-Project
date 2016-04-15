@@ -383,6 +383,10 @@ namespace FCS_Funding
             {
                 CreateNewPatient ch = new CreateNewPatient();
                 ch.Topmost = true;
+                ch.Gender.SelectedIndex = 0;
+                ch.AgeGroup.SelectedIndex = 0;
+                ch.ethnicity.SelectedIndex = 0;
+                ch.Patient_Problem.SelectedIndex = 0;
                 ch.Show();
             }
         }

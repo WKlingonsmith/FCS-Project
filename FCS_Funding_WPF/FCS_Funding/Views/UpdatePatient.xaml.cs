@@ -153,6 +153,24 @@ namespace FCS_Funding.Views
                     ethnicGroup = "Other"; break;
             }
         }
+        private void Determine_PatientProblem()
+        {
+            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+            List<string> problems = new List<string>();
+            foreach (var item in db.Problems)
+            {
+                problems.Add(item.ProblemType);
+            }
+            MessageBox.Show("This has been hit");
+            Patient_Problem.ItemsSource = problems.AsEnumerable();
+
+            //}
+        }
+
+        private void Patient_Problem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
 
         private void AddNewSession(object sender, RoutedEventArgs e)
         {            
