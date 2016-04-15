@@ -847,7 +847,7 @@ namespace FCS_Funding
             {
                 AppointmentType at = new AppointmentType();
                 at.Show();
-                at.Topmost = true;
+                //at.Topmost = true;
             }
         }
         private void Sessions_Grid(object sender, RoutedEventArgs e)

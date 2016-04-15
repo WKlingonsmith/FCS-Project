@@ -139,6 +139,9 @@
     <Compile Include="Models\View_IndividualSessionCount.cs" />
     <Compile Include="Models\View_NewPatientByDoctor.cs" />
     <Compile Include="Models\View_OnGoingPatientByDoctor.cs" />
+    <Compile Include="Views\AddGroupSession.xaml.cs">
+      <DependentUpon>AddGroupSession.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddInKindItem.xaml.cs" />
     <Compile Include="Views\AddInKindService.xaml.cs" />
     <Compile Include="Views\AddNewContact.xaml.cs" />
@@ -216,6 +219,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AddGroupSession.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddInKindItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
