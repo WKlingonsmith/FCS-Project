@@ -26,8 +26,6 @@ namespace FCS_Funding.Views
         public int PatientID { get; set; }
         public decimal PatientBill { get; set; }
         public decimal DonorBill { get; set; }
-        public string ExpenseType { get; set; }
-        public string ExpenseDescription { get; set; }
 
 
         public AddSession(int patientID)
@@ -79,13 +77,6 @@ namespace FCS_Funding.Views
                               select d).First();
             if (donation.DonationAmountRemaining >= DonorBill)
             {
-
-                Models.ExpenseType extype = new Models.ExpenseType();
-                extype.ExpenseType1 = ExpenseType;
-                extype.ExpenseDescription = ExpenseDescription;
-                db.ExpenseTypes.Add(extype);
-                db.SaveChanges();
-
                 Models.Appointment a = new Models.Appointment();
                 a.StaffID = staffID;
                 a.AppointmentStartDate = startDateTime;
@@ -95,7 +86,7 @@ namespace FCS_Funding.Views
 
                 Models.Expense expense = new Models.Expense();
 
-                expense.ExpenseTypeID = extype.ExpenseTypeID;
+                expense.ExpenseTypeID = 1;
                 expense.DonationID = donationID;
                 expense.PatientID = PatientID;
                 expense.AppointmentID = a.AppointmentID;

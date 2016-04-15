@@ -20,6 +20,12 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class AppointmentType : Window
     {
+        public string BeginHour { get; set; }
+        public string BeginMinute { get; set; }
+        public string EndHour { get; set; }
+        public string EndMinute { get; set; }
+        public int ExpenseTypeID { get; set; }
+
         List<PatientGrid> TotalGroup { get; set; }
         List<PatientGrid> Patients { get; set; }
         public bool ShouldRefreshPatients { get; set; }
@@ -43,22 +49,66 @@ namespace FCS_Funding.Views
 
         private void Select_AppointmentType(object sender, RoutedEventArgs e)
         {
-            //indiv/group
-            if(ApptType.SelectedIndex == 0)
+            if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
             {
-                string[] separators = new string[] { ", " };
-                string staff = Staff.SelectedValue.ToString();
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                string[] words = staff.Split(separators, StringSplitOptions.None);
-                string FName = words[0]; string LName = words[1]; string username = words[2];
-                var staffID = (from dc in db.Staffs
-                               where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
-                               select dc.StaffID).Distinct().FirstOrDefault();
+                BeginHour = (Convert.ToInt32(BeginHour) + 12).ToString();
             }
-            //family
+            if (AMPM_End.SelectedValue.ToString() == "PM" && Convert.ToInt32(EndHour) != 12)
+            {
+                EndHour = (Convert.ToInt32(EndHour) + 12).ToString();
+            }
+            if (AMPM_Start.SelectedValue.ToString() == "AM" && Convert.ToInt32(BeginHour) == 12)
+            {
+                BeginHour = (Convert.ToInt32(BeginHour) - 12).ToString();
+            }
+            if (AMPM_End.SelectedValue.ToString() == "AM" && Convert.ToInt32(EndHour) == 12)
+            {
+                EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
+            }
+            DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
+            DateTime help = Convert.ToDateTime(DateRecieved.ToString());
+            DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
+            DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
+            string[] separators = new string[] { ", " };
+            string staff = Staff.SelectedValue.ToString();
+            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            string[] words = staff.Split(separators, StringSplitOptions.None);
+            string FName = words[0]; string LName = words[1]; string username = words[2];
+            var staffID = (from dc in db.Staffs
+                           where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
+                           select dc.StaffID).Distinct().FirstOrDefault();
+            if(TotalGroup.Count == 0) { MessageBox.Show("Make sure to add at least one client"); return; }
+            //individual (1)
+            //group (2)
+            if (ApptType.SelectedIndex == 0)
+            {
+                if (TotalGroup.Count == 1) { ExpenseTypeID = 1; }
+                else { ExpenseTypeID = 2; }
+                foreach (var item in TotalGroup)
+                {
+                    AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
+                    ags.Show();
+                    ags.ExpensePaidDate.IsEnabled = false;
+                    ags.FN.IsEnabled = false;
+                    ags.LN.IsEnabled = false;
+                    ags.OQ.IsEnabled = false;
+                }
+                this.Close();
+            }
+            //family (3)
             else if(ApptType.SelectedIndex == 1)
             {
-
+                ExpenseTypeID = 3;
+                foreach (var item in TotalGroup)
+                {
+                    AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
+                    ags.Show();
+                    ags.ExpensePaidDate.IsEnabled = false;
+                    ags.FN.IsEnabled = false;
+                    ags.LN.IsEnabled = false;
+                    ags.OQ.IsEnabled = false;
+                }
+                this.Close();
             }
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
@@ -138,6 +188,86 @@ namespace FCS_Funding.Views
 
             var box = sender as ComboBox;
             box.ItemsSource = query;
+        }
+
+        private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
+        {
+            var box = sender as ComboBox;
+            box.ItemsSource = new List<string>() { "AM", "PM" };
+        }
+
+        private void Hour_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            //StartHour
+            var textbox = sender as TextBox;
+            if (textbox.Text != "" && textbox.Text != null)
+            {
+                try
+                {
+                    int value = Convert.ToInt32(textbox.Text);
+                    if (value > 12)
+                        textbox.Text = "12";
+                    else if (value < 1)
+                        textbox.Text = "1";
+                }
+                catch (Exception ex)
+                {
+                    textbox.Text = "";
+                    MessageBox.Show("You inserted a character");
+                }
+            }
+            else
+            {
+                textbox.Text = "12";
+            }
+
+        }
+
+        private void Minute_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //StartHour
+            var textbox = sender as TextBox;
+            if (textbox.Text != "" && textbox.Text != null)
+            {
+                try
+                {
+                    int value = Convert.ToInt32(textbox.Text);
+                    if (textbox.Text.Length == 1)
+                    {
+                        textbox.Text = "0" + textbox.Text;
+                    }
+                    else if (value > 59)
+                    {
+                        textbox.Text = "59";
+                    }
+                    else if (value < 0)
+                    {
+                        textbox.Text = "00";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    textbox.Text = "";
+                    MessageBox.Show("You inserted a character");
+                }
+            }
+            else
+            {
+                textbox.Text = "00";
+            }
+        }
+
+        private void Hour_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            textbox.Text = "12";
+        }
+
+        private void Minute_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            textbox.Text = "00";
         }
     }
 }
