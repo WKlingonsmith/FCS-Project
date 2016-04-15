@@ -20,7 +20,7 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class CreateNewPatient : Window
     {
-
+        public bool Depression { get; set; }
         //properties
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -39,11 +39,12 @@ namespace FCS_Funding.Views
 
         public CreateNewPatient()
         {
+            Depression = false;
             headOfHousehold = 0;
             disableTexbox = 0;
             headOfHouse = false;
             InitializeComponent();
-            Determine_PatientProblem();
+          //  PatientProblemsGroup();
         }
 
         private void Add_Client(object sender, RoutedEventArgs e)
@@ -110,6 +111,14 @@ namespace FCS_Funding.Views
             {
                 MessageBox.Show("Unable to add client");
             }
+            List <string> problemItems = new List<string>();
+            foreach (var item in PatientProblemsCheckBoxes.Children)
+            {
+                if (item.Equals(true))
+                {
+                    problemItems.Add(item.ToString());
+                }
+            }            
         }
         private void Change_HeadOfHousehold(object sender, RoutedEventArgs e)
         {
@@ -194,25 +203,6 @@ namespace FCS_Funding.Views
                 case 2:
                     PatientGender = "Other"; break;
             }
-        }
-       
-        private void Determine_PatientProblem()
-        {
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
-            List<string> problems = new List<string>();
-            foreach (var item in db.Problems)
-            {
-                problems.Add(item.ProblemType);
-            }
-            MessageBox.Show("This has been hit");
-            Patient_Problem.ItemsSource = problems.AsEnumerable();
-          
-            //}
-        }
-
-        private void Patient_Problem_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           
-        }
+        }      
     }
 }

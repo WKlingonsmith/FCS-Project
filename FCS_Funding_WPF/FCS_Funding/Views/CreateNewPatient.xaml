@@ -73,9 +73,12 @@
             <ComboBoxItem >55-69</ComboBoxItem>
             <ComboBoxItem >70+</ComboBoxItem>
         </ComboBox>
+
+
+
         <TextBlock Text="Ethnicity" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Height="30" />
         <ComboBox Name="ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="4" Grid.Row="7" FontSize="20">
+                  HorizontalContentAlignment="Center" Width="176" Height="40"  Grid.Column="4" Grid.Row="6" FontSize="20" Margin="1,38,1,2" Grid.RowSpan="2">
             <ComboBoxItem >African American</ComboBoxItem>
             <ComboBoxItem >Native/Alaskan</ComboBoxItem>
             <ComboBoxItem >Pacific Islander</ComboBoxItem>
@@ -84,39 +87,44 @@
             <ComboBoxItem >Hispanic</ComboBoxItem>
             <ComboBoxItem >Other</ComboBoxItem>
         </ComboBox>
-        <TextBlock Text="Patient Problem" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="3" Height="30" Margin="0,10,0,0" />
-        <ComboBox Name="Patient_Problem" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-        	HorizontalContentAlignment="Center" Width="176" Height="40"  Grid.Column="4" Grid.Row="9" FontSize="20" Margin="1,0" SelectionChanged="Patient_Problem_SelectionChanged">
-
-            <ComboBox.Resources>
-                <Style TargetType="ComboBoxItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ComboBoxItem">
-                                <CheckBox Name="ProblemSelection">
-                                    <ContentPresenter />
-                                </CheckBox>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ComboBox.Resources>
-        </ComboBox>
         <CheckBox Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="3" Content="Is Head of Household?" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,8,169.4,8" >
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
             </CheckBox.LayoutTransform>
         </CheckBox>
-        <CheckBox Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="3" Content="First Member of Household?" Margin="26,0,0,0" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Disable_Textbox">
+        <CheckBox Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="3" Content="First Member of Household?" Margin="0,4,106,13" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Disable_Textbox" Height="23" Width="285">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
             </CheckBox.LayoutTransform>
         </CheckBox>
         <TextBlock Text="Family Member OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Height="30" />
         <Border Grid.Row="13" Grid.Column="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
-            <TextBox Name="Family_OQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" />
+            <TextBox Name="Family_OQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="1,0,-1,0" />
         </Border>
         <Button FontSize="18" Grid.Column="2" Grid.Row="15" Content="Add Client" Click="Add_Client" Grid.ColumnSpan="2" Margin="148.4,13,0.2,27" Grid.RowSpan="2"   />
-        
+        <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="38,7,0,0"
+		  VerticalAlignment="Top" Height="236" Width="318" Grid.ColumnSpan="2" Grid.RowSpan="7" Grid.Column="4" Grid.Row="8">
+            <UniformGrid Name="PatientProblemsCheckBoxes" Columns="2" Rows="10">
+                <CheckBox x:Name="DepressionCheckBox" Content="Depression"/>
+                <CheckBox x:Name="LossCheckBox" Content="Bereavement/Loss" />
+                <CheckBox x:Name="CommunicationCheckBox" Content="Communication"/>
+                <CheckBox x:Name="DomesticViolenceCheckBox" Content="DomesticViolence"/>
+                <CheckBox x:Name="HoplessnessCheckBox" Content="Hoplessness"/>
+                <CheckBox x:Name="WorkProblemsCheckBox" Content="Work Problems"/>
+                <CheckBox x:Name="ParentProblemsCheckBox" Content="Parent Problems" />
+                <CheckBox x:Name="SubstanceAbuseCheckBox" Content="Substance Abuse" />
+                <CheckBox x:Name="SchoolProblemsCheckBox" Content="Problems w/ School"/>
+                <CheckBox x:Name="MarriageRelationCheckBox" Content="Marriage/Relationship Problems" />
+                <CheckBox x:Name="HurtSelfThoughtsCheckBox" Content="Thoughts of Hurting Self" />
+                <CheckBox x:Name="AngryFeelingsCheckBox" Content="Angry Feelings" />
+                <CheckBox x:Name="SexualAbuseCheckBox" Content="Sexual Abuse" />
+                <CheckBox x:Name="EmotionalAbuseCheckBox" Content="Emotional Abuse"/>
+                <CheckBox x:Name="PhysicalAbuseCheckBox" Content="Physical Abuse" />
+                <CheckBox x:Name="LawProblemsCheckBox" Content="Problems with the Law"/>
+                <CheckBox x:Name="UnhappyWithLifeCheckBox" Content="Unhappy With Life"/>
+                <CheckBox x:Name="AnxietyCheckBox" Content="Anxiety"/>
+                <CheckBox x:Name="OtherCheckBox" Content="Other"/>
+            </UniformGrid>
+        </GroupBox>
     </Grid>
 </Window>

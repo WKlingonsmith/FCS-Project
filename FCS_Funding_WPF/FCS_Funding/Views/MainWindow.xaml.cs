@@ -386,7 +386,6 @@ namespace FCS_Funding
                 ch.Gender.SelectedIndex = 0;
                 ch.AgeGroup.SelectedIndex = 0;
                 ch.ethnicity.SelectedIndex = 0;
-                ch.Patient_Problem.SelectedIndex = 0;
                 ch.Show();
             }
         }
