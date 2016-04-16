@@ -16,6 +16,7 @@ using FCS_Funding.Views;
 using FCS_DataTesting;
 using System.Collections.ObjectModel;
 using FCS_Funding.Models;
+using System.Windows.Automation.Peers;
 
 namespace FCS_Funding
 {
@@ -150,6 +151,7 @@ namespace FCS_Funding
                         //MessageBox.Show("Make sure you select a filter.");
                     }
                 }
+                GC.Collect();
             }    
         }
         private void Filter_Patients(object sender, RoutedEventArgs e)
@@ -181,6 +183,7 @@ namespace FCS_Funding
                     //up.relationToHead = p.RelationToHead;
                     up.Topmost = true;
                     up.Show();
+                    //DGrid.ItemsSource = data;
                 }
                 catch(Exception ex)
                 {

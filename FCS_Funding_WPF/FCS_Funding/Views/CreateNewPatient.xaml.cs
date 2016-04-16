@@ -12,15 +12,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace FCS_Funding.Views
 {
     /// <summary>
     /// Interaction logic for CreateNewPatient.xaml
     /// </summary>
+    public class ProbCheckBoxModel
+    {
+        int PatientID { get; set; }
+        int ProblemID { get; set; }
+    }
     public partial class CreateNewPatient : Window
     {
-        public bool Depression { get; set; }
+
         //properties
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -32,98 +38,90 @@ namespace FCS_Funding.Views
         public string relationToHead { get; set; }
         private string ageGroup { get; set; }
         private string ethnicGroup { get; set; }
-        
+
         //helper variables
         private int headOfHousehold { get; set; }
         private int disableTexbox { get; set; }
-
+        List<ProbCheckBoxModel> problemItems = new List<ProbCheckBoxModel>();
         public CreateNewPatient()
         {
-            Depression = false;
             headOfHousehold = 0;
             disableTexbox = 0;
             headOfHouse = false;
             InitializeComponent();
-          //  PatientProblemsGroup();
+            //  PatientProblemsGroup();
         }
 
         private void Add_Client(object sender, RoutedEventArgs e)
         {
-            
+            Patient pat2 = new Patient();
+            Problem prob = new Problem();
+            FCS_FundingDBModel db = new FCS_FundingDBModel();
             Determine_AgeGroup(this.AgeGroup.SelectedIndex);
             Determine_EthnicGroup(this.ethnicity.SelectedIndex);
+            var togglePatientProblems = PatientProblemsCheckBoxes.Children;
             Determine_Gender(this.Gender.SelectedIndex);
             if (this.firstName != null && this.firstName != "" && this.lastName != null && this.lastName != "" && patientOQ > 0 &&
                  PatientGender != null && PatientGender != "" && this.ageGroup != null && this.ethnicGroup != null
                 && this.relationToHead != null && this.relationToHead != "")
             {
                 //Need to add another household and open the NewHousehold View
-                if(!Family_OQ.IsEnabled)
+                if (!Family_OQ.IsEnabled)
                 {
-                    CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.PatientGender, this.headOfHouse, this.ageGroup, this.ethnicGroup, this.relationToHead);
+                    CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.PatientGender, this.headOfHouse, this.ageGroup, this.ethnicGroup, this.relationToHead, togglePatientProblems);
                     this.Close();
                     ch.Show();
-
                 }
                 //Need to add the client with the family OQ Number
-                else if(familyOQNumber > 0)
+                else if (familyOQNumber > 0)
                 {
                     date = DateTime.Now;
-                    MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" + 
+                    MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" +
                         familyOQNumber + "\n" + "\n" + relationToHead + "\n" + date);
-                    //this.Close();
+                    //this.Close();                    
+                    //try
+                    //{
+                    int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
 
-                    FCS_FundingDBModel db = new FCS_FundingDBModel();
-                    try
-                    {
-                        int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
-                        Patient pat2 = new Patient();
+                    pat2.PatientOQ = patientOQ;
+                    pat2.HouseholdID = householdID;
+                    pat2.PatientFirstName = firstName;
+                    pat2.PatientLastName = lastName;
+                    pat2.PatientAgeGroup = ageGroup;
+                    pat2.PatientEthnicity = ethnicGroup;
+                    pat2.NewClientIntakeHour = date;
+                    pat2.IsHead = headOfHouse;
+                    pat2.RelationToHead = relationToHead;                    
+                    db.Patients.Add(pat2);
+                    db.SaveChanges();
+                    Determine_Problems(patientOQ, togglePatientProblems);
 
-                        pat2.PatientOQ = patientOQ;
-                        pat2.HouseholdID = householdID;
-                        pat2.PatientFirstName = firstName;
-                        pat2.PatientLastName = lastName;
-                        pat2.PatientAgeGroup = ageGroup;
-                        pat2.PatientEthnicity = ethnicGroup;
-                        pat2.NewClientIntakeHour = date;
-                        pat2.IsHead = headOfHouse;
-                        pat2.RelationToHead = relationToHead;
+                    MessageBox.Show("Successfully added client.");
+                    this.Close();
 
-                        db.Patients.Add(pat2);
-                        db.SaveChanges();
-                        MessageBox.Show("Successfully added client.");
-                        this.Close();
-                        
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
-                    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //     MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
+                    //}
                 }
                 //They are missing the client OQ number.
                 else
                 {
                     MessageBox.Show("Unable to add client because you are missing the Family Member's Client OQ number that already exists in the system.");
                 }
-                
             }
             else
             {
                 MessageBox.Show("Unable to add client");
             }
-            List <string> problemItems = new List<string>();
-            foreach (var item in PatientProblemsCheckBoxes.Children)
-            {
-                if (item.Equals(true))
-                {
-                    problemItems.Add(item.ToString());
-                }
-            }            
+
         }
+
         private void Change_HeadOfHousehold(object sender, RoutedEventArgs e)
         {
             headOfHousehold++;
-            if((headOfHousehold % 2) == 0)
+            if ((headOfHousehold % 2) == 0)
             {
                 headOfHouse = false;
             }
@@ -137,12 +135,12 @@ namespace FCS_Funding.Views
         private void Disable_Textbox(object sender, RoutedEventArgs e)
         {
             disableTexbox++;
-            if((disableTexbox % 2) == 0)
+            if ((disableTexbox % 2) == 0)
             {
                 Family_OQ.IsEnabled = true;
                 Family_OQ.Background = Brushes.White;
             }
-            else 
+            else
             {
                 Family_OQ.IsEnabled = false;
                 Family_OQ.Background = Brushes.LightGray;
@@ -150,7 +148,7 @@ namespace FCS_Funding.Views
         }
 
         private void Determine_AgeGroup(int selection)
-        { 
+        {
             switch (selection)
             {
                 case 0:
@@ -203,6 +201,90 @@ namespace FCS_Funding.Views
                 case 2:
                     PatientGender = "Other"; break;
             }
-        }      
+        }
+
+        public void Determine_Problems(int OQ, UIElementCollection toggle)
+        {
+            PatientProblem patProb = new PatientProblem();
+            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            string checkBoxContent = "";
+            int probID = 0;
+            var problemTable = db.Problems;
+            foreach (var item in toggle)
+            {
+                if (((ToggleButton)item).IsChecked == true)
+                {
+                    int patID = db.Patients.Where(x => x.PatientOQ == OQ).Select(x => x.PatientID).Distinct().First();
+                    checkBoxContent = ((((ContentControl)item).Content).ToString());
+                    switch (checkBoxContent)
+                    {
+                        case "Depression":
+                            probID = 1;
+                            break;
+                        case "Bereavement/Loss":
+                            probID = 2;
+                            break;
+                        case "Communication":
+                            probID = 3;
+                            break;
+                        case "Domestic Violence":
+                            probID = 4;
+                            break;
+                        case "Hopelessness":
+                            probID = 5;
+                            break;
+                        case "Work Problems":
+                            probID = 6;
+                            break;
+                        case "Parent Problems":
+                            probID = 7;
+                            break;
+                        case "Substance Abuse":
+                            probID = 8;
+                            break;
+                        case "Problems w/ School":
+                            probID = 9;
+                            break;
+                        case "Marriage/Relationship/Family":
+                            probID = 10;
+                            break;
+                        case "Thoughts of Hurting Self":
+                            probID = 11;
+                            break;
+                        case "Angry Feelings":
+                            probID = 12;
+                            break;
+                        case "Sexual Abuse":
+                            probID = 13;
+                            break;
+                        case "Emotional Abuse":
+                            probID = 14;
+                            break;
+                        case "Physical Abuse":
+                            probID = 15;
+                            break;
+                        case "Problems with the Law":
+                            probID = 16;
+                            break;
+                        case "Unhappy with Life":
+                            probID = 17;
+                            break;
+                        case "Anxiety":
+                            probID = 18;
+                            break;
+                        case "Other":
+                            probID = 19;
+                            break;
+                    }
+
+                    patProb.PatientID = patID;
+                    patProb.ProblemID = probID;
+                    db.PatientProblems.Add(patProb);
+                    db.SaveChanges();
+                    patProb = new PatientProblem();
+                }
+            }
+        }
     }
 }
+
