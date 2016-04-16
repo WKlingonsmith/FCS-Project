@@ -52,13 +52,6 @@ namespace FCS_Funding
             StaffDBRole = StaffRole;
             //DGrid.ItemsSource = data;
             ShouldLoadPatient = true;
-
-            ShouldRefreshPatients = false;
-            ShouldRefreshGrants = false;
-            ShouldRefreshDonor = false;
-            ShouldRefreshInKind = false;
-            ShouldRefreshService = false;
-            ShouldRefreshEvents = false;
             InitializeComponent();
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
