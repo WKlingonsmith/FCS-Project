@@ -60,7 +60,7 @@ namespace FCS_Funding.Views
             string staff = Staff.SelectedValue.ToString();
             string grant = Grant.SelectedValue.ToString();            
             Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-            MessageBox.Show(PatientBill + "\n" + DonorBill + "\n" + startDateTime + "\n" + endDateTime + "\n" + expenseDueDate + "\n" + staff, grant);
+            //MessageBox.Show(PatientBill + "\n" + DonorBill + "\n" + startDateTime + "\n" + endDateTime + "\n" + expenseDueDate + "\n" + staff, grant);
             string[] words = staff.Split(separators, StringSplitOptions.None);
             string FName = words[0]; string LName = words[1]; string username = words[2];
             var staffID = (from dc in db.Staffs

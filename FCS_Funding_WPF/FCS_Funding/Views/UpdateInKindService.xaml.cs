@@ -101,7 +101,7 @@ namespace FCS_Funding.Views
             if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0)
             {
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
+                //MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
 
                 var inkindservice = (from p in db.In_Kind_Service
                                   where p.ServiceID == ServiceID

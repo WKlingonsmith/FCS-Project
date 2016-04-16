@@ -101,7 +101,7 @@ namespace FCS_Funding.Views
             if (EventName != null && EventName != "" && EventDescription != null && EventDescription != "" && timeDiff > 0)
             {
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
+                //MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
 
                 var event1 = (from p in db.FundRaisingEvents
                                      where p.EventID == EventID

@@ -63,7 +63,7 @@ namespace FCS_Funding.Views
                 string[] separators = new string[] { ", " };
                 string Indiv = Individual.SelectedValue.ToString();
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
+                //MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
                 string[] words = Indiv.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string FNumber = words[2];
                 var donorID = (from dc in db.DonorContacts

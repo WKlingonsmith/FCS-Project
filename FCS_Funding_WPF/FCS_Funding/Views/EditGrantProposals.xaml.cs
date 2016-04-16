@@ -49,7 +49,7 @@ namespace FCS_Funding.Views
             if (GrantName != "" && GrantName != null)
             {
                 string GrantStatus = Status.SelectedValue.ToString();
-                MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
+                //MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
 
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();                                
                 var grantproposal = (from p in db.GrantProposals

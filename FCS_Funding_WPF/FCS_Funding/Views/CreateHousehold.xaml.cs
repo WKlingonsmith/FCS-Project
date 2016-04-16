@@ -60,8 +60,8 @@ namespace FCS_Funding.Views
             if (Income != null && HouseholdPopulation > 0 && County != null && County != "")
             {                
                 date = DateTime.Now;
-                MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
-                    + "\n"  + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n"  + Income);
+                //MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
+                //    + "\n"  + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n"  + Income);
 
                 FCS_FundingDBModel db = new FCS_FundingDBModel();
                 PatientHousehold p = new PatientHousehold();

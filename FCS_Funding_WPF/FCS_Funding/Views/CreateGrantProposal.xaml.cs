@@ -56,7 +56,7 @@ namespace FCS_Funding.Views
                 string organiz = Organization.SelectedValue.ToString();
                 DateTime datet = Convert.ToDateTime(SubmissionDueDate.ToString());
 
-                MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
+                //MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 int DonorID = (from d in db.Donors
                                where d.OrganizationName == organiz

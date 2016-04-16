@@ -36,7 +36,7 @@ namespace FCS_Funding.Views
         {
             if(ContactFirstName != null && ContactFirstName != ""  && ContactLastName != null && ContactLastName != "")
             {
-                MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
+                //MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
 
                 FCS_FundingDBModel db = new FCS_FundingDBModel();
                 DonorContact d = new DonorContact();

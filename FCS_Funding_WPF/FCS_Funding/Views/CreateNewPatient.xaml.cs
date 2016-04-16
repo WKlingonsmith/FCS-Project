@@ -76,11 +76,11 @@ namespace FCS_Funding.Views
                 else if (familyOQNumber > 0)
                 {
                     date = DateTime.Now;
-                    MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" +
-                        familyOQNumber + "\n" + "\n" + relationToHead + "\n" + date);
+                    //MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" +
+                    //    familyOQNumber + "\n" + "\n" + relationToHead + "\n" + date);
                     //this.Close();                    
-                    //try
-                    //{
+                    try
+                    {
                     int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
 
                     pat2.PatientOQ = patientOQ;
@@ -99,11 +99,11 @@ namespace FCS_Funding.Views
                     MessageBox.Show("Successfully added client.");
                     this.Close();
 
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //     MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
-                    //}
+                    }
+                    catch (Exception ex)
+                    {
+                         MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
+                    }
                 }
                 //They are missing the client OQ number.
                 else

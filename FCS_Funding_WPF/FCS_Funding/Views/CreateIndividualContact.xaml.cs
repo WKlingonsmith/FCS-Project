@@ -53,8 +53,8 @@ namespace FCS_Funding.Views
                 && ContactEmail != null && ContactEmail != "")
             {
                 FCS_FundingDBModel db = new FCS_FundingDBModel();
-                MessageBox.Show(DonorFirstName + "\n" + DonorLastName + "\n" + ContactPhone + "\n" + ContactEmail + "\n" + DonorAddress1 + "\n" + DonorAddress2
-                    + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip + "\n" + DonorType + "\n" + OrganizationName);
+                //MessageBox.Show(DonorFirstName + "\n" + DonorLastName + "\n" + ContactPhone + "\n" + ContactEmail + "\n" + DonorAddress1 + "\n" + DonorAddress2
+                //    + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip + "\n" + DonorType + "\n" + OrganizationName);
                 Donor d = new Donor();
                 DonorContact dc = new DonorContact();
 

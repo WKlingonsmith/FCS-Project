@@ -46,8 +46,8 @@ namespace FCS_Funding.Views
                                   select d;
                     if (OrgName.Count() == 0)
                     {
-                        MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
-                            + "\n" + DonorType + "\n" + OrganizationName);
+                        //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                        //    + "\n" + DonorType + "\n" + OrganizationName);
                         Donor d = new Donor();
 
                         d.DonorType = DonorType;
@@ -70,8 +70,8 @@ namespace FCS_Funding.Views
                 }
                 else if(DonorType == "Individual")
                 {
-                    MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
-                        + "\n" + DonorType + "\n" + OrganizationName);
+                    //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                    //    + "\n" + DonorType + "\n" + OrganizationName);
                     Donor d = new Donor();
 
                     d.DonorType = DonorType;

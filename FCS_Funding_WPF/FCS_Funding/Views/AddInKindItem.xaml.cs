@@ -65,11 +65,11 @@ namespace FCS_Funding.Views
                 if (OrgOrIndividual.IsChecked.Value && Organization.SelectedIndex != -1)
                 {
                     string Organiz = Organization.SelectedValue.ToString();
-                    MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Organiz + "\n" + "You got HERE");
+                    //MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Organiz + "\n" + "You got HERE");
                     var donorID = (from d in db.Donors
                                    where d.OrganizationName == Organiz
                                    select d.DonorID).Distinct().First();
-                    MessageBox.Show(donorID.ToString());
+                    //MessageBox.Show(donorID.ToString());
 
                     if (IsEvent)
                     {
@@ -114,7 +114,7 @@ namespace FCS_Funding.Views
                 {
                     string[] separators = new string[] { ", " };
                     string Indiv = Individual.SelectedValue.ToString();
-                    MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
+                    //MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
                     string[] words = Indiv.Split(separators, StringSplitOptions.None);
                     string FName = words[0]; string LName = words[1]; string FNumber = words[2];
                     var donorID = (from dc in db.DonorContacts
