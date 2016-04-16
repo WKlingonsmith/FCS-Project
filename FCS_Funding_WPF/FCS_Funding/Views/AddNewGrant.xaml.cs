@@ -30,7 +30,7 @@ namespace FCS_Funding.Views
         private void AddGrant(object sender, RoutedEventArgs e)
         {
             if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && PurposeDescription != null && PurposeDescription != "" 
-                && DonationDate.ToString() != "" && DonationExpirationDate.ToString() != "")
+                && DonationDate.ToString() != "")
             {
                 try
                 {
@@ -49,7 +49,12 @@ namespace FCS_Funding.Views
                     d.DonationAmount = DonationAmount;
                     d.DonationAmountRemaining = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
-                    d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
+                    try
+                    {
+                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
+                    }
+                    catch {
+                    }
                     d.DonationAmount = DonationAmount;
 
                     DonationPurpose dp = new DonationPurpose();

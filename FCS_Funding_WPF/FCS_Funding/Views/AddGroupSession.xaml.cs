@@ -63,33 +63,39 @@ namespace FCS_Funding.Views
                             select d).First();
             if (donation.DonationAmountRemaining >= DonorBill)
             {
-                Models.Appointment a = new Models.Appointment();
-                a.StaffID = StaffID;
-                a.AppointmentStartDate = StartDateTime;
-                a.AppointmentEndDate = EndDateTime;
-                db.Appointments.Add(a);
-                db.SaveChanges();
+                try
+                {
+                    Models.Appointment a = new Models.Appointment();
+                    a.StaffID = StaffID;
+                    a.AppointmentStartDate = StartDateTime;
+                    a.AppointmentEndDate = EndDateTime;
+                    db.Appointments.Add(a);
+                    db.SaveChanges();
 
-                Models.Expense expense = new Models.Expense();
+                    Models.Expense expense = new Models.Expense();
 
-                expense.ExpenseTypeID = ExpenseTypeID;
-                expense.DonationID = donationID;
-                expense.PatientID = Individual.PatientID;
-                expense.AppointmentID = a.AppointmentID;
-                expense.ExpenseDueDate = ExpenseDueDate;
-                expense.DonorBill = DonorBill;
-                expense.PatientBill = PatientBill;
-                expense.TotalExpenseAmount = DonorBill + PatientBill;
-                if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
-                db.Expenses.Add(expense);
-                db.SaveChanges();
+                    expense.ExpenseTypeID = ExpenseTypeID;
+                    expense.DonationID = donationID;
+                    expense.PatientID = Individual.PatientID;
+                    expense.AppointmentID = a.AppointmentID;
+                    expense.ExpenseDueDate = ExpenseDueDate;
+                    expense.DonorBill = DonorBill;
+                    expense.PatientBill = PatientBill;
+                    expense.TotalExpenseAmount = DonorBill + PatientBill;
+                    if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                    db.Expenses.Add(expense);
+                    db.SaveChanges();
 
-                donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
-                db.SaveChanges();
+                    donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
+                    db.SaveChanges();
 
-
-                MessageBox.Show("Successfully added In_Kind Service");
-                this.Close();
+                    MessageBox.Show("Successfully added In_Kind Service");
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Please make sure all fields are correct");
+                }
             }
             else
             {

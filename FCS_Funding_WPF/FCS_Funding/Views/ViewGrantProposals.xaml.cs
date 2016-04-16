@@ -77,5 +77,11 @@ namespace FCS_Funding.Views
                 dgp.Status.SelectedIndex = index;
             }
         }
+
+
+        private void Close_Grants(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
