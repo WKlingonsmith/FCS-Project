@@ -910,5 +910,11 @@ namespace FCS_Funding
             ShouldRefreshPatients = true;
             Patient_Grid(sender, e);
         }
+
+        private void Refresh_Admin(object sender, RoutedEventArgs e)
+        {
+            sender = Admin_DataGrid;
+            Admin_Grid(sender, e);
+        }
     }
 }

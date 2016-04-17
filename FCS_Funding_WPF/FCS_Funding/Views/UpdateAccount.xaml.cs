@@ -12,6 +12,8 @@ using System.Windows.Controls;
 //using System.Windows.Media;
 //using System.Windows.Media.Imaging;
 //using System.Windows.Shapes;
+using FCS_Funding.Models;
+using System.Xml.Linq;
 
 namespace FCS_Funding.Views
 {
@@ -27,6 +29,7 @@ namespace FCS_Funding.Views
         public int StaffID { get; set; }
 
         public string helperUserName { get; set; }
+        FCS_FundingDBModel db = new FCS_FundingDBModel();
         public UpdateAccount(AdminDataGrid account)
         {
             UserName = account.StaffUserName;
@@ -41,7 +44,7 @@ namespace FCS_Funding.Views
 
         private void Update_Account(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             string Role = UserRole.SelectedValue.ToString();
 
 
@@ -74,7 +77,7 @@ namespace FCS_Funding.Views
 
         private void UpdatePasword(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             string password = Password.Password.ToString();
             string verifiedPW = VerifyPassword.Password.ToString();
             string hashedPassword = PasswordHashing.GetHashString(password);
@@ -108,6 +111,24 @@ namespace FCS_Funding.Views
                 "User",     //Read, Insert, Update
                 "Admin"     //Read, Insert, Update, Delete
             };
+        }
+
+        private void DeleteAccount(object sender, RoutedEventArgs e)
+        {
+            try {
+                db = new FCS_FundingDBModel();
+                var staff = (from s in db.Staffs
+                             where s.StaffID == StaffID
+                             select s).First();
+
+                db.Staffs.Remove(staff);
+                db.SaveChanges();                
+            }
+            catch
+            {
+                MessageBox.Show("This account has already been deleted");
+            }
+            this.Close();
         }
     }
 }

@@ -66,16 +66,17 @@
                   HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="1" Grid.Row="8" FontSize="20" Grid.ColumnSpan="2" Margin="178.8,0,3.8,0">
         </ComboBox>
 
-        <Button FontSize="18" Grid.Column="2" Grid.Row="10" Content="Update Account" Click="Update_Account" Grid.ColumnSpan="2" Margin="85.6,13,94,27" Grid.RowSpan="2" />
-        <TextBlock Text="Password:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" FontWeight="Bold" />
-        <Border Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Update Account" Click="Update_Account" Grid.ColumnSpan="2" Margin="128,1,52,39" Grid.RowSpan="2" />
+        <TextBlock Text="Password:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="2,39,176,11" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <Border Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" Margin="2,34,177,10" Grid.RowSpan="2">
             <PasswordBox Name="Password"  FontSize="18" />
         </Border>
-        <TextBlock Text="Verify Password:" TextAlignment="Center"  FontSize="18" Grid.Row="13" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" FontWeight="Bold" />
-        <Border Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <TextBlock Text="Verify Password:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="2,39,176,11" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <Border Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black" Margin="2,34,177,10" Grid.RowSpan="2">
             <PasswordBox Name="VerifyPassword"  FontSize="18" />
         </Border>
-        <Button FontSize="18" Grid.Column="2" Grid.Row="15" Content="Update Password" Click="UpdatePasword" Grid.ColumnSpan="2" Margin="85.6,13,94,27" Grid.RowSpan="2" />
+        <Button FontSize="18" Grid.Row="14" Content="Update Password" Click="UpdatePasword" Margin="77,1,103,39" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Button FontSize="18" Grid.Column="3" Grid.Row="14" Content="Delete Account" Click="DeleteAccount" Margin="176,1,4,39" Grid.RowSpan="2" Grid.ColumnSpan="2" />
     </Grid>
 
 </Window>
