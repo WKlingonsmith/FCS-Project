@@ -93,7 +93,7 @@ namespace FCS_Funding.Views
                     this.Close();
 
                     }
-                    catch (Exception ex)
+                    catch 
                     {
                          MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
                     }

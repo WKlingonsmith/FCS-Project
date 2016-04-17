@@ -44,40 +44,48 @@ namespace FCS_Funding.Views
 
         private void Update_Account(object sender, RoutedEventArgs e)
         {
-            db = new FCS_FundingDBModel(); 
-            string Role = UserRole.SelectedValue.ToString();
-
-
-            int usernameVerify = (from uv in db.Staffs
-                                  where uv.StaffUserName == UserName
-                                  select uv).Count();
-            if (UserName == null || UserName == "" || FirstName == null || FirstName == "" || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
+            db = new FCS_FundingDBModel();            
+            try
             {
-                MessageBox.Show("Make sure you input the correct data");
+                string Role = UserRole.SelectedValue.ToString();
+                int usernameVerify = (from uv in db.Staffs
+                                      where uv.StaffUserName == UserName
+                                      select uv).Count();
+                if (usernameVerify != 0 && UserName != helperUserName)
+                {
+                    MessageBox.Show("The username you selected is already taken");
+                }
+                else
+                {
+                    try
+                    {
+                        var staff = (from p in db.Staffs
+                                     where p.StaffID == StaffID
+                                     select p).First();
+                        staff.StaffFirstName = FirstName;
+                        staff.StaffLastName = LastName;
+                        staff.StaffTitle = StaffTitle;
+                        staff.StaffUserName = UserName;
+                        staff.StaffDBRole = Role;
+                        db.SaveChanges();
+                        MessageBox.Show("Updated these changes successfully.");
+                        this.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Make sure you have entered the correct data");
+                    }
+                }
             }
-            else if(usernameVerify != 0 && UserName != helperUserName)
+            catch
             {
-                MessageBox.Show("The username you selected is already taken");
-            }
-            else
-            {
-                var staff = (from p in db.Staffs
-                              where p.StaffID == StaffID
-                              select p).First();
-                staff.StaffFirstName = FirstName;
-                staff.StaffLastName = LastName;
-                staff.StaffTitle = StaffTitle;
-                staff.StaffUserName = UserName;
-                staff.StaffDBRole = Role;
-                db.SaveChanges();
-                MessageBox.Show("Updated these changes successfully.");
-                this.Close();
+                MessageBox.Show("Make sure you have entered the correct data");
             }
         }
 
         private void UpdatePasword(object sender, RoutedEventArgs e)
         {
-            db = new FCS_FundingDBModel(); 
+            db = new FCS_FundingDBModel();
             string password = Password.Password.ToString();
             string verifiedPW = VerifyPassword.Password.ToString();
             string hashedPassword = PasswordHashing.GetHashString(password);
@@ -92,12 +100,18 @@ namespace FCS_Funding.Views
             }
             else
             {
-                var staff = (from p in db.Staffs
-                             where p.StaffID == StaffID
-                             select p).First();
-                staff.StaffPassword = hashedPassword;
-                db.SaveChanges();
-                MessageBox.Show("Updated these changes successfully.");
+                try {
+                    var staff = (from p in db.Staffs
+                                 where p.StaffID == StaffID
+                                 select p).First();
+                    staff.StaffPassword = hashedPassword;
+                    db.SaveChanges();
+                    MessageBox.Show("Updated these changes successfully.");
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong. Please try again.");
+                }
                 this.Close();
             }
         }
@@ -115,14 +129,15 @@ namespace FCS_Funding.Views
 
         private void DeleteAccount(object sender, RoutedEventArgs e)
         {
-            try {
+            try
+            {
                 db = new FCS_FundingDBModel();
                 var staff = (from s in db.Staffs
                              where s.StaffID == StaffID
                              select s).First();
 
                 db.Staffs.Remove(staff);
-                db.SaveChanges();                
+                db.SaveChanges();
             }
             catch
             {

@@ -115,14 +115,14 @@
                     </Border>
                     <TextBlock Text="Gender:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Height="30" />
                     <ComboBox Name="Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Width="175" Height="40"  Grid.Column="4" Grid.Row="3" FontSize="20">
+                  Width="186" Height="40"  Grid.Column="4" Grid.Row="2" FontSize="20" Grid.ColumnSpan="2" Margin="1,36,168,37" Grid.RowSpan="3">
                         <ComboBoxItem >Male</ComboBoxItem>
                         <ComboBoxItem >Female</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
                     </ComboBox>
                     <TextBlock Text="Age Group:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="3" Height="30" />
                     <ComboBox Name="AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="175" Height="40" Grid.Column="4" Grid.Row="5" FontSize="20">
+                  HorizontalContentAlignment="Center" Width="186" Height="40" Grid.Column="4" Grid.Row="4" FontSize="20" Grid.ColumnSpan="2" Margin="2,37,168,37" Grid.RowSpan="3">
                         <ComboBoxItem >0-5</ComboBoxItem>
                         <ComboBoxItem >6-11</ComboBoxItem>
                         <ComboBoxItem >12-17</ComboBoxItem>
@@ -134,7 +134,7 @@
                     </ComboBox>
                     <TextBlock Text="Ethnicity" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Height="30" />
                     <ComboBox Name="Ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="4" Grid.Row="7" FontSize="20">
+                  HorizontalContentAlignment="Center" Width="186" Height="40"  Grid.Column="4" Grid.Row="6" FontSize="20" Grid.ColumnSpan="2" Margin="2,37,168,37" Grid.RowSpan="3">
                         <ComboBoxItem >African American</ComboBoxItem>
                         <ComboBoxItem >Native/Alaskan</ComboBoxItem>
                         <ComboBoxItem >Pacific Islander</ComboBoxItem>
@@ -230,7 +230,7 @@
                             <DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="AddSession" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2" Height="38" VerticalAlignment="Top"     />
+                    <Button Name="AddSession" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.Column="2" Margin="90,0,88,0" Grid.Row="16" Height="38" VerticalAlignment="Top" Grid.ColumnSpan="2"     />
                 </Grid>
             </TabItem>
         </TabControl>

@@ -84,7 +84,7 @@ namespace FCS_Funding.Views
                 MessageBox.Show("Successfully added Donation");
                 this.Close();
                 //}
-                //catch (Exception ex)
+                //catch ()
                 //{
                 //    MessageBox.Show("Cannot add Grant" + "\n" + ex);
                 //}

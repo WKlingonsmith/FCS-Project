@@ -39,11 +39,6 @@ namespace FCS_Funding
         //Helper properties
         private bool ShouldLoadPatient { get; set; }
         private bool ShouldRefreshPatients { get; set; }
-        private bool ShouldRefreshGrants { get; set; }
-        private bool ShouldRefreshDonor { get; set; }
-        private bool ShouldRefreshInKind { get; set; }
-        private bool ShouldRefreshService { get; set; }
-        private bool ShouldRefreshEvents { get; set; }
         //Accessablity
         private string StaffDBRole { get; set; }
         FCS_FundingDBModel db;
@@ -52,6 +47,7 @@ namespace FCS_Funding
             StaffDBRole = StaffRole;
             //DGrid.ItemsSource = data;
             ShouldLoadPatient = true;
+            ShouldRefreshPatients = false;
             InitializeComponent();
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
@@ -188,7 +184,7 @@ namespace FCS_Funding
                     up.Show();
                     //DGrid.ItemsSource = data;
                 }
-                catch(Exception ex)
+                catch
                 {
                     MessageBox.Show("You already deleted this Patient");
                 }
@@ -265,7 +261,7 @@ namespace FCS_Funding
 
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show("You already deleted this Donor");
             }
@@ -864,9 +860,11 @@ namespace FCS_Funding
                             ExpenseType = et.ExpenseType1,
                             ExpenseDescription = et.ExpenseDescription
                         };
-            // ... Assign ItemsSource of DataGrid.
+             //... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
+
+
         }
 
         private void Refresh_Grants(object sender, RoutedEventArgs e)
@@ -904,7 +902,7 @@ namespace FCS_Funding
             sender = Event_DataGrid;
             Events_Grid(sender, e);
         }
-        private void Refresh_Patients(object sender, RoutedEventArgs e)
+        public void Refresh_Patients(object sender, RoutedEventArgs e)
         {
             ShouldLoadPatient = true;
             ShouldRefreshPatients = true;

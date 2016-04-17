@@ -209,7 +209,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -244,7 +244,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");

@@ -79,7 +79,7 @@ namespace FCS_Funding
                 mw.Show();
                 this.Close();
             }
-            catch (Exception ex)
+            catch 
             {
                 MessageBox.Show("Incorrect Credentials");
             }

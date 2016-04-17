@@ -63,31 +63,36 @@ namespace FCS_Funding.Views
         private void Update_Patient(object sender, RoutedEventArgs e)
         {
             FCS_FundingDBModel db = new FCS_FundingDBModel();
-            int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
+            try {
+                int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
 
 
-            Determine_AgeGroup(this.AgeGroup.SelectedIndex);
-            Determine_EthnicGroup(this.Ethnicity.SelectedIndex);
-            Determine_Gender(this.Gender.SelectedIndex);
+                Determine_AgeGroup(this.AgeGroup.SelectedIndex);
+                Determine_EthnicGroup(this.Ethnicity.SelectedIndex);
+                Determine_Gender(this.Gender.SelectedIndex);
 
 
-            var patient = (from p in db.Patients
-                           where p.PatientID == patID
-                           select p).First();
+                var patient = (from p in db.Patients
+                               where p.PatientID == patID
+                               select p).First();
 
-            patient.PatientOQ = patientOQ;
-            patient.PatientFirstName = firstName;
-            patient.PatientLastName = lastName;
-            patient.RelationToHead = relationToHead;
-            patient.PatientGender = PatientGender;
-            patient.PatientAgeGroup = ageGroup;
-            patient.PatientEthnicity = ethnicGroup;
-            patient.IsHead = TheHead.IsChecked.Value;
-            UpdateProblems();
-            db.SaveChanges();
-            MessageBox.Show("Successfully Updated Patient");
-
-            this.Close();
+                patient.PatientOQ = patientOQ;
+                patient.PatientFirstName = firstName;
+                patient.PatientLastName = lastName;
+                patient.RelationToHead = relationToHead;
+                patient.PatientGender = PatientGender;
+                patient.PatientAgeGroup = ageGroup;
+                patient.PatientEthnicity = ethnicGroup;
+                patient.IsHead = TheHead.IsChecked.Value;
+                UpdateProblems();
+                db.SaveChanges();
+                MessageBox.Show("Successfully Updated Patient");
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Please make sure all fields are correct");
+            }
             //int householdID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.HouseholdID).Distinct().First();
             //FCS_Funding.Models.Patient update = new FCS_Funding.Models.Patient(patientOQ, householdID, firstName, lastName, PatientGender,
             //    ageGroup, ethnicGroup, date, TheHead.IsChecked.Value, relationToHead);
@@ -692,5 +697,6 @@ namespace FCS_Funding.Views
             }
             GC.Collect();
         }
+
     }
 }
