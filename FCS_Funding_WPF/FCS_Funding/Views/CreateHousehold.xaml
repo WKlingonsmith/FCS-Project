@@ -48,7 +48,7 @@
             <TextBox  FontSize="18"  Text="{Binding County, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Income Bracket:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0"/>
-        <ComboBox Name="income" SelectedItem="{Binding Income}" IsReadOnly="True" HorizontalAlignment="Center" 
+        <ComboBox Name="HouseholeIncomeBracket" SelectedItem="{Binding Income}" IsReadOnly="True" HorizontalAlignment="Center" 
                   VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="170" Height="40" Grid.Column="3" 
                   Grid.Row="8" FontSize="20"  >
             <ComboBoxItem >$0-9,999</ComboBoxItem>

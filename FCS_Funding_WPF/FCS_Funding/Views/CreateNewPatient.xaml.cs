@@ -61,6 +61,7 @@ namespace FCS_Funding.Views
                 {
                     CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.PatientGender, this.headOfHouse, this.ageGroup, this.ethnicGroup, this.relationToHead);
                     this.Close();
+                    ch.HouseholeIncomeBracket.SelectedIndex = 0;
                     ch.Show();
 
                 }
@@ -204,7 +205,6 @@ namespace FCS_Funding.Views
             {
                 problems.Add(item.ProblemType);
             }
-            MessageBox.Show("This has been hit");
             Patient_Problem.ItemsSource = problems.AsEnumerable();
           
             //}

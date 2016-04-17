@@ -160,7 +160,7 @@ namespace FCS_Funding
         private void EditPatient(object sender, RoutedEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count < 2 && StaffDBRole != "Basic")
+            if (Count < 2)
             {
                 try
                 {
@@ -170,6 +170,12 @@ namespace FCS_Funding
                     if (StaffDBRole != "Admin")
                     {
                         up.DeleteClien.IsEnabled = false;
+                    }
+                    if(StaffDBRole == "Basic")
+                    {
+                        up.UpPatient.IsEnabled = false;
+                        up.DeleteClien.IsEnabled = false;
+                        up.AddSession.IsEnabled = false;
                     }
                     up.TheHead.IsChecked = p.IsHead;
                     up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
@@ -345,7 +351,7 @@ namespace FCS_Funding
         private void Edit_Events(object sender, MouseButtonEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count <= 1 && StaffDBRole != "Basic")
+            if (Count <= 1 )
             {
                 DataGrid dg = sender as DataGrid;
                 EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
@@ -353,6 +359,14 @@ namespace FCS_Funding
                 if (StaffDBRole != "Admin")
                 {
                     up.Delete.IsEnabled = false;
+                }
+                if(StaffDBRole == "Basic")
+                {
+                    up.Delete.IsEnabled = false;
+                    up.UpEvent.IsEnabled = false;
+                    up.AddDonation.IsEnabled = false;
+                    up.AddItem.IsEnabled = false;
+                    up.AddService.IsEnabled = false;
                 }
                 if (p.EventStartDateTime.Hour >= 12)
                 {
@@ -738,6 +752,8 @@ namespace FCS_Funding
             {
                 CreateNewEvent ne = new CreateNewEvent();
                 ne.Show();
+                ne.AMPM_End.SelectedIndex = 0;
+                ne.AMPM_Start.SelectedIndex = 0;
                 ne.Topmost = true;
             }
         }
@@ -796,7 +812,7 @@ namespace FCS_Funding
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count < 2)
+            if (Count < 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
                 DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
@@ -846,6 +862,9 @@ namespace FCS_Funding
             if (Application.Current.Windows.Count <= 1)
             {
                 AppointmentType at = new AppointmentType();
+                at.AMPM_Start.SelectedIndex = 0;
+                at.AMPM_End.SelectedIndex = 0;
+                at.ApptType.SelectedIndex = 0;
                 at.Show();
                 //at.Topmost = true;
             }

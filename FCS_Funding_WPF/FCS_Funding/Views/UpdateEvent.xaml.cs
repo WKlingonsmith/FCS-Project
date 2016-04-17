@@ -257,7 +257,7 @@ namespace FCS_Funding.Views
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
             int Count = Application.Current.Windows.Count;
-            if (Count <= 3)
+            if (Count <= 3 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
                 DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;

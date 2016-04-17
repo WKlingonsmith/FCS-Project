@@ -58,6 +58,7 @@ namespace FCS_Funding
                     mw.AddService.IsEnabled = false;
                     mw.CreateEven.IsEnabled = false;
                     mw.AdminTab.IsEnabled = false;
+                    mw.CreateNewsession.IsEnabled = false;
                     mw.AdminTab.Visibility = Visibility.Collapsed;
                 }
                 else if (query.StaffDBRole == "User")

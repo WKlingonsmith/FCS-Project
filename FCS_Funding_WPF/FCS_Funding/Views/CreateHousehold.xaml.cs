@@ -52,7 +52,7 @@ namespace FCS_Funding.Views
 
         private void Add_Household(object sender, RoutedEventArgs e)
         {
-            Determine_Income(this.income.SelectedIndex);
+            Determine_Income(this.HouseholeIncomeBracket.SelectedIndex);
             if (Income != null && HouseholdPopulation > 0 && County != null && County != "")
             {
                 
@@ -86,7 +86,7 @@ namespace FCS_Funding.Views
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you select an income and head of household");                
+                MessageBox.Show("Make sure you select an income, a household population, and input a county.");                
             }
         }
 

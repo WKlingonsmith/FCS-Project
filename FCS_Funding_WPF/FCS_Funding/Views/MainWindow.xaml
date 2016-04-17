@@ -174,7 +174,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Width="143" Height="50" Header="Grants" FontSize="20" FontFamily="Calibri" Margin="-1,0,1,-0.4">
+            <TabItem Width="143" Height="50" Header="Grants" FontSize="20" FontFamily="Calibri">
                 <Grid Margin="0,0,0.2,-0.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -389,7 +389,7 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Width="143" Height="50" Header="In-Kind Item" FontSize="20" FontFamily="Calibri" Margin="0,0,0.2,-0.4" VerticalAlignment="Bottom">
+            <TabItem Width="143" Height="50" Header="In-Kind Item" FontSize="20" FontFamily="Calibri"  VerticalAlignment="Bottom">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

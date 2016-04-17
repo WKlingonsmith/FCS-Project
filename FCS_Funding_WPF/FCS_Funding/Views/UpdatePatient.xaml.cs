@@ -176,6 +176,8 @@ namespace FCS_Funding.Views
         {            
             AddSession ans = new AddSession(PatientID);
             ans.Show();
+            ans.AMPM_Start.SelectedIndex = 0;
+            ans.AMPM_End.SelectedIndex = 0;
             ans.ExpensePaidDate.IsEnabled = false;
             ans.Topmost = true;
         }
