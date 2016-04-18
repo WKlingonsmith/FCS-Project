@@ -88,7 +88,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Button Name="CreateNewPat" Content="Create New Patient" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="2" />
-                    <TextBlock Grid.Column="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="46.6,20,167.2,8.6" />
+                    <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="50" Margin="215,5,0.4,49.8" Grid.RowSpan="2"  />
                     <ComboBox Name="SeachBy_Patients" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42"  Grid.Column="1" Margin="213.4,10,10.8,0.8" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="cbi1">Patient OQ</ComboBoxItem>
                         <ComboBoxItem Name="cbi2">First Name</ComboBoxItem>
@@ -156,7 +156,7 @@
                     <ComboBox Name="SeachBy_Sessions" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42"  Grid.Column="3" Margin="0,10,12,0"/>
                     <TextBox FontSize="18" Grid.Column="4" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0,10,10,0" Grid.ColumnSpan="2"/>
                     <Button Height="45" Width="210" Grid.Column="6" Grid.Row="0" Content="Filter" Click="Filter_Patients" Margin="2,4,3,4"  />-->
-                    <Button  Content="Refresh" Click="Refresh_Session"  Grid.Column="6" Margin="0,38,0,24" Grid.RowSpan="2" />
+                    <Button  Content="Refresh" Click="Refresh_Session"  Grid.Column="6"   />
                     <DataGrid Name="Session_DataGrid" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Sessions_Grid"
                               AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" >
                         <DataGrid.Columns>
@@ -219,7 +219,7 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Margin="160,0,9,0" Grid.ColumnSpan="3" Grid.Row="1" />
                     <Button Height="45" Width="210" Grid.Column="6" Grid.Row="0" Content="Filter" Margin="2,0,3,37" Grid.RowSpan="2" />-->
-                    <Button  Content="Refresh" Click="Refresh_Grants"  Grid.Column="7" Grid.Row="1" />
+                    <Button  Content="Refresh" Click="Refresh_Grants"  Grid.Column="7" Grid.Row="0" />
 
                     <DataGrid Name="Grant_DataGrid" Grid.Column="2"  Grid.Row="3" Grid.ColumnSpan="6" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Grants_Grid"  
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0,0,1,0" PreviewMouseDoubleClick="EditGrant">
@@ -435,7 +435,7 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
                     <Button Height="45" Width="210" Grid.Column="5" Grid.Row="0" Content="Filter" />-->
-                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_InKind"  Grid.Column="5" Grid.Row="1" Margin="2,0,3,0" Grid.RowSpan="2" VerticalAlignment="Top" />
+                    <Button Height="40" Width="210" Content="Refresh" Click="Refresh_InKind"  Grid.Column="5" Grid.Row="0" VerticalAlignment="Top" />
                     <DataGrid Name="InKind_DataGrid" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" PreviewMouseDoubleClick="Edit_InKindItem">
                         <DataGrid.Columns>
@@ -488,7 +488,7 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Margin="0.2,0,10,0" Grid.ColumnSpan="2" Grid.Row="1" />
                     <Button Height="45" Width="210" Grid.Column="5" Grid.Row="0" Content="Filter" />-->
-                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Service"  Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" />
+                    <Button Height="40" Width="210" Content="Refresh" Click="Refresh_Service"  Grid.Column="5" Grid.Row="0"  VerticalAlignment="Top" />
                     <DataGrid Name="Service_DataGrid" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" PreviewMouseDoubleClick="Edit_InKindService"
                               IsReadOnly="True" CanUserDeleteRows="False" Loaded="InKindServiceGrid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4">
                         <DataGrid.Columns>
@@ -549,7 +549,7 @@
                     </DataGrid>
                     <!--<TextBox FontSize="18" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1" />
                     <Button Height="45" Width="210" Grid.Column="5" Grid.Row="0" Content="Filter" />-->
-                    <Button  Content="Refresh" Click="Refresh_Events"  Grid.Column="5" Grid.Row="1" />
+                    <Button  Content="Refresh" Click="Refresh_Events"  Grid.Column="5" Grid.Row="0" />
                 </Grid>
             </TabItem>
             <TabItem Width="143" Height="50" Header="Reports" FontSize="20" FontFamily="Calibri">
@@ -649,7 +649,7 @@
                     </DataGrid>
                     <!--<TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="3" TextWrapping="Wrap" Text="Search By Username" Grid.RowSpan="1"/>
                     <Button x:Name="button" Content="Search" Grid.Column="5" Grid.RowSpan="1"/>-->
-                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Admin"  Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" />
+                    <Button Height="45" Width="210" Content="Refresh" Click="Refresh_Admin"  Grid.Column="5" Grid.Row="0" VerticalAlignment="Top" />
                 </Grid>
             </TabItem>
         </TabControl>
