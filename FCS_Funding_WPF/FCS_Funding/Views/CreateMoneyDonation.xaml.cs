@@ -28,11 +28,10 @@ namespace FCS_Funding.Views
 
         private void AddGrant(object sender, RoutedEventArgs e)
         {
-            if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && PurposeDescription != null && PurposeDescription != ""
-                && DonationDate.ToString() != "")
+            //if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && DonationDate.ToString() != "")
+            //{
+            try
             {
-                //try
-                //{
                 MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
                     PurposeName + "\n" + PurposeDescription);
                 FCS_FundingDBModel db = new FCS_FundingDBModel();
@@ -89,7 +88,7 @@ namespace FCS_Funding.Views
                 //    MessageBox.Show("Cannot add Grant" + "\n" + ex);
                 //}
             }
-            else
+            catch
             {
                 MessageBox.Show("Make sure to input all the correct data.");
             }
