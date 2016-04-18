@@ -1,0 +1,45 @@
+﻿<Window x:Class="FCS_Funding.Views.CreateBackup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FCS_Funding.Views"
+        mc:Ignorable="d"
+        Title="CreateBackup" Width="700" Height="500" MinHeight="500" MaxHeight="500" MinWidth="700" MaxWidth="700" x:Name="ThisWindow">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Create Backup" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Height="53" Margin="179,0,0.4,0" 
+                   VerticalAlignment="Top" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
+        <TextBlock Text="Backup Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="68,4,27.2,9.2" FontWeight="Bold" />
+        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+            <TextBox  FontSize="18" Text="{Binding BackupName, ElementName=ThisWindow}"  />
+        </Border>
+        <Button FontSize="18" Grid.Column="2" Grid.Row="6" Content="Create Backup" Click="Create_Backup" Grid.ColumnSpan="2" Margin="39.8,1,38.4,0.2"   />
+    </Grid>
+</Window>

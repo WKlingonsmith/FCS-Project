@@ -19,10 +19,8 @@ namespace FCS_Funding
     /// </summary>
     public partial class Login : Window
     {
-        public string username { get; set; }
         public Login()
         {
-            username = "Admin";
             InitializeComponent();
         }
 
