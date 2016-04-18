@@ -61,7 +61,7 @@
                     <GradientStop Color="#FFB5EEFF"/>
                 </LinearGradientBrush>
             </TabControl.Background>
-            <TabItem Width="142" Height="50" Header="Patients" FontSize="20" Background="Black" FontFamily="Calibri" >
+            <TabItem Width="142" Height="50" Header="Patients" FontSize="20" Background="Black" FontFamily="Calibri" Margin="-4,0,4,0" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -124,7 +124,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Width="143" Height="50" Header="Sessions" FontSize="20" Background="Black" FontFamily="Calibri" >
+            <TabItem Width="143" Height="50" Header="Sessions" FontSize="20" Background="Black" FontFamily="Calibri" Margin="-2,0,1,0" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="215*"/>
@@ -175,7 +175,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Width="143" Height="50" Header="Grants" FontSize="20" FontFamily="Calibri" Margin="5,0,-4,0">
+            <TabItem Width="143" Height="50" Header="Grants" FontSize="20" FontFamily="Calibri" Margin="-1,0,1,0">
                 <Grid Margin="0,0,0.2,-0.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="184*"/>
