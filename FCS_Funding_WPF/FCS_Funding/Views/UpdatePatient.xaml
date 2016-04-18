@@ -115,14 +115,14 @@
                     </Border>
                     <TextBlock Text="Gender:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Height="30" />
                     <ComboBox Name="Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Width="175" Height="40"  Grid.Column="4" Grid.Row="3" FontSize="20">
+                  Width="186" Height="40"  Grid.Column="4" Grid.Row="2" FontSize="20" Grid.ColumnSpan="2" Margin="1,36,168,37" Grid.RowSpan="3">
                         <ComboBoxItem >Male</ComboBoxItem>
                         <ComboBoxItem >Female</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
                     </ComboBox>
                     <TextBlock Text="Age Group:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="3" Height="30" />
                     <ComboBox Name="AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="175" Height="40" Grid.Column="4" Grid.Row="5" FontSize="20">
+                  HorizontalContentAlignment="Center" Width="186" Height="40" Grid.Column="4" Grid.Row="4" FontSize="20" Grid.ColumnSpan="2" Margin="2,37,168,37" Grid.RowSpan="3">
                         <ComboBoxItem >0-5</ComboBoxItem>
                         <ComboBoxItem >6-11</ComboBoxItem>
                         <ComboBoxItem >12-17</ComboBoxItem>
@@ -134,7 +134,7 @@
                     </ComboBox>
                     <TextBlock Text="Ethnicity" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Height="30" />
                     <ComboBox Name="Ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="4" Grid.Row="7" FontSize="20">
+                  HorizontalContentAlignment="Center" Width="186" Height="40"  Grid.Column="4" Grid.Row="6" FontSize="20" Grid.ColumnSpan="2" Margin="2,37,168,37" Grid.RowSpan="3">
                         <ComboBoxItem >African American</ComboBoxItem>
                         <ComboBoxItem >Native/Alaskan</ComboBoxItem>
                         <ComboBoxItem >Pacific Islander</ComboBoxItem>
@@ -143,32 +143,37 @@
                         <ComboBoxItem >Hispanic</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
                     </ComboBox>
-                    <TextBlock Text="Patient Problem" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="3" Height="30" Margin="0,10,0,0" />
-                    <ComboBox Name="Patient_Problem" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-        	HorizontalContentAlignment="Center" Width="176" Height="40"  Grid.Column="4" Grid.Row="9" FontSize="20" Margin="1,0" SelectionChanged="Patient_Problem_SelectionChanged">
-
-                        <ComboBox.Resources>
-                            <Style TargetType="ComboBoxItem">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ComboBoxItem">
-                                            <CheckBox Name="ProblemSelection">
-                                                <ContentPresenter />
-                                            </CheckBox>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
-                    <CheckBox Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="3" Content="Is Head of Household?" Name="TheHead" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="117,10,0,0"
+		  VerticalAlignment="Top" Height="236" Width="405" Grid.ColumnSpan="3" Grid.RowSpan="7" Grid.Column="3" Grid.Row="8">
+                        <UniformGrid Name="PatientProblemsCheckBoxes" Columns="2" Rows="10">
+                            <CheckBox x:Name="DepressionCheckBox"  Content=     "Depression" />
+                            <CheckBox x:Name="LossCheckBox" Content=            "Bereavement/Loss" />
+                            <CheckBox x:Name="CommunicationCheckBox" Content=   "Communication"/>
+                            <CheckBox x:Name="DomesticViolenceCheckBox" Content="Domestic Violence"/>
+                            <CheckBox x:Name="HoplessnessCheckBox" Content=     "Hopelessness"/>
+                            <CheckBox x:Name="WorkProblemsCheckBox" Content=    "Work Problems"/>
+                            <CheckBox x:Name="ParentProblemsCheckBox" Content=  "Parent Problems" />
+                            <CheckBox x:Name="SubstanceAbuseCheckBox" Content=  "Substance Abuse" />
+                            <CheckBox x:Name="SchoolProblemsCheckBox" Content=  "Problems w/ School"/>
+                            <CheckBox x:Name="MarriageRelationCheckBox" Content="Marriage/Relationship/Family" />
+                            <CheckBox x:Name="HurtSelfThoughtsCheckBox" Content="Thoughts of Hurting Self" />
+                            <CheckBox x:Name="AngryFeelingsCheckBox" Content=   "Angry Feelings" />
+                            <CheckBox x:Name="SexualAbuseCheckBox" Content=     "Sexual Abuse" />
+                            <CheckBox x:Name="EmotionalAbuseCheckBox" Content=  "Emotional Abuse"/>
+                            <CheckBox x:Name="PhysicalAbuseCheckBox" Content=   "Physical Abuse" />
+                            <CheckBox x:Name="LawProblemsCheckBox" Content=     "Problems with the Law"/>
+                            <CheckBox x:Name="UnhappyWithLifeCheckBox" Content= "Unhappy with Life"/>
+                            <CheckBox x:Name="AnxietyCheckBox" Content=         "Anxiety"/>
+                            <CheckBox x:Name="OtherCheckBox" Content=           "Other" />
+                        </UniformGrid>
+                    </GroupBox>
+                    <CheckBox Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3" Content="Is Head of Household?" Name="TheHead" FontSize="18" HorizontalAlignment="RIght" VerticalAlignment="Center" Margin="0,1,155,3" Width="202" Height="34" >
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
                         </CheckBox.LayoutTransform>
                     </CheckBox>
-
-                    <Button Name="UpPatient" FontSize="18" Grid.Column="2" Grid.Row="13" Content="Update Client" Click="Update_Patient"    />
-                    <Button Name="DeleteClien" FontSize="18" Grid.Column="4" Grid.Row="13" Content="Delete Client" Click="Detete_Patient"    />
+                    <Button Name="UpPatient" FontSize="18" Grid.Column="2" Grid.Row="15" Content="Update Client" Click="Update_Patient"    />
+                    <Button Name="DeleteClien" FontSize="18" Grid.Column="4" Grid.Row="15" Content="Delete Client" Click="Detete_Patient"    />
                 </Grid>
             </TabItem>
             <TabItem Header="Patient Sessions" Height="30">
@@ -216,7 +221,7 @@
                             <DataGridTextColumn Header="Appointment Start" Width="110" Binding="{Binding Path=AppointmentStart}"/>
                             <DataGridTextColumn Header="Appointment End" Width="110" Binding="{Binding Path=AppointmentEnd}"/>
                             <DataGridTextColumn Header="Expense Due Date" Width="110" Binding="{Binding Path=ExpenseDueDate}"/>
-                            <DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/> 
+                            <DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/>
                             <DataGridTextColumn Header="Donor Bill" Width="63" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Patient Bill" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Total Expense" Width="70" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
@@ -224,9 +229,9 @@
                             <DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="AddSession" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2" Height="38" VerticalAlignment="Top"     />
+                    <Button Name="AddSession" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.Column="2" Margin="90,0,88,0" Grid.Row="16" Height="38" VerticalAlignment="Top" Grid.ColumnSpan="2"     />
                 </Grid>
-            </TabItem>            
+            </TabItem>
         </TabControl>
     </Grid>
 

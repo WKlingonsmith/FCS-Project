@@ -2,16 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Data;
+//using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
+
 
 namespace FCS_Funding.Views
 {
@@ -101,7 +102,7 @@ namespace FCS_Funding.Views
             if (EventName != null && EventName != "" && EventDescription != null && EventDescription != "" && timeDiff > 0)
             {
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
+                //MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
 
                 var event1 = (from p in db.FundRaisingEvents
                                      where p.EventID == EventID
@@ -124,8 +125,8 @@ namespace FCS_Funding.Views
 
         private void Delete_Event(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation",
-                "Are you sure that you want to delete this In-Kind Service?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Event?" ,
+               "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
@@ -167,7 +168,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -197,7 +198,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");

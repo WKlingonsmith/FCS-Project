@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Data;
+//using System.Windows.Documents;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -98,10 +98,10 @@ namespace FCS_Funding.Views
             DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
             DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
             decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
-            if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0)
+            try
             {
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
+                //MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
 
                 var inkindservice = (from p in db.In_Kind_Service
                                   where p.ServiceID == ServiceID
@@ -124,31 +124,37 @@ namespace FCS_Funding.Views
                 this.Close();
 
             }
-            else
+            catch
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Make sure you have input all of the correct data.");
             }
         }
 
         private void Delete_InKind_Service(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation",
-                "Are you sure that you want to delete this In-Kind Service?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this In-Kind Service?",
+                 "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
-                var inkindservice = (from p in db.In_Kind_Service
-                                  where p.ServiceID == ServiceID
-                                  select p).First();
+                try {
+                    FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+                    var inkindservice = (from p in db.In_Kind_Service
+                                         where p.ServiceID == ServiceID
+                                         select p).First();
 
-                var donation = (from d in db.Donations
-                                where d.DonationID == DonationID
-                                select d).First();
-                db.In_Kind_Service.Remove(inkindservice);
-                db.Donations.Remove(donation);
-                db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Grant but the Proposal for this grant has been set to Pending.");
-                this.Close();
+                    var donation = (from d in db.Donations
+                                    where d.DonationID == DonationID
+                                    select d).First();
+                    db.In_Kind_Service.Remove(inkindservice);
+                    db.Donations.Remove(donation);
+                    db.SaveChanges();
+                    MessageBox.Show("You successfully deleted this Grant but the Proposal for this grant has been set to Pending.");
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong. Please try again.");
+                }
             }
         }
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
@@ -173,7 +179,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -204,10 +210,10 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please insert a number.");
                 }
             }
         }

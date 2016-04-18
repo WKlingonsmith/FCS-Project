@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using FCS_Funding.Models;
 
 namespace FCS_Funding.Views
@@ -41,12 +30,12 @@ namespace FCS_Funding.Views
         private void AddGrant(object sender, RoutedEventArgs e)
         {
             if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && PurposeDescription != null && PurposeDescription != "" 
-                && DonationDate.ToString() != "" && DonationExpirationDate.ToString() != "")
+                && DonationDate.ToString() != "")
             {
                 try
                 {
-                    MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" + 
-                        DonationExpirationDate + "\n" + PurposeName + "\n" + PurposeDescription);
+                    //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" + 
+                    //    DonationExpirationDate + "\n" + PurposeName + "\n" + PurposeDescription);
                     FCS_FundingDBModel db = new FCS_FundingDBModel();
                     Purpose p = new Purpose();
                     p.PurposeName = PurposeName;
@@ -60,7 +49,12 @@ namespace FCS_Funding.Views
                     d.DonationAmount = DonationAmount;
                     d.DonationAmountRemaining = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
-                    d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
+                    try
+                    {
+                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
+                    }
+                    catch {
+                    }
                     d.DonationAmount = DonationAmount;
 
                     DonationPurpose dp = new DonationPurpose();

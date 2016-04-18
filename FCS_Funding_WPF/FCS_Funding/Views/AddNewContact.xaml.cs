@@ -1,17 +1,5 @@
 ﻿using FCS_Funding.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -36,7 +24,7 @@ namespace FCS_Funding.Views
         {
             if(ContactFirstName != null && ContactFirstName != ""  && ContactLastName != null && ContactLastName != "")
             {
-                MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
+                //MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
 
                 FCS_FundingDBModel db = new FCS_FundingDBModel();
                 DonorContact d = new DonorContact();

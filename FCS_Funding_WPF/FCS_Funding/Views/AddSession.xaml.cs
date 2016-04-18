@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -52,62 +44,69 @@ namespace FCS_Funding.Views
             {
                 EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
             }
-            DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
-            DateTime help = Convert.ToDateTime(DateRecieved.ToString());
-            DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
-            DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
-            string[] separators = new string[] { ", " };
-            string staff = Staff.SelectedValue.ToString();
-            string grant = Grant.SelectedValue.ToString();            
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-            MessageBox.Show(PatientBill + "\n" + DonorBill + "\n" + startDateTime + "\n" + endDateTime + "\n" + expenseDueDate + "\n" + staff, grant);
-            string[] words = staff.Split(separators, StringSplitOptions.None);
-            string FName = words[0]; string LName = words[1]; string username = words[2];
-            var staffID = (from dc in db.Staffs
-                            where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
-                           select dc.StaffID).Distinct().FirstOrDefault();
-            var grantproposalID = (from g in db.GrantProposals
-                           where g.GrantName == grant
-                           select g.GrantProposalID).Distinct().FirstOrDefault();
-            var donationID = (from d in db.Donations
-                              where d.GrantProposalID == grantproposalID
-                              select d.DonationID).Distinct().FirstOrDefault();
-            var donation = (from d in db.Donations
-                              where d.GrantProposalID == grantproposalID
-                              select d).First();
-            if (donation.DonationAmountRemaining >= DonorBill)
+            try
             {
-                Models.Appointment a = new Models.Appointment();
-                a.StaffID = staffID;
-                a.AppointmentStartDate = startDateTime;
-                a.AppointmentEndDate = endDateTime;
-                db.Appointments.Add(a);
-                db.SaveChanges();
+                DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
+                DateTime help = Convert.ToDateTime(DateRecieved.ToString());
+                DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
+                DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
+                string[] separators = new string[] { ", " };
+                string staff = Staff.SelectedValue.ToString();
+                string grant = Grant.SelectedValue.ToString();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                //MessageBox.Show(PatientBill + "\n" + DonorBill + "\n" + startDateTime + "\n" + endDateTime + "\n" + expenseDueDate + "\n" + staff, grant);
+                string[] words = staff.Split(separators, StringSplitOptions.None);
+                string FName = words[0]; string LName = words[1]; string username = words[2];
+                var staffID = (from dc in db.Staffs
+                               where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
+                               select dc.StaffID).Distinct().FirstOrDefault();
+                var grantproposalID = (from g in db.GrantProposals
+                                       where g.GrantName == grant
+                                       select g.GrantProposalID).Distinct().FirstOrDefault();
+                var donationID = (from d in db.Donations
+                                  where d.GrantProposalID == grantproposalID
+                                  select d.DonationID).Distinct().FirstOrDefault();
+                var donation = (from d in db.Donations
+                                where d.GrantProposalID == grantproposalID
+                                select d).First();
+                if (donation.DonationAmountRemaining >= DonorBill)
+                {
+                    Models.Appointment a = new Models.Appointment();
+                    a.StaffID = staffID;
+                    a.AppointmentStartDate = startDateTime;
+                    a.AppointmentEndDate = endDateTime;
+                    db.Appointments.Add(a);
+                    db.SaveChanges();
 
-                Models.Expense expense = new Models.Expense();
+                    Models.Expense expense = new Models.Expense();
 
-                expense.ExpenseTypeID = 1;
-                expense.DonationID = donationID;
-                expense.PatientID = PatientID;
-                expense.AppointmentID = a.AppointmentID;
-                expense.ExpenseDueDate = expenseDueDate;
-                expense.DonorBill = DonorBill;
-                expense.PatientBill = PatientBill;
-                expense.TotalExpenseAmount = DonorBill + PatientBill;
-                if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
-                db.Expenses.Add(expense);
-                db.SaveChanges();
+                    expense.ExpenseTypeID = 1;
+                    expense.DonationID = donationID;
+                    expense.PatientID = PatientID;
+                    expense.AppointmentID = a.AppointmentID;
+                    expense.ExpenseDueDate = expenseDueDate;
+                    expense.DonorBill = DonorBill;
+                    expense.PatientBill = PatientBill;
+                    expense.TotalExpenseAmount = DonorBill + PatientBill;
+                    if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                    db.Expenses.Add(expense);
+                    db.SaveChanges();
 
-                donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
-                db.SaveChanges();
+                    donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
+                    db.SaveChanges();
 
 
-                MessageBox.Show("Successfully added In_Kind Service");
-                this.Close();
+                    MessageBox.Show("Successfully added In_Kind Service");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("That grant does not have enough money.");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("That grant does not have enough money.");
+                MessageBox.Show("Make sure you input the correct data");
             }
         }
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
@@ -131,7 +130,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -162,7 +161,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");

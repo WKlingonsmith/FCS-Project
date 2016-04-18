@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Data;
+//using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Navigation;
+//using System.Windows.Shapes;
 using FCS_Funding.Views;
 using FCS_DataTesting;
 using System.Collections.ObjectModel;
 using FCS_Funding.Models;
+//using System.Windows.Automation.Peers;
 
 namespace FCS_Funding
 {
@@ -38,10 +39,9 @@ namespace FCS_Funding
         //Helper properties
         private bool ShouldLoadPatient { get; set; }
         private bool ShouldRefreshPatients { get; set; }
-
         //Accessablity
         private string StaffDBRole { get; set; }
-
+        FCS_FundingDBModel db;
         public MainWindow(string StaffRole)
         {
             StaffDBRole = StaffRole;
@@ -53,7 +53,7 @@ namespace FCS_Funding
         private void Patient_Grid(object sender, RoutedEventArgs e)
         {
             int index = this.SeachBy_Patients.SelectedIndex;
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = from patient in db.Patients
                         join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
                         select new PatientGrid
@@ -141,15 +141,18 @@ namespace FCS_Funding
                         }
                         else
                         {
+                            //PatientGrid.ItemsSource = join1.ToList();
                             grid.ItemsSource = join1.ToList();
                             ShouldLoadPatient = false;
                         }
                     }
                     else
                     {
+                        PatientGrid.ItemsSource = join1.ToList();
                         //MessageBox.Show("Make sure you select a filter.");
                     }
                 }
+                GC.Collect();
             }    
         }
         private void Filter_Patients(object sender, RoutedEventArgs e)
@@ -187,8 +190,9 @@ namespace FCS_Funding
                     //up.relationToHead = p.RelationToHead;
                     up.Topmost = true;
                     up.Show();
+                    //DGrid.ItemsSource = data;
                 }
-                catch(Exception ex)
+                catch
                 {
                     MessageBox.Show("You already deleted this Patient");
                 }
@@ -205,7 +209,7 @@ namespace FCS_Funding
                     DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     if (p.DonorType == "Individual")
                     {
-                        Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                        db = new FCS_FundingDBModel(); 
                         //Open in individual view
                         Models.DonorContact query = (from doncontacts in db.DonorContacts
                                                      where doncontacts.DonorID == p.DonorID
@@ -222,7 +226,7 @@ namespace FCS_Funding
                     }
                     else if (p.DonorType == "Anonymous")
                     {
-                        Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                        db = new FCS_FundingDBModel(); 
                         Models.DonorContact query = (from doncontacts in db.DonorContacts
                                                      where doncontacts.DonorID == p.DonorID
                                                      select doncontacts).First();
@@ -265,14 +269,14 @@ namespace FCS_Funding
 
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show("You already deleted this Donor");
             }
         }
         private void EditGrant(object sender, MouseButtonEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             int Count = Application.Current.Windows.Count;
             if (Count < 2 && StaffDBRole != "Basic")
             {
@@ -400,14 +404,13 @@ namespace FCS_Funding
                 ch.Gender.SelectedIndex = 0;
                 ch.AgeGroup.SelectedIndex = 0;
                 ch.ethnicity.SelectedIndex = 0;
-                ch.Patient_Problem.SelectedIndex = 0;
                 ch.Show();
             }
         }
 
         private void Grants_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = from p in db.Purposes
                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                         join d in db.Donations on dp.DonationID equals d.DonationID
@@ -440,7 +443,7 @@ namespace FCS_Funding
 
         private void Donor_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          where p.DonorType == "Anonymous" || p.DonorType == "Individual"
@@ -478,7 +481,7 @@ namespace FCS_Funding
 
         private void InKindItemGrid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on  p.DonorID equals d.DonorID
@@ -520,7 +523,7 @@ namespace FCS_Funding
 
         private void Events_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = (from p in db.FundRaisingEvents
                          select new EventsDataGrid
                          {
@@ -548,7 +551,7 @@ namespace FCS_Funding
 
         private void Admin_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = (from p in db.Staffs
                          select new AdminDataGrid
                          {
@@ -577,7 +580,7 @@ namespace FCS_Funding
             //InKindServices.Add(s1);
             //var grid = sender as DataGrid;
             //grid.ItemsSource = InKindServices;
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on p.DonorID equals d.DonorID
@@ -600,18 +603,6 @@ namespace FCS_Funding
                          });
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
-        }
-
-        private void Refresh_Patients(object sender, RoutedEventArgs e)
-        {
-            ShouldLoadPatient = true;
-            ShouldRefreshPatients = true;
-            Patient_Grid(sender, e);
-        }
-
-        private void Refresh_Donors(object sender, RoutedEventArgs e)
-        {
-
         }
         private void Open_CreateNewDonor(object sender, RoutedEventArgs e)
         {
@@ -760,7 +751,7 @@ namespace FCS_Funding
 
         private void Donation_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join2 = (from p in db.Purposes
                          join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                          join d in db.Donations on dp.DonationID equals d.DonationID
@@ -871,7 +862,7 @@ namespace FCS_Funding
         }
         private void Sessions_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            db = new FCS_FundingDBModel(); 
             var join1 = from s in db.Staffs
                         join a in db.Appointments on s.StaffID equals a.StaffID
                         join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
@@ -890,9 +881,60 @@ namespace FCS_Funding
                             ExpenseType = et.ExpenseType1,
                             ExpenseDescription = et.ExpenseDescription
                         };
-            // ... Assign ItemsSource of DataGrid.
+             //... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
+
+
+        }
+
+        private void Refresh_Grants(object sender, RoutedEventArgs e)
+        {
+            sender = Grant_DataGrid;
+            Grants_Grid(sender, e);
+        }
+
+        private void Refresh_Session(object sender, RoutedEventArgs e)
+        {
+            sender = Session_DataGrid;
+            Sessions_Grid(sender,e);
+        }
+
+        private void Refresh_Donor(object sender, RoutedEventArgs e)
+        {
+            sender = Donor_DataGrid;
+            Donor_Grid(sender, e);
+        }
+
+        private void Refresh_InKind(object sender, RoutedEventArgs e)
+        {
+            sender = InKind_DataGrid;
+            InKindItemGrid(sender, e);
+        }
+
+        private void Refresh_Service(object sender, RoutedEventArgs e)
+        {
+            sender = Service_DataGrid;
+            InKindServiceGrid(sender, e);
+        }
+
+        private void Refresh_Events(object sender, RoutedEventArgs e)
+        {
+            sender = Event_DataGrid;
+            Events_Grid(sender, e);
+        }
+        public void Refresh_Patients(object sender, RoutedEventArgs e)
+        {
+            ShouldLoadPatient = true;
+            ShouldRefreshPatients = true;
+            sender = PatientGrid;
+            Patient_Grid(sender, e);
+        }
+
+        private void Refresh_Admin(object sender, RoutedEventArgs e)
+        {
+            sender = Admin_DataGrid;
+            Admin_Grid(sender, e);
         }
     }
 }

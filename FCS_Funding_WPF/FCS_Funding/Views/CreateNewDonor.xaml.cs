@@ -1,17 +1,7 @@
 ﻿using FCS_Funding.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -46,8 +36,8 @@ namespace FCS_Funding.Views
                                   select d;
                     if (OrgName.Count() == 0)
                     {
-                        MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
-                            + "\n" + DonorType + "\n" + OrganizationName);
+                        //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                        //    + "\n" + DonorType + "\n" + OrganizationName);
                         Donor d = new Donor();
 
                         d.DonorType = DonorType;
@@ -59,9 +49,16 @@ namespace FCS_Funding.Views
                         d.DonorZip = DonorZip;
 
                         db.Donors.Add(d);
-                        db.SaveChanges();
-                        MessageBox.Show("Successfully added Donor!");
-                        this.Close();
+                        try
+                        {
+                            db.SaveChanges();
+                            MessageBox.Show("Successfully added Donor!");
+                            this.Close();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show("Make sure your state is two digits and your zip is 5 digits");
+                        }
                     }
                     else
                     {
@@ -70,21 +67,28 @@ namespace FCS_Funding.Views
                 }
                 else if(DonorType == "Individual")
                 {
-                    MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
-                        + "\n" + DonorType + "\n" + OrganizationName);
-                    Donor d = new Donor();
+                    //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
+                    //    + "\n" + DonorType + "\n" + OrganizationName);
+                    if (DonorState.Length <= 2 && DonorZip.Length <= 5)
+                    {
+                        Donor d = new Donor();
 
-                    d.DonorType = DonorType;
-                    d.OrganizationName = OrganizationName;
-                    d.DonorAddress1 = DonorAddress1;
-                    d.DonorAddress2 = DonorAddress2;
-                    d.DonorState = DonorState;
-                    d.DonorCity = DonorCity;
-                    d.DonorZip = DonorZip;
+                        d.DonorType = DonorType;
+                        d.OrganizationName = OrganizationName;
+                        d.DonorAddress1 = DonorAddress1;
+                        d.DonorAddress2 = DonorAddress2;
+                        d.DonorState = DonorState;
+                        d.DonorCity = DonorCity;
+                        d.DonorZip = DonorZip;
 
-                    CreateIndividualContact cic = new CreateIndividualContact(d);
-                    this.Close();
-                    cic.Show();
+                        CreateIndividualContact cic = new CreateIndividualContact(d);
+                        this.Close();
+                        cic.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Make sure your state is two digits and your zip is 5 digits.");
+                    }
                 }
                 //its anonymous
                 else if(DonorType == "Anonymous")

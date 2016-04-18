@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -56,7 +46,7 @@ namespace FCS_Funding.Views
                 string organiz = Organization.SelectedValue.ToString();
                 DateTime datet = Convert.ToDateTime(SubmissionDueDate.ToString());
 
-                MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
+                //MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
                 int DonorID = (from d in db.Donors
                                where d.OrganizationName == organiz

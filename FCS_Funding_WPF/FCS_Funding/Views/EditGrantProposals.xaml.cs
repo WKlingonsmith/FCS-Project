@@ -1,16 +1,16 @@
-﻿using System;
+﻿//using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Data;
+//using System.Windows.Documents;
+//using System.Windows.Input;
+//using System.Windows.Media;
+//using System.Windows.Media.Imaging;
+//using System.Windows.Shapes;
 using FCS_DataTesting;
 namespace FCS_Funding.Views
 {
@@ -49,7 +49,7 @@ namespace FCS_Funding.Views
             if (GrantName != "" && GrantName != null)
             {
                 string GrantStatus = Status.SelectedValue.ToString();
-                MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
+                //MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
 
                 Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();                                
                 var grantproposal = (from p in db.GrantProposals
@@ -83,7 +83,7 @@ namespace FCS_Funding.Views
 
         private void Delete_Grant_Proposal(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Confirmation", "Are you sure that you want to delete this Patient?", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Grant Proposal?", "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();

@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace FCS_Funding.Views
 {
@@ -53,85 +47,91 @@ namespace FCS_Funding.Views
             {
                 EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
             }
-
-            DateTime help = Convert.ToDateTime(DateRecieved.ToString());
-            DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
-            DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
-            decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
-            if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0 && Individual.SelectedIndex != -1)
+            try
             {
-                string[] separators = new string[] { ", " };
-                string Indiv = Individual.SelectedValue.ToString();
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
-                string[] words = Indiv.Split(separators, StringSplitOptions.None);
-                string FName = words[0]; string LName = words[1]; string FNumber = words[2];
-                var donorID = (from dc in db.DonorContacts
-                               join d in db.Donors on dc.DonorID equals d.DonorID
-                               where dc.ContactFirstName == FName && dc.ContactLastName == LName && dc.ContactPhone == FNumber
-                               && (d.DonorType == "Individual" || d.DonorType == "Anonymous")
-                               select dc.DonorID).Distinct().FirstOrDefault();
-
-                if (IsEvent)
+                DateTime help = Convert.ToDateTime(DateRecieved.ToString());
+                DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
+                DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
+                decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
+                if (ServiceDescription != null && ServiceDescription != "" && RatePerHour > 0 && timeDiff > 0 && Individual.SelectedIndex != -1)
                 {
-                    Models.Donation donation = new Models.Donation();
+                    string[] separators = new string[] { ", " };
+                    string Indiv = Individual.SelectedValue.ToString();
+                    Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                    //MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff + "\n" + Indiv);
+                    string[] words = Indiv.Split(separators, StringSplitOptions.None);
+                    string FName = words[0]; string LName = words[1]; string FNumber = words[2];
+                    var donorID = (from dc in db.DonorContacts
+                                   join d in db.Donors on dc.DonorID equals d.DonorID
+                                   where dc.ContactFirstName == FName && dc.ContactLastName == LName && dc.ContactPhone == FNumber
+                                   && (d.DonorType == "Individual" || d.DonorType == "Anonymous")
+                                   select dc.DonorID).Distinct().FirstOrDefault();
 
-                    donation.DonorID = donorID;
-                    donation.Restricted = false;
-                    donation.InKind = true;
-                    donation.DonationAmount = 0M;
-                    donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
-                    donation.EventID = EventID;
+                    if (IsEvent)
+                    {
+                        Models.Donation donation = new Models.Donation();
 
-                    db.Donations.Add(donation);
-                    db.SaveChanges();
+                        donation.DonorID = donorID;
+                        donation.Restricted = false;
+                        donation.InKind = true;
+                        donation.DonationAmount = 0M;
+                        donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
+                        donation.EventID = EventID;
 
-                    Models.In_Kind_Service inKind = new Models.In_Kind_Service();
+                        db.Donations.Add(donation);
+                        db.SaveChanges();
 
-                    inKind.DonationID = donation.DonationID;
-                    inKind.StartDateTime = startDateTime;
-                    inKind.EndDateTime = endDateTime;
-                    inKind.RatePerHour = RatePerHour;
-                    inKind.ServiceDescription = ServiceDescription;
-                    inKind.ServiceLength = (double)timeDiff;
-                    inKind.ServiceValue = RatePerHour * timeDiff;
+                        Models.In_Kind_Service inKind = new Models.In_Kind_Service();
 
-                    db.In_Kind_Service.Add(inKind);
-                    db.SaveChanges();
+                        inKind.DonationID = donation.DonationID;
+                        inKind.StartDateTime = startDateTime;
+                        inKind.EndDateTime = endDateTime;
+                        inKind.RatePerHour = RatePerHour;
+                        inKind.ServiceDescription = ServiceDescription;
+                        inKind.ServiceLength = (double)timeDiff;
+                        inKind.ServiceValue = RatePerHour * timeDiff;
+
+                        db.In_Kind_Service.Add(inKind);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Models.Donation donation = new Models.Donation();
+
+                        donation.DonorID = donorID;
+                        donation.InKind = false;
+                        donation.Restricted = true;
+                        donation.DonationAmount = 0M;
+                        donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
+
+                        db.Donations.Add(donation);
+                        db.SaveChanges();
+
+                        Models.In_Kind_Service inKind = new Models.In_Kind_Service();
+
+                        inKind.DonationID = donation.DonationID;
+                        inKind.StartDateTime = startDateTime;
+                        inKind.EndDateTime = endDateTime;
+                        inKind.RatePerHour = RatePerHour;
+                        inKind.ServiceDescription = ServiceDescription;
+                        inKind.ServiceLength = (double)timeDiff;
+                        inKind.ServiceValue = RatePerHour * timeDiff;
+
+                        db.In_Kind_Service.Add(inKind);
+                        db.SaveChanges();
+                    }
+
+                    MessageBox.Show("Successfully added In_Kind Service");
+                    this.Close();
                 }
                 else
                 {
-                    Models.Donation donation = new Models.Donation();
-
-                    donation.DonorID = donorID;
-                    donation.InKind = false;
-                    donation.Restricted = true;
-                    donation.DonationAmount = 0M;
-                    donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
-
-                    db.Donations.Add(donation);
-                    db.SaveChanges();
-
-                    Models.In_Kind_Service inKind = new Models.In_Kind_Service();
-
-                    inKind.DonationID = donation.DonationID;
-                    inKind.StartDateTime = startDateTime;
-                    inKind.EndDateTime = endDateTime;
-                    inKind.RatePerHour = RatePerHour;
-                    inKind.ServiceDescription = ServiceDescription;
-                    inKind.ServiceLength = (double)timeDiff;
-                    inKind.ServiceValue = RatePerHour * timeDiff;
-
-                    db.In_Kind_Service.Add(inKind);
-                    db.SaveChanges();
+                    MessageBox.Show("Make sure you input correct data.");
                 }
-
-                MessageBox.Show("Successfully added In_Kind Service");
-                this.Close();
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Make sure you input the correct data");
             }
         }
 
@@ -168,7 +168,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -199,7 +199,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");

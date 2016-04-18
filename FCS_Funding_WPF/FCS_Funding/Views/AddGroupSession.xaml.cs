@@ -51,49 +51,62 @@ namespace FCS_Funding.Views
         private void Add_Expense(object sender, RoutedEventArgs e)
         {
             Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-            string grant = Grant.SelectedValue.ToString();
-            var grantproposalID = (from g in db.GrantProposals
-                                   where g.GrantName == grant
-                                   select g.GrantProposalID).Distinct().FirstOrDefault();
-            var donationID = (from d in db.Donations
-                              where d.GrantProposalID == grantproposalID
-                              select d.DonationID).Distinct().FirstOrDefault();
-            var donation = (from d in db.Donations
-                            where d.GrantProposalID == grantproposalID
-                            select d).First();
-            if (donation.DonationAmountRemaining >= DonorBill)
+            try
             {
-                Models.Appointment a = new Models.Appointment();
-                a.StaffID = StaffID;
-                a.AppointmentStartDate = StartDateTime;
-                a.AppointmentEndDate = EndDateTime;
-                db.Appointments.Add(a);
-                db.SaveChanges();
+                string grant = Grant.SelectedValue.ToString();
+                var grantproposalID = (from g in db.GrantProposals
+                                       where g.GrantName == grant
+                                       select g.GrantProposalID).Distinct().FirstOrDefault();
+                var donationID = (from d in db.Donations
+                                  where d.GrantProposalID == grantproposalID
+                                  select d.DonationID).Distinct().FirstOrDefault();
+                var donation = (from d in db.Donations
+                                where d.GrantProposalID == grantproposalID
+                                select d).First();
+                if (donation.DonationAmountRemaining >= DonorBill)
+                {
+                    try
+                    {
+                        Models.Appointment a = new Models.Appointment();
+                        a.StaffID = StaffID;
+                        a.AppointmentStartDate = StartDateTime;
+                        a.AppointmentEndDate = EndDateTime;
+                        db.Appointments.Add(a);
+                        db.SaveChanges();
 
-                Models.Expense expense = new Models.Expense();
+                        Models.Expense expense = new Models.Expense();
 
-                expense.ExpenseTypeID = ExpenseTypeID;
-                expense.DonationID = donationID;
-                expense.PatientID = Individual.PatientID;
-                expense.AppointmentID = a.AppointmentID;
-                expense.ExpenseDueDate = ExpenseDueDate;
-                expense.DonorBill = DonorBill;
-                expense.PatientBill = PatientBill;
-                expense.TotalExpenseAmount = DonorBill + PatientBill;
-                if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
-                db.Expenses.Add(expense);
-                db.SaveChanges();
+                        expense.ExpenseTypeID = ExpenseTypeID;
+                        expense.DonationID = donationID;
+                        expense.PatientID = Individual.PatientID;
+                        expense.AppointmentID = a.AppointmentID;
+                        expense.ExpenseDueDate = ExpenseDueDate;
+                        expense.DonorBill = DonorBill;
+                        expense.PatientBill = PatientBill;
+                        expense.TotalExpenseAmount = DonorBill + PatientBill;
+                        if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                        db.Expenses.Add(expense);
+                        db.SaveChanges();
 
-                donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
-                db.SaveChanges();
+                        donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
+                        db.SaveChanges();
 
-
-                MessageBox.Show("Successfully added In_Kind Service");
-                this.Close();
+                        MessageBox.Show("Successfully added In_Kind Service");
+                        this.Close();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Please make sure all fields are correct");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("That grant does not have enough money.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("That grant does not have enough money.");
+                MessageBox.Show("Make sure to select a grant.");
             }
         }
 

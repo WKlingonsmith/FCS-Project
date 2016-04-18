@@ -2,16 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -49,66 +41,72 @@ namespace FCS_Funding.Views
 
         private void Select_AppointmentType(object sender, RoutedEventArgs e)
         {
-            if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
-            {
-                BeginHour = (Convert.ToInt32(BeginHour) + 12).ToString();
-            }
-            if (AMPM_End.SelectedValue.ToString() == "PM" && Convert.ToInt32(EndHour) != 12)
-            {
-                EndHour = (Convert.ToInt32(EndHour) + 12).ToString();
-            }
-            if (AMPM_Start.SelectedValue.ToString() == "AM" && Convert.ToInt32(BeginHour) == 12)
-            {
-                BeginHour = (Convert.ToInt32(BeginHour) - 12).ToString();
-            }
-            if (AMPM_End.SelectedValue.ToString() == "AM" && Convert.ToInt32(EndHour) == 12)
-            {
-                EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
-            }
-            DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
-            DateTime help = Convert.ToDateTime(DateRecieved.ToString());
-            DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
-            DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
-            string[] separators = new string[] { ", " };
-            string staff = Staff.SelectedValue.ToString();
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-            string[] words = staff.Split(separators, StringSplitOptions.None);
-            string FName = words[0]; string LName = words[1]; string username = words[2];
-            var staffID = (from dc in db.Staffs
-                           where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
-                           select dc.StaffID).Distinct().FirstOrDefault();
-            if(TotalGroup.Count == 0) { MessageBox.Show("Make sure to add at least one client"); return; }
-            //individual (1)
-            //group (2)
-            if (ApptType.SelectedIndex == 0)
-            {
-                if (TotalGroup.Count == 1) { ExpenseTypeID = 1; }
-                else { ExpenseTypeID = 2; }
-                foreach (var item in TotalGroup)
+            try {
+                if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
                 {
-                    AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
-                    ags.Show();
-                    ags.ExpensePaidDate.IsEnabled = false;
-                    ags.FN.IsEnabled = false;
-                    ags.LN.IsEnabled = false;
-                    ags.OQ.IsEnabled = false;
+                    BeginHour = (Convert.ToInt32(BeginHour) + 12).ToString();
                 }
-                this.Close();
-            }
-            //family (3)
-            else if(ApptType.SelectedIndex == 1)
-            {
-                ExpenseTypeID = 3;
-                foreach (var item in TotalGroup)
+                if (AMPM_End.SelectedValue.ToString() == "PM" && Convert.ToInt32(EndHour) != 12)
                 {
-                    AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
-                    ags.Show();
-                    ags.ExpensePaidDate.IsEnabled = false;
-                    ags.FN.IsEnabled = false;
-                    ags.LN.IsEnabled = false;
-                    ags.OQ.IsEnabled = false;
+                    EndHour = (Convert.ToInt32(EndHour) + 12).ToString();
                 }
-                this.Close();
+                if (AMPM_Start.SelectedValue.ToString() == "AM" && Convert.ToInt32(BeginHour) == 12)
+                {
+                    BeginHour = (Convert.ToInt32(BeginHour) - 12).ToString();
+                }
+                if (AMPM_End.SelectedValue.ToString() == "AM" && Convert.ToInt32(EndHour) == 12)
+                {
+                    EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
+                }
+                DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
+                DateTime help = Convert.ToDateTime(DateRecieved.ToString());
+                DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
+                DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
+                string[] separators = new string[] { ", " };
+                string staff = Staff.SelectedValue.ToString();
+                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                string[] words = staff.Split(separators, StringSplitOptions.None);
+                string FName = words[0]; string LName = words[1]; string username = words[2];
+                var staffID = (from dc in db.Staffs
+                               where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
+                               select dc.StaffID).Distinct().FirstOrDefault();
+                if (TotalGroup.Count == 0) { MessageBox.Show("Make sure to add at least one client"); return; }
+                //individual (1)
+                //group (2)
+                if (ApptType.SelectedIndex == 0)
+                {
+                    if (TotalGroup.Count == 1) { ExpenseTypeID = 1; }
+                    else { ExpenseTypeID = 2; }
+                    foreach (var item in TotalGroup)
+                    {
+                        AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
+                        ags.Show();
+                        ags.ExpensePaidDate.IsEnabled = false;
+                        ags.FN.IsEnabled = false;
+                        ags.LN.IsEnabled = false;
+                        ags.OQ.IsEnabled = false;
+                    }
+                    this.Close();
+                }
+                //family (3)
+                else if (ApptType.SelectedIndex == 1)
+                {
+                    ExpenseTypeID = 3;
+                    foreach (var item in TotalGroup)
+                    {
+                        AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
+                        ags.Show();
+                        ags.ExpensePaidDate.IsEnabled = false;
+                        ags.FN.IsEnabled = false;
+                        ags.LN.IsEnabled = false;
+                        ags.OQ.IsEnabled = false;
+                    }
+                    this.Close();
+                }
+            }
+            catch
+            {
+
             }
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
@@ -211,7 +209,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -246,7 +244,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");

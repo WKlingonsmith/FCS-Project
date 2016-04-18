@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FCS_Funding.Views
 {
@@ -50,29 +41,36 @@ namespace FCS_Funding.Views
             {
                 EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
             }
-            DateTime help = Convert.ToDateTime(DateRecieved.ToString());
-            DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
-            DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
-            decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
-
-            if (EventName != null && EventName != "" && timeDiff > 0 )
+            try
             {
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
-                MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
-                
-                Models.FundRaisingEvent event1 = new Models.FundRaisingEvent();
+                DateTime help = Convert.ToDateTime(DateRecieved.ToString());
+                DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
+                DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
+                decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
 
-                event1.EventStartDateTime = startDateTime;
-                event1.EventEndDateTime = endDateTime;
-                event1.EventName = EventName;
-                event1.EventDescription = EventDescription;
+                if (EventName != null && EventName != "" && timeDiff > 0)
+                {
+                    Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                    //MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
 
-                db.FundRaisingEvents.Add(event1);
-                db.SaveChanges();
-                MessageBox.Show("Successfully added Event");
-                this.Close();
+                    Models.FundRaisingEvent event1 = new Models.FundRaisingEvent();
+
+                    event1.EventStartDateTime = startDateTime;
+                    event1.EventEndDateTime = endDateTime;
+                    event1.EventName = EventName;
+                    event1.EventDescription = EventDescription;
+
+                    db.FundRaisingEvents.Add(event1);
+                    db.SaveChanges();
+                    MessageBox.Show("Successfully added Event");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Make sure you input correct data.");
+                }
             }
-            else
+            catch(Exception ex)
             {
                 MessageBox.Show("Make sure you input correct data.");
             }
@@ -99,7 +97,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
@@ -130,7 +128,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     textbox.Text = "";
                     MessageBox.Show("You inserted a character");
