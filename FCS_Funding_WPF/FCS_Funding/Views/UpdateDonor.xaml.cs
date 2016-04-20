@@ -174,6 +174,7 @@ namespace FCS_Funding.Views
                         select new DonationsGrid
                         {
                             DonationAmount = d.DonationAmount,
+                            DonationAmountRemaining = d.DonationAmountRemaining,
                             DonationDate = d.DonationDate,
                             PurposeName = p.PurposeName,
                             PurposeDescription = p.PurposeDescription,

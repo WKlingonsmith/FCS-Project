@@ -16,6 +16,7 @@ namespace FCS_DataTesting
         public int DonationPurposeID { get; set; }
         public int PurposeID { get; set; }
         public int DonationID { get; set; }
+        public decimal DonationAmountRemaining { get; set; }
 
         //nullable variables
         public string DonorFirstName { get; set; }

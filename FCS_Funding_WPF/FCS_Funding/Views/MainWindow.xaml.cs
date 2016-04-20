@@ -762,6 +762,7 @@ namespace FCS_Funding
                          select new DonationsGrid
                          {
                              DonationAmount = d.DonationAmount,
+                             DonationAmountRemaining = d.DonationAmountRemaining,
                              DonationDate = d.DonationDate,
                              PurposeName = p.PurposeName,
                              PurposeDescription = p.PurposeDescription,
@@ -781,6 +782,7 @@ namespace FCS_Funding
                        select new DonationsGrid
                        {
                            DonationAmount = d.DonationAmount,
+                           DonationAmountRemaining = d.DonationAmountRemaining,
                            DonationDate = d.DonationDate,
                            PurposeName = p.PurposeName,
                            PurposeDescription = p.PurposeDescription,

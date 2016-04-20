@@ -49,6 +49,7 @@ namespace FCS_Funding.Views
                     d.Restricted = true;
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
+                    d.DonationAmountRemaining = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
                     d.EventID = EventID;
                     db.Donations.Add(d);
@@ -68,6 +69,7 @@ namespace FCS_Funding.Views
                     d.Restricted = true;
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
+                    d.DonationAmountRemaining = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
 
                     db.Donations.Add(d);

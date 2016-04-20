@@ -261,9 +261,9 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Button Name="CreateNewDon" Grid.Column="0" Grid.Row="2" Content="Create New Donor" Click="Open_CreateNewDonor"  Grid.RowSpan="2" HorizontalAlignment="Left" Width="158" Margin="-1,0,0,0"/>
+                    <Button Name="CreateNewDon" Grid.Column="0" Content="Create New Donor" Click="Open_CreateNewDonor"   HorizontalAlignment="Left" Width="158" />
                     <Button  Content="Refresh" Click="Refresh_Donor"  Grid.Column="5" Margin="0,0,0,24" Grid.RowSpan="2"/>
-                    <TabControl Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="16" Margin="158,5,10,-37" >
+                    <TabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="16"  >
                         <TabControl.Resources>
                             <Style TargetType="TabItem">
                                 <Setter Property="Template">
@@ -331,7 +331,7 @@
                                 </ComboBox>
                                 <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />-->
 
-                                <DataGrid Name="Donor_DataGrid" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" 
+                                <DataGrid Name="Donor_DataGrid" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="13" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" 
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor" Margin="-1,-4,1,4" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="First Name" Width="*" Binding="{Binding Path=DonorFirstName}"/>
@@ -384,8 +384,9 @@
                                         <DataGridTextColumn Header="First Name" Width="90" Binding="{Binding Path=DonorFirstName}"/>
                                         <DataGridTextColumn Header="Last Name" Width="90" Binding="{Binding Path=DonorLastName}"/>
                                         <DataGridTextColumn Header="Organization Name" Width="150" Binding="{Binding Path=OrganizationName}"/>
-                                        <DataGridTextColumn Header="Donation Amount" Width="130" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
-                                        <DataGridTextColumn Header="Donation Date" Width="110" Binding="{Binding Path=DonationDate}"/>
+                                        <DataGridTextColumn Header="Amount" Width="80" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
+                                        <DataGridTextColumn Header="Amount Remaining" Width="130" Binding="{Binding Path=DonationAmountRemaining, StringFormat={}{0:C}}"/>
+                                        <DataGridTextColumn Header="Donation Date" Width="130" Binding="{Binding Path=DonationDate}"/>
                                         <DataGridTextColumn Header="Purpose Name" Width="130" Binding="{Binding Path=PurposeName}"/>
                                         <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
                                     </DataGrid.Columns>
