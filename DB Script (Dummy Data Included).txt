@@ -135,7 +135,7 @@ CREATE TABLE PatientProblem
 CREATE TABLE Patient
 (
     PatientID               INT             NOT NULL        IDENTITY(1,1)           PRIMARY KEY,
-    PatientOQ               INT             NOT NULL,
+    PatientOQ               varchar(25)     NOT NULL,
     HouseholdID             INT             NOT NULL,
     PatientFirstName        VarChar(50)     NOT NULL,
     PatientLastName         VarChar(50)     NOT NULL,

@@ -50,7 +50,7 @@
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" 
                                Grid.Column="0" Grid.Row="2" Margin="0,46,153.4,46.2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient OQ"  Width="150" Binding="{Binding Path=PatientOQ}"/>
+                <DataGridTextColumn Header="Client OQ"  Width="150" Binding="{Binding Path=PatientOQ}"/>
                 <DataGridTextColumn Header="First Name" Width="150" Binding="{Binding Path=FirstName}"/>
                 <DataGridTextColumn Header="Last Name" Width="150" Binding="{Binding Path=LastName}"/>
             </DataGrid.Columns>
@@ -61,7 +61,7 @@
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" 
                                Grid.Column="3" Grid.Row="2" Margin="153.2,46,-0.4,46.2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient OQ"  Width="150" Binding="{Binding Path=PatientOQ}"/>
+                <DataGridTextColumn Header="Client OQ"  Width="150" Binding="{Binding Path=PatientOQ}"/>
                 <DataGridTextColumn Header="First Name" Width="150" Binding="{Binding Path=FirstName}"/>
                 <DataGridTextColumn Header="Last Name" Width="150" Binding="{Binding Path=LastName}"/>
             </DataGrid.Columns>

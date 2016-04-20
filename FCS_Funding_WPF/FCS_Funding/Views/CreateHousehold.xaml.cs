@@ -21,7 +21,7 @@ namespace FCS_Funding.Views
         //patient Propeties
         private string firstName { get; set; }
         private string lastName { get; set; }
-        private int patientOQ { get; set; }
+        private string patientOQ { get; set; }
         private Boolean headOfHouse { get; set; }
         private string gender { get; set; }
         private DateTime date { get; set; }
@@ -29,7 +29,7 @@ namespace FCS_Funding.Views
         private string ethnicGroup { get; set; }
         private string relationToHead { get; set; }
         private UIElementCollection togglePatientProblems { get; set; }
-        public CreateHousehold(string fName, string lName, int pOQ, string gen, Boolean head, string aGroup, string ethnicG, string rel, UIElementCollection toggle)
+        public CreateHousehold(string fName, string lName, string pOQ, string gen, Boolean head, string aGroup, string ethnicG, string rel, UIElementCollection toggle)
         {
             firstName = fName;
             lastName = lName;
@@ -52,7 +52,7 @@ namespace FCS_Funding.Views
                 //MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + gender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup
                 //    + "\n"  + "\n" + date + "\n" + HouseholdPopulation + "\n" + County + "\n"  + Income);
 
-                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                FCS_DBModel db = new FCS_DBModel();
                 PatientHousehold p = new PatientHousehold();
                 p.HouseholdCounty = County;
                 p.HouseholdPopulation = HouseholdPopulation;
@@ -81,10 +81,10 @@ namespace FCS_Funding.Views
                 MessageBox.Show("Make sure you select an income, a household population, and input a county.");                
             }
         }
-        public void Determine_Problems(int OQ, UIElementCollection toggle)
+        public void Determine_Problems(string OQ, UIElementCollection toggle)
         {
             PatientProblem patProb = new PatientProblem();
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            FCS_DBModel db = new FCS_DBModel();
             string checkBoxContent = "";
             int patID = 0;
             int probID = 0;

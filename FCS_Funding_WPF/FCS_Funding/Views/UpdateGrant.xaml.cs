@@ -48,7 +48,7 @@ namespace FCS_Funding.Views
 
         private void Update_Grant(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
             var purpose = (from p in db.Purposes
                            where p.PurposeID == PurposeID
                            select p).First();
@@ -81,7 +81,7 @@ namespace FCS_Funding.Views
                  "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
                 var donationPurposes = (from p in db.DonationPurposes
                                     where p.PurposeID == PurposeID
                                     select p);

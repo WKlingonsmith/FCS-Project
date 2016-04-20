@@ -5,10 +5,10 @@ namespace FCS_Funding.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class FCS_FundingDBModel : DbContext
+    public partial class FCS_DBModel : DbContext
     {
-        public FCS_FundingDBModel()
-            : base("name=FCS_FundingDBModel")
+        public FCS_DBModel()
+            : base("name=FCS_DBModel")
         {
         }
 
@@ -165,6 +165,10 @@ namespace FCS_Funding.Models
             modelBuilder.Entity<In_Kind_Service>()
                 .Property(e => e.ServiceValue)
                 .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Patient>()
+                .Property(e => e.PatientOQ)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Patient>()
                 .Property(e => e.PatientFirstName)

@@ -26,7 +26,7 @@ namespace FCS_Funding.Views
 
         private void Grant_Proposal_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = from g in db.GrantProposals
                         join d in db.Donors on g.DonorID equals d.DonorID
                         select new GrantProposalGrid
@@ -61,7 +61,7 @@ namespace FCS_Funding.Views
                 else if (p.GrantStatus == "Not Accepted") { index = 2; }
                 else { index = 0; }
 
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 EditGrantProposals dgp = new EditGrantProposals(p);
                 if (StaffDBRole != "Admin")
                 {

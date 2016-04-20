@@ -90,7 +90,7 @@
     <Compile Include="Models\DonorContact.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\ExpenseType.cs" />
-    <Compile Include="Models\FCS_FundingDBModel.cs" />
+    <Compile Include="Models\FCS_DBModel.cs" />
     <Compile Include="Models\FundRaisingEvent.cs" />
     <Compile Include="Models\GrantProposal.cs" />
     <Compile Include="Models\In_Kind_Item.cs" />

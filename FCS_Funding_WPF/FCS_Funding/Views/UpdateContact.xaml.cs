@@ -39,7 +39,7 @@ namespace FCS_Funding.Views
 
         private void Update_Contact(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
             var contact = (from p in db.DonorContacts
                          where p.ContactID == ContactID
                          select p).First();
@@ -64,7 +64,7 @@ namespace FCS_Funding.Views
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Contact?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
                 var donorContact = (from p in db.DonorContacts
                                     where p.ContactID == ContactID
                                     select p).First();

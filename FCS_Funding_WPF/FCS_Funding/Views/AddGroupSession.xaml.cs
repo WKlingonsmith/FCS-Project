@@ -29,7 +29,7 @@ namespace FCS_Funding.Views
         
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
-        public int ClientOQNumber { get; set; }
+        public string ClientOQNumber { get; set; }
 
         public decimal PatientBill { get; set; }
         public decimal DonorBill { get; set; }
@@ -50,7 +50,7 @@ namespace FCS_Funding.Views
 
         private void Add_Expense(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             try
             {
                 string grant = Grant.SelectedValue.ToString();
@@ -112,7 +112,7 @@ namespace FCS_Funding.Views
 
         private void Grants_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = (from o in db.GrantProposals
                          where o.GrantStatus == "Accepted"
                          select o.GrantName).ToList();

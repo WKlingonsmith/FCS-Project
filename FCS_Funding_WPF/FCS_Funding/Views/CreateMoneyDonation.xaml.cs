@@ -34,7 +34,7 @@ namespace FCS_Funding.Views
             {
                 MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
                     PurposeName + "\n" + PurposeDescription);
-                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                FCS_DBModel db = new FCS_DBModel();
 
                 Purpose p = new Purpose();
                 p.PurposeName = PurposeName;

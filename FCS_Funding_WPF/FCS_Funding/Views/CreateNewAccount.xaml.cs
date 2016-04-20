@@ -23,7 +23,7 @@ namespace FCS_Funding.Views
 
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             string Role = UserRole.SelectedValue.ToString();
 
             string password = Password.Password.ToString();

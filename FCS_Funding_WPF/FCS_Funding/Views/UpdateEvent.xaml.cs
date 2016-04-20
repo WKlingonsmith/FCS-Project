@@ -101,7 +101,7 @@ namespace FCS_Funding.Views
             decimal timeDiff = (decimal)(endDateTime - startDateTime).TotalHours;
             if (EventName != null && EventName != "" && EventDescription != null && EventDescription != "" && timeDiff > 0)
             {
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 //MessageBox.Show(EventName + "\n" + EventDescription + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff);
 
                 var event1 = (from p in db.FundRaisingEvents
@@ -129,7 +129,7 @@ namespace FCS_Funding.Views
                "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_FundingDBModel db = new FCS_Funding.Models.FCS_FundingDBModel();
+                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
                 var event1 = (from d in db.FundRaisingEvents
                                 where d.EventID == EventID
                                 select d).First();
@@ -208,7 +208,7 @@ namespace FCS_Funding.Views
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var join1 = (from p in db.Purposes
                          join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
                          join d in db.Donations on dp.DonationID equals d.DonationID
@@ -295,7 +295,7 @@ namespace FCS_Funding.Views
 
         private void InKindItemGrid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on p.DonorID equals d.DonorID
@@ -375,7 +375,7 @@ namespace FCS_Funding.Views
 
         private void InKindServiceGrid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var join1 = (from p in db.Donors
                          join dc in db.DonorContacts on p.DonorID equals dc.DonorID
                          join d in db.Donations on p.DonorID equals d.DonorID

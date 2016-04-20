@@ -18,7 +18,9 @@ namespace FCS_Funding.Models
 
         public int PatientID { get; set; }
 
-        public int PatientOQ { get; set; }
+        [Required]
+        [StringLength(25)]
+        public string PatientOQ { get; set; }
 
         public int HouseholdID { get; set; }
 

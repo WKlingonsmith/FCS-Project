@@ -26,7 +26,7 @@ namespace FCS_Funding.Views
             {
                 //MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
 
-                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                FCS_DBModel db = new FCS_DBModel();
                 DonorContact d = new DonorContact();
 
                 d.ContactFirstName = ContactFirstName;

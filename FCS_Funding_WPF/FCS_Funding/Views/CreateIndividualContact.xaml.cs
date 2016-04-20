@@ -43,7 +43,7 @@ namespace FCS_Funding.Views
                 if (DonorFirstName != null && DonorFirstName != "" && DonorLastName != null && DonorLastName != "" && ContactPhone != null && ContactPhone != ""
                     && ContactEmail != null && ContactEmail != "")
                 {
-                    FCS_FundingDBModel db = new FCS_FundingDBModel();
+                    FCS_DBModel db = new FCS_DBModel();
                     //MessageBox.Show(DonorFirstName + "\n" + DonorLastName + "\n" + ContactPhone + "\n" + ContactEmail + "\n" + DonorAddress1 + "\n" + DonorAddress2
                     //    + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip + "\n" + DonorType + "\n" + OrganizationName);
                     Donor d = new Donor();

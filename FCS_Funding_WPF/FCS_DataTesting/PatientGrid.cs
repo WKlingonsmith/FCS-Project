@@ -8,7 +8,7 @@ namespace FCS_DataTesting
 {
     public class PatientGrid
     {
-        public int PatientOQ { get; set; }
+        public string PatientOQ { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
@@ -19,7 +19,7 @@ namespace FCS_DataTesting
         public string RelationToHead { get;  set; }
         public int PatientID { get; set; }
 
-        public PatientGrid(int p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth)
+        public PatientGrid(string p, string fn, string ln, string g, string ag, string e, DateTime t, Boolean h, string rth)
         {
             PatientOQ = p;
             FirstName = fn;

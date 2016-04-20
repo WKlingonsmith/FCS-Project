@@ -37,7 +37,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Text="Create New Patient" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" FontFamily="Razer Header Regular" Margin="179,0,0.4,5" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" />
-        <TextBlock Text="Patient OQ:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+        <TextBlock Text="Client OQ:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
         <Border Grid.Row="3" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}"  />
         </Border>

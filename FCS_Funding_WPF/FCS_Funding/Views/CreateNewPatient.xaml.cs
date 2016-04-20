@@ -23,11 +23,11 @@ namespace FCS_Funding.Views
         //properties
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public int patientOQ { get; set; }
+        public string patientOQ { get; set; }
         public Boolean headOfHouse { get; set; }
         public string PatientGender { get; set; }
         public DateTime date { get; set; }
-        public int familyOQNumber { get; set; }
+        public string familyOQNumber { get; set; }
         public string relationToHead { get; set; }
         private string ageGroup { get; set; }
         private string ethnicGroup { get; set; }
@@ -49,12 +49,12 @@ namespace FCS_Funding.Views
         {
             Patient pat2 = new Patient();
             Problem prob = new Problem();
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            FCS_DBModel db = new FCS_DBModel();
             Determine_AgeGroup(this.AgeGroup.SelectedIndex);
             Determine_EthnicGroup(this.ethnicity.SelectedIndex);
             var togglePatientProblems = PatientProblemsCheckBoxes.Children;
             Determine_Gender(this.Gender.SelectedIndex);
-            if (this.firstName != null && this.firstName != "" && this.lastName != null && this.lastName != "" && patientOQ > 0 &&
+            if (this.firstName != null && this.firstName != "" && this.lastName != null && this.lastName != "" && patientOQ != null && patientOQ != "" &&
                  PatientGender != null && PatientGender != "" && this.ageGroup != null && this.ethnicGroup != null
                 && this.relationToHead != null && this.relationToHead != "")
             {
@@ -67,7 +67,7 @@ namespace FCS_Funding.Views
                     ch.Show();
                 }
                 //Need to add the client with the family OQ Number
-                else if (familyOQNumber > 0)
+                else if (familyOQNumber != null && familyOQNumber != "")
                 {
                     date = DateTime.Now;
                     //MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" +
@@ -197,10 +197,10 @@ namespace FCS_Funding.Views
             }
         }
 
-        public void Determine_Problems(int OQ, UIElementCollection toggle)
+        public void Determine_Problems(string OQ, UIElementCollection toggle)
         {
             PatientProblem patProb = new PatientProblem();
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            FCS_DBModel db = new FCS_DBModel();
             string checkBoxContent = "";
             int probID = 0;
             var problemTable = db.Problems;

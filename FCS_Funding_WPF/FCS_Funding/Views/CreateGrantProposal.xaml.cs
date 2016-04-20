@@ -29,7 +29,7 @@ namespace FCS_Funding.Views
             {
                 "HAFB", "Weber", "Clearfield"
             };
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = (from o in db.Donors
                          where o.OrganizationName != null && o.OrganizationName != ""
                          orderby o.OrganizationName
@@ -47,7 +47,7 @@ namespace FCS_Funding.Views
                 DateTime datet = Convert.ToDateTime(SubmissionDueDate.ToString());
 
                 //MessageBox.Show(organiz + "\n" + datet + "\n" + GrantName + "\n" + "Status is Pending");
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 int DonorID = (from d in db.Donors
                                where d.OrganizationName == organiz
                                select d.DonorID).Distinct().First();

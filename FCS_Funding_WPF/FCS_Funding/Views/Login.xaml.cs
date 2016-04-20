@@ -31,7 +31,7 @@ namespace FCS_Funding
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             string pw = Password.Password.ToString();
             string us = Username.Text;
             string hashedPassword = FCS_DataTesting.PasswordHashing.GetHashString(pw);
@@ -43,7 +43,7 @@ namespace FCS_Funding
                 MainWindow mw = new MainWindow(query.StaffDBRole);
                 if(query.StaffDBRole == "No Access")
                 {
-                    MessageBox.Show("You do not have access to Login");
+                    MessageBox.Show("Invalid Credentials");
                     mw.Close();
                     return;
                 }
@@ -80,7 +80,7 @@ namespace FCS_Funding
             }
             catch 
             {
-                MessageBox.Show("Incorrect Credentials");
+                MessageBox.Show("Your credentials are either invalid,or\nsomeone else is currently logged in.");
             }
             
         }

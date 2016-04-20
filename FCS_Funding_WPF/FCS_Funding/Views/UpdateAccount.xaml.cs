@@ -29,7 +29,7 @@ namespace FCS_Funding.Views
         public int StaffID { get; set; }
 
         public string helperUserName { get; set; }
-        FCS_FundingDBModel db = new FCS_FundingDBModel();
+        FCS_DBModel db = new FCS_DBModel();
         public UpdateAccount(AdminDataGrid account)
         {
             UserName = account.StaffUserName;
@@ -44,7 +44,7 @@ namespace FCS_Funding.Views
 
         private void Update_Account(object sender, RoutedEventArgs e)
         {
-            db = new FCS_FundingDBModel();            
+            db = new FCS_DBModel();            
             try
             {
                 string Role = UserRole.SelectedValue.ToString();
@@ -85,7 +85,7 @@ namespace FCS_Funding.Views
 
         private void UpdatePasword(object sender, RoutedEventArgs e)
         {
-            db = new FCS_FundingDBModel();
+            db = new FCS_DBModel();
             string password = Password.Password.ToString();
             string verifiedPW = VerifyPassword.Password.ToString();
             string hashedPassword = PasswordHashing.GetHashString(password);
@@ -131,7 +131,7 @@ namespace FCS_Funding.Views
         {
             try
             {
-                db = new FCS_FundingDBModel();
+                db = new FCS_DBModel();
                 var staff = (from s in db.Staffs
                              where s.StaffID == StaffID
                              select s).First();

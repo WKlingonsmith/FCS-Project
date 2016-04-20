@@ -64,7 +64,7 @@ namespace FCS_Funding.Views
                 DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
                 string[] separators = new string[] { ", " };
                 string staff = Staff.SelectedValue.ToString();
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 string[] words = staff.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string username = words[2];
                 var staffID = (from dc in db.Staffs
@@ -111,7 +111,7 @@ namespace FCS_Funding.Views
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var join1 = from patient in db.Patients
                         join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
                         select new PatientGrid
@@ -180,7 +180,7 @@ namespace FCS_Funding.Views
 
         private void Staff_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = (from o in db.Staffs
                          select o.StaffFirstName + ", " + o.StaffLastName + ", " + o.StaffUserName).ToList();
 

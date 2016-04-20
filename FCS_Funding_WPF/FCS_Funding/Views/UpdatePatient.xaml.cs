@@ -23,7 +23,7 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class UpdatePatient : Window
     {
-        public int patientOQ { get; set; }
+        public string patientOQ { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string relationToHead { get; set; }
@@ -38,7 +38,7 @@ namespace FCS_Funding.Views
         //Helper Variables
         private int headOfHousehold { get; set; }
         private DateTime date { get; set; }
-        private int pOQ { get; set; }
+        private string pOQ { get; set; }
         private string StaffDBRole { get; set; }
 
 
@@ -62,7 +62,7 @@ namespace FCS_Funding.Views
 
         private void Update_Patient(object sender, RoutedEventArgs e)
         {
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            FCS_DBModel db = new FCS_DBModel();
             try {
                 int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
 
@@ -105,7 +105,7 @@ namespace FCS_Funding.Views
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Patient?", "Confirmation" , System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                FCS_DBModel db = new FCS_DBModel();
                 int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
                 var patient = (from p in db.Patients
                                where p.PatientID == patID
@@ -194,7 +194,7 @@ namespace FCS_Funding.Views
 
         private void SessionsGrid(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var join1 = from s in db.Staffs
                         join a in db.Appointments on s.StaffID equals a.StaffID
                         join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
@@ -221,7 +221,7 @@ namespace FCS_Funding.Views
         private void UpdateProblems()
         {
             
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            FCS_DBModel db = new FCS_DBModel();
             int patID = db.Patients.Where(x => x.PatientOQ == pOQ).Select(x => x.PatientID).Distinct().First();
             var toggle = PatientProblemsCheckBoxes.Children;
             var patProblems = (from p in db.PatientProblems where p.PatientID == patID select p);
@@ -621,7 +621,7 @@ namespace FCS_Funding.Views
             var toggle = PatientProblemsCheckBoxes.Children;
             List<string> currentProblems = new List<string>();
 
-            FCS_FundingDBModel db = new FCS_FundingDBModel();
+            FCS_DBModel db = new FCS_DBModel();
             PatientProblem patProb = new PatientProblem();
             int patID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientID).Distinct().First();
             foreach (var item in db.PatientProblems.Where(x => x.PatientID == patID).Select(x => x.ProblemID))

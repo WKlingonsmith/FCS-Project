@@ -58,7 +58,7 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Update Patient" Height="30">
+            <TabItem Header="Update Client" Height="30">
                 <Grid>
                     <Grid.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -94,9 +94,9 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,9.8" Grid.RowSpan="2" FontFamily="Razer Header Regular" ><Run FontWeight="Bold" Text="Update " TextDecorations="Underline"/><Run FontWeight="Bold" Text="Patient" TextDecorations="Underline"/></TextBlock>
+                    <TextBlock TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,9.8" Grid.RowSpan="2" FontFamily="Razer Header Regular" ><Run FontWeight="Bold" Text="Update " TextDecorations="Underline"/><Run FontWeight="Bold" Text="Client" TextDecorations="Underline"/></TextBlock>
 
-                    <TextBlock Text="Patient OQ:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" />
+                    <TextBlock Text="Client OQ:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" Margin="0,0,0,4" VerticalAlignment="Bottom" />
                     <Border Grid.Row="3" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
                         <TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}"  />
                     </Border>
@@ -143,7 +143,7 @@
                         <ComboBoxItem >Hispanic</ComboBoxItem>
                         <ComboBoxItem >Other</ComboBoxItem>
                     </ComboBox>
-                    <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="117,10,0,0"
+                    <GroupBox Name="PatientProblemsGroupBox" Header="Client Problems" HorizontalAlignment="Left" Margin="117,10,0,0"
 		  VerticalAlignment="Top" Height="236" Width="405" Grid.ColumnSpan="3" Grid.RowSpan="7" Grid.Column="3" Grid.Row="8">
                         <UniformGrid Name="PatientProblemsCheckBoxes" Columns="2" Rows="10">
                             <CheckBox x:Name="DepressionCheckBox"  Content=     "Depression" />
@@ -176,7 +176,7 @@
                     <Button Name="DeleteClien" FontSize="18" Grid.Column="4" Grid.Row="15" Content="Delete Client" Click="Detete_Patient"    />
                 </Grid>
             </TabItem>
-            <TabItem Header="Patient Sessions" Height="30">
+            <TabItem Header="Client Sessions" Height="30">
                 <Grid>
                     <Grid.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -223,7 +223,7 @@
                             <DataGridTextColumn Header="Expense Due Date" Width="110" Binding="{Binding Path=ExpenseDueDate}"/>
                             <DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/>
                             <DataGridTextColumn Header="Donor Bill" Width="63" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
-                            <DataGridTextColumn Header="Patient Bill" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Client Payment" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Total Expense" Width="70" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
                             <DataGridTextColumn Header="Expense Type" Width="110" Binding="{Binding Path=ExpenseType}"/>
                             <DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>

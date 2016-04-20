@@ -53,7 +53,7 @@ namespace FCS_Funding.Views
                 string[] separators = new string[] { ", " };
                 string staff = Staff.SelectedValue.ToString();
                 string grant = Grant.SelectedValue.ToString();
-                Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 //MessageBox.Show(PatientBill + "\n" + DonorBill + "\n" + startDateTime + "\n" + endDateTime + "\n" + expenseDueDate + "\n" + staff, grant);
                 string[] words = staff.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string username = words[2];
@@ -183,7 +183,7 @@ namespace FCS_Funding.Views
 
         private void Grants_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = (from o in db.GrantProposals
                          where o.GrantStatus == "Accepted"
                          select o.GrantName).ToList();
@@ -194,7 +194,7 @@ namespace FCS_Funding.Views
 
         private void Staff_DropDown(object sender, RoutedEventArgs e)
         {
-            Models.FCS_FundingDBModel db = new Models.FCS_FundingDBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = (from o in db.Staffs
                          select o.StaffFirstName + ", " + o.StaffLastName + ", " + o.StaffUserName).ToList();
 

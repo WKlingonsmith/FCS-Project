@@ -28,7 +28,7 @@ namespace FCS_Funding.Views
             //DonorFirstName != null && DonorFirstName != "" && DonorLastName != null && DonorLastName != ""
             if (DonorType != null && DonorType != "")
             {
-                FCS_FundingDBModel db = new FCS_FundingDBModel();
+                FCS_DBModel db = new FCS_DBModel();
                 if (DonorType == "Organization" || DonorType == "Government")
                 {
                     var OrgName = from d in db.Donors
@@ -69,7 +69,7 @@ namespace FCS_Funding.Views
                 {
                     //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                     //    + "\n" + DonorType + "\n" + OrganizationName);
-                    if (DonorState.Length <= 2 && DonorZip.Length <= 5)
+                    try
                     {
                         Donor d = new Donor();
 
@@ -85,7 +85,7 @@ namespace FCS_Funding.Views
                         this.Close();
                         cic.Show();
                     }
-                    else
+                    catch
                     {
                         MessageBox.Show("Make sure your state is two digits and your zip is 5 digits.");
                     }
