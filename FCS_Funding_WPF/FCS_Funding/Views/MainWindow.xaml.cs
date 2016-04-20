@@ -82,9 +82,9 @@ namespace FCS_Funding
                 {
                     try
                     {
-                        int value = Convert.ToInt32(PatientFilter);
+                        string value = PatientFilter;
                         var newjoin = from patient in join1
-                                      where patient.PatientOQ.Equals(value)
+                                      where patient.PatientOQ.Contains(value)
                                       select patient;
                         PatientGrid.ItemsSource = newjoin.ToList();
                     }

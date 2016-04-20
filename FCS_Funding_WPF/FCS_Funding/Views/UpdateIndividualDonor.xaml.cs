@@ -13,6 +13,8 @@ using System.Windows.Input;
 //using System.Windows.Media.Imaging;
 //using System.Windows.Shapes;
 using FCS_DataTesting;
+using System;
+
 namespace FCS_Funding.Views
 {
     /// <summary>
@@ -56,27 +58,34 @@ namespace FCS_Funding.Views
 
         private void UpdateDonor(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
-            var donor = (from d in db.Donors
-                           where d.DonorID == DonorID
-                           select d).First();
-            var contact = (from c in db.DonorContacts
-                           where c.ContactID == ContactID
-                           select c).First();
+            try
+            {
+                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+                var donor = (from d in db.Donors
+                             where d.DonorID == DonorID
+                             select d).First();
+                var contact = (from c in db.DonorContacts
+                               where c.ContactID == ContactID
+                               select c).First();
 
-            contact.ContactFirstName = DonorFirstName;
-            contact.ContactLastName = DonorLastName;
-            donor.OrganizationName = OrganizationName;
-            donor.DonorAddress1 = DonorAddress1;
-            donor.DonorAddress2 = DonorAddress2;
-            contact.ContactPhone = ContactPhone;
-            contact.ContactEmail = ContactEmail;
-            donor.DonorState = DonorState;
-            donor.DonorCity = DonorCity;
-            donor.DonorZip = DonorZip;
-            db.SaveChanges();
-            MessageBox.Show("You successfully updated this Donor");
-            this.Close();
+                contact.ContactFirstName = DonorFirstName;
+                contact.ContactLastName = DonorLastName;
+                donor.OrganizationName = OrganizationName;
+                donor.DonorAddress1 = DonorAddress1;
+                donor.DonorAddress2 = DonorAddress2;
+                contact.ContactPhone = ContactPhone;
+                contact.ContactEmail = ContactEmail;
+                donor.DonorState = DonorState;
+                donor.DonorCity = DonorCity;
+                donor.DonorZip = DonorZip;
+                db.SaveChanges();
+                MessageBox.Show("You successfully updated this Donor");
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Make sure the following:\nZip Code is 5 digits\nState is 2 digits\nPhone is 10 digits");
+            }
         }
 
         private void DeleteDonor(object sender, RoutedEventArgs e)

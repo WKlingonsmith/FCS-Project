@@ -61,7 +61,7 @@
                     <GradientStop Color="#FFB5EEFF"/>
                 </LinearGradientBrush>
             </TabControl.Background>
-            <TabItem Width="111" Height="50" Header="Clients" FontSize="15.5" FontFamily="Calibri" Margin="1,0,-1,0" >
+            <TabItem Width="111" Height="50" Header="Clients" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -88,8 +88,8 @@
                         <RowDefinition Height="39*" />
                     </Grid.RowDefinitions>
                     <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="2" />
-                    <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="50" Margin="47,10,0,18" Grid.RowSpan="2" Grid.Column="1"  />
-                    <ComboBox Name="SeachBy_Clients" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42"  Grid.Column="1" Margin="213.4,10,10.8,0.8" Grid.ColumnSpan="2">
+                    <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="32" Grid.ColumnSpan="2" Margin="124,7,43.8,0.2"  />
+                    <ComboBox Name="SeachBy_Clients" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Margin="125,0,9.6,0.2">
                         <ComboBoxItem Name="cbi1">Client OQ</ComboBoxItem>
                         <ComboBoxItem Name="cbi2">First Name</ComboBoxItem>
                         <ComboBoxItem Name="cbi3">Last Name</ComboBoxItem>
@@ -373,19 +373,19 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
+                                <!--<TextBlock Grid.Column="0" Grid.Row="0" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                                 <ComboBox Name="DonationSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Grid.Row="0" Grid.ColumnSpan="2" Margin="176,10,37.6,1.2" >
                                 </ComboBox>
                                 <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />
-                                <Button Grid.Column="4" Grid.Row="0" Content="Filter"  />
-                                <DataGrid Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donation_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                                <Button Grid.Column="4" Grid.Row="0" Content="Filter"  />-->
+                                <DataGrid Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Donation_Grid"  AutoGenerateColumns="False" Margin="0,0,0.6,0.4"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=DonorFirstName}"/>
-                                        <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=DonorLastName}"/>
-                                        <DataGridTextColumn Header="Organization Name" Width="180" Binding="{Binding Path=OrganizationName}"/>
-                                        <DataGridTextColumn Header="Donation Amount" Width="160" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
-                                        <DataGridTextColumn Header="Donation Date" Width="130" Binding="{Binding Path=DonationDate}"/>
+                                        <DataGridTextColumn Header="First Name" Width="90" Binding="{Binding Path=DonorFirstName}"/>
+                                        <DataGridTextColumn Header="Last Name" Width="90" Binding="{Binding Path=DonorLastName}"/>
+                                        <DataGridTextColumn Header="Organization Name" Width="150" Binding="{Binding Path=OrganizationName}"/>
+                                        <DataGridTextColumn Header="Donation Amount" Width="130" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
+                                        <DataGridTextColumn Header="Donation Date" Width="110" Binding="{Binding Path=DonationDate}"/>
                                         <DataGridTextColumn Header="Purpose Name" Width="130" Binding="{Binding Path=PurposeName}"/>
                                         <DataGridTextColumn Header="Purpose Description" Width="200" Binding="{Binding Path=PurposeDescription}"/>
                                     </DataGrid.Columns>

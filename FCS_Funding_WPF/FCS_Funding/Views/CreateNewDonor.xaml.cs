@@ -34,7 +34,7 @@ namespace FCS_Funding.Views
                     var OrgName = from d in db.Donors
                                   where d.OrganizationName == OrganizationName
                                   select d;
-                    if (OrgName.Count() == 0)
+                    if (OrgName.Count() == 0 && OrganizationName != null)
                     {
                         //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                         //    + "\n" + DonorType + "\n" + OrganizationName);
@@ -60,6 +60,10 @@ namespace FCS_Funding.Views
                             MessageBox.Show("Make sure your state is two digits and your zip is 5 digits");
                         }
                     }
+                    else if(OrganizationName == null)
+                    {
+                        MessageBox.Show("Make sure you add an Organization Name.");
+                    }
                     else
                     {
                         MessageBox.Show("There is already an organization with the name you have selected. \nNote: Number your organizations if you have organizations with the same name.");
@@ -69,8 +73,16 @@ namespace FCS_Funding.Views
                 {
                     //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                     //    + "\n" + DonorType + "\n" + OrganizationName);
-                    try
+                    if(DonorZip == null)
                     {
+                        DonorZip = "";
+                    }
+                    if(DonorState == null)
+                    {
+                        DonorState = "";
+                    }
+                    if(DonorZip.Length <= 5 && DonorState.Length <= 2)
+                    { 
                         Donor d = new Donor();
 
                         d.DonorType = DonorType;
@@ -85,7 +97,7 @@ namespace FCS_Funding.Views
                         this.Close();
                         cic.Show();
                     }
-                    catch
+                    else
                     {
                         MessageBox.Show("Make sure your state is two digits and your zip is 5 digits.");
                     }

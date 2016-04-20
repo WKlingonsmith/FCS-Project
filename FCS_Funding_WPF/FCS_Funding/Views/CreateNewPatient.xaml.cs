@@ -83,6 +83,7 @@ namespace FCS_Funding.Views
                     pat2.PatientLastName = lastName;
                     pat2.PatientAgeGroup = ageGroup;
                     pat2.PatientEthnicity = ethnicGroup;
+                    pat2.PatientGender = PatientGender;
                     pat2.NewClientIntakeHour = date;
                     pat2.IsHead = headOfHouse;
                     pat2.RelationToHead = relationToHead;                    

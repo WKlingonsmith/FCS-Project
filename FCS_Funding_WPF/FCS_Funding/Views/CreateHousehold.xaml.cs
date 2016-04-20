@@ -73,6 +73,7 @@ namespace FCS_Funding.Views
                 db.Patients.Add(pat);
                 db.SaveChanges();
                 Determine_Problems(patientOQ, togglePatientProblems);
+                MessageBox.Show("Successfully added Client and Household.");
                 this.Close();
             }
             //add both patient and household
