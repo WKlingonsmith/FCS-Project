@@ -53,12 +53,22 @@ namespace FCS_Funding.Views
             var donation = (from d in db.Donations
                             where d.DonationID == DonationID
                             select d).First();
-            donation.DonationAmount = DonationAmount;
             donation.DonationDate = Convert.ToDateTime(DonationDate.ToString());
+            if (donation.DonationAmount == donation.DonationAmountRemaining)
+            {
+                donation.DonationAmount = DonationAmount;
+                donation.DonationAmountRemaining = DonationAmount;
+                db.SaveChanges();
+                MessageBox.Show("Updated these changes successfully.");
+                this.Close();
+            }
+            else
+            {
+                db.SaveChanges();
+                MessageBox.Show("Everything was updated except your donation amount because you have already added expenses for this donation.");
+                this.Close();
+            }
 
-            db.SaveChanges();
-            MessageBox.Show("Updated these changes successfully.");
-            this.Close();
 
         }
 

@@ -40,7 +40,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Create In-Kind Item" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Height="53" Margin="179,0,0.4,0" VerticalAlignment="Top" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
+        <TextBlock Text="Create In-Kind Item" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" 
+                   Height="53" Margin="179,0,0.4,0" VerticalAlignment="Top" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
         <TextBlock Text="Item Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
         <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
             <TextBox  FontSize="18" Text="{Binding ItemName, ElementName=ThisWindow}"  />

@@ -820,6 +820,19 @@ namespace FCS_Funding
                 up.Topmost = true;
             }
         }
+        private void Edit_Expense(object sender, MouseButtonEventArgs e)
+        {
+            int Count = Application.Current.Windows.Count;
+            if (StaffDBRole == "Admin")
+            {
+                DataGrid dg = sender as DataGrid;
+                SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateSession up = new UpdateSession(p);
+                up.Show();
+                this.Topmost = false;
+                up.Topmost = true;
+            }
+        }
 
         private void EditAccount(object sender, MouseButtonEventArgs e)
         {
@@ -884,7 +897,8 @@ namespace FCS_Funding
                             PatientBill = ex.PatientBill,
                             TotalExpense = ex.TotalExpenseAmount,
                             ExpenseType = et.ExpenseType1,
-                            ExpenseDescription = et.ExpenseDescription
+                            ExpenseDescription = et.ExpenseDescription,
+                            ExpenseID = ex.ExpenseID
                         };
              //... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
@@ -950,5 +964,6 @@ namespace FCS_Funding
             //    cb.Show();
             //}
         }
+
     }
 }

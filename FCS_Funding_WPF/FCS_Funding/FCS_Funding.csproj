@@ -179,6 +179,9 @@
     <Compile Include="Views\UpdateInKindItem.xaml.cs" />
     <Compile Include="Views\UpdateInKindService.xaml.cs" />
     <Compile Include="Views\UpdatePatient.xaml.cs" />
+    <Compile Include="Views\UpdateSession.xaml.cs">
+      <DependentUpon>UpdateSession.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewGrantProposals.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +344,10 @@
     <Page Include="Views\UpdatePatient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UpdateSession.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewGrantProposals.xaml">
       <Generator>MSBuild:Compile</Generator>

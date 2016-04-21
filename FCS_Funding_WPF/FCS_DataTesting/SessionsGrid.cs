@@ -22,6 +22,7 @@ namespace FCS_DataTesting
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
 
+        public int ExpenseID { get; set; }
 
         public SessionsGrid()
         { }

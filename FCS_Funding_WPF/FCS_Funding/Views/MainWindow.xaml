@@ -158,7 +158,7 @@
                     <Button Height="45" Width="210" Grid.Column="6" Grid.Row="0" Content="Filter" Click="Filter_Patients" Margin="2,4,3,4"  />-->
                     <Button  Content="Refresh" Click="Refresh_Session"  Grid.Column="7"   />
                     <DataGrid Name="Session_DataGrid"  Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Sessions_Grid"
-                              AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False">
+                              AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="Edit_Expense" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Client First Name"  Width="115"  Binding="{Binding Path=ClientFirstName}"/>
                             <DataGridTextColumn Header="Client Last Name" Width="115"  Binding="{Binding Path=ClientLastName}"/>
@@ -166,9 +166,10 @@
                             <DataGridTextColumn Header="Staff Last Name" Width="110"  Binding="{Binding Path=StaffLastName}"/>
                             <DataGridTextColumn Header="Start Time" Width="80" Binding="{Binding Path=AppointmentStart}"/>
                             <DataGridTextColumn Header="End Time" Width="80" Binding="{Binding Path=AppointmentEnd}"/>
-                            <DataGridTextColumn Header="Total" Width="50" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
-                            <DataGridTextColumn Header="Appointment Type" Width="4*" Binding="{Binding Path=ExpenseType}"/>
-                            <DataGridTextColumn Header="Description" Width="4*" Binding="{Binding Path=ExpenseDescription}"/>
+                            <DataGridTextColumn Header="Co-Pay" Width="60" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Deduction" Width="78" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
+                            <DataGridTextColumn Header="Appointment Type" Width="140" Binding="{Binding Path=ExpenseType}"/>
+                            <DataGridTextColumn Header="Description" Width="140" Binding="{Binding Path=ExpenseDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
