@@ -182,6 +182,27 @@
     <Compile Include="Views\UpdateSession.xaml.cs">
       <DependentUpon>UpdateSession.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Report_AccountSheet.xaml.cs">
+      <DependentUpon>Report_AccountSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Report_ClientRevenue.xaml.cs">
+      <DependentUpon>Report_ClientRevenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Report_ClientYTD.xaml.cs">
+      <DependentUpon>Report_ClientYTD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Report_Donations.xaml.cs">
+      <DependentUpon>Report_Donations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Report_GrantDonations.xaml.cs">
+      <DependentUpon>Report_GrantDonations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Report_GrantFiscalYear.xaml.cs">
+      <DependentUpon>Report_GrantFiscalYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Report_InKindDonations.xaml.cs">
+      <DependentUpon>Report_InKindDonations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewGrantProposals.xaml.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +370,34 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Report_AccountSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_ClientRevenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_ClientYTD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_Donations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_GrantDonations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_GrantFiscalYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_InKindDonations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ViewGrantProposals.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -371,6 +420,7 @@
     </Content>
     <Resource Include="FCS logo.PNG" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
