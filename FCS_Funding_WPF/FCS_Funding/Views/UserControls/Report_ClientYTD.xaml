@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="FCS_Funding.Views.UserControls.Report_ClientYTD"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FCS_Funding.Views.UserControls"
+             mc:Ignorable="d" Height="606.787" Width="862">
+    <Grid>
+        <StackPanel>
+            <DataGrid x:Name="clientYTD" HorizontalAlignment="Left" Margin="65,55,0,0" VerticalAlignment="Top" Height="359" Width="716" AlternatingRowBackground="#FFC5B7B7" Visibility="Hidden">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Client Name" CanUserResize="False" Width="240"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Client OQ" CanUserResize="False" Width="240"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Total Co-pay" CanUserResize="False" Width="236"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <Label x:Name="clientYTDStartDateLabel" Content="Start date:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="124,139,0,0" FontSize="20.667" RenderTransformOrigin="0.169,0.535"/>
+        <DatePicker x:Name="clientYTDStartDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="224,142,0,0" FontSize="20.667" Text="Test" DisplayDate="2016-01-01"/>
+        <Label x:Name="clientYTDEndDateLabel" Content="End date:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="410,144,0,0" FontSize="20.667" Width="90"/>
+        <DatePicker  x:Name="clientYTDEndDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="501,142,0,0" FontSize="20.667" Text="Test"/>
+        <Button x:Name="generateClientYTDReport_button" Content="Generate Report" HorizontalAlignment="Left" VerticalAlignment="Top" Width="193" Margin="307,197,0,0" FontSize="20.667" Click="generateClientYTDReport_button_Click"/>
+        <Button x:Name="printClientYTDReport_button" Content="Print" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="372,430,0,0" RenderTransformOrigin="1.863,0.269" Click="printClientYTDReport_button_Click" FontSize="20.667" Visibility="Hidden"/>
+        <Button x:Name="resetClientYTDReport_button" Content="New Report" HorizontalAlignment="Left" VerticalAlignment="Top" Width="126" Margin="349,464,0,0" RenderTransformOrigin="1.863,0.269" Click="resetClientYTDReport_button_Click" FontSize="20.667" Visibility="Hidden"/>
+
+    </Grid>
+</UserControl>
