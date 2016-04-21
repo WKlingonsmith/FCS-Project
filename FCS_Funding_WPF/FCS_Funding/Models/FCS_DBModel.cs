@@ -37,6 +37,7 @@ namespace FCS_Funding.Models
         public virtual DbSet<View_IndividualSessionCount> View_IndividualSessionCount { get; set; }
         public virtual DbSet<View_NewPatientByDoctor> View_NewPatientByDoctor { get; set; }
         public virtual DbSet<View_OnGoingPatientByDoctor> View_OnGoingPatientByDoctor { get; set; }
+        public virtual DbSet<View_ClientYTD> View_ClientYTD { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -310,6 +311,17 @@ namespace FCS_Funding.Models
 
             modelBuilder.Entity<View_OnGoingPatientByDoctor>()
                 .Property(e => e.StaffLastName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.PatientOQ)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.PatientName);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.PatientTotalCopay)
                 .IsUnicode(false);
         }
     }
