@@ -23,6 +23,10 @@ namespace FCS_Funding.Views.UserControls
         public Report_ClientYTD()
         {
             InitializeComponent();
+
+        //  Setting the default date for the report
+            clientYTDStartDate.SelectedDate = new DateTime(DateTime.Today.Year, 1, 1);
+            clientYTDEndDate.SelectedDate = DateTime.Today;
         }
         private void printClientYTDReport_button_Click(object sender, RoutedEventArgs e)
         {
@@ -37,9 +41,23 @@ namespace FCS_Funding.Views.UserControls
             }
         }
 
-
         private void generateClientYTDReport_button_Click(object sender, RoutedEventArgs e)
         {
+            /*DateTime start, end;
+      
+            start = clientYTDStartDate.DisplayDate;
+            end = clientYTDEndDate.DisplayDate;
+
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
+
+            var query = (from p in db.View_ClientYTD
+                         where p
+                         select p).Distinct();
+            
+            DAMONEY = query.PatientTotalCopay;
+            thing = query.PatientOQ;
+            stuff = query.PatientName*/
+
             clientYTD.Visibility = Visibility.Visible;
             printClientYTDReport_button.Visibility = Visibility.Visible;
 
@@ -50,6 +68,7 @@ namespace FCS_Funding.Views.UserControls
             clientYTDEndDateLabel.Visibility = Visibility.Hidden;
             resetClientYTDReport_button.Visibility = Visibility.Visible;
         }
+
         private void resetClientYTDReport_button_Click(object sender, RoutedEventArgs e)
         {
             clientYTD.Visibility = Visibility.Hidden;
