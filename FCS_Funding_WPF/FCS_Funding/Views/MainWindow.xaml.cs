@@ -758,7 +758,7 @@ namespace FCS_Funding
                          join dr in db.Donors on d.DonorID equals dr.DonorID
                          join c in db.DonorContacts on dr.DonorID equals c.DonorID
                          where (dr.DonorType == "Anonymous" || dr.DonorType == "Individual")
-                         && d.EventID == null
+                         && d.GrantProposalID == null
                          select new DonationsGrid
                          {
                              DonationAmount = d.DonationAmount,
@@ -778,7 +778,7 @@ namespace FCS_Funding
                        join d in db.Donations on dp.DonationID equals d.DonationID
                        join dr in db.Donors on d.DonorID equals dr.DonorID
                        where (dr.DonorType == "Organization" || dr.DonorType == "Government")
-                       && d.EventID == null
+                         && d.GrantProposalID == null
                        select new DonationsGrid
                        {
                            DonationAmount = d.DonationAmount,
@@ -869,10 +869,13 @@ namespace FCS_Funding
                         join a in db.Appointments on s.StaffID equals a.StaffID
                         join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
                         join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID
+                        join p in db.Patients on ex.PatientID equals p.PatientID
                         select new SessionsGrid
                         {
                             StaffFirstName = s.StaffFirstName,
                             StaffLastName = s.StaffLastName,
+                            ClientFirstName = p.PatientFirstName,
+                            ClientLastName = p.PatientLastName,
                             AppointmentStart = a.AppointmentStartDate,
                             AppointmentEnd = a.AppointmentEndDate,
                             ExpenseDueDate = ex.ExpenseDueDate,

@@ -229,7 +229,7 @@
                             <DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="AddSession" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.Column="2" Margin="90,0,88,0" Grid.Row="16" Height="38" VerticalAlignment="Top" Grid.ColumnSpan="2"     />
+                    <Button Name="AddSession" Visibility="Hidden" FontSize="18"  Content="Add New Session" Click="AddNewSession" Grid.Column="2" Margin="90,0,88,0" Grid.Row="16" Height="38" VerticalAlignment="Top" Grid.ColumnSpan="2"     />
                 </Grid>
             </TabItem>
         </TabControl>

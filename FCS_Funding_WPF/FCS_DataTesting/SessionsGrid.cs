@@ -19,6 +19,8 @@ namespace FCS_DataTesting
         public DateTime? ExpensePaidDate { get; set; }
         public string ExpenseType { get; set; }
         public string ExpenseDescription { get; set; }
+        public string ClientFirstName { get; set; }
+        public string ClientLastName { get; set; }
 
 
         public SessionsGrid()

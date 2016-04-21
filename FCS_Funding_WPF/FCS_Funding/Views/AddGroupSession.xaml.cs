@@ -33,8 +33,9 @@ namespace FCS_Funding.Views
 
         public decimal PatientBill { get; set; }
         public decimal DonorBill { get; set; }
+        public int AppointmentID { get; set; }
 
-        public AddGroupSession(int expenseTypeID, PatientGrid individual, int staffID, DateTime expenseDueDate, DateTime startDateTime, DateTime endDateTime)
+        public AddGroupSession(int expenseTypeID, PatientGrid individual, int staffID, DateTime expenseDueDate, DateTime startDateTime, DateTime endDateTime, int appointmentID)
         {
             ClientFirstName = individual.FirstName;
             ClientLastName = individual.LastName;
@@ -42,6 +43,7 @@ namespace FCS_Funding.Views
             ExpenseTypeID = expenseTypeID;
             Individual = individual;
             StaffID = staffID;
+            AppointmentID = appointmentID;
             ExpenseDueDate = expenseDueDate;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
@@ -53,60 +55,116 @@ namespace FCS_Funding.Views
             Models.FCS_DBModel db = new Models.FCS_DBModel();
             try
             {
-                string grant = Grant.SelectedValue.ToString();
-                var grantproposalID = (from g in db.GrantProposals
-                                       where g.GrantName == grant
-                                       select g.GrantProposalID).Distinct().FirstOrDefault();
-                var donationID = (from d in db.Donations
-                                  where d.GrantProposalID == grantproposalID
-                                  select d.DonationID).Distinct().FirstOrDefault();
-                var donation = (from d in db.Donations
-                                where d.GrantProposalID == grantproposalID
-                                select d).First();
-                if (donation.DonationAmountRemaining >= DonorBill)
+                //Taking the money from a grant
+                if (DonorDeduction.IsChecked.Value)
                 {
-                    try
+                    string grant = Grant.SelectedValue.ToString();
+                    var grantproposalID = (from g in db.GrantProposals
+                                           where g.GrantName == grant
+                                           select g.GrantProposalID).Distinct().FirstOrDefault();
+                    var grantDonation = (from d in db.Donations
+                                         where d.GrantProposalID == grantproposalID
+                                         select d).First();
+                    if (grantDonation.DonationAmountRemaining >= DonorBill)
                     {
-                        Models.Appointment a = new Models.Appointment();
-                        a.StaffID = StaffID;
-                        a.AppointmentStartDate = StartDateTime;
-                        a.AppointmentEndDate = EndDateTime;
-                        db.Appointments.Add(a);
-                        db.SaveChanges();
-
                         Models.Expense expense = new Models.Expense();
 
-                        expense.ExpenseTypeID = ExpenseTypeID;
+                        var donationID = (from d in db.Donations
+                                          where d.GrantProposalID == grantproposalID
+                                          select d.DonationID).Distinct().FirstOrDefault();
                         expense.DonationID = donationID;
+
+                        expense.ExpenseTypeID = ExpenseTypeID;
                         expense.PatientID = Individual.PatientID;
-                        expense.AppointmentID = a.AppointmentID;
+                        expense.AppointmentID = AppointmentID;
                         expense.ExpenseDueDate = ExpenseDueDate;
                         expense.DonorBill = DonorBill;
                         expense.PatientBill = PatientBill;
                         expense.TotalExpenseAmount = DonorBill + PatientBill;
                         if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+
                         db.Expenses.Add(expense);
                         db.SaveChanges();
 
+                        grantDonation.DonationAmountRemaining = grantDonation.DonationAmountRemaining - DonorBill;
+                        db.SaveChanges();
+
+                        MessageBox.Show("Successfully added Expense");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("That grant does not have enough money.");
+                    }
+                }
+                //taking the money from a money donation.
+                else
+                {
+                    int donationID = Convert.ToInt32(MoneyDonation.SelectedValue.ToString());
+
+                    var donation = (from d in db.Donations
+                                    where d.DonationID == donationID
+                                    select d).First();
+                    if (donation.DonationAmountRemaining >= DonorBill)
+                    {
+                        Models.Expense expense = new Models.Expense();
+
+                        expense.ExpenseTypeID = ExpenseTypeID;
+                        expense.DonationID = donationID;
+                        expense.PatientID = Individual.PatientID;
+                        expense.AppointmentID = AppointmentID;
+                        expense.ExpenseDueDate = ExpenseDueDate;
+                        expense.DonorBill = DonorBill;
+                        expense.PatientBill = PatientBill;
+                        expense.TotalExpenseAmount = DonorBill + PatientBill;
+                        if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+
+                        db.Expenses.Add(expense);
+                        db.SaveChanges();
                         donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
                         db.SaveChanges();
 
-                        MessageBox.Show("Successfully added In_Kind Service");
+                        MessageBox.Show("Successfully added Expense");
                         this.Close();
                     }
-                    catch
+                    else
+                    {
+                        MessageBox.Show("That donation does not have enough money.");
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show(DonorBill.ToString());
+                if (DonorBill == 0)
+                {
+                    try
+                    {
+                        Models.Expense expense = new Models.Expense();
+
+                        expense.ExpenseTypeID = ExpenseTypeID;
+                        expense.PatientID = Individual.PatientID;
+                        expense.AppointmentID = AppointmentID;
+                        expense.ExpenseDueDate = ExpenseDueDate;
+                        expense.DonorBill = DonorBill;
+                        expense.PatientBill = PatientBill;
+                        expense.TotalExpenseAmount = DonorBill + PatientBill;
+                        if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+
+                        db.Expenses.Add(expense);
+                        db.SaveChanges();
+                        MessageBox.Show("Successfully added Expense");
+                        this.Close();
+                    }
+                    catch(Exception exc)
                     {
                         MessageBox.Show("Please make sure all fields are correct");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("That grant does not have enough money.");
+                    MessageBox.Show("Make sure you select a grant");
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Make sure to select a grant.");
             }
         }
 
@@ -129,6 +187,31 @@ namespace FCS_Funding.Views
             else
             {
                 ExpensePaidDate.IsEnabled = false;
+            }
+        }
+
+        private void MoneyDonation_DropDown(object sender, RoutedEventArgs e)
+        {
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
+            var query = (from d in db.Donations
+                         where d.GrantProposalID == null
+                         select d.DonationID).ToList();
+
+            var box = sender as ComboBox;
+            box.ItemsSource = query;
+        }
+
+        private void Change_Client_Bill(object sender, RoutedEventArgs e)
+        {
+            if (DonorDeduction.IsChecked.Value)
+            {
+                MoneyDonation.IsEnabled = false;
+                Grant.IsEnabled = true;
+            }
+            else
+            {
+                MoneyDonation.IsEnabled = true;
+                Grant.IsEnabled = false;
             }
         }
     }

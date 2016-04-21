@@ -77,14 +77,23 @@ namespace FCS_Funding.Views
                 {
                     if (TotalGroup.Count == 1) { ExpenseTypeID = 1; }
                     else { ExpenseTypeID = 2; }
+                    Models.Appointment a = new Models.Appointment();
+                    a.StaffID = staffID;
+                    a.AppointmentStartDate = startDateTime;
+                    a.AppointmentEndDate = endDateTime;
+                    db.Appointments.Add(a);
+                    db.SaveChanges();
+
                     foreach (var item in TotalGroup)
                     {
-                        AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
+                        AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime, a.AppointmentID);
                         ags.Show();
                         ags.ExpensePaidDate.IsEnabled = false;
                         ags.FN.IsEnabled = false;
                         ags.LN.IsEnabled = false;
                         ags.OQ.IsEnabled = false;
+                        ags.MoneyDonation.IsEnabled = true;
+                        ags.Grant.IsEnabled = false;
                     }
                     this.Close();
                 }
@@ -94,12 +103,21 @@ namespace FCS_Funding.Views
                     ExpenseTypeID = 3;
                     foreach (var item in TotalGroup)
                     {
-                        AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime);
+                        Models.Appointment a = new Models.Appointment();
+                        a.StaffID = staffID;
+                        a.AppointmentStartDate = startDateTime;
+                        a.AppointmentEndDate = endDateTime;
+                        db.Appointments.Add(a);
+                        db.SaveChanges();
+
+                        AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime, a.AppointmentID);
                         ags.Show();
                         ags.ExpensePaidDate.IsEnabled = false;
                         ags.FN.IsEnabled = false;
                         ags.LN.IsEnabled = false;
                         ags.OQ.IsEnabled = false;
+                        ags.MoneyDonation.IsEnabled = true;
+                        ags.Grant.IsEnabled = false;
                     }
                     this.Close();
                 }
