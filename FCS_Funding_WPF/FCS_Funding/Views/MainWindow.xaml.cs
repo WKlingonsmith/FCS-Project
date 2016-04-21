@@ -964,45 +964,45 @@ namespace FCS_Funding
             //    cb.Show();
             //}
         }
-        
-        //private void printClientYTDReport_button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    System.Windows.Controls.PrintDialog Printdlg = new System.Windows.Controls.PrintDialog();
-        //    if ((bool)Printdlg.ShowDialog().GetValueOrDefault())
-        //    {
-        //        Size pageSize = new Size(Printdlg.PrintableAreaWidth, Printdlg.PrintableAreaHeight);
-        //        // sizing of the element.
-        //        clientYTD.Measure(pageSize);
-        //        clientYTD.Arrange(new Rect(5, 5, pageSize.Width, pageSize.Height));
-        //        Printdlg.PrintVisual(clientYTD, Title);
-        //    }
-        //}
+
+        private void printClientYTDReport_button_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.PrintDialog Printdlg = new System.Windows.Controls.PrintDialog();
+            if ((bool)Printdlg.ShowDialog().GetValueOrDefault())
+            {
+                Size pageSize = new Size(Printdlg.PrintableAreaWidth, Printdlg.PrintableAreaHeight);
+                // sizing of the element.
+                clientYTD.Measure(pageSize);
+                clientYTD.Arrange(new Rect(5, 5, pageSize.Width, pageSize.Height));
+                Printdlg.PrintVisual(clientYTD, Title);
+            }
+        }
 
 
-        //private void generateClientYTDReport_button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    clientYTD.Visibility = Visibility.Visible;
-        //    printClientYTDReport_button.Visibility = Visibility.Visible;
+        private void generateClientYTDReport_button_Click(object sender, RoutedEventArgs e)
+        {
+            clientYTD.Visibility = Visibility.Visible;
+            printClientYTDReport_button.Visibility = Visibility.Visible;
 
-        //    generateClientYTDReport_button.Visibility = Visibility.Hidden;
-        //    clientYTDStartDate.Visibility = Visibility.Hidden;
-        //    clientYTDEndDate.Visibility = Visibility.Hidden;
-        //    clientYTDStartDateLabel.Visibility = Visibility.Hidden;
-        //    clientYTDEndDateLabel.Visibility = Visibility.Hidden;
-        //    resetClientYTDReport_button.Visibility = Visibility.Hidden;
-        //}
-        //private void resetClientYTDReport_button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    clientYTD.Visibility = Visibility.Hidden;
-        //    printClientYTDReport_button.Visibility = Visibility.Hidden;
+            generateClientYTDReport_button.Visibility = Visibility.Hidden;
+            clientYTDStartDate.Visibility = Visibility.Hidden;
+            clientYTDEndDate.Visibility = Visibility.Hidden;
+            clientYTDStartDateLabel.Visibility = Visibility.Hidden;
+            clientYTDEndDateLabel.Visibility = Visibility.Hidden;
+            resetClientYTDReport_button.Visibility = Visibility.Hidden;
+        }
+        private void resetClientYTDReport_button_Click(object sender, RoutedEventArgs e)
+        {
+            clientYTD.Visibility = Visibility.Hidden;
+            printClientYTDReport_button.Visibility = Visibility.Hidden;
 
-        //    generateClientYTDReport_button.Visibility = Visibility.Visible;
-        //    clientYTDStartDate.Visibility = Visibility.Visible;
-        //    clientYTDEndDate.Visibility = Visibility.Visible;
-        //    clientYTDStartDateLabel.Visibility = Visibility.Visible;
-        //    clientYTDEndDateLabel.Visibility = Visibility.Visible;
-        //    resetClientYTDReport_button.Visibility = Visibility.Visible;
+            generateClientYTDReport_button.Visibility = Visibility.Visible;
+            clientYTDStartDate.Visibility = Visibility.Visible;
+            clientYTDEndDate.Visibility = Visibility.Visible;
+            clientYTDStartDateLabel.Visibility = Visibility.Visible;
+            clientYTDEndDateLabel.Visibility = Visibility.Visible;
+            resetClientYTDReport_button.Visibility = Visibility.Visible;
 
-        //}
+        }
     }
 }
