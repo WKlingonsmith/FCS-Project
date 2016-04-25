@@ -85,7 +85,6 @@ namespace FCS_Funding.Views
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();
-
                         grantDonation.DonationAmountRemaining = grantDonation.DonationAmountRemaining - DonorBill;
                         db.SaveChanges();
 
@@ -100,7 +99,11 @@ namespace FCS_Funding.Views
                 //taking the money from a money donation.
                 else
                 {
-                    int donationID = Convert.ToInt32(MoneyDonation.SelectedValue.ToString());
+                    string[] separators = new string[] { ", " };
+                    string Don = MoneyDonation.SelectedValue.ToString();
+                    //MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
+                    string[] words = Don.Split(separators, StringSplitOptions.None);
+                    int donationID = Convert.ToInt32(words[0]);                     
 
                     var donation = (from d in db.Donations
                                     where d.DonationID == donationID
@@ -121,7 +124,13 @@ namespace FCS_Funding.Views
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();
-                        donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
+                        var donor = (from d in db.Donors
+                                     where d.DonorID == donation.DonorID
+                                     select d).First();
+                        if (donor.DonorType != "Insurance")
+                        {
+                            donation.DonationAmountRemaining = donation.DonationAmountRemaining - DonorBill;
+                        }
                         db.SaveChanges();
 
                         MessageBox.Show("Successfully added Expense");
@@ -193,12 +202,22 @@ namespace FCS_Funding.Views
         private void MoneyDonation_DropDown(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
-            var query = (from d in db.Donations
-                         where d.GrantProposalID == null
-                         select d.DonationID).ToList();
+            var join2 = (from d in db.Donations
+                         join dn in db.Donors on d.DonorID equals dn.DonorID
+                         where (dn.DonorType == "Organization" || dn.DonorType == "Government" || dn.DonorType == "Insurance")
+                         select  d.DonationID.ToString() + ", " + dn.OrganizationName + ", " + d.DonationAmountRemaining.ToString()).Union
+                         (from d in db.Donations
+                         join dn in db.Donors on d.DonorID equals dn.DonorID
+                         join c in db.DonorContacts on dn.DonorID equals c.DonorID
+                         where (dn.DonorType == "Anonymous" || dn.DonorType == "Individual")
+                         && d.GrantProposalID == null
+                         select d.DonationID + ", " + d.DonationAmountRemaining + ", " + c.ContactFirstName + ", " + c.ContactLastName).ToList();
+            //var query = (from d in db.Donations
+            //             where d.GrantProposalID == null
+            //             select d.DonationID.ToString() + d.DonationPurposes).ToList();
 
             var box = sender as ComboBox;
-            box.ItemsSource = query;
+            box.ItemsSource = join2;
         }
 
         private void Change_Client_Bill(object sender, RoutedEventArgs e)

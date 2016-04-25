@@ -29,7 +29,7 @@ namespace FCS_Funding.Views
             if (DonorType != null && DonorType != "")
             {
                 FCS_DBModel db = new FCS_DBModel();
-                if (DonorType == "Organization" || DonorType == "Government")
+                if (DonorType == "Organization" || DonorType == "Government" || DonorType == "Insurance")
                 {
                     var OrgName = from d in db.Donors
                                   where d.OrganizationName == OrganizationName
@@ -160,6 +160,8 @@ namespace FCS_Funding.Views
                     DonorType = "Anonymous"; break;
                 case 3:
                     DonorType = "Government"; break;
+                case 4:
+                    DonorType = "Insurance"; break;
             }
         }
     }

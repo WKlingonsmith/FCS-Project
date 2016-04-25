@@ -76,6 +76,7 @@
             <ComboBoxItem >Individual</ComboBoxItem>
             <ComboBoxItem >Anonymous</ComboBoxItem>
             <ComboBoxItem >Government</ComboBoxItem>
+            <ComboBoxItem >Insurance</ComboBoxItem>
         </ComboBox>
 
         <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Add Donor" Click="CreateDonor" Grid.ColumnSpan="2" Margin="88.6,0.4,90,39.6" Grid.RowSpan="2"    />

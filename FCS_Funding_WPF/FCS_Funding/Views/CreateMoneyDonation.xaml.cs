@@ -41,8 +41,8 @@ namespace FCS_Funding.Views
         {
             //if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && DonationDate.ToString() != "")
             //{
-            try
-            {
+            //try
+            //{
                 //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
                 //    PurposeName + "\n" + PurposeDescription);
                 FCS_DBModel db = new FCS_DBModel();
@@ -51,12 +51,35 @@ namespace FCS_Funding.Views
                 {
                     Donation d = new Donation();
                     d.DonorID = DonorID;
-                    d.Restricted = true;
+                    d.Restricted = false;
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
                     d.EventID = EventID;
                     d.DonationAmountRemaining = DonationAmount;
+
+                    if (restrictedCheckBox.IsChecked == true)
+                    {
+                        Purpose p = new Purpose();
+                        DonationPurpose dp = new DonationPurpose();
+                        string purposeName = PurposeComboBox.SelectedItem.ToString();
+                        int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+
+                        d.Restricted = true;
+                    try {
+                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                    }
+                    catch { }
+                        dp.DonationID = d.DonationID;
+                        dp.PurposeID = PurposeID;
+                        dp.DonationPurposeAmount = DonationAmount;
+                        db.DonationPurposes.Add(dp);
+                        //db.Donations.Remove(d);
+                        db.Donations.Add(d);
+                        //db.Entry(d);
+                        //db.SaveChanges();
+                    }
+
                     db.Donations.Add(d);
                     db.SaveChanges();
 
@@ -99,11 +122,11 @@ namespace FCS_Funding.Views
                 //{
                 //    MessageBox.Show("Cannot add Grant" + "\n" + ex);
                 //}
-            }
-            catch
-            {
-                MessageBox.Show("Make sure to input all the correct data.");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Make sure to input all the correct data.");
+            //}
         }
 
         private void restrictedCheckBox_Checked(object sender, RoutedEventArgs e)

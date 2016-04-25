@@ -209,9 +209,7 @@ namespace FCS_Funding.Views
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
-            var join1 = (from p in db.Purposes
-                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                         join d in db.Donations on dp.DonationID equals d.DonationID
+            var join1 = (from d in db.Donations 
                          join dr in db.Donors on d.DonorID equals dr.DonorID
                          join dc in db.DonorContacts on dr.DonorID equals dc.DonorID
                          where d.EventID == EventID
@@ -223,16 +221,10 @@ namespace FCS_Funding.Views
                              OrganizationName = "",
                              DonationAmount = d.DonationAmount,
                              DonationDate = d.DonationDate,
-                             PurposeName = p.PurposeName,
-                             PurposeDescription = p.PurposeDescription,
                              DonorID = d.DonorID,
-                             DonationPurposeID = dp.DonationPurposeID,
-                             PurposeID = p.PurposeID,
                              DonationID = d.DonationID
                          }).Union(
-                         from p in db.Purposes
-                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                         join d in db.Donations on dp.DonationID equals d.DonationID
+                         from d in db.Donations
                          join dr in db.Donors on d.DonorID equals dr.DonorID
                          where d.EventID == EventID
                          && (dr.DonorType == "Organization" || dr.DonorType == "Government")
@@ -243,11 +235,7 @@ namespace FCS_Funding.Views
                              OrganizationName = dr.OrganizationName,
                              DonationAmount = d.DonationAmount,
                              DonationDate = d.DonationDate,
-                             PurposeName = p.PurposeName,
-                             PurposeDescription = p.PurposeDescription,
                              DonorID = d.DonorID,
-                             DonationPurposeID = dp.DonationPurposeID,
-                             PurposeID = p.PurposeID,
                              DonationID = d.DonationID
                          });
             // ... Assign ItemsSource of DataGrid.
@@ -257,21 +245,30 @@ namespace FCS_Funding.Views
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             int Count = Application.Current.Windows.Count;
             if (Count <= 3 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
 
-                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                    UpdateDonation up = new UpdateDonation(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteDon.IsEnabled = false;
-                    }
-                    up.DonationDate.SelectedDate = p.DonationDate;
-                    up.Show();
-                    this.Topmost = false;
-                    up.Topmost = true;
+                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateDonation up = new UpdateDonation(p);
+                if (StaffDBRole != "Admin")
+                {
+                    up.DeleteDon.IsEnabled = false;
+                }
+                var restricted = (from d in db.Donations
+                                  where d.DonationID == p.DonationID
+                                  select d.Restricted).First();
+                if (restricted == true)
+                {
+                    up.PurposeComboBox.IsEnabled = false;
+                    up.restrictedCheckBox.IsEnabled = false;
+                }
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.Show();
+                this.Topmost = false;
+                up.Topmost = true;
 
             }
         }

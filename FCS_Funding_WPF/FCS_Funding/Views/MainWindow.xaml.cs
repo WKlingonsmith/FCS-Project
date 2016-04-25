@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using FCS_Funding.Models;
 //using System.Windows.Automation.Peers;
 
+
 namespace FCS_Funding
 {
     /// <summary>
@@ -464,7 +465,7 @@ namespace FCS_Funding
                              DonorZip = d.DonorZip
                          }).Union(
                         from d in db.Donors
-                        where d.DonorType == "Organization" || d.DonorType == "Government"
+                        where d.DonorType == "Organization" || d.DonorType == "Government" || d.DonorType == "Insurance"
                         select new DonorsDataGrid
                         {
                             DonorID = d.DonorID,
@@ -758,7 +759,7 @@ namespace FCS_Funding
             var join2 = (from d in db.Donations
                          join dn in db.Donors
                          on d.DonorID equals dn.DonorID
-                         where (dn.DonorType == "Organization" || dn.DonorType == "Government")
+                         where (dn.DonorType == "Organization" || dn.DonorType == "Government" || dn.DonorType == "Insurance")
                          select new DonationsGrid
                          {
                              DonationAmount = d.DonationAmount,
@@ -809,6 +810,14 @@ namespace FCS_Funding
                 {
                     up.DeleteDon.IsEnabled = false;
                 }
+                var restricted = (from d in db.Donations
+                                  where d.DonationID == p.DonationID
+                                  select d.Restricted).First();
+                if (restricted == true)
+                {
+                    up.PurposeComboBox.IsEnabled = false;
+                    up.restrictedCheckBox.IsEnabled = false;
+                }                
                 up.DonationDate.SelectedDate = p.DonationDate;
                 up.Show();
                 this.Topmost = false;

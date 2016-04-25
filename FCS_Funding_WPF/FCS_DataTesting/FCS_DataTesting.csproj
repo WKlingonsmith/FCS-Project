@@ -52,6 +52,7 @@
     <Compile Include="PasswordHashing.cs" />
     <Compile Include="PatientGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purposes.cs" />
     <Compile Include="ReportsDataGrid.cs" />
     <Compile Include="SessionsGrid.cs" />
   </ItemGroup>
