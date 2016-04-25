@@ -67,7 +67,7 @@ namespace FCS_Funding.Views
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
                 string[] words = staff.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string username = words[2];
-                var staffID = (from dc in db.Staffs
+                var staffID = (from dc in db.Staff
                                where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
                                select dc.StaffID).Distinct().FirstOrDefault();
                 if (TotalGroup.Count == 0) { MessageBox.Show("Make sure to add at least one client"); return; }
@@ -199,7 +199,7 @@ namespace FCS_Funding.Views
         private void Staff_DropDown(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
-            var query = (from o in db.Staffs
+            var query = (from o in db.Staff
                          select o.StaffFirstName + ", " + o.StaffLastName + ", " + o.StaffUserName).ToList();
 
             var box = sender as ComboBox;

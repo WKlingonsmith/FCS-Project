@@ -195,7 +195,7 @@ namespace FCS_Funding.Views
         private void SessionsGrid(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
-            var join1 = from s in db.Staffs
+            var join1 = from s in db.Staff
                         join a in db.Appointments on s.StaffID equals a.StaffID
                         join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
                         join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID
