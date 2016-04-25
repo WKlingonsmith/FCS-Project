@@ -41,8 +41,8 @@ namespace FCS_Funding.Views
         {
             //if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && DonationDate.ToString() != "")
             //{
-            //try
-            //{
+            try
+            {
                 //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
                 //    PurposeName + "\n" + PurposeDescription);
                 FCS_DBModel db = new FCS_DBModel();
@@ -66,10 +66,11 @@ namespace FCS_Funding.Views
                         int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
 
                         d.Restricted = true;
-                    try {
-                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
-                    }
-                    catch { }
+                        try
+                        {
+                            d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                        }
+                        catch { }
                         dp.DonationID = d.DonationID;
                         dp.PurposeID = PurposeID;
                         dp.DonationPurposeAmount = DonationAmount;
@@ -122,11 +123,11 @@ namespace FCS_Funding.Views
                 //{
                 //    MessageBox.Show("Cannot add Grant" + "\n" + ex);
                 //}
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Make sure to input all the correct data.");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Make sure to input all the correct data.");
+            }
         }
 
         private void restrictedCheckBox_Checked(object sender, RoutedEventArgs e)

@@ -81,77 +81,83 @@ namespace FCS_Funding.Views
 
         private void UpdateThisDonation(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
-            //var purpose = (from p in db.Purposes
-            //               where p.PurposeID == PurposeID
-            //               select p).First();
-            //purpose.PurposeName = PurposeName;
-            //purpose.PurposeDescription = PurposeDescription;
+            try {
+                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+                //var purpose = (from p in db.Purposes
+                //               where p.PurposeID == PurposeID
+                //               select p).First();
+                //purpose.PurposeName = PurposeName;
+                //purpose.PurposeDescription = PurposeDescription;
 
-            var donation = (from d in db.Donations
-                            where d.DonationID == DonationID
-                            select d).First();
-            donation.DonationDate = Convert.ToDateTime(DonationDate.ToString());
+                var donation = (from d in db.Donations
+                                where d.DonationID == DonationID
+                                select d).First();
+                donation.DonationDate = Convert.ToDateTime(DonationDate.ToString());
 
-            if (restrictedCheckBox.IsChecked == true)
-            {
-                Purpose p = new Purpose();
-                DonationPurpose dp = new DonationPurpose();
-                //var purposeID = (from d in db.DonationPurposes
-                //               where d.DonationPurposeID == DonationPurposeID
-                //               select d.PurposeID).First();
-                //var purpose = (from d in db.Purposes
-                //                 where d.PurposeID == purposeID
-                //                 select d.PurposeName).First();
-
-                string purposeName = PurposeComboBox.SelectedItem.ToString();
-                int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
-
-                donation.Restricted = true;
-                try
+                if (restrictedCheckBox.IsChecked == true)
                 {
-                    donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                    Purpose p = new Purpose();
+                    DonationPurpose dp = new DonationPurpose();
+                    //var purposeID = (from d in db.DonationPurposes
+                    //               where d.DonationPurposeID == DonationPurposeID
+                    //               select d.PurposeID).First();
+                    //var purpose = (from d in db.Purposes
+                    //                 where d.PurposeID == purposeID
+                    //                 select d.PurposeName).First();
+
+                    //string purposeName = PurposeComboBox.SelectedItem.ToString();
+                    //int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+
+                    donation.Restricted = true;
+                    try
+                    {
+                        donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                    }
+                    catch { }
+                    //dp.DonationID = donation.DonationID;
+                    //dp.PurposeID = PurposeID;
+                    //dp.DonationPurposeAmount = DonationAmount;
+                    //db.DonationPurposes.Add(dp);
+                    decimal donationDiff = donation.DonationAmount - DonationAmount;
+                    if ((donation.DonationAmountRemaining - donationDiff) >= 0)
+                    {
+                        donation.DonationAmount = DonationAmount;
+                        donation.DonationAmountRemaining = donation.DonationAmountRemaining - donationDiff;
+                        db.Entry(donation);
+                        db.SaveChanges();
+                        db.Entry(dp);
+                        db.SaveChanges();
+                        MessageBox.Show("Updated these changes successfully.");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This would result as a negative balance.");
+                    }
                 }
-                catch { }
-                dp.DonationID = donation.DonationID;
-                dp.PurposeID = PurposeID;
-                dp.DonationPurposeAmount = DonationAmount;
-                db.DonationPurposes.Add(dp);
-                decimal donationDiff = donation.DonationAmount - DonationAmount;
-                if((donation.DonationAmountRemaining - donationDiff) >= 0)
-                {
-                    donation.DonationAmount = DonationAmount;
-                    donation.DonationAmountRemaining = donation.DonationAmountRemaining - donationDiff;
-                    db.Entry(donation);
-                    db.SaveChanges();
-                    db.Entry(dp);
-                    db.SaveChanges();
-                    MessageBox.Show("Updated these changes successfully.");
-                    this.Close();
-                }
+
                 else
                 {
-                    MessageBox.Show("This would result as a negative balance.");
+                    decimal donationDiff = donation.DonationAmount - DonationAmount;
+                    if ((donation.DonationAmountRemaining - donationDiff) >= 0)
+                    {
+                        donation.DonationAmount = DonationAmount;
+                        donation.DonationAmountRemaining = donation.DonationAmountRemaining - donationDiff;
+                        db.Entry(donation);
+                        db.SaveChanges();
+                        MessageBox.Show("Updated these changes successfully.");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This would result as a negative balance.");
+                    }
                 }
             }
-
-            else
+            catch
             {
-                decimal donationDiff = donation.DonationAmount - DonationAmount;
-                if ((donation.DonationAmountRemaining - donationDiff) >= 0)
-                {
-                    donation.DonationAmount = DonationAmount;
-                    donation.DonationAmountRemaining = donation.DonationAmountRemaining - donationDiff;
-                    db.Entry(donation);
-                    db.SaveChanges();
-                    MessageBox.Show("Updated these changes successfully.");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("This would result as a negative balance.");
-                }
-            } 
+                MessageBox.Show("Please make sure all data is inserted correctly.");
+            }
         }
 
         private void DeleteDonation(object sender, RoutedEventArgs e)
