@@ -58,10 +58,11 @@ namespace FCS_Funding.Views
                 {
                     EndHour = (Convert.ToInt32(EndHour) - 12).ToString();
                 }
-                DateTime expenseDueDate = Convert.ToDateTime(ExpenseDueDate.ToString());
+
                 DateTime help = Convert.ToDateTime(DateRecieved.ToString());
                 DateTime startDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(BeginHour), Convert.ToInt32(BeginMinute), 0);
                 DateTime endDateTime = new DateTime(help.Year, help.Month, help.Day, Convert.ToInt32(EndHour), Convert.ToInt32(EndMinute), 0);
+                DateTime expenseDueDate = startDateTime.AddDays(30);
                 string[] separators = new string[] { ", " };
                 string staff = Staff.SelectedValue.ToString();
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
@@ -70,7 +71,7 @@ namespace FCS_Funding.Views
                 var staffID = (from dc in db.Staffs
                                where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
                                select dc.StaffID).Distinct().FirstOrDefault();
-                if (TotalGroup.Count == 0) { MessageBox.Show("Make sure to add at least one client"); return; }
+                if (TotalGroup.Count == 0) { MessageBox.Show("Please add at least one client"); return; }
                 //individual (1)
                 //group (2)
                 if (ApptType.SelectedIndex == 0)
@@ -124,8 +125,9 @@ namespace FCS_Funding.Views
             }
             catch
             {
+                MessageBox.Show("Something went wrong. Please check the fields and try again.");
+            }          
 
-            }
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
         {
@@ -167,10 +169,7 @@ namespace FCS_Funding.Views
                 Patients.Remove((PatientGrid)item);
             }
             PatientGrid.ItemsSource = null;
-            PatientGrid.ItemsSource = Patients;
-
-
-            
+            PatientGrid.ItemsSource = Patients;            
         }
 
         private void Remove_Loaded(object sender, RoutedEventArgs e)
@@ -230,7 +229,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please enter a number.");
                 }
             }
             else
@@ -265,7 +264,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please enter a number.");
                 }
             }
             else

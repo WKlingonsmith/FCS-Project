@@ -165,7 +165,7 @@ namespace FCS_Funding.Views
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Make sure the data is correct.");
             }
         }
 
@@ -181,6 +181,11 @@ namespace FCS_Funding.Views
                 Individual.IsEnabled = true;
                 Organization.IsEnabled = false;
             }
+        }
+
+        private void InKindClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -66,7 +66,7 @@ namespace FCS_Funding.Views
 
         private void Delete_Donor(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Donor?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Donor?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
@@ -83,7 +83,7 @@ namespace FCS_Funding.Views
 
                 db.Donors.Remove(donor);
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Patient.");
+                MessageBox.Show("Donor Deleted.");
                 this.Close();
             }
         }
@@ -126,15 +126,15 @@ namespace FCS_Funding.Views
             if (Count <= 2)
             {
                 DataGrid dg = sender as DataGrid;
-                DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateContact up = new UpdateContact(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteCon.IsEnabled = false;
-                }
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+                    DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateContact up = new UpdateContact(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteCon.IsEnabled = false;
+                    }
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
             }
         }
 
@@ -150,37 +150,38 @@ namespace FCS_Funding.Views
             int Count = Application.Current.Windows.Count;
             if (Count <= 3)
             {
-                DataGrid dg = sender as DataGrid;
-                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonation up = new UpdateDonation(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteDon.IsEnabled = false;
+                try {
+                    DataGrid dg = sender as DataGrid;
+                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateDonation up = new UpdateDonation(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteDon.IsEnabled = false;
+                    }
+                    up.DonationDate.SelectedDate = p.DonationDate;
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
                 }
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+                catch
+                {
+
+                }
             }
         }
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
             FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
-            var join1 = from p in db.Purposes
-                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                        join d in db.Donations on dp.DonationID equals d.DonationID
-                        where d.DonorID == DonorID
+
+            var join1 = from d in db.Donations
+                        where d.DonorID == DonorID                                                
                         select new DonationsGrid
                         {
                             DonationAmount = d.DonationAmount,
                             DonationAmountRemaining = d.DonationAmountRemaining,
                             DonationDate = d.DonationDate,
-                            PurposeName = p.PurposeName,
-                            PurposeDescription = p.PurposeDescription,
                             DonorID = d.DonorID,
-                            DonationPurposeID = dp.DonationPurposeID,
-                            PurposeID = p.PurposeID,
                             DonationID = d.DonationID
                         };
 

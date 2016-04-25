@@ -163,7 +163,7 @@ namespace FCS_Funding.Views
                 }
                 else
                 {
-                    MessageBox.Show("Make sure you select a grant");
+                    MessageBox.Show("Make sure to select a grant");
                 }
             }
         }

@@ -9,7 +9,7 @@
         Title="CreateGrantProposal" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="AliceBlue" Offset="1"/>
             <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
         </LinearGradientBrush>
     </Window.Background>
@@ -43,7 +43,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Create Grant Proposal" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,27" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
         <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" FontWeight="Bold" />
-        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding GrantName, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" Margin="0,0,0,10" FontWeight="Bold" />

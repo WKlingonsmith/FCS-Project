@@ -30,7 +30,7 @@ namespace FCS_Funding.Views
 
         private void Delete_Expense(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Event?",
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Session?",
                "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
@@ -67,7 +67,7 @@ namespace FCS_Funding.Views
                 }
                 db.SaveChanges();
 
-                MessageBox.Show("You successfully deleted this Expense.");
+                MessageBox.Show("This session has been deleted.");
                 this.Close();
             }
         }

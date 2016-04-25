@@ -126,13 +126,13 @@ namespace FCS_Funding.Views
             }
             catch
             {
-                MessageBox.Show("Make sure you have input all of the correct data.");
+                MessageBox.Show("Please check the data entered.");
             }
         }
 
         private void Delete_InKind_Service(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this In-Kind Service?",
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this In-Kind Service?",
                  "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
@@ -148,7 +148,7 @@ namespace FCS_Funding.Views
                     db.In_Kind_Service.Remove(inkindservice);
                     db.Donations.Remove(donation);
                     db.SaveChanges();
-                    MessageBox.Show("You successfully deleted this Grant but the Proposal for this grant has been set to Pending.");
+                    MessageBox.Show("This grant has been deleted and the Proposal associated\nwith this grant has been set to Pending.");
                     this.Close();
                 }
                 catch
@@ -182,7 +182,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please insert a number.");
                 }
             }
 

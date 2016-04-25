@@ -33,13 +33,13 @@ namespace FCS_Funding.Models
         [StringLength(50)]
         public string DonorAddress2 { get; set; }
 
-        [StringLength(2)]
+        [StringLength(20)]
         public string DonorState { get; set; }
 
         [StringLength(200)]
         public string DonorCity { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string DonorZip { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

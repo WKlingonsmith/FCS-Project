@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using FCS_Funding.Models;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FCS_Funding.Views
 {
@@ -13,15 +15,20 @@ namespace FCS_Funding.Views
         /// Needed properties
         /// </summary>
         public decimal DonationAmount { get; set; }
-        public string PurposeName { get; set; }
-        public string PurposeDescription { get; set; }
         
         //Helper ID's
         public int DonorID { get; set; }
         public int GrantProposalID { get; set; }
-
+        public List<string> purpose = new List<string>();
         public AddNewGrant(int dID, int gpID)
         {
+            FCS_DBModel db = new FCS_DBModel();
+
+            foreach (var item in db.Purposes)
+            {
+                purpose.Add(item.PurposeName);
+            }
+            DataContext = purpose;
             DonorID = dID;
             GrantProposalID = gpID;
             InitializeComponent();
@@ -29,55 +36,62 @@ namespace FCS_Funding.Views
 
         private void AddGrant(object sender, RoutedEventArgs e)
         {
-            if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && PurposeDescription != null && PurposeDescription != "" 
-                && DonationDate.ToString() != "")
+            try
             {
-                try
-                {
-                    //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" + 
-                    //    DonationExpirationDate + "\n" + PurposeName + "\n" + PurposeDescription);
-                    FCS_DBModel db = new FCS_DBModel();
-                    Purpose p = new Purpose();
-                    p.PurposeName = PurposeName;
-                    p.PurposeDescription = PurposeDescription;
+                //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
+                //    PurposeName + "\n" + PurposeDescription);
+                FCS_DBModel db = new FCS_DBModel();
 
                     Donation d = new Donation();
                     d.DonorID = DonorID;
-                    d.GrantProposalID = GrantProposalID;
-                    d.Restricted = true;
+                    d.Restricted = false;
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
-                    d.DonationAmountRemaining = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
-                    try
-                    {
-                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpirationDate.ToString());
-                    }
-                    catch {
-                    }
-                    d.DonationAmount = DonationAmount;
-
-                    DonationPurpose dp = new DonationPurpose();
-                    dp.DonationID = d.DonationID;
-                    dp.PurposeID = p.PurposeID;
-                    dp.DonationPurposeAmount = DonationAmount;
-
+                    d.DonationAmountRemaining = DonationAmount;
+                    d.GrantProposalID = GrantProposalID;
                     db.Donations.Add(d);
-                    db.Purposes.Add(p);
 
-                    db.DonationPurposes.Add(dp);
+                    if (restrictedCheckBox.IsChecked == true)
+                    {
+                        Purpose p = new Purpose();
+                        DonationPurpose dp = new DonationPurpose();
+                        string purposeName = PurposeComboBox.SelectedItem.ToString();
+                        int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+
+                        d.Restricted = true;
+                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                        dp.DonationID = d.DonationID;
+                        dp.PurposeID = PurposeID;
+                        dp.DonationPurposeAmount = DonationAmount;
+                        db.DonationPurposes.Add(dp);
+                        db.Donations.Remove(d);
+                        db.Donations.Add(d);
+                    }
                     db.SaveChanges();
-                    MessageBox.Show("Successfully added Grant");
-                    this.Close();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Cannot add Grant" + "\n" + ex);
-                }
+                MessageBox.Show("Successfully added Grant");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cannot add Grant" + "\n" + ex);
+            }            
+        }
+
+
+        private void restrictedCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (restrictedCheckBox.IsChecked == true)
+            {
+
+                PurposeComboBox.IsEnabled = true;
+                DonationExpiration.IsEnabled = true;
+
             }
             else
             {
-                MessageBox.Show("Make sure to input all the correct data.");
+                PurposeComboBox.IsEnabled = false;
+                DonationExpiration.IsEnabled = false;
             }
         }
     }

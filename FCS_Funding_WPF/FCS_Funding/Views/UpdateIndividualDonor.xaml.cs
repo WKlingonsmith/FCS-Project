@@ -58,8 +58,6 @@ namespace FCS_Funding.Views
 
         private void UpdateDonor(object sender, RoutedEventArgs e)
         {
-            try
-            {
                 FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
                 var donor = (from d in db.Donors
                              where d.DonorID == DonorID
@@ -79,18 +77,14 @@ namespace FCS_Funding.Views
                 donor.DonorCity = DonorCity;
                 donor.DonorZip = DonorZip;
                 db.SaveChanges();
-                MessageBox.Show("You successfully updated this Donor");
+                MessageBox.Show("Donor updated successfully");
                 this.Close();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Make sure the following:\nZip Code is 5 digits\nState is 2 digits\nPhone is 10 digits");
-            }
+
         }
 
         private void DeleteDonor(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Donor?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Donor?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
@@ -103,7 +97,7 @@ namespace FCS_Funding.Views
                 db.DonorContacts.Remove(contact);
                 db.Donors.Remove(donor);
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Donor.");
+                MessageBox.Show("Donor deleted.");
                 this.Close();
             }
         }
@@ -121,16 +115,18 @@ namespace FCS_Funding.Views
             if (Count <= 3)
             {
                 DataGrid dg = sender as DataGrid;
-                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonation up = new UpdateDonation(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteDon.IsEnabled = false;
-                }
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+
+                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateDonation up = new UpdateDonation(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteDon.IsEnabled = false;
+                    }
+                    up.DonationDate.SelectedDate = p.DonationDate;
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
+
             }
         }
 

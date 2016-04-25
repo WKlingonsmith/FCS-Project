@@ -119,13 +119,13 @@ namespace FCS_Funding.Views
             }
             else
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Please check the data entered.");
             }
         }
 
         private void Delete_Event(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Event?" ,
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Event?" ,
                "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
@@ -142,7 +142,7 @@ namespace FCS_Funding.Views
                 }
                 db.FundRaisingEvents.Remove(event1);
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Grant but the Proposal for this grant has been set to Pending.");
+                MessageBox.Show("This Grant has been deleted and the Proposal\nassociated with this grant has been set to Pending.");
                 this.Close();
             }
         }
@@ -171,7 +171,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please enter a number");
                 }
             }
 
@@ -201,7 +201,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please enter a number");
                 }
             }
         }
@@ -261,16 +261,18 @@ namespace FCS_Funding.Views
             if (Count <= 3 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonation up = new UpdateDonation(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteDon.IsEnabled = false;
-                }
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+
+                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateDonation up = new UpdateDonation(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteDon.IsEnabled = false;
+                    }
+                    up.DonationDate.SelectedDate = p.DonationDate;
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
+
             }
         }
 
@@ -280,16 +282,18 @@ namespace FCS_Funding.Views
             if (Count <= 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateInKindItem up = new UpdateInKindItem(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteItem.IsEnabled = false;
-                }
-                up.DateRecieved.SelectedDate = p.DateRecieved;
-                this.Topmost = false;
-                up.Topmost = true;
-                up.Show();
+
+                    InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateInKindItem up = new UpdateInKindItem(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteItem.IsEnabled = false;
+                    }
+                    up.DateRecieved.SelectedDate = p.DateRecieved;
+                    this.Topmost = false;
+                    up.Topmost = true;
+                    up.Show();
+
             }
         }
 
@@ -343,33 +347,35 @@ namespace FCS_Funding.Views
             if (Count <= 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateInKindService up = new UpdateInKindService(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteService.IsEnabled = false;
-                }
-                up.DateRecieved.SelectedDate = p.StartDateTime;
-                this.Topmost = false;
-                up.Topmost = true;
 
-                if (p.StartDateTime.Hour >= 12)
-                {
-                    up.AMPM_Start.SelectedIndex = 1;
-                }
-                else
-                {
-                    up.AMPM_Start.SelectedIndex = 0;
-                }
-                if (p.EndDateTime.Hour >= 12)
-                {
-                    up.AMPM_End.SelectedIndex = 1;
-                }
-                else
-                {
-                    up.AMPM_End.SelectedIndex = 0;
-                }
-                up.Show();
+                    InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateInKindService up = new UpdateInKindService(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteService.IsEnabled = false;
+                    }
+                    up.DateRecieved.SelectedDate = p.StartDateTime;
+                    this.Topmost = false;
+                    up.Topmost = true;
+
+                    if (p.StartDateTime.Hour >= 12)
+                    {
+                        up.AMPM_Start.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        up.AMPM_Start.SelectedIndex = 0;
+                    }
+                    if (p.EndDateTime.Hour >= 12)
+                    {
+                        up.AMPM_End.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        up.AMPM_End.SelectedIndex = 0;
+                    }
+                    up.Show();
+
             }
         }
 

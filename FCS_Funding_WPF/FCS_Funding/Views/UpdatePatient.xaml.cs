@@ -86,7 +86,7 @@ namespace FCS_Funding.Views
                 patient.IsHead = TheHead.IsChecked.Value;
                 UpdateProblems();
                 db.SaveChanges();
-                MessageBox.Show("Successfully Updated Patient");
+                MessageBox.Show("Successfully Updated Client");
                 this.Close();
             }
             catch
@@ -102,7 +102,7 @@ namespace FCS_Funding.Views
 
         private void Detete_Patient(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Patient?", "Confirmation" , System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Client?", "Confirmation" , System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_DBModel db = new FCS_DBModel();
@@ -117,7 +117,7 @@ namespace FCS_Funding.Views
                     db.PatientProblems.Remove(item);
                 }
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Patient.");
+                MessageBox.Show("This client hass been deleted.");
                 this.Close();
             }
         }

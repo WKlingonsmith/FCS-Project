@@ -8,7 +8,7 @@
         Title="ViewGrantProposals" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="AliceBlue" Offset="1"/>
             <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
         </LinearGradientBrush>
     </Window.Background>

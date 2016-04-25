@@ -8,7 +8,7 @@
         Title="AddGroupSession" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="AliceBlue" Offset="1"/>
             <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
         </LinearGradientBrush>
     </Window.Background>
@@ -45,23 +45,23 @@
         <TextBlock Text="Create Individual Appointment" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.2,27" 
                    Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
         <TextBlock Text="Client First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox Name="FN"  FontSize="18" Text="{Binding ClientFirstName, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Client Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox Name="LN" FontSize="18" Text="{Binding ClientLastName, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Client OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.Column="3" Grid.ColumnSpan="2" Margin="31.2,2,146.4,8" FontWeight="Bold" />
-        <Border Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black" Margin="32,2,147.6,2">
+        <Border Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="32,2,147.6,2">
             <TextBox Name="OQ" FontSize="18" Text="{Binding ClientOQNumber, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Client Co-Pay:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Donor Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}"  />
         </Border>
         <CheckBox Name="DonorDeduction" Grid.Row="7" Content="Is Donor Deduction coming from a Grant?" FontSize="18" HorizontalAlignment="Right"  FontWeight="Bold"

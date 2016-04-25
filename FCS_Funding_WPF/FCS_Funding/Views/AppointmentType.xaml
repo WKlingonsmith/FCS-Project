@@ -8,7 +8,7 @@
         Title="AppointmentType" Width="1080" Height="709" MinHeight="709" MaxHeight="709" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="AliceBlue" Offset="1"/>
             <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
         </LinearGradientBrush>
     </Window.Background>
@@ -72,11 +72,6 @@
         <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="11" Height="30" Margin="24.4,10,0.2,0" FontWeight="Bold" Grid.Column="1" />
         <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
                    HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="11" FontSize="20" Margin="151.4,3" Width="158" Grid.ColumnSpan="3" Height="34" >
-            <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
-        </DatePicker>
-        <TextBlock Text="Expense Due Date:" TextAlignment="Center"  FontSize="18" Grid.Row="11" Height="30" Grid.Column="3" Grid.ColumnSpan="2" Margin="9.2,3,144,7" FontWeight="Bold" />
-        <DatePicker Name="ExpenseDueDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="10" FontSize="20" Margin="14.6,37,134.6,3" Grid.ColumnSpan="2" Width="158" Grid.RowSpan="2" Height="40" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
         <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Margin="39.4,16.4,10.2,0" FontWeight="Bold" Grid.Column="1" />

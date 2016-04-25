@@ -58,7 +58,7 @@ namespace FCS_Funding.Views
 
         private void Delete_InKind_Item(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this In-Kind Item?",
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this In-Kind Item?",
                "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
@@ -73,7 +73,7 @@ namespace FCS_Funding.Views
                 db.In_Kind_Item.Remove(inkinditem);
                 db.Donations.Remove(donation);
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Grant but the Proposal for this grant has been set to Pending.");
+                MessageBox.Show("This Grant has been deleted and the Proposal associated with this grant has been set to Pending.");
                 this.Close();
             }
         }

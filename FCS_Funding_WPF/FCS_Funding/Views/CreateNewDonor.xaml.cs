@@ -34,39 +34,43 @@ namespace FCS_Funding.Views
                     var OrgName = from d in db.Donors
                                   where d.OrganizationName == OrganizationName
                                   select d;
-                    if (OrgName.Count() == 0 && OrganizationName != null)
+                    if (OrganizationName != null)
                     {
                         //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                         //    + "\n" + DonorType + "\n" + OrganizationName);
                         Donor d = new Donor();
 
-                        d.DonorType = DonorType;
-                        d.OrganizationName = OrganizationName;
-                        d.DonorAddress1 = DonorAddress1;
-                        d.DonorAddress2 = DonorAddress2;
-                        d.DonorState = DonorState;
-                        d.DonorCity = DonorCity;
-                        d.DonorZip = DonorZip;
-
-                        db.Donors.Add(d);
-                        try
+                        if (d.DonorZip != null && d.DonorZip != "")
                         {
+
+                            d.DonorAddress1 = DonorAddress1;
+                            try
+                            {
+                                d.DonorAddress2 = DonorAddress2;
+                            }
+                            catch
+                            {
+
+                            }
+                            d.DonorState = DonorState;
+                            d.DonorCity = DonorCity;
+                            d.DonorZip = DonorZip;
+                         }
+                            d.DonorType = DonorType;
+                            d.OrganizationName = OrganizationName;
+                            db.Donors.Add(d);
+
                             db.SaveChanges();
                             MessageBox.Show("Successfully added Donor!");
                             this.Close();
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox.Show("Make sure your state is two digits and your zip is 5 digits");
-                        }
                     }
-                    else if(OrganizationName == null)
+                    else if (OrganizationName == null)
                     {
-                        MessageBox.Show("Make sure you add an Organization Name.");
+                        MessageBox.Show("Make sure to add an Organization Name.");
                     }
                     else
                     {
-                        MessageBox.Show("There is already an organization with the name you have selected. \nNote: Number your organizations if you have organizations with the same name.");
+                        MessageBox.Show("There is already an organization with the name selected. \nNote: Number the organizations if any organizations have the same name.");
                     }
                 }
                 else if(DonorType == "Individual")
@@ -132,14 +136,14 @@ namespace FCS_Funding.Views
                     }
                     else
                     {
-                        MessageBox.Show("You already have an Anonymous user");
+                        MessageBox.Show("Anonymous donor already exists");
                     }
                 }
             }
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you select Donor Type.");
+                MessageBox.Show("Make sure to select Donor Type.");
             }
 
         }
