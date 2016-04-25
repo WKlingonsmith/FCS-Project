@@ -43,20 +43,29 @@ namespace FCS_Funding.Views.UserControls
 
         private void generateClientYTDReport_button_Click(object sender, RoutedEventArgs e)
         {
-            /*DateTime start, end;
-      
+            /*
+            DateTime start, end;
             start = clientYTDStartDate.DisplayDate;
             end = clientYTDEndDate.DisplayDate;
 
+            int patientCopay, patientOQ;
+            string patientName;
+
             Models.FCS_DBModel db = new Models.FCS_DBModel();
 
+
+
             var query = (from p in db.View_ClientYTD
-                         where p
-                         select p).Distinct();
+                         where convert(DateTime, p.ExpensePaidDate) >= start &&convert(datetime, p.ExpensePaidDate) <= end
+                         select new { p.PatientName, p.PatientOQ }).Distinct().First();
+
+
+
             
-            DAMONEY = query.PatientTotalCopay;
-            thing = query.PatientOQ;
-            stuff = query.PatientName*/
+            patientOQ = query.PatientName;
+            patientName = query.PatientOQ;
+
+    */
 
             clientYTD.Visibility = Visibility.Visible;
             printClientYTDReport_button.Visibility = Visibility.Visible;

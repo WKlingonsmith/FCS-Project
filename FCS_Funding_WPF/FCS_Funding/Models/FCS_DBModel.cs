@@ -323,6 +323,9 @@ namespace FCS_Funding.Models
             modelBuilder.Entity<View_ClientYTD>()
                 .Property(e => e.PatientTotalCopay)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.ExpensePaidDate);
         }
     }
 }

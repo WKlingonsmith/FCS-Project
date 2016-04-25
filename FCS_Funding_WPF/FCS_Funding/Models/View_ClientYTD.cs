@@ -23,6 +23,11 @@ namespace FCS_Funding.Models
         [Column(Order = 2)]
         [DataType(DataType.Currency)]
         public string PatientTotalCopay { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
+        [DataType(DataType.DateTime)]
+        public string ExpensePaidDate { get; set; }
         
     }
 }
