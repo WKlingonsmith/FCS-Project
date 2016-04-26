@@ -43,10 +43,9 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Add New Session" TextAlignment="Center"  FontSize="36" Grid.Column="1" Grid.ColumnSpan="5" Margin="56.4,0,95.6,35" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
-        <TextBlock Text="Appointment Type:" TextAlignment="Center"  FontSize="18" Grid.Row="1" Height="30" Grid.ColumnSpan="3" Margin="151,20,142.8,30" Grid.RowSpan="2" FontWeight="Bold" />
+        <TextBlock Text="Appointment Type:" TextAlignment="Center"  FontSize="18" Grid.Row="1" Height="30" Grid.ColumnSpan="2" Margin="151,20,2.2,30" Grid.RowSpan="2" FontWeight="Bold" />
         <ComboBox Name="ApptType"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="20" Loaded="Appt_DropDown" Margin="15.8,15,10.2,25" Grid.RowSpan="2" />
-        <TextBlock Text="Clients:" TextAlignment="Center"  FontSize="18" Grid.Row="2" Height="30"   FontWeight="Bold" Grid.ColumnSpan="3" Margin="143,20,142.8,30" Grid.RowSpan="2" />
         <DataGrid Name="PatientGrid" Grid.ColumnSpan="4" Grid.RowSpan="9" Loaded="Patient_Grid" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" 
                                Grid.Column="0" Grid.Row="2" Margin="0,46,153.4,46.2">
@@ -58,7 +57,6 @@
         </DataGrid>
         <Button FontSize="30"  Grid.Column="3" Grid.Row="4" Content="---->" Click="Add_Patient" Margin="22.2,14,10.4,10" Grid.RowSpan="2" RenderTransformOrigin="0.501,0.5"   />
         <Button FontSize="30" Name="Remove"  Grid.Column="3" Grid.Row="7" Loaded="Remove_Loaded" Click="Remove_Patient" Margin="22.2,23.6,10.4,0.4" Grid.RowSpan="2" RenderTransformOrigin="0.501,0.5"   />
-        <TextBlock Text="Clients to Add to Session:" TextAlignment="Center"  FontSize="18" Grid.Row="2" Height="30"   FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4" Margin="92.6,20,125.6,30" Grid.RowSpan="2"  />
         <DataGrid Name="GroupGrid" Grid.ColumnSpan="4" Grid.RowSpan="9" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" 
                                Grid.Column="3" Grid.Row="2" Margin="153.2,46,-0.4,46.2">

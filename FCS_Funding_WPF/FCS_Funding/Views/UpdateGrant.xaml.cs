@@ -59,20 +59,31 @@ namespace FCS_Funding.Views
             InitializeComponent();
             try
             {
-                var donationTable = (from don in db.Donations
-                                     where don.DonationID == g.DonationID
-                                     join dp in db.DonationPurposes
-                                     on don.DonationID equals dp.DonationID
-                                     select new
-                                     {
-                                         don.DonationID,
-                                         don.DonationExpirationDate,
-                                         don.Restricted,
-                                         dp.PurposeID
-                                     }).First();
-                if (donationTable.Restricted == true)
+                var restricted = (from item in db.Donations where item.DonationID == DonationID select item.Restricted).First();
+
+                if (restricted == true)
                 {
-                    DonationExpiration.SelectedDate = donationTable.DonationExpirationDate;
+                    var donationTable = (from don in db.Donations
+                                         join dp in db.DonationPurposes
+                                         on don.DonationID equals dp.DonationID
+                                         join p in db.Purposes
+                                         on dp.PurposeID equals p.PurposeID
+                                         where don.DonationID == DonationID
+                                         select new
+                                         {
+                                             don.DonationID,
+                                             don.DonationExpirationDate,
+                                             don.Restricted,
+                                             dp.PurposeID
+                                         }).First();
+                    DonationDate.IsEnabled = false;
+                    try {
+                        DonationExpiration.SelectedDate = donationTable.DonationExpirationDate;
+                    }
+                    catch
+                    {
+
+                    }
                     restrictedCheckBox.IsChecked = true;
                     PurposeComboBox.SelectedItem = (from p in db.Purposes
                                                     join dp in db.DonationPurposes
@@ -80,9 +91,10 @@ namespace FCS_Funding.Views
                                                     join don in db.Donations
                                                     on dp.DonationID equals don.DonationID
                                                     select p.PurposeName).First();
-                    DonationExpiration.IsEnabled = false;
-                    restrictedCheckBox.IsEnabled = false;
-                    PurposeComboBox.IsEnabled = false;
+
+                    //DonationExpiration.IsEnabled = false;
+                    //restrictedCheckBox.IsEnabled = false;
+                    //PurposeComboBox.IsEnabled = false;
                 }
             }
             catch
@@ -117,37 +129,96 @@ namespace FCS_Funding.Views
             if (DonationDate.ToString() != null && DonationDate.ToString() != "")
             {
                 donation.DonationDate = Convert.ToDateTime(DonationDate.ToString());
-                //donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
-            }
-            if (restrictedCheckBox.IsChecked == true)
-            {
-                Purpose p = new Purpose();
-                
-                string purposeName = PurposeComboBox.SelectedItem.ToString();
-                int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
-
-                donation.Restricted = true;
-                if(DonationExpiration.ToString() != null && DonationExpiration.ToString() != "") {
+                try {
                     donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
                 }
-                dp.DonationID = donation.DonationID;
-                dp.PurposeID = PurposeID;
-                dp.DonationPurposeAmount = DonationAmount;
-                db.DonationPurposes.Add(dp);
-                //db.Donations.Remove(donation);
-                
+                catch
+                {
+                    donation.DonationExpirationDate = null;
+                }
+            }
+            donation.DonationDate = Convert.ToDateTime(DonationDate.ToString());
+            if (restrictedCheckBox.IsChecked == true)
+            {
+                if (PurposeComboBox.Text != "" && PurposeComboBox.Text != null)
+                {
+                    DeletePurposes delPurp = new DeletePurposes();
+
+                    delPurp.deletePurpose(DonationID);
+
+                    Purpose p = new Purpose();
+                    dp = new DonationPurpose();
+                    string purposeName = PurposeComboBox.SelectedItem.ToString();
+                    int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+                    donation.Restricted = true;
+
+                    if (DonationExpiration.ToString() != null && DonationExpiration.ToString() != "")
+                    {
+                        donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                    }
+                    else {
+                        donation.DonationExpirationDate = null;
+                    }
+                    dp.DonationID = donation.DonationID;
+                    dp.PurposeID = PurposeID;
+                    dp.DonationPurposeAmount = DonationAmount;
+                    db.DonationPurposes.Add(dp);
+                    donationDiff = donation.DonationAmount - DonationAmount;
+                    donation.DonationAmount = DonationAmount;
+                    donation.DonationAmountRemaining = donation.DonationAmountRemaining - donationDiff;
+                    db.Entry(donation);
+                    db.SaveChanges();
+                    db.Entry(dp);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a purpose if the donation is restrcted");
+                }
             }
             else
             {
+                DeletePurposes delPurp = new DeletePurposes();
+                delPurp.deletePurpose(DonationID);
+                donation.Restricted = false;
                 donation.DonationExpirationDate = null;
-                if (dp.PurposeID > 0)
-                {
-                    dp.DonationPurposeID = 0;
-                    dp.PurposeID = 0;
-                }
-                dp.DonationPurposeAmount = 0m;
-
+                donationDiff = donation.DonationAmount - DonationAmount;
+                donation.DonationAmount = DonationAmount;
+                donation.DonationAmountRemaining = donation.DonationAmountRemaining - donationDiff;
+                db.Entry(donation);
+                db.SaveChanges();
             }
+        
+
+            //if (restrictedCheckBox.IsChecked == true)
+            //{
+            //    Purpose p = new Purpose();
+
+            //    string purposeName = PurposeComboBox.SelectedItem.ToString();
+            //    int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+
+            //    donation.Restricted = true;
+            //    if(DonationExpiration.ToString() != null && DonationExpiration.ToString() != "") {
+            //        donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+            //    }
+            //    dp.DonationID = donation.DonationID;
+            //    dp.PurposeID = PurposeID;
+            //    dp.DonationPurposeAmount = DonationAmount;
+            //    db.DonationPurposes.Add(dp);
+            //    //db.Donations.Remove(donation);                
+            //}
+            //else
+            //{
+            //    donation.Restricted = false;
+            //    donation.DonationExpirationDate = null;
+            //    if (dp.PurposeID > 0)
+            //    {
+            //        dp.DonationPurposeID = 0;
+            //        dp.PurposeID = 0;
+            //    }
+            //    dp.DonationPurposeAmount = 0m;
+
+            //}
             if (donation.DonationAmountRemaining > 0)
             {
                 db.Donations.Add(donation);
@@ -165,39 +236,41 @@ namespace FCS_Funding.Views
 
         private void Delete_Grant(object sender, RoutedEventArgs e)
         {
+            FCS_DBModel db = new FCS_DBModel();
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Grant?", 
                  "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
                 var donationPurposes = (from p in db.DonationPurposes
                                     where p.PurposeID == PurposeID
                                     select p);
-                foreach (Models.DonationPurpose purp in donationPurposes)
-                {
-                    db.DonationPurposes.Remove(purp);
+                DeletePurposes delPurp = new DeletePurposes();
+
+                    delPurp.deletePurpose(DonationID);
+
                 }
                 //var purpose = (from p in db.Purposes
                 //               where p.PurposeID == PurposeID
                 //               select p).First();
-               
+
 
                 var donation = (from d in db.Donations
                                 where d.DonationID == DonationID
                                 select d).First();
-                try {
-                    var donationPurpose = (from dp in db.DonationPurposes
-                                           where dp.DonationID == donation.DonationID
-                                           select dp);
-                    foreach (var item in donationPurpose)
-                    {
-                        db.DonationPurposes.Remove(item);
-                    }
-                }
-                catch
-                {
+                //try {
+                //    var donationPurpose = (from dp in db.DonationPurposes
+                //                           where dp.DonationID == donation.DonationID
+                //                           select dp);
+                //    foreach (var item in donationPurpose)
+                //    {
+                //        db.DonationPurposes.Remove(item);
+                //        db.SaveChanges();
+                //    }
+                //}
+                //catch
+                //{
 
-                }
+                //}
                 var grantProposal = (from d in db.GrantProposals
                                 where d.GrantProposalID == GrantProposalID
                                 select d).First();
@@ -208,7 +281,7 @@ namespace FCS_Funding.Views
                 MessageBox.Show("This grant has been deleted and its associated proposal has been set to Pending.");
                 this.Close();
             }
-        }
+        
         private void restrictedCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (restrictedCheckBox.IsChecked == true)

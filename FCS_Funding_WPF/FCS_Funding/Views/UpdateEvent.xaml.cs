@@ -209,7 +209,7 @@ namespace FCS_Funding.Views
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
-            var join1 = (from d in db.Donations 
+            var join1 = (from d in db.Donations
                          join dr in db.Donors on d.DonorID equals dr.DonorID
                          join dc in db.DonorContacts on dr.DonorID equals dc.DonorID
                          where d.EventID == EventID
@@ -245,30 +245,21 @@ namespace FCS_Funding.Views
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-            Models.FCS_DBModel db = new Models.FCS_DBModel();
             int Count = Application.Current.Windows.Count;
             if (Count <= 3 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
 
-                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonation up = new UpdateDonation(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteDon.IsEnabled = false;
-                }
-                var restricted = (from d in db.Donations
-                                  where d.DonationID == p.DonationID
-                                  select d.Restricted).First();
-                if (restricted == true)
-                {
-                    up.PurposeComboBox.IsEnabled = false;
-                    up.restrictedCheckBox.IsEnabled = false;
-                }
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateDonation up = new UpdateDonation(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteDon.IsEnabled = false;
+                    }
+                    up.DonationDate.SelectedDate = p.DonationDate;
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
 
             }
         }

@@ -33,15 +33,16 @@ namespace FCS_Funding.Views
         {
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>()
-            { 
-                "Group/Individual",    
+            {
+                "Group/Individual",
                 "Family"
             };
         }
 
         private void Select_AppointmentType(object sender, RoutedEventArgs e)
         {
-            try {
+            try
+            {
                 if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
                 {
                     BeginHour = (Convert.ToInt32(BeginHour) + 12).ToString();
@@ -126,7 +127,7 @@ namespace FCS_Funding.Views
             catch
             {
                 MessageBox.Show("Something went wrong. Please check the fields and try again.");
-            }          
+            }
 
         }
         private void Patient_Grid(object sender, RoutedEventArgs e)
@@ -147,12 +148,12 @@ namespace FCS_Funding.Views
                             IsHead = patient.IsHead,
                             RelationToHead = patient.RelationToHead
                         };
-            
-                // ... Assign ItemsSource of DataGrid. 
+
+            // ... Assign ItemsSource of DataGrid. 
             var grid = sender as DataGrid;
             Patients.AddRange(join1.ToList());
-            PatientGrid.ItemsSource = Patients;           
-            
+            PatientGrid.ItemsSource = Patients;
+
         }
 
         private void Add_Patient(object sender, RoutedEventArgs e)
@@ -163,13 +164,13 @@ namespace FCS_Funding.Views
             }
             GroupGrid.ItemsSource = null;
             GroupGrid.ItemsSource = TotalGroup;
-            
+
             foreach (var item in PatientGrid.SelectedItems)
             {
                 Patients.Remove((PatientGrid)item);
             }
             PatientGrid.ItemsSource = null;
-            PatientGrid.ItemsSource = Patients;            
+            PatientGrid.ItemsSource = Patients;
         }
 
         private void Remove_Loaded(object sender, RoutedEventArgs e)
@@ -179,14 +180,14 @@ namespace FCS_Funding.Views
 
         private void Remove_Patient(object sender, RoutedEventArgs e)
         {
-            
+
             foreach (var item in GroupGrid.SelectedItems)
             {
                 Patients.Add((PatientGrid)item);
             }
             PatientGrid.ItemsSource = null;
             PatientGrid.ItemsSource = Patients;
-            
+
             foreach (var item in GroupGrid.SelectedItems)
             {
                 TotalGroup.Remove((PatientGrid)item);
@@ -226,7 +227,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch 
+                catch
                 {
                     textbox.Text = "";
                     MessageBox.Show("Please enter a number.");
@@ -261,7 +262,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch 
+                catch
                 {
                     textbox.Text = "";
                     MessageBox.Show("Please enter a number.");

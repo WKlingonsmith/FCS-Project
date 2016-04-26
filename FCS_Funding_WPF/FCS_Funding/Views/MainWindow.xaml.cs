@@ -18,7 +18,6 @@ using System.Collections.ObjectModel;
 using FCS_Funding.Models;
 //using System.Windows.Automation.Peers;
 
-
 namespace FCS_Funding
 {
     /// <summary>
@@ -491,6 +490,7 @@ namespace FCS_Funding
                          join d in db.Donations on  p.DonorID equals d.DonorID
                          join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
                          where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
+                         && d.EventID == null
                          select new InKindItem
                          {
                              DonorID = p.DonorID,
@@ -507,6 +507,7 @@ namespace FCS_Funding
                         join d in db.Donations on p.DonorID equals d.DonorID
                         join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
                         where (p.DonorType == "Organization" || p.DonorType == "Government")
+                         && d.EventID == null
                         select new InKindItem
                         {
                             DonorID = p.DonorID,
@@ -588,6 +589,7 @@ namespace FCS_Funding
                          join d in db.Donations on p.DonorID equals d.DonorID
                          join ki in db.In_Kind_Service on d.DonationID equals ki.DonationID
                          where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
+                         && d.EventID == null
                          select new InKindService
                          {
                              DonorID = p.DonorID,
@@ -807,14 +809,6 @@ namespace FCS_Funding
                 {
                     up.DeleteDon.IsEnabled = false;
                 }
-                var restricted = (from d in db.Donations
-                                  where d.DonationID == p.DonationID
-                                  select d.Restricted).First();
-                if (restricted == true)
-                {
-                    up.PurposeComboBox.IsEnabled = false;
-                    up.restrictedCheckBox.IsEnabled = false;
-                }                
                 up.DonationDate.SelectedDate = p.DonationDate;
                 up.Show();
                 this.Topmost = false;

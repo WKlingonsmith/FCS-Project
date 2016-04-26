@@ -166,6 +166,7 @@
     <Compile Include="Views\CreateNewDonor.xaml.cs" />
     <Compile Include="Views\CreateNewEvent.xaml.cs" />
     <Compile Include="Views\CreateNewPatient.xaml.cs" />
+    <Compile Include="Views\DeletePurposes.cs" />
     <Compile Include="Views\EditGrantProposals.xaml.cs" />
     <Compile Include="Views\EventDonorDonation.xaml.cs" />
     <Compile Include="Views\Login.xaml.cs" />

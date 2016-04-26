@@ -104,7 +104,7 @@ namespace FCS_Funding.Views
                     MessageBox.Show("This would result in a negative balance.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Please check the data entered.");
             }
@@ -130,7 +130,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch 
+                catch
                 {
                     textbox.Text = "";
                     MessageBox.Show("Please enter a number.");
@@ -161,7 +161,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch 
+                catch
                 {
                     textbox.Text = "";
                     MessageBox.Show("Please enter a number.");

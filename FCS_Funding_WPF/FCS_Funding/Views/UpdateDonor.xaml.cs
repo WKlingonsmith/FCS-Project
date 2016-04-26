@@ -147,26 +147,16 @@ namespace FCS_Funding.Views
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
             int Count = Application.Current.Windows.Count;
             if (Count <= 3)
             {
-                try
-                {
+                try {
                     DataGrid dg = sender as DataGrid;
                     DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     UpdateDonation up = new UpdateDonation(p);
                     if (StaffDBRole != "Admin")
                     {
                         up.DeleteDon.IsEnabled = false;
-                    }
-                    var restricted = (from d in db.Donations
-                                      where d.DonationID == p.DonationID
-                                      select d.Restricted).First();
-                    if (restricted == true)
-                    {
-                        up.PurposeComboBox.IsEnabled = false;
-                        up.restrictedCheckBox.IsEnabled = false;
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
                     up.Show();

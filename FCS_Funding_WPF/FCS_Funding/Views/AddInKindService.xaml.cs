@@ -15,9 +15,9 @@ namespace FCS_Funding.Views
     {
         public string ServiceDescription { get; set; }
         public decimal RatePerHour { get; set; }
-        public string BeginHour {get; set; }
-        public string BeginMinute {get; set; }
-        public string EndHour {get; set; }
+        public string BeginHour { get; set; }
+        public string BeginMinute { get; set; }
+        public string EndHour { get; set; }
         public string EndMinute { get; set; }
         public bool IsEvent { get; set; }
         public int EventID { get; set; }
@@ -31,7 +31,7 @@ namespace FCS_Funding.Views
         }
         private void Add_InKind_Service(object sender, RoutedEventArgs e)
         {
-            if(AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
+            if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
             {
                 BeginHour = (Convert.ToInt32(BeginHour) + 12).ToString();
             }
@@ -129,7 +129,7 @@ namespace FCS_Funding.Views
                     MessageBox.Show("Please check the data entered.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Please check the data entered.");
             }
@@ -168,7 +168,7 @@ namespace FCS_Funding.Views
                     else if (value < 1)
                         textbox.Text = "1";
                 }
-                catch 
+                catch
                 {
                     textbox.Text = "";
                     MessageBox.Show("Please enter a number.");
@@ -199,7 +199,7 @@ namespace FCS_Funding.Views
                         textbox.Text = "00";
                     }
                 }
-                catch 
+                catch
                 {
                     textbox.Text = "";
                     MessageBox.Show("Please enter a number.");

@@ -26,7 +26,7 @@ namespace FCS_Funding.Views
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         PatientGrid Individual { get; set; }
-        
+
         public string ClientFirstName { get; set; }
         public string ClientLastName { get; set; }
         public string ClientOQNumber { get; set; }
@@ -103,7 +103,7 @@ namespace FCS_Funding.Views
                     string Don = MoneyDonation.SelectedValue.ToString();
                     //MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
                     string[] words = Don.Split(separators, StringSplitOptions.None);
-                    int donationID = Convert.ToInt32(words[0]);                     
+                    int donationID = Convert.ToInt32(words[0]);
 
                     var donation = (from d in db.Donations
                                     where d.DonationID == donationID
@@ -144,6 +144,7 @@ namespace FCS_Funding.Views
             }
             catch
             {
+                MessageBox.Show(DonorBill.ToString());
                 if (DonorBill == 0)
                 {
                     try
@@ -164,7 +165,7 @@ namespace FCS_Funding.Views
                         MessageBox.Show("Successfully added Expense");
                         this.Close();
                     }
-                    catch(Exception exc)
+                    catch (Exception exc)
                     {
                         MessageBox.Show("Please make sure all fields are correct");
                     }
@@ -204,13 +205,13 @@ namespace FCS_Funding.Views
             var join2 = (from d in db.Donations
                          join dn in db.Donors on d.DonorID equals dn.DonorID
                          where (dn.DonorType == "Organization" || dn.DonorType == "Government" || dn.DonorType == "Insurance")
-                         select  d.DonationID.ToString() + ", " + dn.OrganizationName + ", " + d.DonationAmountRemaining.ToString()).Union
+                         select d.DonationID.ToString() + ", " + dn.OrganizationName + ", " + d.DonationAmountRemaining.ToString()).Union
                          (from d in db.Donations
-                         join dn in db.Donors on d.DonorID equals dn.DonorID
-                         join c in db.DonorContacts on dn.DonorID equals c.DonorID
-                         where (dn.DonorType == "Anonymous" || dn.DonorType == "Individual")
-                         && d.GrantProposalID == null
-                         select d.DonationID + ", "  + c.ContactFirstName + ", " + c.ContactLastName + ", " + d.DonationAmountRemaining).ToList();
+                          join dn in db.Donors on d.DonorID equals dn.DonorID
+                          join c in db.DonorContacts on dn.DonorID equals c.DonorID
+                          where (dn.DonorType == "Anonymous" || dn.DonorType == "Individual")
+                          && d.GrantProposalID == null
+                          select d.DonationID + ", " + d.DonationAmountRemaining + ", " + c.ContactFirstName + ", " + c.ContactLastName).ToList();
             //var query = (from d in db.Donations
             //             where d.GrantProposalID == null
             //             select d.DonationID.ToString() + d.DonationPurposes).ToList();

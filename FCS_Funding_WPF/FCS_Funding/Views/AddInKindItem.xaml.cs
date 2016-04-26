@@ -11,8 +11,8 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class AddInKindItem : Window
     {
-         public string ItemName { get; set; }
-         public string ItemDescription { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
         public bool IsEvent { get; set; }
         public int EventID { get; set; }
 
@@ -74,13 +74,13 @@ namespace FCS_Funding.Views
                         donation.EventID = EventID;
                         db.Donations.Add(donation);
                         db.SaveChanges();
-                        
+
                         Models.In_Kind_Item inKind = new Models.In_Kind_Item();
                         inKind.DonationID = donation.DonationID;
                         inKind.ItemName = ItemName;
                         inKind.ItemDescription = ItemDescription;
                         db.In_Kind_Item.Add(inKind);
-                        db.SaveChanges();                       
+                        db.SaveChanges();
                     }
                     else
                     {
@@ -92,7 +92,7 @@ namespace FCS_Funding.Views
                         donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
                         db.Donations.Add(donation);
                         db.SaveChanges();
-                        
+
                         Models.In_Kind_Item inKind = new Models.In_Kind_Item();
                         inKind.DonationID = donation.DonationID;
                         inKind.ItemName = ItemName;
@@ -102,7 +102,7 @@ namespace FCS_Funding.Views
                     }
                 }
                 //then its an individual
-                else if(Individual.SelectedIndex != -1)
+                else if (Individual.SelectedIndex != -1)
                 {
                     string[] separators = new string[] { ", " };
                     string Indiv = Individual.SelectedValue.ToString();
@@ -160,7 +160,7 @@ namespace FCS_Funding.Views
                 }
                 MessageBox.Show("Successfully added In_Kind Item");
                 this.Close();
-                
+
             }
             //add both patient and household
             else
@@ -171,7 +171,7 @@ namespace FCS_Funding.Views
 
         private void Change_Organization_Individual(object sender, RoutedEventArgs e)
         {
-            if(OrgOrIndividual.IsChecked.Value)
+            if (OrgOrIndividual.IsChecked.Value)
             {
                 Individual.IsEnabled = false;
                 Organization.IsEnabled = true;

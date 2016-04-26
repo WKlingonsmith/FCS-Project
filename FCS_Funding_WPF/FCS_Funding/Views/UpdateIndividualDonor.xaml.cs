@@ -111,30 +111,21 @@ namespace FCS_Funding.Views
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
             int Count = Application.Current.Windows.Count;
             if (Count <= 3)
             {
                 DataGrid dg = sender as DataGrid;
 
-                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonation up = new UpdateDonation(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteDon.IsEnabled = false;
-                }
-                var restricted = (from d in db.Donations
-                                  where d.DonationID == p.DonationID
-                                  select d.Restricted).First();
-                if (restricted == true)
-                {
-                    up.PurposeComboBox.IsEnabled = false;
-                    up.restrictedCheckBox.IsEnabled = false;
-                }
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateDonation up = new UpdateDonation(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteDon.IsEnabled = false;
+                    }
+                    up.DonationDate.SelectedDate = p.DonationDate;
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
 
             }
         }
@@ -142,14 +133,20 @@ namespace FCS_Funding.Views
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
             FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
-            var join1 = from d in db.Donations 
+            var join1 = from p in db.Purposes
+                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                        join d in db.Donations on dp.DonationID equals d.DonationID
                         where d.DonorID == DonorID
                         select new DonationsGrid
                         {
                             DonationAmount = d.DonationAmount,
                             DonationAmountRemaining = d.DonationAmountRemaining,
                             DonationDate = d.DonationDate,
+                            PurposeName = p.PurposeName,
+                            PurposeDescription = p.PurposeDescription,
                             DonorID = d.DonorID,
+                            DonationPurposeID = dp.DonationPurposeID,
+                            PurposeID = p.PurposeID,
                             DonationID = d.DonationID
                         };
 

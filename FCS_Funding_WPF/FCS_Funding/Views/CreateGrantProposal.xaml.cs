@@ -31,7 +31,7 @@ namespace FCS_Funding.Views
             };
             Models.FCS_DBModel db = new Models.FCS_DBModel();
             var query = (from o in db.Donors
-                         where o.OrganizationName != null && o.OrganizationName != ""
+                         where o.DonorType == "Organization" || o.DonorType == "Government" 
                          orderby o.OrganizationName
                          select o.OrganizationName).ToList();
 

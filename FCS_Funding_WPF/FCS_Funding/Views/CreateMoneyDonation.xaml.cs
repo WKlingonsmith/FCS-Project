@@ -46,10 +46,9 @@ namespace FCS_Funding.Views
                 //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
                 //    PurposeName + "\n" + PurposeDescription);
                 FCS_DBModel db = new FCS_DBModel();
-
+                Donation d = new Donation();
                 if (IsEvent)
                 {
-                    Donation d = new Donation();
                     d.DonorID = DonorID;
                     d.Restricted = false;
                     d.InKind = false;
@@ -57,65 +56,40 @@ namespace FCS_Funding.Views
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
                     d.EventID = EventID;
                     d.DonationAmountRemaining = DonationAmount;
-
-                    if (restrictedCheckBox.IsChecked == true)
-                    {
-                        Purpose p = new Purpose();
-                        DonationPurpose dp = new DonationPurpose();
-                        string purposeName = PurposeComboBox.SelectedItem.ToString();
-                        int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
-
-                        d.Restricted = true;
-                        try
-                        {
-                            d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
-                        }
-                        catch { }
-                        dp.DonationID = d.DonationID;
-                        dp.PurposeID = PurposeID;
-                        dp.DonationPurposeAmount = DonationAmount;
-                        db.DonationPurposes.Add(dp);
-                        //db.Donations.Remove(d);
-                        db.Donations.Add(d);
-                        //db.Entry(d);
-                        //db.SaveChanges();
-                    }
-
                     db.Donations.Add(d);
                     db.SaveChanges();
-
                 }
                 else
                 {
-                    Donation d = new Donation();
+                    
                     d.DonorID = DonorID;
                     d.Restricted = false;
                     d.InKind = false;
                     d.DonationAmount = DonationAmount;
                     d.DonationDate = Convert.ToDateTime(DonationDate.ToString());
                     d.DonationAmountRemaining = DonationAmount;
-                    db.Donations.Add(d);
-
-                    if (restrictedCheckBox.IsChecked == true)
-                    {
-                        Purpose p = new Purpose();
-                        DonationPurpose dp = new DonationPurpose();
-                        string purposeName = PurposeComboBox.SelectedItem.ToString();
-                        int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
-
-                        d.Restricted = true;
-                        d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
-                        dp.DonationID = d.DonationID;
-                        dp.PurposeID = PurposeID;
-                        dp.DonationPurposeAmount = DonationAmount;
-                        db.DonationPurposes.Add(dp);
-                        db.Donations.Remove(d);
-                        db.Donations.Add(d);
-                        //db.Entry(d);
-                        //db.SaveChanges();
-                    }
-                    db.SaveChanges();
+                    db.Donations.Add(d);                    
+                    
                 }
+                if (restrictedCheckBox.IsChecked == true)
+                {
+                    Purpose p = new Purpose();
+                    DonationPurpose dp = new DonationPurpose();
+                    string purposeName = PurposeComboBox.SelectedItem.ToString();
+                    int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+
+                    d.Restricted = true;
+                    d.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
+                    dp.DonationID = d.DonationID;
+                    dp.PurposeID = PurposeID;
+                    dp.DonationPurposeAmount = DonationAmount;
+                    db.DonationPurposes.Add(dp);
+                    db.Donations.Remove(d);
+                    db.Donations.Add(d);
+                    //db.Entry(d);
+                    //db.SaveChanges();
+                }
+                db.SaveChanges();
                 MessageBox.Show("Successfully added Donation");
                 this.Close();
                 //}
