@@ -104,9 +104,15 @@ namespace FCS_Funding.Views
                     //var purpose = (from d in db.Purposes
                     //                 where d.PurposeID == purposeID
                     //                 select d.PurposeName).First();
-
-                    //string purposeName = PurposeComboBox.SelectedItem.ToString();
-                    //int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+                    if (PurposeComboBox.IsEnabled == true)
+                    {
+                        string purposeName = PurposeComboBox.SelectedItem.ToString();
+                        int PurposeID = db.Purposes.Where(x => x.PurposeName == purposeName).Select(x => x.PurposeID).First();
+                        dp.DonationID = donation.DonationID;
+                        dp.PurposeID = PurposeID;
+                        dp.DonationPurposeAmount = DonationAmount;
+                        db.DonationPurposes.Add(dp);
+                    }
 
                     donation.Restricted = true;
                     try
@@ -114,10 +120,7 @@ namespace FCS_Funding.Views
                         donation.DonationExpirationDate = Convert.ToDateTime(DonationExpiration.ToString());
                     }
                     catch { }
-                    //dp.DonationID = donation.DonationID;
-                    //dp.PurposeID = PurposeID;
-                    //dp.DonationPurposeAmount = DonationAmount;
-                    //db.DonationPurposes.Add(dp);
+
                     decimal donationDiff = donation.DonationAmount - DonationAmount;
                     if ((donation.DonationAmountRemaining - donationDiff) >= 0)
                     {
@@ -250,10 +253,6 @@ namespace FCS_Funding.Views
                 //               where d.PurposeID == purposeID
                 //               select d.PurposeName).First();
                 PurposeComboBox.SelectedItem = purpose;
-            }
-            if (grantID != null)
-            {
-                GrantDate.SelectedDate = grantDate;
             }
         }
     }

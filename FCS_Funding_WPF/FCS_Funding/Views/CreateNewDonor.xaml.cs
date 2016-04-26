@@ -34,37 +34,27 @@ namespace FCS_Funding.Views
                     var OrgName = from d in db.Donors
                                   where d.OrganizationName == OrganizationName
                                   select d;
-                    if (OrganizationName != null)
+                    if (OrganizationName != null && OrganizationName != "")
                     {
                         //MessageBox.Show(DonorAddress1 + "\n" + DonorAddress2 + "\n" + DonorCity + "\n" + DonorState + "\n" + DonorZip
                         //    + "\n" + DonorType + "\n" + OrganizationName);
                         Donor d = new Donor();
 
-                        if (d.DonorZip != null && d.DonorZip != "")
-                        {
 
-                            d.DonorAddress1 = DonorAddress1;
-                            try
-                            {
-                                d.DonorAddress2 = DonorAddress2;
-                            }
-                            catch
-                            {
+                        try { d.DonorState = DonorState; } catch { }
+                        try { d.DonorCity = DonorCity; } catch { }
+                        try { d.DonorZip = DonorZip; } catch { }
+                        try { d.DonorAddress2 = DonorAddress2; } catch { }
+                        try { d.DonorAddress1 = DonorAddress1; } catch { }
+                        d.DonorType = DonorType;
+                        d.OrganizationName = OrganizationName;
+                        db.Donors.Add(d);
 
-                            }
-                            d.DonorState = DonorState;
-                            d.DonorCity = DonorCity;
-                            d.DonorZip = DonorZip;
-                         }
-                            d.DonorType = DonorType;
-                            d.OrganizationName = OrganizationName;
-                            db.Donors.Add(d);
-
-                            db.SaveChanges();
-                            MessageBox.Show("Successfully added Donor!");
-                            this.Close();
+                        db.SaveChanges();
+                        MessageBox.Show("Successfully added Donor!");
+                        this.Close();
                     }
-                    else if (OrganizationName == null)
+                    else if (OrganizationName == null || OrganizationName == "")
                     {
                         MessageBox.Show("Make sure to add an Organization Name.");
                     }

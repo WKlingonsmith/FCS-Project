@@ -491,7 +491,6 @@ namespace FCS_Funding
                          join d in db.Donations on  p.DonorID equals d.DonorID
                          join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
                          where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
-                         && d.EventID == null
                          select new InKindItem
                          {
                              DonorID = p.DonorID,
@@ -508,7 +507,6 @@ namespace FCS_Funding
                         join d in db.Donations on p.DonorID equals d.DonorID
                         join ki in db.In_Kind_Item on d.DonationID equals ki.DonationID
                         where (p.DonorType == "Organization" || p.DonorType == "Government")
-                         && d.EventID == null
                         select new InKindItem
                         {
                             DonorID = p.DonorID,
@@ -590,7 +588,6 @@ namespace FCS_Funding
                          join d in db.Donations on p.DonorID equals d.DonorID
                          join ki in db.In_Kind_Service on d.DonationID equals ki.DonationID
                          where (p.DonorType == "Anonymous" || p.DonorType == "Individual")
-                         && d.EventID == null
                          select new InKindService
                          {
                              DonorID = p.DonorID,

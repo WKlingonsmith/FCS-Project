@@ -57,9 +57,9 @@
         <!--Width="170" Height="40"-->
         <Button FontSize="18" Grid.Column="1" Grid.Row="13" Content="Update Donation" Click="UpdateThisDonation" Grid.ColumnSpan="2" Margin="126,0,53,0" />
         <Button Name="DeleteDon" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete Donation" Click="DeleteDonation" Grid.ColumnSpan="2" Margin="146,0,33,0" Height="40" VerticalAlignment="Top" />
-        <TextBlock Text="Grant Date:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold" Margin="0,5"/>
+        <!--<TextBlock Text="Grant Date:" TextAlignment="Center" FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold" Margin="0,5"/>
         <DatePicker x:Name="GrantDate"  HorizontalAlignment="Center" VerticalAlignment="Center"
-        	HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="8" FontSize="20" Margin="16,2.5" />
+        	HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="8" FontSize="20" Margin="16,2.5" />-->
         <CheckBox FontSize="18" FontWeight="Bold" x:Name="restrictedCheckBox" Content="Is Donation Restricted?" Grid.Column="2" HorizontalAlignment="Left" Margin="6,0,0,0" Grid.Row="10" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="39" Width="242" Unchecked="restrictedCheckBox_Checked" Checked="restrictedCheckBox_Checked"/>
         <ComboBox ItemsSource="{Binding DataContext, ElementName=ThisWindow}" FontSize="18" Name="PurposeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="174,1,0,0" Grid.Row="10" VerticalAlignment="Top" Width="175" Height="39" IsEnabled="False" Grid.ColumnSpan="2" Loaded="PurposeComboBox_Loaded"/>
         <TextBlock Text="Select a Purpose:" TextAlignment="Center" FontSize="18" Grid.Row="10" Grid.Column="3" Height="30" Padding="10, 0, 0, 0" FontWeight="Bold" Margin="170,0,9,10" Grid.ColumnSpan="2" AllowDrop="False"/>

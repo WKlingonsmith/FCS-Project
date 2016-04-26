@@ -144,7 +144,6 @@ namespace FCS_Funding.Views
             }
             catch
             {
-                MessageBox.Show(DonorBill.ToString());
                 if (DonorBill == 0)
                 {
                     try
@@ -211,7 +210,7 @@ namespace FCS_Funding.Views
                          join c in db.DonorContacts on dn.DonorID equals c.DonorID
                          where (dn.DonorType == "Anonymous" || dn.DonorType == "Individual")
                          && d.GrantProposalID == null
-                         select d.DonationID + ", " + d.DonationAmountRemaining + ", " + c.ContactFirstName + ", " + c.ContactLastName).ToList();
+                         select d.DonationID + ", "  + c.ContactFirstName + ", " + c.ContactLastName + ", " + d.DonationAmountRemaining).ToList();
             //var query = (from d in db.Donations
             //             where d.GrantProposalID == null
             //             select d.DonationID.ToString() + d.DonationPurposes).ToList();
