@@ -30,7 +30,7 @@ namespace FCS_Funding.Views
             string verifiedPW = VerifyPassword.Password.ToString();
             string hashedPassword = PasswordHashing.GetHashString(password);
 
-            int usernameVerify = (from uv in db.Staffs
+            int usernameVerify = (from uv in db.Staff
                                   where uv.StaffUserName == UserName
                                   select uv).Count();
             if (Role == "No Access")
@@ -48,7 +48,7 @@ namespace FCS_Funding.Views
                     account.StaffUserName = UserName;
                     account.StaffPassword = hashedPassword;
                     account.StaffDBRole = Role;
-                    db.Staffs.Add(account);
+                    db.Staff.Add(account);
                     db.SaveChanges();
                     this.Close();
                 }
@@ -81,7 +81,7 @@ namespace FCS_Funding.Views
                     account.StaffUserName = UserName;
                     account.StaffPassword = hashedPassword;
                     account.StaffDBRole = Role;
-                    db.Staffs.Add(account);
+                    db.Staff.Add(account);
                     db.SaveChanges();
                     this.Close();
                 }

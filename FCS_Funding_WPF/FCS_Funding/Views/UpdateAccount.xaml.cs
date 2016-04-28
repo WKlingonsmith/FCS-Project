@@ -48,7 +48,7 @@ namespace FCS_Funding.Views
             try
             {
                 string Role = UserRole.SelectedValue.ToString();
-                int usernameVerify = (from uv in db.Staffs
+                int usernameVerify = (from uv in db.Staff
                                       where uv.StaffUserName == UserName
                                       select uv).Count();
                 if (usernameVerify != 0 && UserName != helperUserName)
@@ -59,7 +59,7 @@ namespace FCS_Funding.Views
                 {
                     try
                     {
-                        var staff = (from p in db.Staffs
+                        var staff = (from p in db.Staff
                                      where p.StaffID == StaffID
                                      select p).First();
                         staff.StaffFirstName = FirstName;
@@ -101,7 +101,7 @@ namespace FCS_Funding.Views
             else
             {
                 try {
-                    var staff = (from p in db.Staffs
+                    var staff = (from p in db.Staff
                                  where p.StaffID == StaffID
                                  select p).First();
                     staff.StaffPassword = hashedPassword;
@@ -132,11 +132,11 @@ namespace FCS_Funding.Views
             try
             {
                 db = new FCS_DBModel();
-                var staff = (from s in db.Staffs
+                var staff = (from s in db.Staff
                              where s.StaffID == StaffID
                              select s).First();
 
-                db.Staffs.Remove(staff);
+                db.Staff.Remove(staff);
                 db.SaveChanges();
             }
             catch

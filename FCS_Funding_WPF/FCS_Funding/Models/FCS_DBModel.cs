@@ -29,7 +29,7 @@ namespace FCS_Funding.Models
         public virtual DbSet<Problem> Problems { get; set; }
         public virtual DbSet<Purpose> Purposes { get; set; }
         public virtual DbSet<Reminder> Reminders { get; set; }
-        public virtual DbSet<Staff> Staffs { get; set; }
+        public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<View_FamilySessionCount> View_FamilySessionCount { get; set; }
         public virtual DbSet<View_GrantProposals> View_GrantProposals { get; set; }
         public virtual DbSet<View_GroupSessionCount> View_GroupSessionCount { get; set; }
@@ -37,6 +37,7 @@ namespace FCS_Funding.Models
         public virtual DbSet<View_IndividualSessionCount> View_IndividualSessionCount { get; set; }
         public virtual DbSet<View_NewPatientByDoctor> View_NewPatientByDoctor { get; set; }
         public virtual DbSet<View_OnGoingPatientByDoctor> View_OnGoingPatientByDoctor { get; set; }
+        public virtual DbSet<View_ClientYTD> View_ClientYTD { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -311,6 +312,20 @@ namespace FCS_Funding.Models
             modelBuilder.Entity<View_OnGoingPatientByDoctor>()
                 .Property(e => e.StaffLastName)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.PatientOQ)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.PatientName);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.PatientTotalCopay)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<View_ClientYTD>()
+                .Property(e => e.ExpensePaidDate);
         }
     }
 }

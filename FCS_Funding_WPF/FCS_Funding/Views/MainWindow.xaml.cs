@@ -555,7 +555,7 @@ namespace FCS_Funding
         private void Admin_Grid(object sender, RoutedEventArgs e)
         {
             db = new FCS_DBModel(); 
-            var join1 = (from p in db.Staffs
+            var join1 = (from p in db.Staff
                          select new AdminDataGrid
                          {
                              StaffID = p.StaffID,
@@ -878,7 +878,7 @@ namespace FCS_Funding
         private void Sessions_Grid(object sender, RoutedEventArgs e)
         {
             db = new FCS_DBModel(); 
-            var join1 = from s in db.Staffs
+            var join1 = from s in db.Staff
                         join a in db.Appointments on s.StaffID equals a.StaffID
                         join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
                         join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID

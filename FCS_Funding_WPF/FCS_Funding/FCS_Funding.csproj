@@ -132,6 +132,7 @@
     <Compile Include="Models\Purpose.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\View_ClientYTD.cs" />
     <Compile Include="Models\View_FamilySessionCount.cs" />
     <Compile Include="Models\View_GrantProposals.cs" />
     <Compile Include="Models\View_GroupSessionCount.cs" />

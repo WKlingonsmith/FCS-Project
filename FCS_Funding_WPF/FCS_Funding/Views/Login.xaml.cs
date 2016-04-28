@@ -37,7 +37,7 @@ namespace FCS_Funding
             string hashedPassword = FCS_DataTesting.PasswordHashing.GetHashString(pw);
             try
             {
-                var query = (from p in db.Staffs
+                var query = (from p in db.Staff
                              where p.StaffUserName == us && p.StaffPassword == hashedPassword
                              select p).Distinct().First();
                 MainWindow mw = new MainWindow(query.StaffDBRole);
