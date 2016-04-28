@@ -80,7 +80,7 @@ namespace FCS_Funding
             }
             catch 
             {
-                MessageBox.Show("Your credentials are either invalid,or\nsomeone else is currently logged in.");
+                MessageBox.Show("The credentials used are either invalid,or\nsomeone else is currently logged in.");
             }
             
         }

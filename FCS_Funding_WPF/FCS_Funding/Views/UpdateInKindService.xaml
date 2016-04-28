@@ -11,7 +11,7 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="AliceBlue" Offset="1"/>
                 <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
             </LinearGradientBrush>
         </Grid.Background>
@@ -45,11 +45,11 @@
 
         <TextBlock Text="Update In-Kind Service" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.2,27" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
         <TextBlock Text="Servie Description:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
-        <Border Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3"  BorderThickness="3, 3, 3, 3" BorderBrush="Black" >
+        <Border Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="3"  BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" >
             <TextBox  FontSize="18" TextWrapping="Wrap" Text="{Binding ServiceDescription, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Rate Per Hour:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding RatePerHour, ElementName=ThisWindow}"  />
         </Border>
 

@@ -53,7 +53,7 @@ namespace FCS_Funding.Views
                                       select uv).Count();
                 if (usernameVerify != 0 && UserName != helperUserName)
                 {
-                    MessageBox.Show("The username you selected is already taken");
+                    MessageBox.Show("The username selected is already taken");
                 }
                 else
                 {
@@ -73,13 +73,13 @@ namespace FCS_Funding.Views
                     }
                     catch
                     {
-                        MessageBox.Show("Make sure you have entered the correct data");
+                        MessageBox.Show("Please check the data entered.");
                     }
                 }
             }
             catch
             {
-                MessageBox.Show("Make sure you have entered the correct data");
+                MessageBox.Show("Please check the data entered.");
             }
         }
 
@@ -96,7 +96,7 @@ namespace FCS_Funding.Views
             }
             else if (password != verifiedPW)
             {
-                MessageBox.Show("Your Passwords do not match!");
+                MessageBox.Show("Passwords do not match!");
             }
             else
             {

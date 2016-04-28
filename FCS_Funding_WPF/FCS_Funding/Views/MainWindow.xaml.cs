@@ -90,7 +90,7 @@ namespace FCS_Funding
                     }
                     catch
                     {
-                        MessageBox.Show("Make sure you put a value in.");
+                        MessageBox.Show("Please enter a number.");
                     }
                 }
                 else if (index == 1) //Search by First Name 
@@ -168,33 +168,35 @@ namespace FCS_Funding
                 try
                 {
                     DataGrid dg = sender as DataGrid;
-                    PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                    UpdatePatient up = new UpdatePatient(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteClien.IsEnabled = false;
-                    }
-                    if(StaffDBRole == "Basic")
-                    {
-                        up.UpPatient.IsEnabled = false;
-                        up.DeleteClien.IsEnabled = false;
-                        up.AddSession.IsEnabled = false;
-                    }
-                    up.TheHead.IsChecked = p.IsHead;
-                    up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
-                    up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
-                    up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
-                    //up.firstName = p.FirstName;
-                    //up.lastName = p.LastName;
-                    //up.patientOQ = p.PatientOQ;
-                    //up.relationToHead = p.RelationToHead;
-                    up.Topmost = true;
-                    up.Show();
+
+                        PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                        UpdatePatient up = new UpdatePatient(p);
+                        if (StaffDBRole != "Admin")
+                        {
+                            up.DeleteClien.IsEnabled = false;
+                        }
+                        if (StaffDBRole == "Basic")
+                        {
+                            up.UpPatient.IsEnabled = false;
+                            up.DeleteClien.IsEnabled = false;
+                            up.AddSession.IsEnabled = false;
+                        }
+                        up.TheHead.IsChecked = p.IsHead;
+                        up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
+                        up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
+                        up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
+                        //up.firstName = p.FirstName;
+                        //up.lastName = p.LastName;
+                        //up.patientOQ = p.PatientOQ;
+                        //up.relationToHead = p.RelationToHead;
+                        up.Topmost = true;
+                        up.Show();
+
                     //DGrid.ItemsSource = data;
                 }
                 catch
                 {
-                    MessageBox.Show("You already deleted this Patient");
+                    MessageBox.Show("This patient been deleted.");
                 }
             }
         }
@@ -255,23 +257,25 @@ namespace FCS_Funding
                     else
                     {
                         UpdateDonor up = new UpdateDonor(p, StaffDBRole);
-                        if (StaffDBRole != "Admin")
-                        {
-                            up.DeleteDon.IsEnabled = false;
-                        }
-                        //up.firstName = p.FirstName;
-                        //up.lastName = p.LastName;
-                        //up.patientOQ = p.PatientOQ;
-                        //up.relationToHead = p.RelationToHead;
-                        up.Show();
-                        up.Topmost = true;
+
+                            if (StaffDBRole != "Admin")
+                            {
+                                up.DeleteDon.IsEnabled = false;
+                            }
+                            //up.firstName = p.FirstName;
+                            //up.lastName = p.LastName;
+                            //up.patientOQ = p.PatientOQ;
+                            //up.relationToHead = p.RelationToHead;
+                            up.Show();
+                            up.Topmost = true;
+
                     }
 
                 }
             }
             catch
             {
-                MessageBox.Show("You already deleted this Donor");
+                MessageBox.Show("This donor has been deleted");
             }
         }
         private void EditGrant(object sender, MouseButtonEventArgs e)
@@ -281,22 +285,25 @@ namespace FCS_Funding
             if (Count < 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateGrant up = new UpdateGrant(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteGran.IsEnabled = false;
-                }
-                //Grant prop ID & donation ID with expense
-                //p.DonationID
-                var expenseTotal = (from ex in db.Expenses
-                                    where ex.DonationID == p.DonationID
-                                    select ex).Count();
-                if(expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
-                up.DonationDate.SelectedDate = p.DonationDate;
-                up.DonationExpirationDate.SelectedDate = p.ExpirationDate;
-                up.Topmost = true;
-                up.Show();
+
+                    GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateGrant up = new UpdateGrant(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteGran.IsEnabled = false;
+                    }
+                    //Grant prop ID & donation ID with expense
+                    //p.DonationID
+                    var expenseTotal = (from ex in db.Expenses
+                                        where ex.DonationID == p.DonationID
+                                        select ex).Count();
+                    if (expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
+                    up.DonationDate.SelectedDate = p.DonationDate;
+                    up.DonationExpiration.SelectedDate = p.ExpirationDate;
+                    up.Topmost = true;
+                    up.Show();
+
+
             }
         }
         private void Edit_InKindItem(object sender, MouseButtonEventArgs e)
@@ -305,15 +312,17 @@ namespace FCS_Funding
             if (Count <= 1 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateInKindItem up = new UpdateInKindItem(p);
-                if (StaffDBRole != "Admin")
-                {
-                    up.DeleteItem.IsEnabled = false;
-                }
-                up.DateRecieved.SelectedDate = p.DateRecieved;
-                up.Topmost = true;
-                up.Show();
+
+                    InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateInKindItem up = new UpdateInKindItem(p);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.DeleteItem.IsEnabled = false;
+                    }
+                    up.DateRecieved.SelectedDate = p.DateRecieved;
+                    up.Topmost = true;
+                    up.Show();
+  
             }
         }
         private void Edit_InKindService(object sender, MouseButtonEventArgs e)
@@ -322,6 +331,7 @@ namespace FCS_Funding
             if (Count <= 1 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
+
                 InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                 UpdateInKindService up = new UpdateInKindService(p);
                 if (StaffDBRole != "Admin")
@@ -347,8 +357,6 @@ namespace FCS_Funding
                 {
                     up.AMPM_End.SelectedIndex = 0;
                 }
-
-
                 up.Show();
             }
         }
@@ -358,39 +366,39 @@ namespace FCS_Funding
             if (Count <= 1 )
             {
                 DataGrid dg = sender as DataGrid;
-                EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateEvent up = new UpdateEvent(p, StaffDBRole);
-                if (StaffDBRole != "Admin")
-                {
-                    up.Delete.IsEnabled = false;
-                }
-                if(StaffDBRole == "Basic")
-                {
-                    up.Delete.IsEnabled = false;
-                    up.UpEvent.IsEnabled = false;
-                    up.AddDonation.IsEnabled = false;
-                    up.AddItem.IsEnabled = false;
-                    up.AddService.IsEnabled = false;
-                }
-                if (p.EventStartDateTime.Hour >= 12)
-                {
-                    up.AMPM_Start.SelectedIndex = 1;
-                }
-                else
-                {
-                    up.AMPM_Start.SelectedIndex = 0;
-                }
-                if (p.EventEndDateTime.Hour >= 12)
-                {
-                    up.AMPM_End.SelectedIndex = 1;
-                }
-                else
-                {
-                    up.AMPM_End.SelectedIndex = 0;
-                }
-                up.DateRecieved.SelectedDate = p.EventStartDateTime;
-                up.Topmost = true;
-                up.Show();
+                    EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateEvent up = new UpdateEvent(p, StaffDBRole);
+                    if (StaffDBRole != "Admin")
+                    {
+                        up.Delete.IsEnabled = false;
+                    }
+                    if (StaffDBRole == "Basic")
+                    {
+                        up.Delete.IsEnabled = false;
+                        up.UpEvent.IsEnabled = false;
+                        up.AddDonation.IsEnabled = false;
+                        up.AddItem.IsEnabled = false;
+                        up.AddService.IsEnabled = false;
+                    }
+                    if (p.EventStartDateTime.Hour >= 12)
+                    {
+                        up.AMPM_Start.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        up.AMPM_Start.SelectedIndex = 0;
+                    }
+                    if (p.EventEndDateTime.Hour >= 12)
+                    {
+                        up.AMPM_End.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        up.AMPM_End.SelectedIndex = 0;
+                    }
+                    up.DateRecieved.SelectedDate = p.EventStartDateTime;
+                    up.Topmost = true;
+                    up.Show();
             }
         }
 
@@ -411,9 +419,7 @@ namespace FCS_Funding
         private void Grants_Grid(object sender, RoutedEventArgs e)
         {
             db = new FCS_DBModel(); 
-            var join1 = from p in db.Purposes
-                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                        join d in db.Donations on dp.DonationID equals d.DonationID
+            var join1 = from d in db.Donations 
                         join dr in db.Donors on d.DonorID equals dr.DonorID
                         join gp in db.GrantProposals on dr.DonorID equals gp.DonorID
                         where gp.GrantStatus == "Accepted" && d.GrantProposalID == gp.GrantProposalID
@@ -424,9 +430,6 @@ namespace FCS_Funding
                             DonationAmountRemaining = d.DonationAmountRemaining,
                             DonationDate = d.DonationDate,
                             ExpirationDate = d.DonationExpirationDate,
-                            PurposeName = p.PurposeName,
-                            PurposeDescription = p.PurposeDescription,
-                            PurposeID = p.PurposeID,
                             DonationID = d.DonationID,
                             DonorID = dr.DonorID,
                             GrantProposalID = gp.GrantProposalID
@@ -444,36 +447,36 @@ namespace FCS_Funding
         private void Donor_Grid(object sender, RoutedEventArgs e)
         {
             db = new FCS_DBModel(); 
-            var join1 = (from p in db.Donors
-                         join dc in db.DonorContacts on p.DonorID equals dc.DonorID
-                         where p.DonorType == "Anonymous" || p.DonorType == "Individual"
+            var join1 = (from d in db.Donors
+                         join dc in db.DonorContacts on d.DonorID equals dc.DonorID
+                         where d.DonorType == "Anonymous" || d.DonorType == "Individual"
                          select new DonorsDataGrid
                          {
-                             DonorID = p.DonorID,
+                             DonorID = d.DonorID,
                              DonorFirstName = dc.ContactFirstName,
                              DonorLastName = dc.ContactLastName,
-                             DonorAddress1 = p.DonorAddress1,
+                             DonorAddress1 = d.DonorAddress1,
                              OrganizationName = "",
-                             DonorAddress2 = p.DonorAddress2,
-                             DonorCity = p.DonorCity,
-                             DonorState = p.DonorState,
-                             DonorType = p.DonorType,
-                             DonorZip = p.DonorZip
+                             DonorAddress2 = d.DonorAddress2,
+                             DonorCity = d.DonorCity,
+                             DonorState = d.DonorState,
+                             DonorType = d.DonorType,
+                             DonorZip = d.DonorZip
                          }).Union(
-                        from p in db.Donors
-                        where p.DonorType == "Organization" || p.DonorType == "Government"
+                        from d in db.Donors
+                        where d.DonorType == "Organization" || d.DonorType == "Government" || d.DonorType == "Insurance"
                         select new DonorsDataGrid
                         {
-                            DonorID = p.DonorID,
+                            DonorID = d.DonorID,
                             DonorFirstName = "",
                             DonorLastName = "",
-                            DonorAddress1 = p.DonorAddress1,
-                            OrganizationName = p.OrganizationName,
-                            DonorAddress2 = p.DonorAddress2,
-                            DonorCity = p.DonorCity,
-                            DonorState = p.DonorState,
-                            DonorType = p.DonorType,
-                            DonorZip = p.DonorZip
+                            DonorAddress1 = d.DonorAddress1,
+                            OrganizationName = d.OrganizationName,
+                            DonorAddress2 = d.DonorAddress2,
+                            DonorCity = d.DonorCity,
+                            DonorState = d.DonorState,
+                            DonorType = d.DonorType,
+                            DonorZip = d.DonorZip
                         });
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
@@ -751,48 +754,38 @@ namespace FCS_Funding
 
         private void Donation_Grid(object sender, RoutedEventArgs e)
         {
-            db = new FCS_DBModel(); 
-            var join2 = (from p in db.Purposes
-                         join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                         join d in db.Donations on dp.DonationID equals d.DonationID
-                         join dr in db.Donors on d.DonorID equals dr.DonorID
-                         join c in db.DonorContacts on dr.DonorID equals c.DonorID
-                         where (dr.DonorType == "Anonymous" || dr.DonorType == "Individual")
-                         && d.GrantProposalID == null
+            db = new FCS_DBModel();
+            var join2 = (from d in db.Donations
+                         join dn in db.Donors
+                         on d.DonorID equals dn.DonorID
+                         where (dn.DonorType == "Organization" || dn.DonorType == "Government" || dn.DonorType == "Insurance")
                          select new DonationsGrid
                          {
                              DonationAmount = d.DonationAmount,
                              DonationAmountRemaining = d.DonationAmountRemaining,
                              DonationDate = d.DonationDate,
-                             PurposeName = p.PurposeName,
-                             PurposeDescription = p.PurposeDescription,
-                             PurposeID = p.PurposeID,
+                             DonorID = d.DonorID,
                              DonationID = d.DonationID,
-                             DonorID = dr.DonorID,
-                             DonorFirstName = c.ContactFirstName,
-                             DonorLastName = c.ContactLastName,
-                             OrganizationName = ""
-                         }).Union(
-                       from p in db.Purposes
-                       join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                       join d in db.Donations on dp.DonationID equals d.DonationID
-                       join dr in db.Donors on d.DonorID equals dr.DonorID
-                       where (dr.DonorType == "Organization" || dr.DonorType == "Government")
-                         && d.GrantProposalID == null
-                       select new DonationsGrid
-                       {
-                           DonationAmount = d.DonationAmount,
-                           DonationAmountRemaining = d.DonationAmountRemaining,
-                           DonationDate = d.DonationDate,
-                           PurposeName = p.PurposeName,
-                           PurposeDescription = p.PurposeDescription,
-                           PurposeID = p.PurposeID,
-                           DonationID = d.DonationID,
-                           DonorID = dr.DonorID,
-                           DonorFirstName = "",
-                           DonorLastName = "",
-                           OrganizationName = dr.OrganizationName
-                       });
+                             DonorFirstName = "",
+                             DonorLastName = "",
+                             OrganizationName = dn.OrganizationName,
+
+                         }).Union(from d in db.Donations
+                                  join dn in db.Donors on d.DonorID equals dn.DonorID
+                                  join c in db.DonorContacts on dn.DonorID equals c.DonorID
+                                  where (dn.DonorType == "Anonymous" || dn.DonorType == "Individual")
+                                  && d.GrantProposalID == null
+                                  select new DonationsGrid
+                                  {
+                                      DonationAmount = d.DonationAmount,
+                                      DonationAmountRemaining = d.DonationAmountRemaining,
+                                      DonationDate = d.DonationDate,
+                                      DonorID = d.DonorID,
+                                      DonationID = d.DonationID,
+                                      DonorFirstName = c.ContactFirstName,
+                                      DonorLastName = c.ContactLastName,
+                                      OrganizationName = "",
+                                  });
             //DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
             //DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
             //Donors = new ObservableCollection<DonorsDataGrid>();
@@ -808,8 +801,10 @@ namespace FCS_Funding
             if (Count < 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateDonation up = new UpdateDonation(p);
+
+                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateDonation up = new UpdateDonation(p);
+
                 if (StaffDBRole != "Admin")
                 {
                     up.DeleteDon.IsEnabled = false;
@@ -818,6 +813,7 @@ namespace FCS_Funding
                 up.Show();
                 this.Topmost = false;
                 up.Topmost = true;
+
             }
         }
         private void Edit_Expense(object sender, MouseButtonEventArgs e)
@@ -826,11 +822,13 @@ namespace FCS_Funding
             if (StaffDBRole == "Admin")
             {
                 DataGrid dg = sender as DataGrid;
-                SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateSession up = new UpdateSession(p);
-                up.Show();
-                this.Topmost = false;
-                up.Topmost = true;
+
+                    SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateSession up = new UpdateSession(p);
+                    up.Show();
+                    this.Topmost = false;
+                    up.Topmost = true;
+                
             }
         }
 
@@ -840,26 +838,28 @@ namespace FCS_Funding
             if (Count < 2 && StaffDBRole != "Basic")
             {
                 DataGrid dg = sender as DataGrid;
-                AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                UpdateAccount up = new UpdateAccount(p);
-                if(p.StaffDBRole == "No Access")
-                {
-                    up.UserRole.SelectedIndex = 0;
-                }
-                else if(p.StaffDBRole == "Basic")
-                {
-                    up.UserRole.SelectedIndex = 1;
-                }
-                else if (p.StaffDBRole == "User")
-                {
-                    up.UserRole.SelectedIndex = 2;
-                }
-                else if (p.StaffDBRole == "Admin")
-                {
-                    up.UserRole.SelectedIndex = 3;
-                }
-                up.Topmost = true;
-                up.Show();
+
+                    AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                    UpdateAccount up = new UpdateAccount(p);
+                    if (p.StaffDBRole == "No Access")
+                    {
+                        up.UserRole.SelectedIndex = 0;
+                    }
+                    else if (p.StaffDBRole == "Basic")
+                    {
+                        up.UserRole.SelectedIndex = 1;
+                    }
+                    else if (p.StaffDBRole == "User")
+                    {
+                        up.UserRole.SelectedIndex = 2;
+                    }
+                    else if (p.StaffDBRole == "Admin")
+                    {
+                        up.UserRole.SelectedIndex = 3;
+                    }
+                    up.Topmost = true;
+                    up.Show();
+
             }
         }
 
@@ -921,8 +921,16 @@ namespace FCS_Funding
 
         private void Refresh_Donor(object sender, RoutedEventArgs e)
         {
-            sender = Donor_DataGrid;
-            Donor_Grid(sender, e);
+            if (donorTab.IsSelected == true)
+            {
+                sender = Donor_DataGrid;
+                Donor_Grid(sender, e);
+            }
+            else if(donationTab.IsSelected == true)
+            {
+                sender = Donation_DataGrid;
+                Donation_Grid(sender, e);
+            }
         }
 
         private void Refresh_InKind(object sender, RoutedEventArgs e)
@@ -963,6 +971,12 @@ namespace FCS_Funding
             //    CreateBackup cb = new CreateBackup();
             //    cb.Show();
             //}
+        }
+
+        private void Open_AddPurpose(object sender, RoutedEventArgs e)
+        {
+            AddPurpose ap = new AddPurpose();
+            ap.Show();
         }
     }
 }

@@ -51,14 +51,14 @@ namespace FCS_Funding.Views
                 string GrantStatus = Status.SelectedValue.ToString();
                 //MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
 
-                Models.FCS_DBModel db = new Models.FCS_DBModel();                                
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 var grantproposal = (from p in db.GrantProposals
                                      where p.GrantProposalID == GrantProposalID
                                      select p).First();
                 grantproposal.GrantName = GrantName;
                 if (Status.IsEnabled == true)
                 {
-                    
+
                     grantproposal.GrantStatus = GrantStatus;
                     db.SaveChanges();
                     if (GrantStatus == "Accepted")
@@ -79,21 +79,21 @@ namespace FCS_Funding.Views
             {
                 MessageBox.Show("Select a date");
             }
-            }
+        }
 
         private void Delete_Grant_Proposal(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Grant Proposal?", "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Grant Proposal?", "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
                 var grantproposal = (from p in db.GrantProposals
-                                    where p.GrantProposalID == GrantProposalID
-                                    select p).First();
+                                     where p.GrantProposalID == GrantProposalID
+                                     select p).First();
 
                 db.GrantProposals.Remove(grantproposal);
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Grant Proposal.");
+                MessageBox.Show("This Grant Proposal has been deleted.");
                 this.Close();
             }
         }

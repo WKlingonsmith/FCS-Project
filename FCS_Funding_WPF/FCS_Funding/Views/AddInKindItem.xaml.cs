@@ -11,8 +11,8 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class AddInKindItem : Window
     {
-         public string ItemName { get; set; }
-         public string ItemDescription { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
         public bool IsEvent { get; set; }
         public int EventID { get; set; }
 
@@ -50,7 +50,7 @@ namespace FCS_Funding.Views
 
         private void Add_InKind_Item(object sender, RoutedEventArgs e)
         {
-            if (ItemName != null && ItemName != "" && ItemDescription != null && ItemDescription != "")
+            if (ItemName != null && ItemName != "" && ItemDescription != null && ItemDescription != "" && DateRecieved.ToString() != null && DateRecieved.ToString() != "")
             {
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
                 //Then its an organization
@@ -74,16 +74,17 @@ namespace FCS_Funding.Views
                         donation.EventID = EventID;
                         db.Donations.Add(donation);
                         db.SaveChanges();
-                        
+
                         Models.In_Kind_Item inKind = new Models.In_Kind_Item();
                         inKind.DonationID = donation.DonationID;
                         inKind.ItemName = ItemName;
                         inKind.ItemDescription = ItemDescription;
                         db.In_Kind_Item.Add(inKind);
-                        db.SaveChanges();                       
+                        db.SaveChanges();
                     }
                     else
                     {
+                        
                         Models.Donation donation = new Models.Donation();
                         donation.DonorID = donorID;
                         donation.Restricted = false;
@@ -92,7 +93,7 @@ namespace FCS_Funding.Views
                         donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
                         db.Donations.Add(donation);
                         db.SaveChanges();
-                        
+
                         Models.In_Kind_Item inKind = new Models.In_Kind_Item();
                         inKind.DonationID = donation.DonationID;
                         inKind.ItemName = ItemName;
@@ -102,7 +103,7 @@ namespace FCS_Funding.Views
                     }
                 }
                 //then its an individual
-                else if(Individual.SelectedIndex != -1)
+                else if (Individual.SelectedIndex != -1)
                 {
                     string[] separators = new string[] { ", " };
                     string Indiv = Individual.SelectedValue.ToString();
@@ -160,18 +161,18 @@ namespace FCS_Funding.Views
                 }
                 MessageBox.Show("Successfully added In_Kind Item");
                 this.Close();
-                
+
             }
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Make sure the data is correct.");
             }
         }
 
         private void Change_Organization_Individual(object sender, RoutedEventArgs e)
         {
-            if(OrgOrIndividual.IsChecked.Value)
+            if (OrgOrIndividual.IsChecked.Value)
             {
                 Individual.IsEnabled = false;
                 Organization.IsEnabled = true;
@@ -181,6 +182,11 @@ namespace FCS_Funding.Views
                 Individual.IsEnabled = true;
                 Organization.IsEnabled = false;
             }
+        }
+
+        private void InKindClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

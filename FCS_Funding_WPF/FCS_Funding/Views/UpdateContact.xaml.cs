@@ -50,18 +50,18 @@ namespace FCS_Funding.Views
             if (ContactPhone.Length < 11)
             {
                 db.SaveChanges();
-                MessageBox.Show("Updated these changes successfully.");
+                MessageBox.Show("Updated contact successfully.");
                 this.Close();
             }
             else
             {
-                MessageBox.Show("You have entered an invalid phone number. Make sure it is less than or equal to 10 digits.");
+                MessageBox.Show("An invalid phone number has been entered");
             }
         }
 
         private void Delete_Contact(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Are you sure that you want to delete this Contact?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Contact?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
@@ -71,7 +71,7 @@ namespace FCS_Funding.Views
 
                 db.DonorContacts.Remove(donorContact);
                 db.SaveChanges();
-                MessageBox.Show("You successfully deleted this Patient.");
+                MessageBox.Show("Contact Deleted.");
                 this.Close();
             }
         }

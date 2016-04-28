@@ -97,13 +97,13 @@ namespace FCS_Funding.Views
                     }
                     catch 
                     {
-                         MessageBox.Show("The family member OQ number you entered is invalid.\n Note: Make sure you add a household if your household hasn't been added by clicking the  \"First Member of Household?\" checkbox.");
+                         MessageBox.Show("The OQ number entered is invalid.");
                     }
                 }
                 //They are missing the client OQ number.
                 else
                 {
-                    MessageBox.Show("Unable to add client because you are missing the Family Member's Client OQ number that already exists in the system.");
+                    MessageBox.Show("This OQ number has already been taken.");
                 }
             }
             else

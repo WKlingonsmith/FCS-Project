@@ -67,12 +67,12 @@ namespace FCS_Funding.Views
                 }
                 else
                 {
-                    MessageBox.Show("Make sure you input correct data.");
+                    MessageBox.Show("Please check the data entered.");
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Please check the data entered.");
             }
         }
         private void AM_PM_Dropdown(object sender, RoutedEventArgs e)
@@ -100,7 +100,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please enter a number");
                 }
             }
 
@@ -131,7 +131,7 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("You inserted a character");
+                    MessageBox.Show("Please enter a number.");
                 }
             }
         }

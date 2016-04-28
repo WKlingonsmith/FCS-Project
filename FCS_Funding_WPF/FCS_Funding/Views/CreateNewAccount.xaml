@@ -8,7 +8,7 @@
         Title="CreateNewAccount" Width="1080" Height="750" MinHeight="750" MaxHeight="750" MinWidth="1080" MaxWidth="1080" x:Name="ThisWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="AliceBlue" Offset="1"/>
             <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
         </LinearGradientBrush>
     </Window.Background>
@@ -45,27 +45,27 @@
         <TextBlock Text="Create New Account" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.2,28.8" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
 
         <TextBlock Text="User Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" FontWeight="Bold" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding UserName, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Password:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" FontWeight="Bold" />
-        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <PasswordBox Name="Password"  FontSize="18" />
         </Border>
         <TextBlock Text="Verify Password:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" FontWeight="Bold" />
-        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <PasswordBox Name="VerifyPassword"  FontSize="18" />
         </Border>
         <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" FontWeight="Bold" />
-        <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding FirstName, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" FontWeight="Bold" />
-        <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding LastName, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Staff Title:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Grid.ColumnSpan="3" Margin="179,5,178.6,5" FontWeight="Bold" />
-        <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="Black">
+        <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding StaffTitle, ElementName=ThisWindow}"  />
         </Border>
 

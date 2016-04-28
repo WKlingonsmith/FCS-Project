@@ -79,7 +79,7 @@ namespace FCS_Funding.Views
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you select an income, a household population, and input a county.");                
+                MessageBox.Show("Make sure to select an income, a household population, and input a county.");                
             }
         }
         public void Determine_Problems(string OQ, UIElementCollection toggle)

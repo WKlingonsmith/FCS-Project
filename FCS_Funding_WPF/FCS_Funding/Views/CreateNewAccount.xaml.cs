@@ -37,7 +37,7 @@ namespace FCS_Funding.Views
             {
                 if (FirstName == null || FirstName == "" || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
                 {
-                    MessageBox.Show("Make sure you input the correct data");
+                    MessageBox.Show("Please check the data entered.");
                 }
                 else
                 {
@@ -61,16 +61,16 @@ namespace FCS_Funding.Views
                 }
                 else if (password != verifiedPW)
                 {
-                    MessageBox.Show("Your Passwords do not match!");
+                    MessageBox.Show("Passwords do not match!");
                 }
                 else if (UserName == null || UserName == "" || FirstName == null || FirstName == ""
                     || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
                 {
-                    MessageBox.Show("Make sure you input the correct data");
+                    MessageBox.Show("Please check the data entered");
                 }
                 else if(usernameVerify != 0)
                 {
-                    MessageBox.Show("The username you selected is already taken");
+                    MessageBox.Show("That username selected is already taken");
                 }
                 else
                 {

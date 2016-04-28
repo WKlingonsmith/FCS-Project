@@ -44,13 +44,13 @@ namespace FCS_Funding.Views
                 }
                 else
                 {
-                    MessageBox.Show("You entered an invalid phone number. Make sure it is less than or equal to 10 digits.");
+                    MessageBox.Show("The phone number entered is invalid.");
                 }
             }
             //add both patient and household
             else
             {
-                MessageBox.Show("Make sure you input correct data.");
+                MessageBox.Show("Please check the data entered.");
             }
 
         }
