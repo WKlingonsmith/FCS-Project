@@ -50,7 +50,7 @@ namespace FCS_Funding.Views
 
         private void Add_InKind_Item(object sender, RoutedEventArgs e)
         {
-            if (ItemName != null && ItemName != "" && ItemDescription != null && ItemDescription != "")
+            if (ItemName != null && ItemName != "" && ItemDescription != null && ItemDescription != "" && DateRecieved.ToString() != null && DateRecieved.ToString() != "")
             {
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
                 //Then its an organization
@@ -84,6 +84,7 @@ namespace FCS_Funding.Views
                     }
                     else
                     {
+                        
                         Models.Donation donation = new Models.Donation();
                         donation.DonorID = donorID;
                         donation.Restricted = false;

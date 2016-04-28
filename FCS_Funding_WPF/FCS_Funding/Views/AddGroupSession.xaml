@@ -60,7 +60,7 @@
         <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Donor Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
+        <TextBlock Text="Donor/Insurance Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="96,2,26,8" FontWeight="Bold" />
         <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}"  />
         </Border>

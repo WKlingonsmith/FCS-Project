@@ -57,7 +57,6 @@ namespace FCS_Funding.Views
                     d.EventID = EventID;
                     d.DonationAmountRemaining = DonationAmount;
                     db.Donations.Add(d);
-                    db.SaveChanges();
                 }
                 else
                 {
