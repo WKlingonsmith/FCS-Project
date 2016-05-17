@@ -1,37 +1,9 @@
 ﻿<Window x:Class="FCS_Funding.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:FCS_Funding.Views.UserControls"
+        xmlns:controls="clr-namespace:FCS_Funding.Views.TabViews"
         Title="MainWindow" Height="770" Width="1024" MinHeight="768" x:Name="ThisWindow" >
-    <Window.Resources>
-        <ResourceDictionary>
-            <Style x:Key="ReportTabItem" TargetType="{x:Type TabItem}">
-                <!--<Setter Property="Margin" Value="0,20,0,0"/>-->
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type TabItem}">
-                            <Grid>
-                                <Border Name="Border" Background="LightBlue" BorderBrush="Black" BorderThickness="1,1,1,1" Margin="0,20,0,0">
-                                    <ContentPresenter x:Name="TitleContent" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" Margin="12,2,12,2"/>
-                                </Border>
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="Border" Property="Background" Value="LightBlue" />
-                                    <Setter Property="Height" Value="80"/>
-                                </Trigger>
-                                <Trigger Property="IsSelected" Value="False">
-                                    <Setter TargetName="Border" Property="Background" Value="White" />
-                                    <Setter Property="Height" Value="80"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
-        </ResourceDictionary>
-    </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="White" Offset="0"/>
@@ -92,67 +64,8 @@
                 </LinearGradientBrush>
             </TabControl.Background>
             <TabItem Width="111" Height="50" Header="Clients" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="39" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="40*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="40*" />
-                        <RowDefinition Height="39*" />
-                        <RowDefinition Height="40*" />
-                        <RowDefinition Height="39*" />
-                    </Grid.RowDefinitions>
-                    <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="2" />
-                    <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="32" Grid.ColumnSpan="2" Margin="124,7,43.8,0.2"  />
-                    <ComboBox Name="SeachBy_Clients" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Margin="125,0,9.6,0.2">
-                        <ComboBoxItem Name="cbi1">Client OQ</ComboBoxItem>
-                        <ComboBoxItem Name="cbi2">First Name</ComboBoxItem>
-                        <ComboBoxItem Name="cbi3">Last Name</ComboBoxItem>
-                        <ComboBoxItem Name="cbi4">Gender</ComboBoxItem>
-                        <ComboBoxItem Name="cbi5">Age Group</ComboBoxItem>
-                        <ComboBoxItem Name="cbi6">Ethnicity</ComboBoxItem>
-                    </ComboBox>
-                    <TextBox FontSize="18" Grid.Column="3" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
-                    <Button Grid.Column="5" Content="Filter" Click="Filter_Patients"/>
-                    <Button Content="Refresh" Click="Refresh_Patients"  Grid.Column="5" Grid.Row="1" />
-                    <DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Patient_Grid" CanUserResizeColumns="True"  
-                              IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"
-                              Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Client OQ" Width="110" Binding="{Binding Path=PatientOQ}"/>
-                            <DataGridTextColumn Header="First Name" Width="110" Binding="{Binding Path=FirstName}"/>
-                            <DataGridTextColumn Header="Last Name" Width="110" Binding="{Binding Path=LastName}"/>
-                            <DataGridTextColumn Header="Gender" Width="100" Binding="{Binding Path=Gender}"/>
-                            <DataGridTextColumn Header="Age Group" Width="110" Binding="{Binding Path=AgeGroup}"/>
-                            <DataGridTextColumn Header="Ethnicity" Width="110" Binding="{Binding Path=Ethnicity}"/>
-                            <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=Time}"/>
-                            <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=IsHead}"/>
-                            <DataGridTextColumn Header="Relation to Head" Width="150" Binding="{Binding Path=RelationToHead}"/>
-                        </DataGrid.Columns>
-                        <!--This is to edit the patient-->
-                        <!--<DataGrid.Resources>
-                        <Style TargetType="DataGridRow">
-                            <EventSetter Event="MouseDoubleClick" Handler="EditPatient" />
-                        </Style>
-                    </DataGrid.Resources>-->
-                    </DataGrid>
-                </Grid>
-            </TabItem>
+				<controls:Tab_Clients />
+			</TabItem>
 
             <TabItem Width="111" Height="50" Header="Sessions" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0"  >
                 <Grid>
@@ -588,69 +501,7 @@
                 </Grid>
             </TabItem>
             <TabItem Width="111" Height="50" Header="Reports" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="540" Margin="0,-20,0,0" Grid.Row="0" Grid.RowSpan="17" VerticalAlignment="Top" Width="1008" Grid.ColumnSpan="6" TabStripPlacement="Left" FontSize="15.5" RenderTransformOrigin="0.5,0.5">
-                        <TabControl.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform AngleX="0.296"/>
-                                <RotateTransform/>
-                                <TranslateTransform X="1.804"/>
-                            </TransformGroup>
-                        </TabControl.RenderTransform>
-                        <TabItem Header="Client Revenue" Style="{StaticResource ReportTabItem}">
-                            <controls:Report_ClientRevenue/>
-                        </TabItem>
-                        <TabItem Header="Client YTD" Style="{StaticResource ReportTabItem}" Margin="0,-12,-0.333,12">
-                            <controls:Report_ClientYTD Margin="0,10,0,-3"/>
-                        </TabItem>
-                        <TabItem Header="Donations" Style="{StaticResource ReportTabItem}" Margin="0,-24,-0.333,24">
-                            <controls:Report_Donations/>
-                        </TabItem>
-                        <TabItem Header="In-Kind Donations" Style="{StaticResource ReportTabItem}" Margin="0,-38,-0.333,38">
-                            <controls:Report_InKindDonations/>
-                        </TabItem>
-                        <TabItem Header="Grant Donations" Style="{StaticResource ReportTabItem}" Margin="0,-50,-0.333,50">
-                            <controls:Report_GrantDonations/>
-                        </TabItem>
-                        <TabItem Header="Grant Fiscal Year" Style="{StaticResource ReportTabItem}" Margin="0,-62,-0.333,62">
-                            <controls:Report_GrantFiscalYear/>
-                        </TabItem>
-                        <TabItem Header="Accounting Sheet" Style="{StaticResource ReportTabItem}" Margin="0,-74,-0.333,74">
-                            <controls:Report_AccountSheet/>
-                        </TabItem>
-                        <RadioButton x:Name="radioButton" Content="RadioButton" Height="100" Width="100"/>
-                        <DatePicker Height="100" Width="100"/>
-                        <Button x:Name="button" Content="Button" Height="100" Width="75"/>
-                    </TabControl>
-                </Grid>
+                <controls:Tab_Reports/>
             </TabItem>
 
             <TabItem Name="AdminTab" Width="111" Height="50" Header="Administrative" FontSize="15" FontFamily="Calibri" Margin="3,0,-3,0" >

@@ -1,22 +1,13 @@
 ﻿using System;
-//using System.Collections.Generic;
 using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-//using System.Windows.Data;
-//using System.Windows.Documents;
 using System.Windows.Input;
-//using System.Windows.Media;
-//using System.Windows.Media.Imaging;
-//using System.Windows.Navigation;
-//using System.Windows.Shapes;
 using FCS_Funding.Views;
 using FCS_DataTesting;
 using System.Collections.ObjectModel;
 using FCS_Funding.Models;
-//using System.Windows.Automation.Peers;
+using System.Windows.Data;
 
 namespace FCS_Funding
 {
@@ -33,173 +24,27 @@ namespace FCS_Funding
         public ObservableCollection<EventsDataGrid> Events { get; set; }
         public ObservableCollection<ReportsDataGrid> Reports { get; set; }
         public ObservableCollection<AdminDataGrid> Admins { get; set; }
-        public string PatientFilter { get; set; }
         public string PatientsSearchByEnum { get; set; }
 
-        //Helper properties
-        private bool ShouldLoadPatient { get; set; }
-        private bool ShouldRefreshPatients { get; set; }
         //Accessablity
-        private string StaffDBRole { get; set; }
+        public string StaffDBRole { get; set; }
         FCS_DBModel db;
         public MainWindow(string StaffRole)
         {
             StaffDBRole = StaffRole;
             //DGrid.ItemsSource = data;
-            ShouldLoadPatient = true;
-            ShouldRefreshPatients = false;
             InitializeComponent();
         }
-        private void Patient_Grid(object sender, RoutedEventArgs e)
-        {
-            int index = this.SeachBy_Clients.SelectedIndex;
-            db = new FCS_DBModel(); 
-            var join1 = from patient in db.Patients
-                        join patienthouse in db.PatientHouseholds on patient.HouseholdID equals patienthouse.HouseholdID
-                        select new PatientGrid
-                        {
-                            PatientOQ = patient.PatientOQ,
-                            PatientID = patient.PatientID,
-                            FirstName = patient.PatientFirstName,
-                            LastName = patient.PatientLastName,
-                            Gender = patient.PatientGender,
-                            AgeGroup = patient.PatientAgeGroup,
-                            Ethnicity = patient.PatientEthnicity,
-                            Time = patient.NewClientIntakeHour,
-                            IsHead = patient.IsHead,
-                            RelationToHead = patient.RelationToHead
-                        };
 
-            if (ShouldRefreshPatients)
-            {
-                PatientGrid.ItemsSource = join1.ToList();
-                ShouldRefreshPatients = false;
-                ShouldLoadPatient = false;
-            }
-            else
-            {
-                if (index == 0) //Search By Patient OQ 
-                {
-                    try
-                    {
-                        string value = PatientFilter;
-                        var newjoin = from patient in join1
-                                      where patient.PatientOQ.Contains(value)
-                                      select patient;
-                        PatientGrid.ItemsSource = newjoin.ToList();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Please enter a number.");
-                    }
-                }
-                else if (index == 1) //Search by First Name 
-                {
-                    var newjoin = from patient in join1
-                                  where patient.FirstName.Contains(PatientFilter)
-                                  select patient;
-                    PatientGrid.ItemsSource = newjoin.ToList();
-                }
-                else if (index == 2) //Search by Last Name
-                {
-                    var newjoin = from patient in join1
-                                  where patient.LastName.Contains(PatientFilter)
-                                  select patient;
-                    PatientGrid.ItemsSource = newjoin.ToList();
-                }
-                else if (index == 3) //Search by Gender
-                {
-                    var newjoin = from patient in join1
-                                  where patient.Gender.StartsWith(PatientFilter)
-                                  select patient;
-                    PatientGrid.ItemsSource = newjoin.ToList();
-                }
-                else if (index == 4) //Search by Age Group
-                {
-                    var newjoin = from patient in join1
-                                  where patient.AgeGroup.Contains(PatientFilter)
-                                  select patient;
-                    PatientGrid.ItemsSource = newjoin.ToList();
-                }
-                else if (index == 5) //Search by Ethnicity
-                {
-                    var newjoin = from patient in join1
-                                  where patient.Ethnicity.Contains(PatientFilter)
-                                  select patient;
-                    PatientGrid.ItemsSource = newjoin.ToList();
-                }
-                else //Did not select anything
-                {
-                    if (ShouldLoadPatient) //This is either refreshing the patient or initializing the patient
-                    {
-                        // ... Assign ItemsSource of DataGrid. 
-                        var grid = sender as DataGrid;
-                        if (grid == null)
-                        {
-                            PatientGrid.ItemsSource = join1.ToList();
-                            ShouldLoadPatient = false;
-                        }
-                        else
-                        {
-                            //PatientGrid.ItemsSource = join1.ToList();
-                            grid.ItemsSource = join1.ToList();
-                            ShouldLoadPatient = false;
-                        }
-                    }
-                    else
-                    {
-                        PatientGrid.ItemsSource = join1.ToList();
-                        //MessageBox.Show("Make sure you select a filter.");
-                    }
-                }
-                GC.Collect();
-            }    
-        }
-        private void Filter_Patients(object sender, RoutedEventArgs e)
-        {
-            Patient_Grid(sender, e);           
-        }
+		private void CreateBindingsForTabs(string roleForStaff)
+		{
+			Binding b = new Binding();
+			b.Source = roleForStaff;
+			b.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+			b.Path = new PropertyPath("StaffRole");
+			
+		}
 
-        private void EditPatient(object sender, RoutedEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count < 2)
-            {
-                try
-                {
-                    DataGrid dg = sender as DataGrid;
-
-                        PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                        UpdatePatient up = new UpdatePatient(p);
-                        if (StaffDBRole != "Admin")
-                        {
-                            up.DeleteClien.IsEnabled = false;
-                        }
-                        if (StaffDBRole == "Basic")
-                        {
-                            up.UpPatient.IsEnabled = false;
-                            up.DeleteClien.IsEnabled = false;
-                            up.AddSession.IsEnabled = false;
-                        }
-                        up.TheHead.IsChecked = p.IsHead;
-                        up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
-                        up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
-                        up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
-                        //up.firstName = p.FirstName;
-                        //up.lastName = p.LastName;
-                        //up.patientOQ = p.PatientOQ;
-                        //up.relationToHead = p.RelationToHead;
-                        up.Topmost = true;
-                        up.Show();
-
-                    //DGrid.ItemsSource = data;
-                }
-                catch
-                {
-                    MessageBox.Show("This patient been deleted.");
-                }
-            }
-        }
         private void EditDonor(object sender, MouseButtonEventArgs e)
         {
             try
@@ -399,20 +244,6 @@ namespace FCS_Funding
                     up.DateRecieved.SelectedDate = p.EventStartDateTime;
                     up.Topmost = true;
                     up.Show();
-            }
-        }
-
-        private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
-        {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 1)
-            {
-                CreateNewPatient ch = new CreateNewPatient();
-                ch.Topmost = true;
-                ch.Gender.SelectedIndex = 0;
-                ch.AgeGroup.SelectedIndex = 0;
-                ch.ethnicity.SelectedIndex = 0;
-                ch.Show();
             }
         }
 
@@ -679,67 +510,6 @@ namespace FCS_Funding
             }
         }
 
-        private int Determine_GenderIndex(string selection)
-        {
-            switch (selection)
-            {
-                case "Male":
-                    return 0;
-                case "Female":
-                    return 1;
-                case "Other":
-                    return 2;
-                default:
-                    return 2;
-            }
-        }
-        private int Determine_AgeGroupIndex(string selection)
-        {
-            switch (selection)
-            {
-                case "0-5":
-                    return 0;
-                case "6-11":
-                    return 1;
-                case "12-17":
-                    return 2;
-                case "18-23":
-                    return 3;
-                case "24-44":
-                    return 4;
-                case "45-54":
-                    return 5;
-                case "55-69":
-                    return 6;
-                case "70+":
-                    return 7;
-                default:
-                    return 0;
-            }
-        }
-        private int Determine_EthnicGroupIndex(string selection)
-        {
-            switch (selection)
-            {
-                case "African American":
-                    return 0;
-                case "Native/Alaskan":
-                    return 1;
-                case "Pacific Islander":
-                    return 2;
-                case "Asian":
-                    return 3;
-                case "Caucasian":
-                    return 4;
-                case "Hispanic":
-                    return 5;
-                case "Other":
-                    return 6;
-                default:
-                    return 0;
-            }
-        }
-
         private void CreateNewEvent(object sender, RoutedEventArgs e)
         {
             if (Application.Current.Windows.Count <= 1)
@@ -949,13 +719,6 @@ namespace FCS_Funding
         {
             sender = Event_DataGrid;
             Events_Grid(sender, e);
-        }
-        public void Refresh_Patients(object sender, RoutedEventArgs e)
-        {
-            ShouldLoadPatient = true;
-            ShouldRefreshPatients = true;
-            sender = PatientGrid;
-            Patient_Grid(sender, e);
         }
 
         private void Refresh_Admin(object sender, RoutedEventArgs e)

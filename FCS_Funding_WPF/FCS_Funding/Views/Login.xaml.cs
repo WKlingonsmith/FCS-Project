@@ -1,23 +1,15 @@
-﻿using System;
-//using System.Collections.Generic;
+﻿
 using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows;
-//using System.Windows.Controls;
-//using System.Windows.Data;
-//using System.Windows.Documents;
-//using System.Windows.Input;
-//using System.Windows.Media;
-//using System.Windows.Media.Imaging;
-//using System.Windows.Shapes;
 
 namespace FCS_Funding
 {
-    /// <summary>
-    /// Interaction logic for Login.xaml
-    /// </summary>
-    public partial class Login : Window
+	using Definition;
+
+	/// <summary>
+	/// Interaction logic for Login.xaml
+	/// </summary>
+	public partial class Login : Window
     {
         public Login()
         {
@@ -41,15 +33,14 @@ namespace FCS_Funding
                              where p.StaffUserName == us && p.StaffPassword == hashedPassword
                              select p).Distinct().First();
                 MainWindow mw = new MainWindow(query.StaffDBRole);
-                if(query.StaffDBRole == "No Access")
+                if(query.StaffDBRole == Definition.NoAccess)
                 {
                     MessageBox.Show("Invalid Credentials");
                     mw.Close();
                     return;
                 }
-                else if(query.StaffDBRole == "Basic")
+                else if(query.StaffDBRole == Definition.Basic)
                 {
-                    mw.CreateNewPat.IsEnabled = false;
                     mw.CreateGrantProp.IsEnabled = false;
                     mw.CreateNewDon.IsEnabled = false;
                     mw.AddItem.IsEnabled = false;
@@ -59,14 +50,13 @@ namespace FCS_Funding
                     mw.CreateNewsession.IsEnabled = false;
                     mw.AdminTab.Visibility = Visibility.Collapsed;
                 }
-                else if (query.StaffDBRole == "User")
+                else if (query.StaffDBRole == Definition.User)
                 {
                     mw.AdminTab.Visibility = Visibility.Collapsed;
 
                 }
-                else if (query.StaffDBRole == "Admin")
+                else if (query.StaffDBRole == Definition.Admin)
                 {
-                    mw.CreateNewPat.IsEnabled = true;
                     mw.CreateGrantProp.IsEnabled = true;
                     mw.CreateNewDon.IsEnabled = true;
                     mw.AddItem.IsEnabled = true;

@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Definition.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Donation.cs" />
     <Compile Include="Models\DonationPurpose.cs" />
@@ -172,6 +173,12 @@
     <Compile Include="Views\EventDonorDonation.xaml.cs" />
     <Compile Include="Views\Login.xaml.cs" />
     <Compile Include="Views\MainWindow.xaml.cs" />
+    <Compile Include="Views\TabViews\Tab_Clients.xaml.cs">
+      <DependentUpon>Tab_Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabViews\Tab_Reports.xaml.cs">
+      <DependentUpon>Tab_Reports.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateAccount.xaml.cs">
       <DependentUpon>UpdateAccount.xaml</DependentUpon>
     </Compile>
@@ -334,6 +341,14 @@
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TabViews\Tab_Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabViews\Tab_Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdateAccount.xaml">
       <SubType>Designer</SubType>

@@ -700,5 +700,9 @@ namespace FCS_Funding.Views
             GC.Collect();
         }
 
-    }
+		private void CancelUpdate_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
+	}
 }

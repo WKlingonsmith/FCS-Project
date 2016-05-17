@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="FCS_Funding.Views.TabViews.Tab_Clients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FCS_Funding.Views.TabViews"
+             xmlns:constants="clr-namespace:Definition"
+             mc:Ignorable="d" 
+             d:DesignHeight="770" d:DesignWidth="1024">
+
+     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="39" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="39*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="39*" />
+        </Grid.RowDefinitions>
+        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="2" />
+        <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="32" Grid.ColumnSpan="2" Margin="124,7,43.8,0.2"  />
+		<ComboBox Name="combobox_Search" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Margin="125,0,9.6,0.2" />
+		<TextBox Name="textbox_Search" FontSize="18" Grid.Column="3" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
+		<Button Grid.Column="5" Content="Filter" Click="Refresh_Patients"/>
+        <Button Content="Refresh" Click="Refresh_Patients"  Grid.Column="5" Grid.Row="1" />
+		<DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Refresh_Patients" CanUserResizeColumns="True"  
+                              IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"
+                              Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
+            <DataGrid.Columns>
+				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_ClientOQ}" Width="110" Binding="{Binding Path=PatientOQ}"/>
+				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_FirstName}" Width="110" Binding="{Binding Path=FirstName}"/>
+				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_LastName}" Width="110" Binding="{Binding Path=LastName}"/>
+				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_Gender}" Width="100" Binding="{Binding Path=Gender}"/>
+				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_AgeGroup}" Width="110" Binding="{Binding Path=AgeGroup}"/>
+				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_Ethnicity}" Width="110" Binding="{Binding Path=Ethnicity}"/>
+                <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=Time}"/>
+                <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=IsHead}"/>
+                <DataGridTextColumn Header="Relation to Head" Width="150" Binding="{Binding Path=RelationToHead}"/>
+            </DataGrid.Columns>
+            <!--This is to edit the patient-->
+            <!--<DataGrid.Resources>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="EditPatient" />
+                        </Style>
+                    </DataGrid.Resources>-->
+        </DataGrid>
+    </Grid>
+</UserControl>
