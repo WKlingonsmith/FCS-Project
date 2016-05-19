@@ -45,43 +45,39 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Edit_Events(object sender, MouseButtonEventArgs e)
 		{
-			int Count = Application.Current.Windows.Count;
-			if (Count <= 1)
+			DataGrid dg = sender as DataGrid;
+			EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+			UpdateEvent up = new UpdateEvent(p, StaffRole);
+			if (StaffRole != Definition.Admin)
 			{
-				DataGrid dg = sender as DataGrid;
-				EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateEvent up = new UpdateEvent(p, StaffRole);
-				if (StaffRole != Definition.Admin)
-				{
-					up.Delete.IsEnabled = false;
-				}
-				if (StaffRole == Definition.Basic)
-				{
-					up.Delete.IsEnabled = false;
-					up.UpEvent.IsEnabled = false;
-					up.AddDonation.IsEnabled = false;
-					up.AddItem.IsEnabled = false;
-					up.AddService.IsEnabled = false;
-				}
-				if (p.EventStartDateTime.Hour >= 12)
-				{
-					up.AMPM_Start.SelectedIndex = 1;
-				}
-				else
-				{
-					up.AMPM_Start.SelectedIndex = 0;
-				}
-				if (p.EventEndDateTime.Hour >= 12)
-				{
-					up.AMPM_End.SelectedIndex = 1;
-				}
-				else
-				{
-					up.AMPM_End.SelectedIndex = 0;
-				}
-				up.DateRecieved.SelectedDate = p.EventStartDateTime;
-				up.ShowDialog();
+				up.Delete.IsEnabled = false;
 			}
+			if (StaffRole == Definition.Basic)
+			{
+				up.Delete.IsEnabled = false;
+				up.UpEvent.IsEnabled = false;
+				up.AddDonation.IsEnabled = false;
+				up.AddItem.IsEnabled = false;
+				up.AddService.IsEnabled = false;
+			}
+			if (p.EventStartDateTime.Hour >= 12)
+			{
+				up.AMPM_Start.SelectedIndex = 1;
+			}
+			else
+			{
+				up.AMPM_Start.SelectedIndex = 0;
+			}
+			if (p.EventEndDateTime.Hour >= 12)
+			{
+				up.AMPM_End.SelectedIndex = 1;
+			}
+			else
+			{
+				up.AMPM_End.SelectedIndex = 0;
+			}
+			up.DateRecieved.SelectedDate = p.EventStartDateTime;
+			up.ShowDialog();
 		}
 
 
@@ -97,6 +93,7 @@ namespace FCS_Funding.Views.TabViews
 							 EventName = p.EventName,
 							 EventDescription = p.EventDescription
 						 });
+
 			var grid = sender as DataGrid;
 			grid.ItemsSource = join1.ToList();
 
@@ -104,14 +101,10 @@ namespace FCS_Funding.Views.TabViews
 
 		private void CreateNewEvent(object sender, RoutedEventArgs e)
 		{
-			if (Application.Current.Windows.Count <= 1)
-			{
-				CreateNewEvent ne = new CreateNewEvent();
-				ne.Show();
-				ne.AMPM_End.SelectedIndex = 0;
-				ne.AMPM_Start.SelectedIndex = 0;
-				ne.Topmost = true;
-			}
+			CreateNewEvent ne = new CreateNewEvent();
+			ne.AMPM_End.SelectedIndex = 0;
+			ne.AMPM_Start.SelectedIndex = 0;
+			ne.ShowDialog();
 		}
 
 		private void Refresh_Events(object sender, RoutedEventArgs e)
@@ -119,6 +112,5 @@ namespace FCS_Funding.Views.TabViews
 			sender = Event_DataGrid;
 			Events_Grid(sender, e);
 		}
-
 	}
 }

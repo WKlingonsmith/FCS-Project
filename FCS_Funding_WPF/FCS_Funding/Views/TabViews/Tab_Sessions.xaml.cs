@@ -33,7 +33,47 @@ namespace FCS_Funding.Views.TabViews
 		}
 
 
-		private void Sessions_Grid(object sender, RoutedEventArgs e)
+		private void Edit_Expense(object sender, MouseButtonEventArgs e)
+		{
+			if (StaffRole == Definition.Admin)
+			{
+				DataGrid dg = sender as DataGrid;
+
+				SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateSession up = new UpdateSession(p);
+				up.ShowDialog();
+			}
+
+			//	Refresh the grid
+			Refresh_SessionGrid();
+		}
+
+		private void Open_CreateNewSession(object sender, RoutedEventArgs e)
+		{
+			AppointmentType at = new AppointmentType();
+			at.AMPM_Start.SelectedIndex = 0;
+			at.AMPM_End.SelectedIndex = 0;
+			at.ApptType.SelectedIndex = 0;
+			at.ShowDialog();
+
+		//	Refresh the grid
+			Refresh_SessionGrid();
+		}
+
+	/// <summary>
+	/// Override that calls the function just below for handlers -only-
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+		private void Refresh_SessionGrid(object sender, RoutedEventArgs e)
+		{
+			Refresh_SessionGrid();
+		}
+
+	/// <summary>
+	/// This function refreshes the grid for the Sessions tab with data from the database
+	/// </summary>
+		private void Refresh_SessionGrid()
 		{
 			var db = new FCS_DBModel();
 			var join1 = from s in db.Staff
@@ -58,37 +98,9 @@ namespace FCS_Funding.Views.TabViews
 							ExpenseDescription = et.ExpenseDescription,
 							ExpenseID = ex.ExpenseID
 						};
-			//... Assign ItemsSource of DataGrid.
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join1.ToList();
+
+		//	Set the data to the grid
+			Session_DataGrid.ItemsSource = join1.ToList();
 		}
-
-		private void Refresh_Session(object sender, RoutedEventArgs e)
-		{
-			sender = Session_DataGrid;
-			Sessions_Grid(sender, e);
-		}
-
-		private void Edit_Expense(object sender, MouseButtonEventArgs e)
-		{
-			if (StaffRole == Definition.Admin)
-			{
-				DataGrid dg = sender as DataGrid;
-
-				SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateSession up = new UpdateSession(p);
-				up.ShowDialog();
-			}
-		}
-
-		private void Open_CreateNewSession(object sender, RoutedEventArgs e)
-		{
-			AppointmentType at = new AppointmentType();
-			at.AMPM_Start.SelectedIndex = 0;
-			at.AMPM_End.SelectedIndex = 0;
-			at.ApptType.SelectedIndex = 0;
-			at.ShowDialog();
-		}
-
 	}
 }

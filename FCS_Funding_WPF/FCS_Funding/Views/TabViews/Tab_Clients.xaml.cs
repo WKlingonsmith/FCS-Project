@@ -85,7 +85,6 @@ namespace FCS_Funding.Views.TabViews
 			}
 			catch
 			{
-				MessageBox.Show("This patient been deleted.");
 			}
 
 		//	Refresh the grid
@@ -94,7 +93,6 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
 		{
-
 			CreateNewPatient ch = new CreateNewPatient();
 			ch.Gender.SelectedIndex = 0;
 			ch.AgeGroup.SelectedIndex = 0;
@@ -135,7 +133,6 @@ namespace FCS_Funding.Views.TabViews
 			switch (selectedItem)
 			{
 				case Definition.Filter_AgeGroup:
-
 					clients = clients.Where(x => x.AgeGroup.Contains(filterText));
 					break;
 				case Definition.Filter_ClientOQ:

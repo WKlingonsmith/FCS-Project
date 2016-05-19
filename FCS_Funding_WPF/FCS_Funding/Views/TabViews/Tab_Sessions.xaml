@@ -33,13 +33,13 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Button Name="CreateNewsession" Content="Create New Session" Click="Open_CreateNewSession" Margin="0,0,5,0" Grid.Row="1" />
+		<Button Name="CreateNewsession" Content="Create New Session" Click="Open_CreateNewSession" Margin="0,0,5,0" Grid.Row="0" />
 		<!--<TextBlock Grid.Column="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="47,19,166,8" />
                     <ComboBox Name="SeachBy_Sessions" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="42"  Grid.Column="3" Margin="0,10,12,0"/>
                     <TextBox FontSize="18" Grid.Column="4" Text="{Binding PatientFilter, ElementName=ThisWindow}" Margin="0,10,10,0" Grid.ColumnSpan="2"/>
                     <Button Height="45" Width="210" Grid.Column="6" Grid.Row="0" Content="Filter" Click="Filter_Patients" Margin="2,4,3,4"  />-->
-		<Button  Content="Refresh" Click="Refresh_Session"  Grid.Column="7"   />
-		<DataGrid Name="Session_DataGrid"  Grid.Row="2" Grid.ColumnSpan="7" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Sessions_Grid"
+		<!--<Button  Content="Refresh" Click="Refresh_SessionGrid"  Grid.Column="7"   />-->
+		<DataGrid Name="Session_DataGrid"  Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Refresh_SessionGrid"
                               AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="Edit_Expense" >
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Client First Name"  Width="115"  Binding="{Binding Path=ClientFirstName}"/>

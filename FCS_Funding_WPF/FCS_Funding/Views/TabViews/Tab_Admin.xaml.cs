@@ -47,30 +47,21 @@ namespace FCS_Funding.Views.TabViews
 							 StaffTitle = p.StaffTitle,
 							 StaffDBRole = p.StaffDBRole
 						 });
-			//AdminDataGrid a1 = new AdminDataGrid("13224", "Billy", "Joel");
-			//AdminDataGrid a2 = new AdminDataGrid("12347", "Lionnel", "Messi");
-			//Admins = new ObservableCollection<AdminDataGrid>();
-			//Admins.Add(a1);
-			//Admins.Add(a2);
+
 			var grid = sender as DataGrid;
 			grid.ItemsSource = join1.ToList();
 		}
 
 		private void CreateNewAccount(object sender, RoutedEventArgs e)
 		{
-			if (Application.Current.Windows.Count <= 1)
-			{
-				CreateNewAccount cna = new CreateNewAccount();
-				cna.Show();
-				cna.UserRole.SelectedIndex = 0;
-				cna.Topmost = true;
-			}
+			CreateNewAccount cna = new CreateNewAccount();
+			cna.ShowDialog();
+			cna.UserRole.SelectedIndex = 0;
 		}
 
 		private void EditAccount(object sender, MouseButtonEventArgs e)
 		{
-			int Count = Application.Current.Windows.Count;
-			if (Count < 2 && StaffRole != Definition.Basic)
+			if (StaffRole != Definition.Basic)
 			{
 				DataGrid dg = sender as DataGrid;
 
@@ -92,9 +83,7 @@ namespace FCS_Funding.Views.TabViews
 				{
 					up.UserRole.SelectedIndex = 3;
 				}
-				up.Topmost = true;
-				up.Show();
-
+				up.ShowDialog();
 			}
 		}
 
@@ -103,6 +92,5 @@ namespace FCS_Funding.Views.TabViews
 			sender = Admin_DataGrid;
 			Admin_Grid(sender, e);
 		}
-
 	}
 }

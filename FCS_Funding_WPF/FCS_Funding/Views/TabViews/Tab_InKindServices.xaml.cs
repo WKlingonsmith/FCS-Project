@@ -46,7 +46,6 @@ namespace FCS_Funding.Views.TabViews
 					up.DeleteService.IsEnabled = false;
 				}
 				up.DateRecieved.SelectedDate = p.StartDateTime;
-				up.Topmost = true;
 
 				if (p.StartDateTime.Hour >= 12)
 				{
@@ -69,13 +68,6 @@ namespace FCS_Funding.Views.TabViews
 		}
 		private void InKindServiceGrid(object sender, RoutedEventArgs e)
 		{
-			//DateTime start = new DateTime(2016, 2, 17, 8, 24, 32);
-			//DateTime end = new DateTime(2016, 2, 17, 16, 17, 8);
-			//InKindService s1 = new InKindService("Spencer", "Fronberg", "HAFB", start, end, 10.75M, "Coding");
-			//InKindServices = new ObservableCollection<InKindService>();
-			//InKindServices.Add(s1);
-			//var grid = sender as DataGrid;
-			//grid.ItemsSource = InKindServices;
 			var db = new FCS_DBModel();
 			var join1 = (from p in db.Donors
 						 join dc in db.DonorContacts on p.DonorID equals dc.DonorID
@@ -97,19 +89,17 @@ namespace FCS_Funding.Views.TabViews
 							 Length = ki.ServiceLength,
 							 Value = ki.ServiceValue
 						 });
+
 			var grid = sender as DataGrid;
 			grid.ItemsSource = join1.ToList();
 		}
 
 		private void Add_InKind_Service(object sender, RoutedEventArgs e)
 		{
-			if (Application.Current.Windows.Count <= 1)
-			{
-				AddInKindService iks = new AddInKindService(false, -1);
-				iks.ShowDialog();
-				iks.AMPM_End.SelectedIndex = 0;
-				iks.AMPM_Start.SelectedIndex = 0;
-			}
+			AddInKindService iks = new AddInKindService(false, -1);
+			iks.AMPM_End.SelectedIndex = 0;
+			iks.AMPM_Start.SelectedIndex = 0;
+			iks.ShowDialog();
 		}
 
 		private void Refresh_Service(object sender, RoutedEventArgs e)

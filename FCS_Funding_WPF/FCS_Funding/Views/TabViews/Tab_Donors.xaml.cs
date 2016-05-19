@@ -69,7 +69,7 @@ namespace FCS_Funding.Views.TabViews
 						{
 							id.DeleteIndDonor.IsEnabled = false;
 						}
-						id.Show();
+						id.ShowDialog();
 						id.UpdateIndDonor.IsEnabled = false;
 						id.dType.SelectedIndex = 2;
 						id.fName.IsEnabled = false;
@@ -83,7 +83,6 @@ namespace FCS_Funding.Views.TabViews
 						id.dState.IsEnabled = false;
 						id.dZip.IsEnabled = false;
 						id.cEmail.IsEnabled = false;
-						id.Topmost = true;
 
 					}
 					else
@@ -94,19 +93,14 @@ namespace FCS_Funding.Views.TabViews
 						{
 							up.DeleteDon.IsEnabled = false;
 						}
-						//up.firstName = p.FirstName;
-						//up.lastName = p.LastName;
-						//up.patientOQ = p.PatientOQ;
-						//up.relationToHead = p.RelationToHead;
-						up.ShowDialog();
 
+						up.ShowDialog();
 					}
 
 				}
 			}
 			catch
 			{
-				MessageBox.Show("This donor has been deleted");
 			}
 		}
 
@@ -144,6 +138,7 @@ namespace FCS_Funding.Views.TabViews
 							DonorType = d.DonorType,
 							DonorZip = d.DonorZip
 						});
+
 			var grid = sender as DataGrid;
 			grid.ItemsSource = join1.ToList();
 		}
@@ -189,11 +184,7 @@ namespace FCS_Funding.Views.TabViews
 									  DonorLastName = c.ContactLastName,
 									  OrganizationName = "",
 								  });
-			//DonorsDataGrid d1 = new DonorsDataGrid("Tom", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "", "Clinton", "Utah", "84015");
-			//DonorsDataGrid d2 = new DonorsDataGrid("Spencer", "Fronberg", "HAFB", "Charity", "1326 North 1590 West", "652 West 800 North", "Clinton", "Utah", "84015");
-			//Donors = new ObservableCollection<DonorsDataGrid>();
-			//Donors.Add(d1);
-			//Donors.Add(d2);
+
 			var grid = sender as DataGrid;
 			grid.ItemsSource = join2.ToList();
 		}
@@ -215,15 +206,12 @@ namespace FCS_Funding.Views.TabViews
 					}
 					up.DonationDate.SelectedDate = p.DonationDate;
 					up.ShowDialog();
-
 				}
 			}
 			catch
 			{
-
 			}
 		}
-
 
 		private void Refresh_Donor(object sender, RoutedEventArgs e)
 		{
@@ -243,6 +231,5 @@ namespace FCS_Funding.Views.TabViews
 			AddPurpose ap = new AddPurpose();
 			ap.ShowDialog();
 		}
-
 	}
 }

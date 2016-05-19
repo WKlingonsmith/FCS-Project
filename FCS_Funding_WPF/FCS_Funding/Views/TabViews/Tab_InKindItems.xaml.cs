@@ -57,7 +57,6 @@ namespace FCS_Funding.Views.TabViews
 				}
 				up.DateRecieved.SelectedDate = p.DateRecieved;
 				up.ShowDialog();
-
 			}
 		}
 
@@ -99,19 +98,16 @@ namespace FCS_Funding.Views.TabViews
 							DateRecieved = d.DonationDate,
 							Description = ki.ItemDescription
 						});
+
 			var grid = sender as DataGrid;
 			grid.ItemsSource = join1.ToList();
 		}
 
 		private void Add_InKind_Item(object sender, RoutedEventArgs e)
 		{
-			if (Application.Current.Windows.Count <= 1)
-			{
-				AddInKindItem iki = new AddInKindItem(false, -1);
-				iki.Show();
-				iki.Topmost = true;
-				iki.Organization.IsEnabled = false;
-			}
+			AddInKindItem iki = new AddInKindItem(false, -1);
+			iki.Organization.IsEnabled = false;
+			iki.ShowDialog();
 		}
 
 		private void Refresh_InKind(object sender, RoutedEventArgs e)
