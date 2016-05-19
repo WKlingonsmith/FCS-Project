@@ -173,11 +173,32 @@
     <Compile Include="Views\EventDonorDonation.xaml.cs" />
     <Compile Include="Views\Login.xaml.cs" />
     <Compile Include="Views\MainWindow.xaml.cs" />
+    <Compile Include="Views\TabViews\Tab_Admin.xaml.cs">
+      <DependentUpon>Tab_Admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TabViews\Tab_Clients.xaml.cs">
       <DependentUpon>Tab_Clients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TabViews\Tab_Donors.xaml.cs">
+      <DependentUpon>Tab_Donors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabViews\Tab_Events.xaml.cs">
+      <DependentUpon>Tab_Events.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabViews\Tab_Grants.xaml.cs">
+      <DependentUpon>Tab_Grants.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabViews\Tab_InKindItems.xaml.cs">
+      <DependentUpon>Tab_InKindItems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabViews\Tab_InKindServices.xaml.cs">
+      <DependentUpon>Tab_InKindServices.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TabViews\Tab_Reports.xaml.cs">
       <DependentUpon>Tab_Reports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TabViews\Tab_Sessions.xaml.cs">
+      <DependentUpon>Tab_Sessions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateAccount.xaml.cs">
       <DependentUpon>UpdateAccount.xaml</DependentUpon>
@@ -342,11 +363,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\TabViews\Tab_Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TabViews\Tab_Clients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TabViews\Tab_Donors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabViews\Tab_Events.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabViews\Tab_Grants.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabViews\Tab_InKindItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabViews\Tab_InKindServices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TabViews\Tab_Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TabViews\Tab_Sessions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

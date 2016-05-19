@@ -39,29 +39,13 @@ namespace FCS_Funding
                     mw.Close();
                     return;
                 }
-                else if(query.StaffDBRole == Definition.Basic)
+                else if(query.StaffDBRole == Definition.Basic || query.StaffDBRole == Definition.User)
                 {
-                    mw.CreateGrantProp.IsEnabled = false;
-                    mw.CreateNewDon.IsEnabled = false;
-                    mw.AddItem.IsEnabled = false;
-                    mw.AddService.IsEnabled = false;
-                    mw.CreateEven.IsEnabled = false;
                     mw.AdminTab.IsEnabled = false;
-                    mw.CreateNewsession.IsEnabled = false;
                     mw.AdminTab.Visibility = Visibility.Collapsed;
-                }
-                else if (query.StaffDBRole == Definition.User)
-                {
-                    mw.AdminTab.Visibility = Visibility.Collapsed;
-
                 }
                 else if (query.StaffDBRole == Definition.Admin)
                 {
-                    mw.CreateGrantProp.IsEnabled = true;
-                    mw.CreateNewDon.IsEnabled = true;
-                    mw.AddItem.IsEnabled = true;
-                    mw.AddService.IsEnabled = true;
-                    mw.CreateEven.IsEnabled = true;
                     mw.AdminTab.IsEnabled = true;
                     mw.AdminTab.Visibility = Visibility.Visible;
                 }
