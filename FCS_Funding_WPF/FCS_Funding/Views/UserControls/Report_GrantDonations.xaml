@@ -5,8 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FCS_Funding.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="606" d:DesignWidth="862">
     <Grid>
-            
+        <DataGrid Name="Grant_DataGridReport" CanUserResizeColumns="True"  
+                              IsReadOnly="True" CanUserDeleteRows="False" AlternationCount="2" AutoGenerateColumns="False" Margin="5,10,5,362" Loaded="Grant_DataGridReport_Loaded" SelectionChanged="Grant_DataGridReport_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Grant Name" Width="100" Binding="{Binding GrantName}"/>
+                <!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
+                <DataGridTextColumn Header="Donation Amount" Width="125" Binding="{Binding DonationAmount, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Amount Remaining" Width="130" Binding="{Binding DonationAmountRemaining, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Date Recieved" Width="100" Binding="{Binding DonationDate, StringFormat=d}"/>
+                <DataGridTextColumn Header="Expiration Date" Width="110" Binding="{Binding ExpirationDate}"/>
+                <DataGridTextColumn Header="Purpose" Width="80" Binding="{Binding PurposeName}"/>
+                <DataGridTextColumn Header="Purpose Description" Width="*" Binding="{Binding PurposeDescription}"/>
+                <DataGridTextColumn x:Name="GrantProposalID" Header="Grant ID" Width="100" Binding="{Binding GrantProposalID}" Visibility="Hidden"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="GrantSessions_DataGridReport" CanUserResizeColumns="True"  
+        	IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="5,292,5,80">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Client Name" Width="200" Binding="{Binding ClientName}"/>
+                <DataGridTextColumn Header="Sessions" Width="125" Binding="{Binding Sessions}"/>
+                <DataGridTextColumn Header="Amount" Width="130" Binding="{Binding Amount, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date, StringFormat=d}"/>
+                <DataGridTextColumn Header="Balance" Width="110" Binding="{Binding Balance, StringFormat={}{0:n2}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

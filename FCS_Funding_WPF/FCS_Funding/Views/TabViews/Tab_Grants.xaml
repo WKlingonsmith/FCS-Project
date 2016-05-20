@@ -57,10 +57,10 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Grant Name" Width="100" Binding="{Binding Path=GrantName}"/>
 				<!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
-				<DataGridTextColumn Header="Donation Amount" Width="125" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
-				<DataGridTextColumn Header="Amount Remaining" Width="130" Binding="{Binding Path=DonationAmountRemaining, StringFormat={}{0:C}}"/>
-				<DataGridTextColumn Header="Date Recieved" Width="100" Binding="{Binding Path=DonationDate}"/>
-				<DataGridTextColumn Header="Expiration Date" Width="110" Binding="{Binding Path=ExpirationDate}"/>
+                <DataGridTextColumn Header="Donation Amount" Width="125" Binding="{Binding Path=DonationAmount, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Amount Remaining" Width="130" Binding="{Binding Path=DonationAmountRemaining, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Date Recieved" Width="100" Binding="{Binding Path=DonationDate, StringFormat=d}"/>
+                <DataGridTextColumn Header="Expiration Date" Width="110" Binding="{Binding Path=ExpirationDate, StringFormat=d}"/>
 				<DataGridTextColumn Header="Purpose" Width="80" Binding="{Binding Path=PurposeName}"/>
 				<DataGridTextColumn Header="Purpose Description" Width="*" Binding="{Binding Path=PurposeDescription}"/>
 			</DataGrid.Columns>
