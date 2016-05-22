@@ -58,6 +58,10 @@ namespace FCS_Funding
             }
             
         }
-        
+
+        private void ThisWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Username.Focus();
+        }
     }
 }

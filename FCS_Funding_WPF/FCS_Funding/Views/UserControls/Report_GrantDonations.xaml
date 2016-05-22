@@ -8,7 +8,7 @@
              d:DesignHeight="606" d:DesignWidth="862">
     <Grid>
         <DataGrid Name="Grant_DataGridReport" CanUserResizeColumns="True"  
-                              IsReadOnly="True" CanUserDeleteRows="False" AlternationCount="2" AutoGenerateColumns="False" Margin="5,10,5,362" Loaded="Grant_DataGridReport_Loaded" SelectionChanged="Grant_DataGridReport_SelectionChanged">
+                              IsReadOnly="True" CanUserDeleteRows="False" AlternationCount="2" AutoGenerateColumns="False" Margin="5,67,5,320" Loaded="Grant_DataGridReport_Loaded" SelectionChanged="Grant_DataGridReport_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Grant Name" Width="100" Binding="{Binding GrantName}"/>
                 <!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
@@ -22,7 +22,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="GrantSessions_DataGridReport" CanUserResizeColumns="True"  
-        	IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="5,292,5,80">
+        	IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="5,327,5,76">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Client Name" Width="200" Binding="{Binding ClientName}"/>
                 <DataGridTextColumn Header="Sessions" Width="125" Binding="{Binding Sessions}"/>
@@ -31,5 +31,7 @@
                 <DataGridTextColumn Header="Balance" Width="110" Binding="{Binding Balance, StringFormat={}{0:n2}}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="printGrants_button" Content="Print Grants" HorizontalAlignment="Left" Margin="245,295,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="printGrantSessions_button" Content="Print Sessions" HorizontalAlignment="Left" Margin="477,295,0,0" VerticalAlignment="Top" Width="92" Click="printGrantSessions_button_Click"/>
     </Grid>
 </UserControl>
