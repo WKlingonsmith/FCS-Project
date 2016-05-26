@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="FCS_Funding.Views.UserControls.Report_Demographics"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FCS_Funding.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="606" d:DesignWidth="862" Loaded="Report_Demographics_Loaded">
+    <Grid>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="173,269,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <ComboBox x:Name="DemographicsReportMonth_comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="79,18,0,0" Height="27">
+            <ComboBoxItem>All</ComboBoxItem>
+            <ComboBoxItem>January</ComboBoxItem>
+            <ComboBoxItem>February</ComboBoxItem>
+            <ComboBoxItem>March</ComboBoxItem>
+            <ComboBoxItem>April</ComboBoxItem>
+            <ComboBoxItem>May</ComboBoxItem>
+            <ComboBoxItem>June</ComboBoxItem>
+            <ComboBoxItem>July</ComboBoxItem>
+            <ComboBoxItem>August</ComboBoxItem>
+            <ComboBoxItem>September</ComboBoxItem>
+            <ComboBoxItem>October</ComboBoxItem>
+            <ComboBoxItem>November</ComboBoxItem>
+            <ComboBoxItem>December</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="DemographicsReportYear_comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="274,18,0,0" Height="27">
+            <ComboBoxItem>2016</ComboBoxItem>
+            <ComboBoxItem>2015</ComboBoxItem>
+            <ComboBoxItem>2014</ComboBoxItem>
+            <ComboBoxItem>2013</ComboBoxItem>
+            <ComboBoxItem>2012</ComboBoxItem>
+            <ComboBoxItem>2011</ComboBoxItem>
+            <ComboBoxItem>2010</ComboBoxItem>
+        </ComboBox>
+    </Grid>
+</UserControl>
