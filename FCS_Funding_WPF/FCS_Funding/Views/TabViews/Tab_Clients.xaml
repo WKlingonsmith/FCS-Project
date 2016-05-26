@@ -49,7 +49,7 @@
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_Gender}" Width="100" Binding="{Binding Path=Gender}"/>
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_AgeGroup}" Width="110" Binding="{Binding Path=AgeGroup}"/>
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_Ethnicity}" Width="110" Binding="{Binding Path=Ethnicity}"/>
-                <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=Time}"/>
+                <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=Time, StringFormat=d}"/>
                 <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=IsHead}"/>
                 <DataGridTextColumn Header="Relation to Head" Width="150" Binding="{Binding Path=RelationToHead}"/>
             </DataGrid.Columns>

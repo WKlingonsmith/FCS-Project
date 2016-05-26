@@ -84,13 +84,16 @@
             <TabItem Header="In-Kind Donations" Style="{StaticResource ReportTabItem}" Margin="0,-38,-0.333,38">
                 <controls:Report_InKindDonations/>
             </TabItem>
-            <TabItem Header="Grant Donations" Style="{StaticResource ReportTabItem}" Margin="0,-50,-0.333,50">
+            <TabItem Header="Demographics" Style="{StaticResource ReportTabItem}" Margin="0,-50,-0.333,50">
+                <controls:Report_Demographics/>
+            </TabItem>
+            <TabItem Header="Grant Donations" Style="{StaticResource ReportTabItem}" Margin="0,-62,-0.333,62">
                 <controls:Report_GrantDonations/>
             </TabItem>
-            <TabItem Header="Grant Fiscal Year" Style="{StaticResource ReportTabItem}" Margin="0,-62,-0.333,62">
+            <TabItem Header="Grant Fiscal Year" Style="{StaticResource ReportTabItem}" Margin="0,-74,-0.333,74">
                 <controls:Report_GrantFiscalYear/>
             </TabItem>
-            <TabItem Header="Accounting Sheet" Style="{StaticResource ReportTabItem}" Margin="0,-74,-0.333,74">
+            <TabItem Header="Accounting Sheet" Style="{StaticResource ReportTabItem}" Margin="0,-86,-0.333,86">
                 <controls:Report_AccountSheet/>
             </TabItem>
             <RadioButton x:Name="radioButton" Content="RadioButton" Height="100" Width="100"/>

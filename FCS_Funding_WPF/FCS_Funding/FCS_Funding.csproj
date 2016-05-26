@@ -224,6 +224,9 @@
     <Compile Include="Views\UserControls\Report_ClientYTD.xaml.cs">
       <DependentUpon>Report_ClientYTD.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Report_Demographics.xaml.cs">
+      <DependentUpon>Report_Demographics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Report_Donations.xaml.cs">
       <DependentUpon>Report_Donations.xaml</DependentUpon>
     </Compile>
@@ -455,6 +458,10 @@
     <Page Include="Views\UserControls\Report_ClientYTD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Report_Demographics.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\Report_Donations.xaml">
       <SubType>Designer</SubType>

@@ -82,50 +82,77 @@ namespace FCS_Funding.Views.UserControls
             //var Test = join1.ToList();
             var grid = sender as DataGrid;
             grid.ItemsSource = join.ToList();
+            GrantSessionsReportYear_comboBox.SelectedIndex = 0;//.Text = (DateTime.Now.Year.ToString());
+            GrantSessionsReportMonth_comboBox.SelectedIndex = 0;
         }
 
         private void Grant_DataGridReport_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var db = new FCS_DBModel();
             DataGrid dg = sender as DataGrid;
+            int GrantSessionsReportDayStart, GrantSessionsReportDayEnd, GrantSessionsReportMonthStart, GrantSessionsReportMonthEnd, GrantSessionsReportYear;
 
-            GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-            int GID = p.GrantProposalID;
-            decimal remainingBalance = p.DonationAmount;
-            var join = from g in db.GrantProposals
-                       join d in db.Donations on g.GrantProposalID equals d.GrantProposalID
-                       join ex in db.Expenses on d.DonationID equals ex.DonationID
-                       join pa in db.Patients on ex.PatientID equals pa.PatientID
-                       join ap in db.Appointments on ex.AppointmentID equals ap.AppointmentID
-                       where g.GrantProposalID == GID orderby ap.AppointmentEndDate
-                       select new SessionsDataGrid
-                       {
-                           ClientName = pa.PatientLastName + ", " + pa.PatientFirstName,
-                           Sessions = 1,
-                           Amount = ex.DonorBill,
-                           Date = ap.AppointmentEndDate,
-                           Balance = 0  //All balance calculations are done after collection is generated
-                       };
-
-            //Clear list of previous sessions
-            GrantSessionList.Clear();
-
-            //Loop over join collection generated above to calculate the correct remaining balance for each row
-            foreach (var joint in join)
+            if (GrantSessionsReportMonth_comboBox.Text == "All")
             {
-                remainingBalance = remainingBalance - joint.Amount;
-                GrantSessionList.Add(new Session()
-                {
-                    ClientName = joint.ClientName,
-                    Sessions = joint.Sessions,
-                    Amount = joint.Amount,
-                    Date = joint.Date,
-                    Balance = remainingBalance
-                });
+                GrantSessionsReportDayStart = 1;
+                GrantSessionsReportDayEnd = DateTime.DaysInMonth(int.Parse(GrantSessionsReportYear_comboBox.Text), 12);
+                GrantSessionsReportMonthStart = 1;
+                GrantSessionsReportMonthEnd = 12;
+                GrantSessionsReportYear = Int32.Parse(GrantSessionsReportYear_comboBox.Text);
             }
-            // Clear datagrid or values will not update correctly
-            GrantSessions_DataGridReport.ItemsSource = null;
-            GrantSessions_DataGridReport.ItemsSource = GrantSessionList;
+            else
+            {
+                GrantSessionsReportDayStart = 1;
+                GrantSessionsReportDayEnd = DateTime.DaysInMonth(Int32.Parse(GrantSessionsReportYear_comboBox.Text), GrantSessionsReportMonth_comboBox.SelectedIndex);
+                GrantSessionsReportMonthStart = GrantSessionsReportMonth_comboBox.SelectedIndex;
+                GrantSessionsReportMonthEnd = GrantSessionsReportMonth_comboBox.SelectedIndex;
+                GrantSessionsReportYear = Int32.Parse(GrantSessionsReportYear_comboBox.Text);
+            }
+            DateTime requestedDateStart = Convert.ToDateTime(GrantSessionsReportMonthStart + "/" + GrantSessionsReportDayStart + "/" + GrantSessionsReportYear);
+            DateTime requestedDateEnd = Convert.ToDateTime(GrantSessionsReportMonthEnd + "/" + GrantSessionsReportDayEnd + "/" + GrantSessionsReportYear);
+            //MessageBox.Show("Start: " + requestedDateStart + " End: " + requestedDateEnd);
+
+            if (dg.SelectedItems.Count != 0)
+            {
+                GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                int GID = p.GrantProposalID;
+                decimal remainingBalance = p.DonationAmount;
+                var join = from g in db.GrantProposals
+                           join d in db.Donations on g.GrantProposalID equals d.GrantProposalID
+                           join ex in db.Expenses on d.DonationID equals ex.DonationID
+                           join pa in db.Patients on ex.PatientID equals pa.PatientID
+                           join ap in db.Appointments on ex.AppointmentID equals ap.AppointmentID
+                           where g.GrantProposalID == GID && ap.AppointmentEndDate > requestedDateStart && ap.AppointmentEndDate < requestedDateEnd
+                           orderby ap.AppointmentEndDate
+                           select new SessionsDataGrid
+                           {
+                               ClientName = pa.PatientLastName + ", " + pa.PatientFirstName,
+                               Sessions = 1,
+                               Amount = ex.DonorBill,
+                               Date = ap.AppointmentEndDate,
+                               Balance = 0  //All balance calculations are done after collection is generated
+                           };
+
+                //Clear list of previous sessions
+                GrantSessionList.Clear();
+
+                //Loop over join collection generated above to calculate the correct remaining balance for each row
+                foreach (var joint in join)
+                {
+                    remainingBalance = remainingBalance - joint.Amount;
+                    GrantSessionList.Add(new Session()
+                    {
+                        ClientName = joint.ClientName,
+                        Sessions = joint.Sessions,
+                        Amount = joint.Amount,
+                        Date = joint.Date,
+                        Balance = remainingBalance
+                    });
+                }
+                // Clear datagrid or values will not update correctly
+                GrantSessions_DataGridReport.ItemsSource = null;
+                GrantSessions_DataGridReport.ItemsSource = GrantSessionList;
+            }
         }
 
         private void printGrantSessions_button_Click(object sender, RoutedEventArgs e)
@@ -139,6 +166,16 @@ namespace FCS_Funding.Views.UserControls
                 PrintDlg.PrintVisual(GrantSessions_DataGridReport, "Grant Sessions");
 
             }
+        }
+
+        private void GrantSessionsReportYear_comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void GrantSessionsReportMonth_comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

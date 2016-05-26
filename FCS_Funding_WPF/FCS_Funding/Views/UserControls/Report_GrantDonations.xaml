@@ -33,5 +33,29 @@
         </DataGrid>
         <Button x:Name="printGrants_button" Content="Print Grants" HorizontalAlignment="Left" Margin="245,295,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="printGrantSessions_button" Content="Print Sessions" HorizontalAlignment="Left" Margin="477,295,0,0" VerticalAlignment="Top" Width="92" Click="printGrantSessions_button_Click"/>
+        <ComboBox x:Name="GrantSessionsReportMonth_comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="79,18,0,0" Height="27" SelectionChanged="GrantSessionsReportMonth_comboBox_SelectionChanged">
+            <ComboBoxItem>All</ComboBoxItem>
+            <ComboBoxItem>January</ComboBoxItem>
+            <ComboBoxItem>February</ComboBoxItem>
+            <ComboBoxItem>March</ComboBoxItem>
+            <ComboBoxItem>April</ComboBoxItem>
+            <ComboBoxItem>May</ComboBoxItem>
+            <ComboBoxItem>June</ComboBoxItem>
+            <ComboBoxItem>July</ComboBoxItem>
+            <ComboBoxItem>August</ComboBoxItem>
+            <ComboBoxItem>September</ComboBoxItem>
+            <ComboBoxItem>October</ComboBoxItem>
+            <ComboBoxItem>November</ComboBoxItem>
+            <ComboBoxItem>December</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="GrantSessionsReportYear_comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="274,18,0,0" Height="27" SelectionChanged="GrantSessionsReportYear_comboBox_SelectionChanged">
+            <ComboBoxItem>2016</ComboBoxItem>
+            <ComboBoxItem>2015</ComboBoxItem>
+            <ComboBoxItem>2014</ComboBoxItem>
+            <ComboBoxItem>2013</ComboBoxItem>
+            <ComboBoxItem>2012</ComboBoxItem>
+            <ComboBoxItem>2011</ComboBoxItem>
+            <ComboBoxItem>2010</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </UserControl>
