@@ -493,11 +493,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FCS_Funding.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="FCS_Funding_log.ldf">
       <DependentUpon>FCS_Funding.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="FCS logo.PNG" />
   </ItemGroup>

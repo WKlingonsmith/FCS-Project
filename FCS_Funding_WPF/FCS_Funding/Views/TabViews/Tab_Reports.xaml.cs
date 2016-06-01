@@ -24,5 +24,10 @@ namespace FCS_Funding.Views.TabViews
         {
             InitializeComponent();
         }
+
+        private void TabItem_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

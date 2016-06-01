@@ -52,7 +52,7 @@
 		</Border>
 		<TextBlock Text="Relation to Head:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="1" Margin="0,5" />
 		<Border Grid.Row="9" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-			<TextBox  FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}"  />
+            <TextBox FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}"  />
 		</Border>
 		<TextBlock Text="Gender:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Margin="0,5" />
 		<ComboBox Name="Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 

@@ -45,7 +45,8 @@ namespace FCS_Funding.Views
 
         private void Add_Household(object sender, RoutedEventArgs e)
         {
-            Determine_Income(this.HouseholeIncomeBracket.SelectedIndex);
+            Determine_County(this.HouseholdCounty.SelectedIndex);
+            Determine_Income(this.HouseholdIncomeBracket.SelectedIndex);
             if (Income != null && HouseholdPopulation > 0 && County != null && County != "")
             {                
                 date = DateTime.Now;
@@ -179,6 +180,24 @@ namespace FCS_Funding.Views
                     Income = "$25,000-34,999"; break;
                 case 4:
                     Income = "$35,000+"; break;
+            }
+        }
+        private void Determine_County(int selection)
+        {
+            switch (selection)
+            {
+                case 0:
+                    County = "Weber"; break;
+                case 1:
+                    County = "Davis"; break;
+                case 2:
+                    County = "DCLC"; break;
+                case 3:
+                    County = "Morgan"; break;
+                case 4:
+                    County = "Box Elder"; break;
+                case 5:
+                    County = "Other"; break;
             }
         }
 

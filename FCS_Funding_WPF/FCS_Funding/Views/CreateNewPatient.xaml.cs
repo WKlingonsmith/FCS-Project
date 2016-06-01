@@ -63,7 +63,7 @@ namespace FCS_Funding.Views
 				{
 					CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.PatientGender, this.headOfHouse, this.ageGroup, this.ethnicGroup, this.relationToHead, togglePatientProblems);
 					this.Close();
-					ch.HouseholeIncomeBracket.SelectedIndex = 0;
+					ch.HouseholdIncomeBracket.SelectedIndex = 0;
 					ch.Show();
 				}
 				//Need to add the client with the family OQ Number
@@ -110,19 +110,20 @@ namespace FCS_Funding.Views
 			{
 				MessageBox.Show("Unable to add client");
 			}
-
-		}
+        }
 
 		private void Change_HeadOfHousehold(object sender, RoutedEventArgs e)
 		{
 			headOfHousehold++;
-			if ((headOfHousehold % 2) == 0)
+            Console.WriteLine(relationToHead);
+            if ((headOfHousehold % 2) == 0)
 			{
-				headOfHouse = false;
+                headOfHouse = false;
 			}
 			else
 			{
-				headOfHouse = true;
+                relationToHead = "Head";
+                headOfHouse = true;
 			}
 
 		}
