@@ -33,7 +33,7 @@
             <RowDefinition Height="40*" />
             <RowDefinition Height="39*" />
         </Grid.RowDefinitions>
-        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="1" />
+        <Button Name="CreateNewPat" Content="Create New Client" Click="Open_CreateNewPatient" Grid.Row="2" Grid.RowSpan="2" />
         <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="32" Grid.ColumnSpan="2" Margin="124,7,43.8,0.2"  />
 		<ComboBox Name="combobox_Search" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Margin="125,0,9.6,0.2" />
 		<TextBox Name="textbox_Search" FontSize="18" Grid.Column="3" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
@@ -41,7 +41,7 @@
        <!-- <Button Content="Refresh" Click="Refresh_Patients"  Grid.Column="5" Grid.Row="1" />-->
 		<DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Refresh_Patients" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"
-                              Margin="2.4,0.4,-1.4,53.4" Grid.Column="1" Grid.Row="2">
+                              Grid.Column="1" Grid.Row="2">
             <DataGrid.Columns>
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_ClientOQ}" Width="110" Binding="{Binding Path=PatientOQ}"/>
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_FirstName}" Width="110" Binding="{Binding Path=FirstName}"/>

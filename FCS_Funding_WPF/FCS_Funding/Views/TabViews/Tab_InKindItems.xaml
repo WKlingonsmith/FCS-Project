@@ -35,7 +35,7 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Button Name="AddItem" Content="Add In-Kind Item"  Grid.Row="2" Grid.RowSpan="3" Click="Add_InKind_Item" Margin="0,1,0,31"/>
+		<Button Name="AddItem" Content="Add In-Kind Item"  Grid.Row="1" Grid.RowSpan="2" Click="Add_InKind_Item" Margin="0,1,0,0"/>
 		<!--<TextBlock Grid.Column="1" Grid.Row="1" Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" />
                     <ComboBox Name="InKindItemSeachBy" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="204" Height="44" Text="Search By" Grid.Column="1" Margin="213.4,0,9.8,0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ComboBoxItem Name="rantID">Client OQ</ComboBoxItem>
@@ -45,9 +45,9 @@
                     </ComboBox>
                     <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
                     <Button Height="45" Width="210" Grid.Column="5" Grid.Row="0" Content="Filter" />-->
-		<Button Content="Refresh" Click="Refresh_InKind"  Grid.Column="4" Grid.Row="0" VerticalAlignment="Top" Height="42" Grid.ColumnSpan="2" Margin="167,0,1,0" Grid.RowSpan="2" />
-		<DataGrid Name="InKind_DataGrid" Grid.Column="1"  Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="13" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
-                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0,1,1,10" PreviewMouseDoubleClick="Edit_InKindItem">
+		<!--<Button Content="Refresh" Click="Refresh_InKind"  Grid.Column="4" Grid.Row="0" VerticalAlignment="Top" Height="42" Grid.ColumnSpan="2" Margin="167,0,1,0" Grid.RowSpan="2" />-->
+		<DataGrid Name="InKind_DataGrid" Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="16" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
+                              IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0,1,1,0" PreviewMouseDoubleClick="Edit_InKindItem">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Item" Width="100" Binding="{Binding Path=ItemName}"/>
 				<DataGridTextColumn Header="First Name" Width="150" Binding="{Binding Path=DonorFirstName}"/>

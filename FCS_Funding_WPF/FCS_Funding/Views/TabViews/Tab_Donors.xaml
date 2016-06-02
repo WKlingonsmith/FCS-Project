@@ -36,7 +36,7 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<Button Name="CreateNewDon" Grid.Column="0" Content="Create New Donor" Click="Open_CreateNewDonor"   HorizontalAlignment="Left" Width="158" />
-		<Button  Content="Refresh" Click="Refresh_Donor"  Grid.Column="5" Margin="0,0,0,24" Grid.RowSpan="2" HorizontalAlignment="Left" Width="169"/>
+		<!--<Button  Content="Refresh" Click="Refresh_Donor"  Grid.Column="5" Margin="0,0,0,24" Grid.RowSpan="2" HorizontalAlignment="Left" Width="169"/>-->
 		<TabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="16"  >
 			<TabControl.Resources>
 				<Style TargetType="TabItem">
