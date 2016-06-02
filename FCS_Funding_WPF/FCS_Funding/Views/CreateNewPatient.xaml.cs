@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace FCS_Funding.Views
 {
+	using FCS_Funding;
+
     /// <summary>
     /// Interaction logic for CreateNewPatient.xaml
     /// </summary>
@@ -17,9 +19,9 @@ namespace FCS_Funding.Views
         int PatientID { get; set; }
         int ProblemID { get; set; }
     }
+
 	public partial class CreateNewPatient : Window
 	{
-
 		//properties
 		public string firstName { get; set; }
 		public string lastName { get; set; }
@@ -29,118 +31,103 @@ namespace FCS_Funding.Views
 		public DateTime date { get; set; }
 		public string familyOQNumber { get; set; }
 		public string relationToHead { get; set; }
+	//	household properties
+		private string Income { get; set; }
+		public int HouseholdPopulation { get; set; }
+		public string County { get; set; }
+
 		private string ageGroup { get; set; }
 		private string ethnicGroup { get; set; }
 
 		//helper variables
-		private int headOfHousehold { get; set; }
 		private int disableTexbox { get; set; }
 		List<ProbCheckBoxModel> problemItems = new List<ProbCheckBoxModel>();
+
 		public CreateNewPatient()
 		{
-			headOfHousehold = 0;
 			disableTexbox = 0;
 			headOfHouse = false;
 			InitializeComponent();
-			//  PatientProblemsGroup();
 		}
 
 		private void Add_Client(object sender, RoutedEventArgs e)
 		{
-			Patient pat2 = new Patient();
-			Problem prob = new Problem();
+			Patient tempPatient = new Patient();
+			Problem tempProblem = new Problem();
 			FCS_DBModel db = new FCS_DBModel();
-			Determine_AgeGroup(this.AgeGroup.SelectedIndex);
-			Determine_EthnicGroup(this.ethnicity.SelectedIndex);
+
+			
+			Determine_AgeGroup(combobox_AgeGroup.SelectedIndex);
+			Determine_EthnicGroup(combobox_ethnicity.SelectedIndex);
+			Determine_Gender(combobox_Gender.SelectedIndex);
 			var togglePatientProblems = PatientProblemsCheckBoxes.Children;
-			Determine_Gender(this.Gender.SelectedIndex);
-			if (this.firstName != null && this.firstName != "" && this.lastName != null && this.lastName != "" && patientOQ != null && patientOQ != "" &&
-				 PatientGender != null && PatientGender != "" && this.ageGroup != null && this.ethnicGroup != null
-				&& this.relationToHead != null && this.relationToHead != "")
+
+			try
 			{
-				//Need to add another household and open the NewHousehold View
-				if (!Family_OQ.IsEnabled)
+			//	Check to see if there needs to be a new household made first
+				if ((bool)check_FirstHouseholdMember.IsChecked)
 				{
-					CreateHousehold ch = new CreateHousehold(this.firstName, this.lastName, this.patientOQ, this.PatientGender, this.headOfHouse, this.ageGroup, this.ethnicGroup, this.relationToHead, togglePatientProblems);
-					this.Close();
-					ch.HouseholdIncomeBracket.SelectedIndex = 0;
-					ch.Show();
+					Determine_Income(combobox_IncomeBracket.SelectedIndex);
+					Determine_County(combobox_County.SelectedIndex);
+
+					PatientHousehold household = new PatientHousehold();
+					household.HouseholdCounty = County;
+					household.HouseholdIncomeBracket = Income;
+					household.HouseholdPopulation = HouseholdPopulation;
+					db.PatientHouseholds.Add(household);
+					db.SaveChanges();
+
+					tempPatient.HouseholdID = household.HouseholdID;
 				}
-				//Need to add the client with the family OQ Number
-				else if (familyOQNumber != null && familyOQNumber != "")
-				{
-					date = DateTime.Now;
-					//MessageBox.Show(firstName + "\n" + lastName + "\n" + patientOQ + "\n" + PatientGender + "\n" + headOfHouse + "\n" + ageGroup + "\n" + ethnicGroup + "\n" +
-					//    familyOQNumber + "\n" + "\n" + relationToHead + "\n" + date);
-					//this.Close();                    
-					try
-					{
-						int householdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
-
-						pat2.PatientOQ = patientOQ;
-						pat2.HouseholdID = householdID;
-						pat2.PatientFirstName = firstName;
-						pat2.PatientLastName = lastName;
-						pat2.PatientAgeGroup = ageGroup;
-						pat2.PatientEthnicity = ethnicGroup;
-						pat2.PatientGender = PatientGender;
-						pat2.NewClientIntakeHour = date;
-						pat2.IsHead = headOfHouse;
-						pat2.RelationToHead = relationToHead;
-						db.Patients.Add(pat2);
-						db.SaveChanges();
-						Determine_Problems(patientOQ, togglePatientProblems);
-
-						MessageBox.Show("Successfully added client.");
-						this.Close();
-
-					}
-					catch
-					{
-						MessageBox.Show("The OQ number entered is invalid.");
-					}
-				}
-				//They are missing the client OQ number.
 				else
 				{
-					MessageBox.Show("This OQ number has already been taken.");
+					tempPatient.HouseholdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
 				}
+
+				bool isHeadOfHouse = (bool)check_HeadOfHousehold.IsChecked;
+
+				tempPatient.PatientOQ = patientOQ;
+				tempPatient.PatientFirstName = firstName;
+				tempPatient.PatientLastName = lastName;
+				tempPatient.PatientAgeGroup = ageGroup;
+				tempPatient.PatientEthnicity = ethnicGroup;
+				tempPatient.PatientGender = PatientGender;
+				tempPatient.NewClientIntakeHour = DateTime.Now;
+				tempPatient.IsHead = headOfHouse;
+				tempPatient.RelationToHead = (headOfHouse) ? "Head" : relationToHead;
+				db.Patients.Add(tempPatient);
+				db.SaveChanges();
+				Determine_Problems(patientOQ, togglePatientProblems);
+						
+				this.Close();
 			}
-			else
+			catch (Exception error)
 			{
-				MessageBox.Show("Unable to add client");
+				MessageBox.Show("Something went wrong, please double check your entry values.\n\n");
+				MessageBox.Show("Error: " + error.ToString());
 			}
-        }
+		}
 
 		private void Change_HeadOfHousehold(object sender, RoutedEventArgs e)
 		{
-			headOfHousehold++;
-            Console.WriteLine(relationToHead);
-            if ((headOfHousehold % 2) == 0)
-			{
-                headOfHouse = false;
-			}
-			else
-			{
-                relationToHead = "Head";
-                headOfHouse = true;
-			}
-
+			CheckForValidInput(sender, null);
+			headOfHouse = (bool)check_HeadOfHousehold.IsChecked;
+			textbox_RelationToHead.IsEnabled = !(bool)check_HeadOfHousehold.IsChecked;
 		}
 
-		private void Disable_Textbox(object sender, RoutedEventArgs e)
+		private void Change_NewHousehold(object sender, RoutedEventArgs e)
 		{
-			disableTexbox++;
-			if ((disableTexbox % 2) == 0)
-			{
-				Family_OQ.IsEnabled = true;
-				Family_OQ.Background = Brushes.White;
-			}
-			else
-			{
-				Family_OQ.IsEnabled = false;
-				Family_OQ.Background = Brushes.LightGray;
-			}
+			CheckForValidInput(sender, null);
+
+			bool newHousehold = (bool)check_FirstHouseholdMember.IsChecked;
+			textbox_FamilyMemberOQ.IsEnabled = !newHousehold;
+			textbox_HouseholdPopulation.IsEnabled = newHousehold;
+			combobox_County.IsEnabled = newHousehold;
+			combobox_IncomeBracket.IsEnabled = newHousehold;
+
+			//	Initialize the comboboxes
+			combobox_County.SelectedIndex = 0;
+			combobox_IncomeBracket.SelectedIndex = 0;
 		}
 
 		private void Determine_AgeGroup(int selection)
@@ -196,6 +183,42 @@ namespace FCS_Funding.Views
 					PatientGender = "Female"; break;
 				case 2:
 					PatientGender = "Other"; break;
+			}
+		}
+
+		private void Determine_Income(int selection)
+		{
+			switch (selection)
+			{
+				case 0:
+					Income = "$0-9,999"; break;
+				case 1:
+					Income = "$10,000-14,999"; break;
+				case 2:
+					Income = "$15,000-24,000"; break;
+				case 3:
+					Income = "$25,000-34,999"; break;
+				case 4:
+					Income = "$35,000+"; break;
+			}
+		}
+
+		private void Determine_County(int selection)
+		{
+			switch (selection)
+			{
+				case 0:
+					County = "Weber"; break;
+				case 1:
+					County = "Davis"; break;
+				case 2:
+					County = "DCLC"; break;
+				case 3:
+					County = "Morgan"; break;
+				case 4:
+					County = "Box Elder"; break;
+				case 5:
+					County = "Other"; break;
 			}
 		}
 
@@ -276,7 +299,6 @@ namespace FCS_Funding.Views
 					patProb.ProblemID = probID;
 					db.PatientProblems.Add(patProb);
 					db.SaveChanges();
-					patProb = new PatientProblem();
 				}
 			}
 		}
@@ -284,6 +306,39 @@ namespace FCS_Funding.Views
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			this.Close();
+		}
+
+		private void CheckForValidInput(object sender, TextChangedEventArgs e)
+		{
+			
+			try
+			{
+				if (!string.IsNullOrEmpty(textbox_FirstName.Text) && !string.IsNullOrEmpty(textbox_LastName.Text) && !string.IsNullOrEmpty(textbox_ClientOQ.Text)
+					&& (((bool)check_FirstHouseholdMember.IsChecked && !string.IsNullOrEmpty(textbox_HouseholdPopulation.Text))
+							 || !string.IsNullOrEmpty(textbox_FamilyMemberOQ.Text)) 
+					&& ((bool)check_HeadOfHousehold.IsChecked || !string.IsNullOrEmpty(textbox_RelationToHead.Text)))
+				{
+					int.Parse(textbox_ClientOQ.Text);
+					int.Parse(textbox_HouseholdPopulation.Text);
+
+					AddClient.IsEnabled = true;
+					return;
+				}
+				else
+				{
+					AddClient.IsEnabled = false;
+				}
+			} catch {}
+		}
+
+		private void txt_NumberOnlyCheck(object sender, TextCompositionEventArgs e)
+		{
+			CommonControl.NumberOnlyEventCheckNoPeriod(sender, e);
+		}
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
 		}
 	}
 }

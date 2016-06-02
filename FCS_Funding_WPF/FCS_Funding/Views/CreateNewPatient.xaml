@@ -18,52 +18,52 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="39*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="52*" />
-			<RowDefinition Height="40*" />
-			<RowDefinition Height="28*" />
-			<RowDefinition Height="39*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<TextBlock Text="Create New Client" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="4" FontFamily="Razer Header Regular" Margin="0,0,0,5" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" Grid.Column="1" />
-		<TextBlock Text="Client OQ:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" />
+		<TextBlock Name="txtClientOQ" Text="Client OQ Number:  " TextAlignment="Right"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" />
 		<Border Grid.Row="3" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-			<TextBox  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}"  />
+			<TextBox Name="textbox_ClientOQ"  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" TextChanged="CheckForValidInput" PreviewTextInput="txt_NumberOnlyCheck" KeyDown="useEnterAsTab" TabIndex="1"  />
 		</Border>
 
-		<TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Margin="0,5" />
-		<Border Grid.Row="5" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-			<TextBox  FontSize="18" Grid.Column="2" Text="{Binding firstName, ElementName=ThisWindow}"/>
+		<TextBlock Text="First Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="4" Grid.Column="1" Margin="0,5" />
+		<Border Grid.Row="4" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+			<TextBox Name="textbox_FirstName" FontSize="18" Grid.Column="2" Text="{Binding firstName, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="2"/>
 		</Border>
-		<TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Margin="0,5" />
-		<Border Grid.Row="7" Grid.Column="2"  BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-			<TextBox  FontSize="18" Text="{Binding lastName, ElementName=ThisWindow}"/>
+		<TextBlock Text="Last Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="5" Grid.Column="1" Margin="0,5" />
+		<Border Grid.Row="5" Grid.Column="2"  BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+			<TextBox Name="textbox_LastName" FontSize="18" Text="{Binding lastName, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="3"/>
 		</Border>
-		<TextBlock Text="Relation to Head:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Grid.Column="1" Margin="0,5" />
-		<Border Grid.Row="9" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-            <TextBox FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}"  />
+		<TextBlock Text="Relation to Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="11" Grid.Column="1" Margin="0,5" />
+		<Border Grid.Row="11" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+			<TextBox Name="textbox_RelationToHead"  FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="8" />
 		</Border>
-		<TextBlock Text="Gender:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="3" Margin="0,5" />
-		<ComboBox Name="Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Width="176" Height="40"  Grid.Column="4" Grid.Row="3" FontSize="20" Margin="1,0">
+		<TextBlock Text="Gender:  " TextAlignment="Right"  FontSize="18" Grid.Row="6" Grid.Column="1" Margin="0,5" />
+		<ComboBox Name="combobox_Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
+                  Width="176" Height="40"  Grid.Column="2" Grid.Row="6" FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="4">
 			<ComboBoxItem >Male</ComboBoxItem>
 			<ComboBoxItem >Female</ComboBoxItem>
 			<ComboBoxItem >Other</ComboBoxItem>
 		</ComboBox>
-		<TextBlock Text="Age Group:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="3" Margin="0,5" />
-		<ComboBox Name="AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="176" Height="40" Grid.Column="4" Grid.Row="5" FontSize="20" Margin="1,0">
+		<TextBlock Text="Age Group:  " TextAlignment="Right"  FontSize="18" Grid.Row="7" Grid.Column="1" Margin="0,5" />
+		<ComboBox Name="combobox_AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                  HorizontalContentAlignment="Center" Width="176" Height="40" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="5">
 			<ComboBoxItem >0-5</ComboBoxItem>
 			<ComboBoxItem >6-11</ComboBoxItem>
 			<ComboBoxItem >12-17</ComboBoxItem>
@@ -76,9 +76,9 @@
 
 
 
-		<TextBlock Text="Ethnicity" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Margin="0,5" />
-		<ComboBox Name="ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="176" Height="40"  Grid.Column="4" Grid.Row="6" FontSize="20" Margin="1,38,1,2" Grid.RowSpan="2">
+		<TextBlock Text="Ethnicity:  " TextAlignment="Right"  FontSize="18" Grid.Row="8" Grid.Column="1" Margin="0,5" />
+		<ComboBox Name="combobox_ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                  HorizontalContentAlignment="Center" Width="176" Height="40"  Grid.Column="2" Grid.Row="8" FontSize="20" Margin="1,1,1,1" Grid.RowSpan="1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="6">
 			<ComboBoxItem >African American</ComboBoxItem>
 			<ComboBoxItem >Native/Alaskan</ComboBoxItem>
 			<ComboBoxItem >Pacific Islander</ComboBoxItem>
@@ -87,45 +87,78 @@
 			<ComboBoxItem >Hispanic</ComboBoxItem>
 			<ComboBoxItem >Other</ComboBoxItem>
 		</ComboBox>
-		<CheckBox Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Content="Is Head of Household?" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,12,4,3" Height="25" Width="212" >
-			<CheckBox.LayoutTransform>
-				<ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-			</CheckBox.LayoutTransform>
+
+		<CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7">
+			<TextBlock Name="block_HeadOfHousehold" Text="Head of Household" FontSize="18" />
 		</CheckBox>
-		<CheckBox Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3" Content="First Member of Household?" Margin="0,16,101,35" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Disable_Textbox" Height="29" Width="285" Grid.RowSpan="2">
-			<CheckBox.LayoutTransform>
-				<ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-			</CheckBox.LayoutTransform>
+		<CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9">
+			<TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" />
 		</CheckBox>
-		<TextBlock Text="Family Member OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Grid.ColumnSpan="3" Margin="51,27,128,30" Grid.RowSpan="2" />
-		<Border Grid.Row="12" Grid.Column="1"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="2" Margin="178,23,0,28" Grid.RowSpan="2">
-			<TextBox Name="Family_OQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" />
+		<TextBlock Text="Family Member OQ Number:  " TextAlignment="Center" FontSize="18" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+		<Border Grid.Row="13" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="1" Margin="0,3">
+			<TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" PreviewTextInput="txt_NumberOnlyCheck" KeyDown="useEnterAsTab" TabIndex="10"/>
 		</Border>
-		<GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="110,10,0,0"
-		  VerticalAlignment="Top" Height="236" Width="387" Grid.ColumnSpan="3" Grid.RowSpan="6" Grid.Column="3" Grid.Row="8">
+		<GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
+		  VerticalAlignment="Top" Height="236" Width="352" Grid.ColumnSpan="2" Grid.RowSpan="6" Grid.Column="3" Grid.Row="3" TabIndex="11">
+			<GroupBox.Resources>
+				<ResourceDictionary>
+					<Style TargetType="CheckBox">
+						<Setter Property="VerticalContentAlignment" Value="Center"/>
+						<EventSetter Event="KeyDown" Handler="useEnterAsTab" />
+					</Style>
+				</ResourceDictionary>
+			</GroupBox.Resources>
 			<UniformGrid Name="PatientProblemsCheckBoxes" Columns="2" Rows="10">
-				<CheckBox x:Name="DepressionCheckBox"  Content=     "Depression" />
-				<CheckBox x:Name="LossCheckBox" Content=            "Bereavement/Loss" />
-				<CheckBox x:Name="CommunicationCheckBox" Content=   "Communication"/>
-				<CheckBox x:Name="DomesticViolenceCheckBox" Content="Domestic Violence"/>
-				<CheckBox x:Name="HoplessnessCheckBox" Content=     "Hopelessness"/>
-				<CheckBox x:Name="WorkProblemsCheckBox" Content=    "Work Problems"/>
-				<CheckBox x:Name="ParentProblemsCheckBox" Content=  "Parent Problems" />
-				<CheckBox x:Name="SubstanceAbuseCheckBox" Content=  "Substance Abuse" />
-				<CheckBox x:Name="SchoolProblemsCheckBox" Content=  "Problems w/ School"/>
-				<CheckBox x:Name="MarriageRelationCheckBox" Content="Marriage/Relationship/Family" />
-				<CheckBox x:Name="HurtSelfThoughtsCheckBox" Content="Thoughts of Hurting Self" />
-				<CheckBox x:Name="AngryFeelingsCheckBox" Content=   "Angry Feelings" />
-				<CheckBox x:Name="SexualAbuseCheckBox" Content=     "Sexual Abuse" />
-				<CheckBox x:Name="EmotionalAbuseCheckBox" Content=  "Emotional Abuse"/>
-				<CheckBox x:Name="PhysicalAbuseCheckBox" Content=   "Physical Abuse" />
-				<CheckBox x:Name="LawProblemsCheckBox" Content=     "Problems with the Law"/>
-				<CheckBox x:Name="UnhappyWithLifeCheckBox" Content= "Unhappy with Life"/>
-				<CheckBox x:Name="AnxietyCheckBox" Content=         "Anxiety"/>
-				<CheckBox x:Name="OtherCheckBox" Content=           "Other" />
+				<CheckBox x:Name="DepressionCheckBox"  Content=     "Depression" TabIndex="11" KeyDown="useEnterAsTab"/>
+				<CheckBox x:Name="LossCheckBox" Content=            "Bereavement/Loss" TabIndex="12"/>
+				<CheckBox x:Name="CommunicationCheckBox" Content=   "Communication" TabIndex="13" />
+				<CheckBox x:Name="DomesticViolenceCheckBox" Content="Domestic Violence" TabIndex="14" />
+				<CheckBox x:Name="HoplessnessCheckBox" Content=     "Hopelessness" TabIndex="15" />
+				<CheckBox x:Name="WorkProblemsCheckBox" Content=    "Work Problems" TabIndex="16" />
+				<CheckBox x:Name="ParentProblemsCheckBox" Content=  "Parent Problems" TabIndex="17" />
+				<CheckBox x:Name="SubstanceAbuseCheckBox" Content=  "Substance Abuse" TabIndex="18" />
+				<CheckBox x:Name="SchoolProblemsCheckBox" Content=  "Problems w/ School" TabIndex="19" />
+				<CheckBox x:Name="MarriageRelationCheckBox" Content="Marriage/Relationship/Family" FontSize="11" TabIndex="20" />
+				<CheckBox x:Name="HurtSelfThoughtsCheckBox" Content="Thoughts of Hurting Self" TabIndex="21" />
+				<CheckBox x:Name="AngryFeelingsCheckBox" Content=   "Angry Feelings" TabIndex="22" />
+				<CheckBox x:Name="SexualAbuseCheckBox" Content=     "Sexual Abuse" TabIndex="23" />
+				<CheckBox x:Name="EmotionalAbuseCheckBox" Content=  "Emotional Abuse" TabIndex="24"/>
+				<CheckBox x:Name="PhysicalAbuseCheckBox" Content=   "Physical Abuse" TabIndex="25" />
+				<CheckBox x:Name="LawProblemsCheckBox" Content=     "Problems with the Law" TabIndex="26"/>
+				<CheckBox x:Name="UnhappyWithLifeCheckBox" Content= "Unhappy with Life" TabIndex="27"/>
+				<CheckBox x:Name="AnxietyCheckBox" Content=         "Anxiety" TabIndex="28"/>
+				<CheckBox x:Name="OtherCheckBox" Content=           "Other" TabIndex="29" />
 			</UniformGrid>
 		</GroupBox>
-		<Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Cancel" Grid.ColumnSpan="1" Margin="0,0,10,0" Click="Button_Click" />
-		<Button FontSize="18" Grid.Column="3" Grid.Row="14" Content="Add Client" Click="Add_Client" Grid.ColumnSpan="1" Margin="10,0,0,0" />
+
+		<TextBlock Text="Household Population:  " TextAlignment="Right"  FontSize="16" Grid.Row="11" Grid.Column="3" Height="30" Grid.ColumnSpan="1" Margin="0" VerticalAlignment="Center"/>
+		<Border Grid.Row="11" Grid.Column="4"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" >
+			<TextBox Name="textbox_HouseholdPopulation" FontSize="18"  Text="{Binding HouseholdPopulation, ElementName=ThisWindow}" PreviewTextInput="txt_NumberOnlyCheck" IsEnabled="False" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="30"/>
+		</Border>
+		<TextBlock Text="County:  " TextAlignment="Right" FontSize="18" Grid.Row="12" Grid.Column="3" Height="30" Padding="83, 0, 0, 0"/>
+
+		<ComboBox Name="combobox_County" IsReadOnly="True" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="176" Height="40" Grid.Column="4" 
+                  Grid.Row="12" FontSize="20" Margin="1,1,1,1" Grid.ColumnSpan="1" IsEnabled="False" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="31">
+			<ComboBoxItem >Weber</ComboBoxItem>
+			<ComboBoxItem >Davis</ComboBoxItem>
+			<ComboBoxItem >DCLC</ComboBoxItem>
+			<ComboBoxItem >Morgan</ComboBoxItem>
+			<ComboBoxItem >Box Elder</ComboBoxItem>
+			<ComboBoxItem >Other</ComboBoxItem>
+		</ComboBox>
+		<TextBlock Text="Income Bracket:" TextAlignment="Right" FontSize="18" Grid.Row="13" Grid.Column="3" Height="30" Padding="23, 0, 0, 0"/>
+		<ComboBox Name="combobox_IncomeBracket" SelectedItem="{Binding Income}" IsReadOnly="True" HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="176" Height="40" Grid.Column="4" 
+                  Grid.Row="13" FontSize="20" IsEnabled="False" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="32">
+			<ComboBoxItem >$0-9,999</ComboBoxItem>
+			<ComboBoxItem >$10,000-14,999</ComboBoxItem>
+			<ComboBoxItem >$15,000-24,000</ComboBoxItem>
+			<ComboBoxItem >$25,000-34,999</ComboBoxItem>
+			<ComboBoxItem >$35,000+</ComboBoxItem>
+		</ComboBox>
+
+		<Button Name="CancelClient" FontSize="18" Grid.Column="3" Grid.Row="15" Content="Cancel" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="Button_Click" TabIndex="34" />
+		<Button Name="AddClient"  FontSize="18" Grid.Column="2" Grid.Row="15" Content="Add Client" Click="Add_Client" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="False" TabIndex="33" />
 	</Grid>
 </Window>

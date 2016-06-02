@@ -32,9 +32,9 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Button Grid.Column="0" Grid.Row="2" Content="Create New Account"  Grid.RowSpan="2" Click="CreateNewAccount"/>
+		<Button Grid.Column="0" Grid.Row="1" Content="Create New Account"  Grid.RowSpan="2" Click="CreateNewAccount"/>
 		<!--<Button Grid.Column="0" Grid.Row="5" Content="Create Backup" Grid.RowSpan="2" Click="Create_Backup"/>-->
-		<DataGrid  Grid.Row="2" Name="Admin_DataGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Admin_Grid" CanUserResizeColumns="True" PreviewMouseDoubleClick="EditAccount"
+		<DataGrid  Grid.Row="1" Name="Admin_DataGrid" Grid.ColumnSpan="5" Grid.RowSpan="13" Loaded="Admin_Grid" CanUserResizeColumns="True" PreviewMouseDoubleClick="EditAccount"
                                IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False"  Grid.Column="1">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Staff ID" Width="100" Binding="{Binding StaffID}"/>
@@ -47,6 +47,6 @@
 		</DataGrid>
 		<!--<TextBox x:Name="textBox" Grid.ColumnSpan="2" Grid.Column="3" TextWrapping="Wrap" Text="Search By Username" Grid.RowSpan="1"/>
                     <Button x:Name="button" Content="Search" Grid.Column="5" Grid.RowSpan="1"/>-->
-		<Button Content="Refresh" Click="Refresh_Admin"  Grid.Column="5" Grid.Row="0" VerticalAlignment="Top" Height="45" Grid.RowSpan="2" />
+		<!--<Button Content="Refresh" Click="Refresh_Admin"  Grid.Column="5" Grid.Row="0" VerticalAlignment="Top" Height="45" Grid.RowSpan="2" />-->
 	</Grid>
 </UserControl>

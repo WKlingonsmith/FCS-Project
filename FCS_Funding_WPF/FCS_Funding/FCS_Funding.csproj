@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonControl.cs" />
     <Compile Include="Definition.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Donation.cs" />
