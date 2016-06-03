@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_Funding", "FCS_Funding\FCS_Funding.csproj", "{A096A895-12B3-4F73-88FD-025367BE621F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_DataTesting", "FCS_DataTesting\FCS_DataTesting.csproj", "{C97A3BC5-35BC-4E38-B295-D2B1A5E6E0D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodedUITestProject", "CodedUITestProject\CodedUITestProject.csproj", "{83AC0A18-A66A-4A7F-AF79-B019C09427E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCS_AlternateTest", "FCS_AlternateTest\FCS_AlternateTest.csproj", "{E6AAF96B-76F8-4ACD-B9F4-3DF749FABA03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83AC0A18-A66A-4A7F-AF79-B019C09427E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6AAF96B-76F8-4ACD-B9F4-3DF749FABA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6AAF96B-76F8-4ACD-B9F4-3DF749FABA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6AAF96B-76F8-4ACD-B9F4-3DF749FABA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6AAF96B-76F8-4ACD-B9F4-3DF749FABA03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

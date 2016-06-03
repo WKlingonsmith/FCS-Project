@@ -40,13 +40,12 @@ namespace FCS_Funding.Views
 		private string ethnicGroup { get; set; }
 
 		//helper variables
-		private int disableTexbox { get; set; }
 		List<ProbCheckBoxModel> problemItems = new List<ProbCheckBoxModel>();
 
 		public CreateNewPatient()
 		{
-			disableTexbox = 0;
 			headOfHouse = false;
+			HouseholdPopulation = 1;
 			InitializeComponent();
 		}
 
@@ -321,12 +320,12 @@ namespace FCS_Funding.Views
 					int.Parse(textbox_ClientOQ.Text);
 					int.Parse(textbox_HouseholdPopulation.Text);
 
-					AddClient.IsEnabled = true;
+					button_AddClient.IsEnabled = true;
 					return;
 				}
 				else
 				{
-					AddClient.IsEnabled = false;
+					button_AddClient.IsEnabled = false;
 				}
 			} catch {}
 		}
