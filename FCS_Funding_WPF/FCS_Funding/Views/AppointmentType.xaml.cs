@@ -34,8 +34,9 @@ namespace FCS_Funding.Views
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>()
             {
-                "Group/Individual",
-                "Family"
+                "Individual",
+                "Family",
+                "Group"
             };
         }
 
@@ -72,12 +73,13 @@ namespace FCS_Funding.Views
                 var staffID = (from dc in db.Staff
                                where dc.StaffFirstName == FName && dc.StaffLastName == LName && dc.StaffUserName == username
                                select dc.StaffID).Distinct().FirstOrDefault();
-                if (TotalGroup.Count == 0) { MessageBox.Show("Please add at least one client"); return; }
-                //individual (1)
-                //group (2)
-                if (ApptType.SelectedIndex == 0)
+                if (TotalGroup.Count == 0) { MessageBox.Show("Please add at least one client."); return; }
+                if (TotalGroup.Count > 1 && (String)ApptType.SelectedItem == "Individual") { MessageBox.Show("Individual appointment may only have one client."); return; }
+                //individual (1st option) (ExpenseTypeID = 1 in database)
+                //group (3rd option) (ExpenseTypeID = 2 in database)
+                if (ApptType.SelectedIndex == 0 || ApptType.SelectedIndex == 2)
                 {
-                    if (TotalGroup.Count == 1) { ExpenseTypeID = 1; }
+                    if (ApptType.SelectedIndex == 0) { ExpenseTypeID = 1; }
                     else { ExpenseTypeID = 2; }
                     Models.Appointment a = new Models.Appointment();
                     a.StaffID = staffID;
@@ -99,7 +101,7 @@ namespace FCS_Funding.Views
                     }
                     this.Close();
                 }
-                //family (3)
+                //family (2nd option) (ExpenseTypeID = 3 in database)
                 else if (ApptType.SelectedIndex == 1)
                 {
                     ExpenseTypeID = 3;
@@ -123,6 +125,7 @@ namespace FCS_Funding.Views
                     }
                     this.Close();
                 }
+                
             }
             catch
             {
