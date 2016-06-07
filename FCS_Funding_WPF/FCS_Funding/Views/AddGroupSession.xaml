@@ -44,49 +44,51 @@
 
         <TextBlock Text="Create Individual Appointment" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.2,27" 
                    Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
-        <TextBlock Text="Client First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
+        <TextBlock Text="Client First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="152,28,26,22" FontWeight="Bold" Grid.RowSpan="2" />
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,29,0,16" Grid.RowSpan="2">
             <TextBox Name="FN"  FontSize="18" Text="{Binding ClientFirstName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Client Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
+        <TextBlock Text="Client Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="2" Margin="152,28,26,22" FontWeight="Bold" Grid.RowSpan="2" />
+        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,29,0,16" Grid.RowSpan="2">
             <TextBox Name="LN" FontSize="18" Text="{Binding ClientLastName, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Client OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.Column="3" Grid.ColumnSpan="2" Margin="31.2,2,146.4,8" FontWeight="Bold" />
-        <Border Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="32,2,147.6,2">
+        <TextBlock Text="Client OQ Number:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.Column="3" Grid.ColumnSpan="2" Margin="31,28,146,22" FontWeight="Bold" Grid.RowSpan="2" />
+        <Border Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="32,29,148,16" Grid.RowSpan="2">
             <TextBox Name="OQ" FontSize="18" Text="{Binding ClientOQNumber, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Client Co-Pay:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
-        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
+        <TextBlock Text="Client Co-Pay:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="152,28,26,22" FontWeight="Bold" Grid.RowSpan="2" />
+        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,29,0,16" Grid.RowSpan="2">
             <TextBox  FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
         </Border>
-        <TextBlock Text="Donor/Insurance Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="96,2,26,8" FontWeight="Bold" />
-        <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
+        <TextBlock Text="Donor/Insurance Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="2" Margin="96,28,26,22" FontWeight="Bold" Grid.RowSpan="2" />
+        <Border Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,29,0,16" Grid.RowSpan="2">
             <TextBox  FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}"  />
         </Border>
-        <CheckBox Name="DonorDeduction" Grid.Row="7" Content="Is Donor Deduction coming from a Grant?" FontSize="18" HorizontalAlignment="Right"  FontWeight="Bold"
-                  VerticalAlignment="Center" Click="Change_Client_Bill" Margin="0,4,62.8,4" Checked="Change_Client_Bill" Height="32" Grid.ColumnSpan="3" Width="427" Grid.Column="1" >
+        <CheckBox Name="DonorDeduction" Grid.Row="8" Content="Is Donor Deduction coming from a Grant?" FontSize="18" HorizontalAlignment="Right"  FontWeight="Bold"
+                  VerticalAlignment="Center" Click="Change_Client_Bill" Margin="0,30,63,18" Checked="Change_Client_Bill" Height="32" Grid.ColumnSpan="3" Width="427" Grid.Column="1" Grid.RowSpan="2" >
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
             </CheckBox.LayoutTransform>
         </CheckBox>
-        <TextBlock Text="Money Donation ID:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="136,0,19.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
+        <TextBlock Text="Money Donation ID:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="136,26,19,24" Grid.ColumnSpan="2" FontWeight="Bold" Grid.RowSpan="2" />
         <ComboBox Name="MoneyDonation"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="8" FontSize="20" Loaded="MoneyDonation_DropDown" Margin="168.8,0,10.2,0" />
-        <TextBlock Text="Grant:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="136,0,19.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="9" FontSize="20" Loaded="MoneyDonation_DropDown" Margin="169,26,10,14" Grid.RowSpan="2" />
+        <TextBlock Text="Grant:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="136,26,19,24" Grid.ColumnSpan="2" FontWeight="Bold" Grid.RowSpan="2" />
         <ComboBox Name="Grant"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="9" FontSize="20" Loaded="Grants_DropDown" Margin="168.8,0,10.2,0" />
-        <CheckBox Name="IsPaid" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Content="Is Patient Bill Paid?" FontSize="18" HorizontalAlignment="Right" FontWeight="Bold"
-                  VerticalAlignment="Center" Click="Change_Paid_Bill" Margin="0,21,141.6,27" Checked="Change_Paid_Bill" Height="32" Grid.RowSpan="2" >
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="10" FontSize="20" Loaded="Grants_DropDown" Margin="169,26,10,14" Grid.RowSpan="2" />
+        <CheckBox Name="IsPaid" Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="2" Content="Is Patient Bill Paid?" FontSize="18" HorizontalAlignment="Right" FontWeight="Bold"
+                  VerticalAlignment="Center" Click="Change_Paid_Bill" Margin="0,7,142,1" Checked="Change_Paid_Bill" Height="32" >
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
             </CheckBox.LayoutTransform>
         </CheckBox>
-        <TextBlock Text="Expense Paid Date:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Grid.Column="2" FontWeight="Bold" Grid.ColumnSpan="2" Margin="156.6,19,20.8,31" Grid.RowSpan="2" />
+        <TextBlock Text="Expense Paid Date:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Grid.Column="2" FontWeight="Bold" Grid.ColumnSpan="2" Margin="157,5,21,5" />
         <DatePicker Name="ExpensePaidDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="10" FontSize="20" Margin="0.2,14,32,30" Grid.RowSpan="2" >
+                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="12" FontSize="20" Margin="0,1,32,5" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
+
+
         <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Add Appointment Service" Click="Add_Expense" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
     </Grid>
 </Window>

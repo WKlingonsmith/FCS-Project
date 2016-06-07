@@ -67,6 +67,25 @@ namespace FCS_Funding.Views
                 DateTime expenseDueDate = startDateTime.AddDays(30);
                 string[] separators = new string[] { ", " };
                 string staff = Staff.SelectedValue.ToString();
+                string cancellationType = "Not Cxl";
+                switch (CancellationType.SelectedIndex)
+                {
+                    case 0:
+                        cancellationType = "Not Cxl";
+                        break;
+                    case 1:
+                        cancellationType = "Lt Cxl";
+                        break;
+                    case 2:
+                        cancellationType = "No Show";
+                        break;                 
+                    case 3:
+                        cancellationType = "Cxl";
+                        break;
+                    default:
+                        cancellationType = "Not Cxl";
+                        break;
+                }
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
                 string[] words = staff.Split(separators, StringSplitOptions.None);
                 string FName = words[0]; string LName = words[1]; string username = words[2];
@@ -85,6 +104,7 @@ namespace FCS_Funding.Views
                     a.StaffID = staffID;
                     a.AppointmentStartDate = startDateTime;
                     a.AppointmentEndDate = endDateTime;
+                    a.AppointmentCancelationType = cancellationType;
                     db.Appointments.Add(a);
                     db.SaveChanges();
 

@@ -96,7 +96,8 @@ namespace FCS_Funding.Views.TabViews
 							TotalExpense = ex.TotalExpenseAmount,
 							ExpenseType = et.ExpenseType1,
 							ExpenseDescription = et.ExpenseDescription,
-							ExpenseID = ex.ExpenseID
+							ExpenseID = ex.ExpenseID,
+                            CancellationType = a.AppointmentCancelationType
 						};
 
 		//	Set the data to the grid

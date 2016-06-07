@@ -52,6 +52,7 @@
 				<DataGridTextColumn Header="Deduction" Width="78" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
 				<DataGridTextColumn Header="Appointment Type" Width="140" Binding="{Binding Path=ExpenseType}"/>
 				<DataGridTextColumn Header="Description" Width="140" Binding="{Binding Path=ExpenseDescription}"/>
+                <DataGridTextColumn Header="Cancellation Type" Width="120" Binding="{Binding Path=CancellationType}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 	</Grid>

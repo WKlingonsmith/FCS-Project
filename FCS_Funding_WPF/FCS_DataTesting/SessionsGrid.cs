@@ -23,6 +23,7 @@ namespace FCS_DataTesting
         public string ClientLastName { get; set; }
 
         public int ExpenseID { get; set; }
+        public string CancellationType { get; set; }
 
         public SessionsGrid()
         { }
