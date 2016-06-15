@@ -31,18 +31,18 @@
         <CheckBox x:Name="demoAge70_checkBox" Content="70+" HorizontalAlignment="Left" Margin="422,249,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
 
         <CheckBox x:Name="demoEthnicityAA_checkBox" Content="African American" HorizontalAlignment="Left" Margin="140,336,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncomingNATALASK_checkBox" Content="Native/Alaskan" HorizontalAlignment="Left" Margin="319,336,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncomingPACISL_checkBox" Content="Pacific/Islander" HorizontalAlignment="Left" Margin="479,336,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncomingASIAN_checkBox" Content="Asian" HorizontalAlignment="Left" Margin="553,361,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncomingCAUC_checkBox" Content="Caucasian" HorizontalAlignment="Left" Margin="140,360,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="-5.523,0.54" IsChecked="True"/>
+        <CheckBox x:Name="demoEthnicityNATALASK_checkBox" Content="Native/Alaskan" HorizontalAlignment="Left" Margin="319,336,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoEthnicityPACISL_checkBox" Content="Pacific/Islander" HorizontalAlignment="Left" Margin="479,336,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoEthnicityASIAN_checkBox" Content="Asian" HorizontalAlignment="Left" Margin="553,361,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoEthnicityCAUC_checkBox" Content="Caucasian" HorizontalAlignment="Left" Margin="140,360,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="-5.523,0.54" IsChecked="True"/>
         <CheckBox x:Name="demoEthnicityHISP_checkBox" Content="Hispanic" HorizontalAlignment="Left" Margin="299,360,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
         <CheckBox x:Name="demoEthnicityOther_checkBox" Content="Other" HorizontalAlignment="Left" Margin="437,361,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
 
-        <CheckBox x:Name="demoIncoming09999_checkBox" Content="$0-9,999" HorizontalAlignment="Left" Margin="140,403,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncoming1000014999_checkBox" Content="$10,000-14,999" HorizontalAlignment="Left" Margin="242,403,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncoming1500024000_checkBox" Content="$15,000-24,000" HorizontalAlignment="Left" Margin="402,403,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncoming2500034999_checkBox" Content="$25,000-34,999" HorizontalAlignment="Left" Margin="141,433,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoIncoming35000_checkBox" Content="$35,000+" HorizontalAlignment="Left" Margin="302,433,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoIncome09999_checkBox" Content="$0-9,999" HorizontalAlignment="Left" Margin="140,403,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoIncome1000014999_checkBox" Content="$10,000-14,999" HorizontalAlignment="Left" Margin="242,403,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoIncome1500024000_checkBox" Content="$15,000-24,000" HorizontalAlignment="Left" Margin="402,403,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoIncome2500034999_checkBox" Content="$25,000-34,999" HorizontalAlignment="Left" Margin="141,433,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoIncome35000_checkBox" Content="$35,000+" HorizontalAlignment="Left" Margin="302,433,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
 
         <CheckBox x:Name="demoCountyWeber_checkBox" Content="Weber" HorizontalAlignment="Left" Margin="140,472,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
         <CheckBox x:Name="demoCountyDavis_checkBox" Content="Davis" HorizontalAlignment="Left" Margin="244,472,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
@@ -55,8 +55,8 @@
         <Label x:Name="label1_Copy1" Content="Ethnicity" HorizontalAlignment="Left" Margin="24,339,0,0" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold"/>
         <Label x:Name="label1_Copy2" Content="Age" HorizontalAlignment="Left" Margin="24,229,0,0" VerticalAlignment="Top" FontSize="18.667" FontWeight="Bold"/>
         <Label x:Name="label1_Copy3" Content="Head of Household" HorizontalAlignment="Left" Margin="24,172,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="181" FontWeight="Bold"/>
-        <CheckBox x:Name="demoGenderMale_checkBox_Copy" Content="M" HorizontalAlignment="Left" Margin="232,294,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
-        <CheckBox x:Name="demoGenderFemale_checkBox_Copy" Content="F" HorizontalAlignment="Left" Margin="320,294,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="-12.692,4.041" IsChecked="True"/>
+        <CheckBox x:Name="demoGenderMale_checkBox" Content="M" HorizontalAlignment="Left" Margin="232,294,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True"/>
+        <CheckBox x:Name="demoGenderFemale_checkBox" Content="F" HorizontalAlignment="Left" Margin="320,294,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="-12.692,4.041" IsChecked="True"/>
         <Label x:Name="label1_Copy4" Content="Gender" HorizontalAlignment="Left" Margin="24,289,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="181" FontWeight="Bold"/>
         <Separator HorizontalAlignment="Left" Height="24" Margin="10,271,0,0" VerticalAlignment="Top" Width="610"/>
         <Separator HorizontalAlignment="Left" Height="24" Margin="10,314,0,0" VerticalAlignment="Top" Width="610"/>

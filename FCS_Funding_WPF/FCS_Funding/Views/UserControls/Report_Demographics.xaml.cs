@@ -27,7 +27,50 @@ namespace FCS_Funding.Views.UserControls
     /// </summary>
     public partial class Report_Demographics : System.Windows.Controls.UserControl
     {
-        //FCS_DBModel db;
+        public class demoReport
+        {
+            public int newClients { get; set; }
+            public int ongoingClients { get; set; }
+            public int totalClients { get; set; }
+            public int individualSessions { get; set; }
+            public int familySessions { get; set; }
+            public int groupSessions { get; set; }
+            public int headOfHouseMale { get; set; }
+            public int headOfHouseFemale { get; set; }
+            public int totalFamiles { get; set; }
+            public int totalFamilyMembers { get; set; }
+            public int totalHoursOfService { get; set; }
+            public int ageGroup0 { get; set; }
+            public int ageGroup1 { get; set; }
+            public int ageGroup2 { get; set; }
+            public int ageGroup3 { get; set; }
+            public int ageGroup4 { get; set; }
+            public int ageGroup5 { get; set; }
+            public int ageGroup6 { get; set; }
+            public int ageGroup7 { get; set; }
+            public int genderOfClientMale { get; set; }
+            public int genderOfClientFemale { get; set; }
+            public int genderOfClientTotal { get; set; }
+            public int ethnicityGroup0 { get; set; }
+            public int ethnicityGroup1 { get; set; }
+            public int ethnicityGroup2 { get; set; }
+            public int ethnicityGroup3 { get; set; }
+            public int ethnicityGroup4 { get; set; }
+            public int ethnicityGroup5 { get; set; }
+            public int ethnicityGroup6 { get; set; }
+            public int incomeGroup0 { get; set; }
+            public int incomeGroup1 { get; set; }
+            public int incomeGroup2 { get; set; }
+            public int incomeGroup3 { get; set; }
+            public int incomeGroup4 { get; set; }
+            public int incomeGroup5 { get; set; }
+            public int countyGroup0 { get; set; }
+            public int countyGroup1 { get; set; }
+            public int countyGroup2 { get; set; }
+            public int countyGroup3 { get; set; }
+            public int countyGroup4 { get; set; }
+            public int countyGroup5 { get; set; }
+        }
 
         public Report_Demographics()
         {
@@ -36,6 +79,8 @@ namespace FCS_Funding.Views.UserControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            demoReport reportThis = new demoReport();
+
             /*int DemographicsReportDayStart, DemographicsReportDayEnd, DemographicsReportMonthStart, DemographicsReportMonthEnd, DemographicsReportYear;
             if (DemographicsReportMonth_comboBox.Text == "All")
             {
@@ -129,6 +174,7 @@ namespace FCS_Funding.Views.UserControls
                                                                            join exp in db.Expenses on app.AppointmentID equals exp.AppointmentID
                                                                            join st in db.Staff on app.StaffID equals st.StaffID
                                                                            where app.AppointmentStartDate > requestedDateStart && app.AppointmentEndDate < requestedDateEnd && exp.PatientID == list.Key
+                                                                           orderby requestedDateStart
                                                                            select new
                                                                            {
                                                                                staff = st.StaffLastName + ", " + st.StaffFirstName,
@@ -158,7 +204,326 @@ namespace FCS_Funding.Views.UserControls
                                                                         })
                                                  }).ToList();
 
-                //listOfAllSessions.GroupBy(x => x.patientID);
+                //FILTER BASED ON CLIENT TYPE
+                var NEWlistOfAllMatchingPatients = listOfAllMatchingPatients;
+                var asd = 1;
+                foreach (var query in listOfAllMatchingPatients.AsEnumerable().Reverse().ToList())
+                //for (int i = 0; i < listOfAllMatchingPatients.Count(); i++)
+                {
+                    //var query = listOfAllMatchingPatients[i];
+                    var patientInformation = query.patientInformation.AsEnumerable().ToList();
+                    var sessionInformation = query.sessionInformation.AsEnumerable().ToList();
+                    var houseHoldInformation = query.houseHoldInformation.AsEnumerable().ToList();
+                    var patientProblems = query.patientProblems.AsEnumerable().ToList();
+
+                    //FILTER BASED ON CLIENTTYPE
+                    DateTime patientIntakeTimeDate = patientInformation.Single().patientIntakeTimeDate;
+                    DateTime patientFirstSession = sessionInformation.First().appointmentDateTimeStart;
+                    if (patientIntakeTimeDate < patientFirstSession)
+                    {
+                        if (demoNew_checkBox.IsChecked.Value == false || !demoNew_checkBox.IsChecked.HasValue)
+                        {
+                            //listOfAllMatchingPatients.RemoveAt(i--);
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (demoOngoing_checkBox.IsChecked.Value == false || !demoOngoing_checkBox.IsChecked.HasValue)
+                        {
+                            //listOfAllMatchingPatients.RemoveAt(i--);
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON SESSIONTYPE
+                    foreach (var session in sessionInformation.AsEnumerable().Reverse().ToList())
+                    {
+                        if (demoindividual_checkBox.IsChecked.Value == false || !demoindividual_checkBox.IsChecked.HasValue)
+                        {
+                            if (session.expenseTypeID == 1)
+                            {
+                                sessionInformation.Remove(session);
+                            }
+                        }
+                        if (demoFamily_checkBox.IsChecked.Value == false || !demoFamily_checkBox.IsChecked.HasValue)
+                        {
+
+                            if (session.expenseTypeID == 3)
+                            {
+                                sessionInformation.Remove(session);
+                            }
+                        }
+                        if (demoGroup_checkBox.IsChecked.Value == false || !demoGroup_checkBox.IsChecked.HasValue)
+                        {
+                            if (session.expenseTypeID == 2)
+                            {
+                                sessionInformation.Remove(session);
+                            }
+                        }
+                    }
+
+                    //FILTER BASED ON HoH
+                    if (demoHOHMale_checkBox.IsChecked.Value == false || !demoHOHMale_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().gender == "Male" && houseHoldInformation.Single().isHeadOfHousehold == true)
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoHOHFemale_checkBox.IsChecked.Value == false || !demoHOHFemale_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().gender == "Female" && houseHoldInformation.Single().isHeadOfHousehold == true)
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON AGE
+                    if (demoAge05_checkBox.IsChecked.Value == false || !demoAge05_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "0-5")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge611_checkBox.IsChecked.Value == false || !demoAge611_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "6-11")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge1217_checkBox.IsChecked.Value == false || !demoAge1217_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "12-17")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge1823_checkBox.IsChecked.Value == false || !demoAge1823_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "18-23")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge2444_checkBox.IsChecked.Value == false || !demoAge2444_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "24-44")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge4554_checkBox.IsChecked.Value == false || !demoAge4554_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "45-54")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge5569_checkBox.IsChecked.Value == false || !demoAge5569_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "55+")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoAge70_checkBox.IsChecked.Value == false || !demoAge70_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ageGroup == "70+")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON GENDER
+                    if (demoGenderMale_checkBox.IsChecked.Value == false || !demoGenderMale_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().gender == "Male")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoGenderFemale_checkBox.IsChecked.Value == false || !demoGenderFemale_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().gender == "Female")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON ETHNICITY
+                    if (demoEthnicityAA_checkBox.IsChecked.Value == false || !demoEthnicityAA_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "African American")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoEthnicityNATALASK_checkBox.IsChecked.Value == false || !demoEthnicityNATALASK_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "Native/Alaskan")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoEthnicityPACISL_checkBox.IsChecked.Value == false || !demoEthnicityPACISL_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "Pacific Islander")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoEthnicityASIAN_checkBox.IsChecked.Value == false || !demoEthnicityASIAN_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "Asian")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoEthnicityCAUC_checkBox.IsChecked.Value == false || !demoEthnicityCAUC_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "Caucasian")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoEthnicityHISP_checkBox.IsChecked.Value == false || !demoEthnicityHISP_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "Hispanic")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoEthnicityOther_checkBox.IsChecked.Value == false || !demoEthnicityOther_checkBox.IsChecked.HasValue)
+                    {
+                        if (patientInformation.Single().ethnicity == "Other")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON INCOME
+                    if (demoIncome09999_checkBox.IsChecked.Value == false || !demoIncome09999_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientIncome == "$0-9,999")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoIncome1000014999_checkBox.IsChecked.Value == false || !demoIncome1000014999_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientIncome == "$10,000-14,999")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoIncome1500024000_checkBox.IsChecked.Value == false || !demoIncome1500024000_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientIncome == "$15,000-24,999")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoIncome2500034999_checkBox.IsChecked.Value == false || !demoIncome2500034999_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientIncome == "$25,000-34,999")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoIncome35000_checkBox.IsChecked.Value == false || !demoIncome35000_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientIncome == "$35,000+")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON COUNTY
+                    if (demoCountyWeber_checkBox.IsChecked.Value == false || !demoCountyWeber_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientCounty == "Weber")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoCountyDavis_checkBox.IsChecked.Value == false || !demoCountyDavis_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientCounty == "Davis")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoCountyDCLC_checkBox.IsChecked.Value == false || !demoCountyDCLC_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientCounty == "DCLC")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoCountyMorgan_checkBox.IsChecked.Value == false || !demoCountyMorgan_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientCounty == "Morgan")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoCountyBoxElder_checkBox.IsChecked.Value == false || !demoCountyBoxElder_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientCounty == "Box Elder")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+                    if (demoCountyOther_checkBox.IsChecked.Value == false || !demoCountyOther_checkBox.IsChecked.HasValue)
+                    {
+                        if (houseHoldInformation.Single().patientCounty == "Other")
+                        {
+                            listOfAllMatchingPatients.Remove(query);
+                            break;
+                        }
+                    }
+
+                    //FILTER BASED ON Problem Type
+
+                    //FILTER BASED ON Funding Type
+
+                    //PURGE ALL PEOPLE WITH NO SESSIONS.  SOME SESSIONS MIGHT HAVE BEEN DELETED DUE TO FILTERS.
+                    //ITERATE OVER LIST AND DO A COUNT TO FIND PEOPLE WITH 0 SESSIONS
+                }
                 listOfAllMatchingPatients = listOfAllMatchingPatients;
 
                 int newPatients = 0;
@@ -190,7 +555,7 @@ namespace FCS_Funding.Views.UserControls
                                               {
                                                   problemID = pr.ProblemID,
                                                   problemType = pr.ProblemType,
-                                                  problemTotalCount = 0
+
                                               });
                 int[] arrayOfProblemCounts = new int[20];
 
@@ -220,6 +585,7 @@ namespace FCS_Funding.Views.UserControls
                     x++;
                 }
 
+                int[] arrayOfCancellations = new int[3];
                 //Loop through all patients pulled from database with sessions matching the dates specified by the end user
                 foreach (var query in listOfAllMatchingPatients)
                 {
@@ -257,16 +623,35 @@ namespace FCS_Funding.Views.UserControls
                             familySessions++;
                         }
                         totalMinutesofClientService += session.appointmentDateTimeEnd.Subtract(session.appointmentDateTimeStart).TotalMinutes;  //Cannot add hours because sessions less than 1 hour will not be tallied.
+                    }
 
-                        //Total count per funding source.
-                        foreach (var fu in listOfAllKnownFunding)
+                    //Total count per funding source.
+                    foreach (var se in sessionInformation)
+                    {
+                        if (se.fundingSource != null)
                         {
                             for (var y = 0; y < listOfAllKnownFunding.Count(); y++)
                             {
-                                if (arrayOfFundingCounts[y,0].Equals(fu.fundingSourceID))
+                                if (arrayOfFundingCounts[y, 0].Equals(se.fundingSource))
                                 {
                                     arrayOfFundingCounts[y, 1]++;
+                                    break;
                                 }
+                            }
+                        }
+                        if (!se.typeofCx.Equals("Not Cxl"))
+                        {
+                            switch (se.typeofCx)
+                            {
+                                case "Lt Cxl":
+                                    arrayOfCancellations[0]++;
+                                    break;
+                                case "Cxl":
+                                    arrayOfCancellations[1]++;
+                                    break;
+                                case "No Show":
+                                    arrayOfCancellations[2]++;
+                                    break;
                             }
                         }
                     }
@@ -409,6 +794,125 @@ namespace FCS_Funding.Views.UserControls
                 double totalHoursofService = totalMinutesofService / 60;
 
 
+                // GENERATE HTML STRING OR FORMAT FOR REPORTING MECHANISM
+                String toPrint = "<!DOCTYPE html>"
+                + "<html>"
+                + "<head>"
+                + " <style>"
+                + "header nav, footer {"
+                + "   display: none;"
+                + "}"
+                + "body {"
+                + "    font-size:11pt;"
+                + "    margin: -40px;"
+                + "}"
+                + "</style>"
+                + "</head>"
+                + "<body>"
+                + "<div style='position:relative;' id='wrap'>"
+                + "    <div style='color:#000000;font-size:18pt;position:relative;left:25px;top:20px;'>Demographic Report</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:80px;'>Staff Name: </div>"
+                + "    <div style='color:#000000;position:absolute;left:425px;top:80px;'>Location: </div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:105px;'>New: " + newPatients + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:225px;top:105px;'>Ongoing: " + ongoingPatients + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:425px;top:105px;'>Total Clients: " + totalPatients + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:130px;'>Individual: " + individualSessions + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:225px;top:130px;'>Family Sessions: " + familySessions + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:425px;top:130px;'>Groups: " + groupSessions + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:155px;'>Head of household</div>"
+                + "    <div style='color:#000000;position:absolute;left:225px;top:155px;'>M: " + hoHMaleCount + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:325px;top:155px;'>F: " + hoHFemaleCount + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:425px;top:155px;'>Total Families: " + familySessions + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:180px;'># Individuals in the household: " + hoHIndividuals + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:600px;top:175px;'>LtCxl: " + arrayOfCancellations[0] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:600px;top:195px;'>Cxl: " + arrayOfCancellations[1] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:600px;top:214px;'>No Show: " + arrayOfCancellations[2] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:214px;'>Total Hours of service: " + totalHoursofService + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:255px;'>Age:</div>"
+                + "    <div style='color:#000000;position:absolute;left:150px;top:255px;'>1. 0-5: " + ageTotals[0] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:300px;top:255px;'>2. 6-11: " + ageTotals[1] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:450px;top:255px;'>3. 12-17: " + ageTotals[2] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:600px;top:255px;'>4. 18-23: " + ageTotals[3] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:150px;top:275px;'>5. 24-44: " + ageTotals[4] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:300px;top:275px;'>6. 45-54: " + ageTotals[5] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:450px;top:275px;'>7. 55-69: " + ageTotals[6] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:600px;top:275px;'>8. 70+: " + ageTotals[7] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:295px;'>Gender of Client</div>"
+                + "    <div style='color:#000000;position:absolute;left:225px;top:295px;'>M: " + totalMales + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:325px;top:295px;'>F: " + totalFemales + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:320px;'>Ethnicity</div>"
+                + "    <div style='color:#000000;position:absolute;left:150px;top:320px;'>1. African American: " + totalEthnicity[0] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:340px;top:320px;'>2. Natice/Alaskan: " + totalEthnicity[1] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:510px;top:320px;'>3. Pacific Islander: " + totalEthnicity[2] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:700px;top:320px;'>4. Asian: " + totalEthnicity[3] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:150px;top:340px;'>5. Caucasian: " + totalEthnicity[4] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:340px;top:340px;'>6. Hispanic: " + totalEthnicity[5] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:510px;top:340px;'>7. Other: " + totalEthnicity[6] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:380px;'>Income</div>"
+                + "    <div style='color:#000000;position:absolute;left:150px;top:380px;'>1. $0-9,999: " + totalIncome[0] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:300px;top:380px;'>2. $10,000-14,999: " + totalIncome[1] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:450px;top:380px;'>3. $15,000-24,999: " + totalIncome[2] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:600px;top:380px;'>4. $25,000-34,999: " + totalIncome[3] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:150px;top:400px;'>5. $35,000+: " + totalIncome[4] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:25px;top:425px;'>County:</div>"
+                + "    <div style='color:#000000;position:absolute;left:125px;top:425px;'>1. Weber: " + totalCounty[0] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:250px;top:425px;'>2. Davis: " + totalCounty[1] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:375px;top:425px;'>3. DCLC: " + totalCounty[2] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:500px;top:425px;'>4. Morgan: " + totalCounty[3] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:625px;top:425px;'>5. Box Elder: " + totalCounty[4] + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:770px;top:425px;'>6. Other: " + totalCounty[5] + "</div>";
+
+                String toPrintFunding = "    <div style='color:#000000;position:absolute;left:25px;top:455px;'>Funding Source:</div>";
+                int fCount = 0;
+                int xLoc = 150;
+                int yLoc = 455;
+                int totalCount = 1;
+                foreach (var fu in listOfAllKnownFunding)
+                {
+                    toPrintFunding += "    <div style='color:#000000;position:absolute;left:" + xLoc + "px;top:" + yLoc + "px;'>" + totalCount + ". " + fu.fundingSource + ": " + arrayOfFundingCounts[totalCount-1,1] + "</div>";
+                    if (fCount <= 5)    // 5 per row
+                    {
+                        xLoc += 125;
+                        fCount++;
+                    }
+                    else
+                    {
+                        yLoc += 20;
+                        xLoc = 150;
+                        fCount = 0;
+                    }
+                    totalCount++;
+                }
+                yLoc += 40;
+                String toPrinProblems = "     <div style='color:#000000;position:absolute;left:25px;top:" + yLoc + "px; '>Problem:</div>";
+                int pCount = 1;
+                totalCount = 1;
+                xLoc = 45;
+                yLoc += 20;
+                foreach (var pr in listOfAllKnownProblems)
+                {
+                    toPrinProblems += "    <div style='color:#000000;position:absolute;left:" + xLoc + "px;top:" + yLoc + "px;'>" + totalCount + ". " + pr.problemType+ ": " + arrayOfProblemCounts[pr.problemID] + "</div>";
+                    if (pCount <= 3)    // 3 per row
+                    {
+                        if (pCount == 1)
+                        { xLoc += 195; }
+                        else if (pCount == 2) { xLoc += 235; }
+                        else { xLoc += 210; }
+                        pCount++;
+                    }
+                    else
+                    {
+                        yLoc += 20;
+                        xLoc = 45;
+                        pCount = 1;
+                    }
+                    totalCount++;
+
+                }
+                toPrint += toPrintFunding + toPrinProblems;
+                toPrint += "</body>"
+                + "</html>";
+
                 Console.WriteLine("newPatients: " + newPatients + " - ongoingPatients: " + ongoingPatients + " - Total: " + totalPatients);
                 Console.WriteLine("individualSessions: " + individualSessions + " - groupSessions: " + groupSessions + " - familySessions: " + familySessions);
                 Console.WriteLine("hoHMaleCount: " + hoHMaleCount + " - hoHFemaleCount: " + hoHFemaleCount + " - - hoHTotalFamiles: " + hoHTotalFamiles + " - hoHIndividuals: " + hoHIndividuals);
@@ -419,8 +923,24 @@ namespace FCS_Funding.Views.UserControls
                 Console.WriteLine("Income  0: " + totalIncome[0] + "  1: " + totalIncome[1] + "  2: " + totalIncome[2] + "  3: " + totalIncome[3] + "  4: " + totalIncome[4]);
                 Console.WriteLine("County  Weber: " + totalCounty[0] + "  Davis: " + totalCounty[1] + "  DCLC: " + totalCounty[2] + "  Morgan: " + totalCounty[3] + "  Box Elder: " + totalCounty[4] + "  Other: " + totalCounty[5]);
 
+                Console.WriteLine("\n\nFunding Source:");
+                fCount = 0;
+                foreach (var fu in listOfAllKnownFunding)
+                {
+                    if (fCount <=5)
+                    {
+                        Console.Write(" " + fu.fundingSource + ": " + arrayOfFundingCounts[fCount, 1]);
+                    }
+                    else
+                    {
+                        Console.WriteLine(" " + fu.fundingSource + ": " + arrayOfFundingCounts[fCount,1]);
+                        fCount = 0;
+                    }
+                    fCount++;
+                }
                 //Print 4 problems per line.
-                int pCount = 1;
+                Console.WriteLine("\n\nProblems:");
+                pCount = 1;
                 foreach (var pr in listOfAllKnownProblems)
                 {
                     if (pCount <= 3)
@@ -434,49 +954,7 @@ namespace FCS_Funding.Views.UserControls
                     }
                     pCount++;
                 }
-
-                /*
-                int sessionTypeIndiv = listOfAllSessions.Where(x => x.expenseTypeID.Equals(1)).Count();
-                int sessionTypeGroup = listOfAllSessions.Where(x => x.expenseTypeID.Equals(2)).Count();
-                int sessionTypeFamily = listOfAllSessions.Where(x => x.expenseTypeID.Equals(3)).Count();
-
-                int HoHM = listOfAllSessions.Where(x => (x.isHeadOfHousehold.Equals(true)) && x.gender.Equals("Male")).Count();
-                int HoHF = listOfAllSessions.Where(x => (x.isHeadOfHousehold.Equals(true)) && x.gender.Equals("Female")).Count();
-
-                //int ageBracket1 = listOfAllSessions.Where(x => x.ageGroup.Contains("0-5")).GroupBy(x=>x.patientID).Count();
-                int ageBracket1 = listOfAllSessions.Where(x => x.ageGroup.Contains("0-5")).Count();
-                int ageBracket2 = listOfAllSessions.Where(x => x.ageGroup.Contains("6-11")).Count();
-                int ageBracket3 = listOfAllSessions.Where(x => x.ageGroup.Contains("12-17")).Count();
-                int ageBracket4 = listOfAllSessions.Where(x => x.ageGroup.Contains("18-23")).Count();
-                int ageBracket5 = listOfAllSessions.Where(x => x.ageGroup.Contains("24-44")).Count();
-                int ageBracket6 = listOfAllSessions.Where(x => x.ageGroup.Contains("45-54")).Count();
-                int ageBracket7 = listOfAllSessions.Where(x => x.ageGroup.Contains("55-69")).Count();
-                int ageBracket8 = listOfAllSessions.Where(x => x.ageGroup.Contains("70+")).Count();
-
-                int genderMale = listOfAllSessions.Where(x => x.gender.Equals("Male")).Count();
-                int genderFemale = listOfAllSessions.Where(x => x.gender.Equals("Female")).Count();
-
-                int ethnicity1 = listOfAllSessions.Where(x => x.ethnicity.Equals("African American")).Count();
-                int ethnicity2 = listOfAllSessions.Where(x => x.ethnicity.Equals("Native/Alaskan")).Count();
-                int ethnicity3 = listOfAllSessions.Where(x => x.ethnicity.Equals("Pacific Islander")).Count();
-                int ethnicity4 = listOfAllSessions.Where(x => x.ethnicity.Equals("Asian")).Count();
-                int ethnicity5 = listOfAllSessions.Where(x => x.ethnicity.Equals("Caucasian")).Count();
-                int ethnicity6 = listOfAllSessions.Where(x => x.ethnicity.Equals("Hispanic")).Count();
-                int ethnicity7 = listOfAllSessions.Where(x => x.ethnicity.Equals("Other")).Count();
-
-                int incomeBracket1 = listOfAllSessions.Where(x => x.patientIncome.Equals("$0-9,999")).Count();
-                int incomeBracket2 = listOfAllSessions.Where(x => x.patientIncome.Equals("$10,000-14,999")).Count();
-                int incomeBracket3 = listOfAllSessions.Where(x => x.patientIncome.Equals("$15,000-24,999")).Count();
-                int incomeBracket4 = listOfAllSessions.Where(x => x.patientIncome.Equals("$25,000-34,999")).Count();
-                int incomeBracket5 = listOfAllSessions.Where(x => x.patientIncome.Equals("$35,000+")).Count();
-
-                int county1 = listOfAllSessions.Where(x => x.patientCounty.Equals("Weber")).Count();
-                int county2 = listOfAllSessions.Where(x => x.patientCounty.Equals("Davis")).Count();
-                int county3 = listOfAllSessions.Where(x => x.patientCounty.Equals("DCLC")).Count();
-                int county4 = listOfAllSessions.Where(x => x.patientCounty.Equals("Morgan")).Count();
-                int county5 = listOfAllSessions.Where(x => x.patientCounty.Equals("Box Elder")).Count();
-                int county6 = listOfAllSessions.Where(x => x.patientCounty.Equals("Other")).Count();
-                */
+                Console.WriteLine(toPrint);
             } else
             {
                 System.Windows.MessageBox.Show("Please pick a valid starting and ending date prior to clicking Generate Report");
