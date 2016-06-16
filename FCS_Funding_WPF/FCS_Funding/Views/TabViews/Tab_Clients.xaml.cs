@@ -6,6 +6,7 @@ using FCS_Funding.Views;
 using FCS_DataTesting;
 using FCS_Funding.Models;
 using System.Collections.Generic;
+using FCS_Funding.Views.Windows;
 
 namespace FCS_Funding.Views.TabViews
 {
@@ -58,32 +59,11 @@ namespace FCS_Funding.Views.TabViews
 				DataGrid dg = sender as DataGrid;
 
 				PatientGrid p = (PatientGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdatePatient up = new UpdatePatient(p);
-
-				if (StaffRole == Definition.Admin)
-				{
-					up.UpPatient.IsEnabled = true;
-					up.DeleteClien.IsEnabled = true;
-					up.AddSession.IsEnabled = true;
-				}
-				else if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-				{
-					up.UpPatient.IsEnabled = false;
-					up.DeleteClien.IsEnabled = false;
-					up.AddSession.IsEnabled = false;
-				}
-				up.TheHead.IsChecked = p.IsHead;
-				up.Gender.SelectedIndex = Determine_GenderIndex(p.Gender);
-				up.AgeGroup.SelectedIndex = Determine_AgeGroupIndex(p.AgeGroup);
-				up.Ethnicity.SelectedIndex = Determine_EthnicGroupIndex(p.Ethnicity);
-				//up.firstName = p.FirstName;
-				//up.lastName = p.LastName;
-				//up.patientOQ = p.PatientOQ;
-				//up.relationToHead = p.RelationToHead;
-				up.Topmost = true;
-				up.ShowDialog();
+				Window_Client clientWindow = new Window_Client(StaffRole, p);
+				
+				clientWindow.ShowDialog();
 			}
-			catch
+			catch (Exception error)
 			{
 			}
 
@@ -93,7 +73,7 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
 		{
-			CreateNewPatient ch = new CreateNewPatient();
+			Window_Client ch = new Window_Client(StaffRole, null);
 			ch.combobox_Gender.SelectedIndex = 0;
 			ch.combobox_AgeGroup.SelectedIndex = 0;
 			ch.combobox_ethnicity.SelectedIndex = 0;

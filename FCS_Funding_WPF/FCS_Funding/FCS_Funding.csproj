@@ -168,7 +168,6 @@
     <Compile Include="Views\CreateNewAccount.xaml.cs" />
     <Compile Include="Views\CreateNewDonor.xaml.cs" />
     <Compile Include="Views\CreateNewEvent.xaml.cs" />
-    <Compile Include="Views\CreateNewPatient.xaml.cs" />
     <Compile Include="Views\DeletePurposes.cs" />
     <Compile Include="Views\EditGrantProposals.xaml.cs" />
     <Compile Include="Views\EventDonorDonation.xaml.cs" />
@@ -241,6 +240,9 @@
       <DependentUpon>Report_InKindDonations.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewGrantProposals.xaml.cs" />
+    <Compile Include="Views\Windows\Window_Client.xaml.cs">
+      <DependentUpon>Window_Client.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -345,10 +347,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CreateNewEvent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\CreateNewPatient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -483,6 +481,10 @@
     <Page Include="Views\ViewGrantProposals.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\Window_Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
