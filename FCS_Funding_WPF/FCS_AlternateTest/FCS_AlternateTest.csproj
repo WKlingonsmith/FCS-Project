@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -43,6 +51,7 @@
     <Reference Include="PresentationFramework.Luna" />
     <Reference Include="PresentationFramework.Royale" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Windows.Forms" />
@@ -72,10 +81,25 @@
     <Compile Include="Utilities\ThreadUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FCS_DataTesting\FCS_DataTesting.csproj">
+      <Project>{c97a3bc5-35bc-4e38-b295-d2b1a5e6e0d2}</Project>
+      <Name>FCS_DataTesting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FCS_Funding\FCS_Funding.csproj">
       <Project>{A096A895-12B3-4F73-88FD-025367BE621F}</Project>
       <Name>FCS_Funding</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FCS_Funding_Test\FCS_Funding_Test.csproj">
+      <Project>{7251ba8e-2ea1-4c6d-88d9-07b2c314dcd5}</Project>
+      <Name>FCS_Funding_Test</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

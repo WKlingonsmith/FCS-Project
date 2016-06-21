@@ -1,6 +1,6 @@
 ﻿using System;
 using FCS_Funding;
-using FCS_Funding.Views;
+using FCS_Funding.Views.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +10,8 @@ using System.Windows.Controls;
 
 namespace FCS_AlternateTest
 {
+	using Definition;
+
 	[TestClass]
 	public class UnitTest1
 	{
@@ -19,9 +21,12 @@ namespace FCS_AlternateTest
 		[TestMethod]
 		public void TestNumberOnlyInput()
 		{
-			CreateNewPatient window = OpenCreateNewPatient();
+			Window_Client window = OpenCreateNewPatient();
 
-		//	Client OQ Textbo
+			//	Client OQ Textbo
+			ClickTextBox(window, window.textbox_ClientOQ);
+			KeyboardUtilities.SendKeys("^a");
+			KeyboardUtilities.SendBackspace();
 			ClickTextBox(window, window.textbox_ClientOQ);
 			KeyboardUtilities.SendKeys("123456789abcdefghijklmnopqrstuvwxyz");
 
@@ -49,7 +54,7 @@ namespace FCS_AlternateTest
 		[TestMethod]
 		public void TestButtonDisable()
 		{
-			CreateNewPatient window = OpenCreateNewPatient();
+			Window_Client window = OpenCreateNewPatient();
 
 			//	Check that the button is initially disabled
 			CheckAddPatientButtonState(window, false);
@@ -142,13 +147,13 @@ namespace FCS_AlternateTest
 		}
 
 	//	Used in the TestButtonDisable test
-		private void CheckAddPatientButtonState(CreateNewPatient window, bool isEnabled)
+		private void CheckAddPatientButtonState(Window_Client window, bool isEnabled)
 		{
-			GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.button_AddClient.IsLoaded)));
+			GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.button_AddUpdateClient.IsLoaded)));
 
 			ThreadUtilities.RunOnUIThread(new Action(() =>
 			{
-				Assert.AreEqual(isEnabled, (bool)window.button_AddClient.IsEnabled);
+				Assert.AreEqual(isEnabled, (bool)window.button_AddUpdateClient.IsEnabled);
 			}));
 		}
 
@@ -157,7 +162,7 @@ namespace FCS_AlternateTest
 	/// </summary>
 	/// <param name="window"></param>
 	/// <param name="window_textbox"></param>
-		private void ClickTextBox(CreateNewPatient window, TextBox window_textbox)
+		private void ClickTextBox(Window_Client window, TextBox window_textbox)
 		{
 			Point middle = new Point();
 			ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_textbox)));
@@ -170,7 +175,7 @@ namespace FCS_AlternateTest
 	/// </summary>
 	/// <param name="window"></param>
 	/// <param name="window_checkbox"></param>
-		private void ClickCheckbox(CreateNewPatient window, CheckBox window_checkbox)
+		private void ClickCheckbox(Window_Client window, CheckBox window_checkbox)
 		{
 			Point middle = new Point();
 			ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_checkbox)));
@@ -181,13 +186,13 @@ namespace FCS_AlternateTest
 	/// Opens CreateNewPatient dialog, then returns the object
 	/// </summary>
 	/// <returns></returns>
-		private CreateNewPatient OpenCreateNewPatient()
+		private Window_Client OpenCreateNewPatient()
 		{
-			CreateNewPatient window = null;
+			Window_Client window = null;
 
 			ThreadUtilities.RunOnUIThread(new Action(() =>
 			{
-				window = new CreateNewPatient();
+				window = new Window_Client(Definition.Admin, null);
 				window.Show();
 			}));
 
