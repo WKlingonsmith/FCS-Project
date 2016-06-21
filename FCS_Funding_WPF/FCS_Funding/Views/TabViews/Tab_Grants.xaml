@@ -53,7 +53,7 @@
 		
 		<!--<Button  Content="Refresh" Click="Refresh_Grants"  Grid.Column="7"   />-->
 
-		<DataGrid Name="Grant_DataGrid" Grid.Column="2"  Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="17" CanUserResizeColumns="True" Loaded="Grants_Grid"  
+		<DataGrid Name="Grant_DataGrid" Grid.Column="2"  Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="17" CanUserResizeColumns="True" Loaded="Refresh_GrantGrid"  
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0,3,1,0" PreviewMouseDoubleClick="EditGrant">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Grant Name" Width="100" Binding="{Binding Path=GrantName}"/>

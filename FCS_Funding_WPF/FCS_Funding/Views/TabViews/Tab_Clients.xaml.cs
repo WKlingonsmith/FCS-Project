@@ -42,11 +42,6 @@ namespace FCS_Funding.Views.TabViews
 		}
 
 //	-----------------------------------------------------------------------------
-		public void Refresh_Patients(object sender, RoutedEventArgs e)
-		{
-			Refresh_ClientGrid();
-		}
-
 		/// <summary>
 		/// This method is for when the EditPatient button is clicked
 		/// </summary>
@@ -68,7 +63,7 @@ namespace FCS_Funding.Views.TabViews
 			}
 
 		//	Refresh the grid
-			Refresh_ClientGrid();
+			Refresh_ClientGrid(sender, e);
 		}
 
 		private void Open_CreateNewPatient(object sender, RoutedEventArgs e)
@@ -80,7 +75,7 @@ namespace FCS_Funding.Views.TabViews
 			ch.ShowDialog();
 
 		//	Refresh the grid after closing the create new patient
-			Refresh_ClientGrid();
+			Refresh_ClientGrid(sender, e);
 		}
 
 		//	-----------------------------------------------------------------------------
@@ -88,7 +83,7 @@ namespace FCS_Funding.Views.TabViews
 		/// <summary>
 		/// This is to handle the refreshing AND filtering of the Client Page
 		/// </summary>
-		private void Refresh_ClientGrid()
+		private void Refresh_ClientGrid(object sender, RoutedEventArgs e)
 		{
 			string filterText = textbox_Search.Text;
 			string selectedItem = combobox_Search.Text;
@@ -136,68 +131,5 @@ namespace FCS_Funding.Views.TabViews
 
 			GC.Collect();
 		}
-
-		//	Indeces for indexing
-		private int Determine_GenderIndex(string selection)
-		{
-			switch (selection)
-			{
-				case "Male":
-					return 0;
-				case "Female":
-					return 1;
-				case "Other":
-					return 2;
-				default:
-					return 2;
-			}
-		}
-		private int Determine_AgeGroupIndex(string selection)
-		{
-			switch (selection)
-			{
-				case "0-5":
-					return 0;
-				case "6-11":
-					return 1;
-				case "12-17":
-					return 2;
-				case "18-23":
-					return 3;
-				case "24-44":
-					return 4;
-				case "45-54":
-					return 5;
-				case "55-69":
-					return 6;
-				case "70+":
-					return 7;
-				default:
-					return 0;
-			}
-		}
-		private int Determine_EthnicGroupIndex(string selection)
-		{
-			switch (selection)
-			{
-				case "African American":
-					return 0;
-				case "Native/Alaskan":
-					return 1;
-				case "Pacific Islander":
-					return 2;
-				case "Asian":
-					return 3;
-				case "Caucasian":
-					return 4;
-				case "Hispanic":
-					return 5;
-				case "Other":
-					return 6;
-				default:
-					return 0;
-			}
-		}
-
 	}
 }

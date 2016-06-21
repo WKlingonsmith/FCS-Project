@@ -46,7 +46,7 @@
                     <TextBox FontSize="18" Grid.Column="3" Grid.ColumnSpan="2" Margin="0.2,0,10,0" Grid.Row="1" />
                     <Button Height="45" Width="210" Grid.Column="5" Grid.Row="0" Content="Filter" />-->
 		<!--<Button Content="Refresh" Click="Refresh_InKind"  Grid.Column="4" Grid.Row="0" VerticalAlignment="Top" Height="42" Grid.ColumnSpan="2" Margin="167,0,1,0" Grid.RowSpan="2" />-->
-		<DataGrid Name="InKind_DataGrid" Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="16" CanUserResizeColumns="True" Loaded="InKindItemGrid"  
+		<DataGrid Name="InKind_DataGrid" Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="16" CanUserResizeColumns="True" Loaded="Refresh_InKindGrid"  
                               IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="0,1,1,0" PreviewMouseDoubleClick="Edit_InKindItem">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Item" Width="100" Binding="{Binding Path=ItemName}"/>

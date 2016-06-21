@@ -36,7 +36,7 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 		<Button Name="CreateNewDon" Grid.Column="0" Content="Create New Donor" Click="Open_CreateNewDonor"   HorizontalAlignment="Left" Width="158" />
-		<!--<Button  Content="Refresh" Click="Refresh_Donor"  Grid.Column="5" Margin="0,0,0,24" Grid.RowSpan="2" HorizontalAlignment="Left" Width="169"/>-->
+		<Button Name="CreateNewPurpose" Grid.Column="1" Content="Create New Purpose" Click="Open_AddPurpose"   HorizontalAlignment="Left" Width="158" />
 		<TabControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="16"  >
 			<TabControl.Resources>
 				<Style TargetType="TabItem">
@@ -105,7 +105,7 @@
                                 </ComboBox>
                                 <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />-->
 
-					<DataGrid Name="Donor_DataGrid" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="13" CanUserResizeColumns="True" Loaded="Donor_Grid"  AutoGenerateColumns="False" 
+					<DataGrid Name="Donor_DataGrid" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="13" CanUserResizeColumns="True" Loaded="Refresh_DonorGrid"  AutoGenerateColumns="False" 
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonor" Margin="-1,-4,1,4" >
 						<DataGrid.Columns>
 							<DataGridTextColumn Header="First Name" Width="*" Binding="{Binding Path=DonorFirstName}"/>
@@ -154,7 +154,7 @@
                                 </ComboBox>
                                 <TextBox FontSize="18" Grid.Column="2"  Margin="0.2,0,10,0" Grid.Row="0" Grid.ColumnSpan="2" />
                                 <Button Grid.Column="4" Grid.Row="0" Content="Filter"  />-->
-					<DataGrid Name="Donation_DataGrid" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Donation_Grid"  AutoGenerateColumns="False" Margin="0,0,0.571,0"
+					<DataGrid Name="Donation_DataGrid" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" Grid.RowSpan="12" CanUserResizeColumns="True" Loaded="Refresh_DonationGrid"  AutoGenerateColumns="False" Margin="0,0,0.571,0"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
 						<DataGrid.Columns>
 							<DataGridTextColumn Header="Donation ID" Width="*" Binding="{Binding Path=DonationID}"/>
@@ -169,6 +169,5 @@
 				</Grid>
 			</TabItem>
 		</TabControl>
-		<Button x:Name="CreateNewPurpose" Grid.Column="1" Content="Create New Purpose" Click="Open_AddPurpose"   HorizontalAlignment="Left" Width="158" Height="32" VerticalAlignment="Top" />
 	</Grid>
 </UserControl>

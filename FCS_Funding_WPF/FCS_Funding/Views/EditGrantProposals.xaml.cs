@@ -65,8 +65,7 @@ namespace FCS_Funding.Views
                     {
                         ///OPEN ANOTHER WINDOW TO ADD THIS PROPOSAL TO DONATION & PURPOSE TABLE
                         AddNewGrant adg = new AddNewGrant(DonorID, GrantProposalID);
-                        adg.Show();
-                        adg.Topmost = true;
+                        adg.ShowDialog();
                     }
                     this.Close();
                 }

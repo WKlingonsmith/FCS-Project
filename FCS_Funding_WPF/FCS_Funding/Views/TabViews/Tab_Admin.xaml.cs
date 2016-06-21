@@ -34,7 +34,7 @@ namespace FCS_Funding.Views.TabViews
 			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
 		}
 
-		private void Admin_Grid(object sender, RoutedEventArgs e)
+		private void Refresh_AdminGrid(object sender, RoutedEventArgs e)
 		{
 			var db = new FCS_DBModel();
 			var join1 = (from p in db.Staff
@@ -48,8 +48,7 @@ namespace FCS_Funding.Views.TabViews
 							 StaffDBRole = p.StaffDBRole
 						 });
 
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join1.ToList();
+			Admin_DataGrid.ItemsSource = join1.ToList();
 		}
 
 		private void CreateNewAccount(object sender, RoutedEventArgs e)
@@ -57,6 +56,8 @@ namespace FCS_Funding.Views.TabViews
 			CreateNewAccount cna = new CreateNewAccount();
 			cna.ShowDialog();
 			cna.UserRole.SelectedIndex = 0;
+
+			Refresh_AdminGrid(sender, e);
 		}
 
 		private void EditAccount(object sender, MouseButtonEventArgs e)
@@ -85,12 +86,8 @@ namespace FCS_Funding.Views.TabViews
 				}
 				up.ShowDialog();
 			}
-		}
 
-		private void Refresh_Admin(object sender, RoutedEventArgs e)
-		{
-			sender = Admin_DataGrid;
-			Admin_Grid(sender, e);
+			Refresh_AdminGrid(sender, e);
 		}
 	}
 }

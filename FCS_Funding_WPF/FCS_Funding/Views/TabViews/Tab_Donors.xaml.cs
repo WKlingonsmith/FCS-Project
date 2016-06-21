@@ -102,9 +102,52 @@ namespace FCS_Funding.Views.TabViews
 			catch
 			{
 			}
+
+			//	Refresh the grid after editing
+			Refresh_DonorGrid(sender, e);
 		}
 
-		private void Donor_Grid(object sender, RoutedEventArgs e)
+
+		private void Open_CreateNewDonor(object sender, RoutedEventArgs e)
+		{
+			CreateNewDonor ch = new CreateNewDonor();
+			ch.ShowDialog();
+
+			//	Refresh the grid
+			Refresh_DonorGrid(sender, e);
+		}
+
+		private void Open_AddPurpose(object sender, RoutedEventArgs e)
+		{
+			AddPurpose ap = new AddPurpose();
+			ap.ShowDialog();
+		}
+
+		private void EditDonation(object sender, MouseButtonEventArgs e)
+		{
+			try
+			{
+				if (StaffRole != Definition.Basic)
+				{
+					DataGrid dg = sender as DataGrid;
+
+					DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+					UpdateDonation up = new UpdateDonation(p);
+
+					if (StaffRole != Definition.Admin)
+					{
+						up.DeleteDon.IsEnabled = false;
+					}
+					up.DonationDate.SelectedDate = p.DonationDate;
+					up.ShowDialog();
+				}
+			}
+			catch
+			{
+			}
+			Refresh_DonationGrid(sender, e);
+		}
+		private void Refresh_DonorGrid(object sender, RoutedEventArgs e)
 		{
 			var db = new FCS_DBModel();
 			var join1 = (from d in db.Donors
@@ -139,18 +182,10 @@ namespace FCS_Funding.Views.TabViews
 							DonorZip = d.DonorZip
 						});
 
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join1.ToList();
+			Donor_DataGrid.ItemsSource = join1.ToList();
 		}
 
-
-		private void Open_CreateNewDonor(object sender, RoutedEventArgs e)
-		{
-			CreateNewDonor ch = new CreateNewDonor();
-			ch.ShowDialog();
-		}
-
-		private void Donation_Grid(object sender, RoutedEventArgs e)
+		private void Refresh_DonationGrid(object sender, RoutedEventArgs e)
 		{
 			var db = new FCS_DBModel();
 			var join2 = (from d in db.Donations
@@ -184,52 +219,8 @@ namespace FCS_Funding.Views.TabViews
 									  DonorLastName = c.ContactLastName,
 									  OrganizationName = "",
 								  });
-
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join2.ToList();
-		}
-
-		private void EditDonation(object sender, MouseButtonEventArgs e)
-		{
-			try
-			{
-				if (StaffRole != Definition.Basic)
-				{
-					DataGrid dg = sender as DataGrid;
-
-					DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-					UpdateDonation up = new UpdateDonation(p);
-
-					if (StaffRole != Definition.Admin)
-					{
-						up.DeleteDon.IsEnabled = false;
-					}
-					up.DonationDate.SelectedDate = p.DonationDate;
-					up.ShowDialog();
-				}
-			}
-			catch
-			{
-			}
-		}
-
-		private void Refresh_Donor(object sender, RoutedEventArgs e)
-		{
-			if (donorTab.IsSelected == true)
-			{
-				sender = Donor_DataGrid;
-				Donor_Grid(sender, e);
-			}
-			else if (donationTab.IsSelected == true)
-			{
-				sender = Donation_DataGrid;
-				Donation_Grid(sender, e);
-			}
-		}
-		private void Open_AddPurpose(object sender, RoutedEventArgs e)
-		{
-			AddPurpose ap = new AddPurpose();
-			ap.ShowDialog();
+								  
+			Donation_DataGrid.ItemsSource = join2.ToList();
 		}
 	}
 }

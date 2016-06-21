@@ -49,28 +49,52 @@ namespace FCS_Funding.Views.TabViews
 
 			if (StaffRole != Definition.Basic)
 			{
-				DataGrid dg = sender as DataGrid;
-
-				GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateGrant up = new UpdateGrant(p);
-				if (StaffRole != Definition.Admin)
+				try
 				{
-					up.DeleteGran.IsEnabled = false;
+					DataGrid dg = sender as DataGrid;
+
+					GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+					UpdateGrant up = new UpdateGrant(p);
+					if (StaffRole != Definition.Admin)
+					{
+						up.DeleteGran.IsEnabled = false;
+					}
+					//Grant prop ID & donation ID with expense
+					//p.DonationID
+					var expenseTotal = (from ex in db.Expenses
+										where ex.DonationID == p.DonationID
+										select ex).Count();
+					if (expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
+					up.DonationDate.SelectedDate = p.DonationDate;
+					up.DonationExpiration.SelectedDate = p.ExpirationDate;
+					up.Topmost = true;
+					up.ShowDialog();
 				}
-				//Grant prop ID & donation ID with expense
-				//p.DonationID
-				var expenseTotal = (from ex in db.Expenses
-									where ex.DonationID == p.DonationID
-									select ex).Count();
-				if (expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
-				up.DonationDate.SelectedDate = p.DonationDate;
-				up.DonationExpiration.SelectedDate = p.ExpirationDate;
-				up.Topmost = true;
-				up.ShowDialog();
+				catch (Exception error)
+				{
+				}
 			}
+
+			Refresh_GrantGrid(sender, e);
 		}
 
-		private void Grants_Grid(object sender, RoutedEventArgs e)
+		private void Open_CreateGrantProposal(object sender, RoutedEventArgs e)
+		{
+			CreateGrantProposal cgp = new CreateGrantProposal();
+			cgp.ShowDialog();
+
+			Refresh_GrantGrid(sender, e);
+		}
+
+		private void Open_ViewGrantProposals(object sender, RoutedEventArgs e)
+		{
+			ViewGrantProposals vgp = new ViewGrantProposals(StaffRole);
+			vgp.ShowDialog();
+
+			Refresh_GrantGrid(sender, e);
+		}
+
+		private void Refresh_GrantGrid(object sender, RoutedEventArgs e)
 		{
 			var db = new FCS_DBModel();
 			var join1 = from d in db.Donations
@@ -89,32 +113,8 @@ namespace FCS_Funding.Views.TabViews
 							GrantProposalID = gp.GrantProposalID
 						};
 
-			GrantsDataGrid g1 = new GrantsDataGrid("Cross Charitable Foundation", 1024.25M, DateTime.Now, DateTime.Now, "Charitable Minds", "We wanted to donate", 1024.25M);
-			var Grants = new ObservableCollection<GrantsDataGrid>();
-			Grants.Add(g1);
-
 			// ... Assign ItemsSource of DataGrid.
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join1.ToList();
+			Grant_DataGrid.ItemsSource = join1.ToList();
 		}
-
-		private void Open_CreateGrantProposal(object sender, RoutedEventArgs e)
-		{
-			CreateGrantProposal cgp = new CreateGrantProposal();
-			cgp.ShowDialog();
-		}
-
-		private void Open_ViewGrantProposals(object sender, RoutedEventArgs e)
-		{
-			ViewGrantProposals vgp = new ViewGrantProposals(StaffRole);
-			vgp.ShowDialog();
-		}
-
-		private void Refresh_Grants(object sender, RoutedEventArgs e)
-		{
-			sender = Grant_DataGrid;
-			Grants_Grid(sender, e);
-		}
-
 	}
 }

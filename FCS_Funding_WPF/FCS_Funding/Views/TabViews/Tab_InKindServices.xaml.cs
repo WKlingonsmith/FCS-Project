@@ -66,7 +66,7 @@ namespace FCS_Funding.Views.TabViews
 				up.ShowDialog();
 			}
 		}
-		private void InKindServiceGrid(object sender, RoutedEventArgs e)
+		private void Refresh_InKindServiceGrid(object sender, RoutedEventArgs e)
 		{
 			var db = new FCS_DBModel();
 			var join1 = (from p in db.Donors
@@ -90,8 +90,7 @@ namespace FCS_Funding.Views.TabViews
 							 Value = ki.ServiceValue
 						 });
 
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join1.ToList();
+			Service_DataGrid.ItemsSource = join1.ToList();
 		}
 
 		private void Add_InKind_Service(object sender, RoutedEventArgs e)
@@ -100,12 +99,8 @@ namespace FCS_Funding.Views.TabViews
 			iks.AMPM_End.SelectedIndex = 0;
 			iks.AMPM_Start.SelectedIndex = 0;
 			iks.ShowDialog();
-		}
 
-		private void Refresh_Service(object sender, RoutedEventArgs e)
-		{
-			sender = Service_DataGrid;
-			InKindServiceGrid(sender, e);
+			Refresh_InKindServiceGrid(sender, e);
 		}
 	}
 }

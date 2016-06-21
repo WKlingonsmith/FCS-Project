@@ -40,9 +40,9 @@
         <TextBlock Text="Search By:" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Height="32" Grid.ColumnSpan="2" Margin="124,7,43.8,0.2"  />
 		<ComboBox Name="combobox_Search" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" Width="203" Height="39"  Grid.Column="1" Grid.ColumnSpan="2" Margin="125,0,9.6,0.2" />
 		<TextBox Name="textbox_Search" FontSize="18" Grid.Column="3" Margin="0,0,1,0" Grid.ColumnSpan="2"/>
-		<Button Grid.Column="5" Content="Filter" Click="Refresh_Patients"/>
+		<Button Grid.Column="5" Content="Filter" Click="Refresh_ClientGrid"/>
        <!-- <Button Content="Refresh" Click="Refresh_Patients"  Grid.Column="5" Grid.Row="1" />-->
-		<DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Refresh_Patients" CanUserResizeColumns="True"  
+		<DataGrid Name="PatientGrid" Grid.ColumnSpan="5" Grid.RowSpan="12" Loaded="Refresh_ClientGrid" CanUserResizeColumns="True"  
                               IsReadOnly="True" CanUserDeleteRows="False"  AutoGenerateColumns="False" PreviewMouseDoubleClick="EditPatient"
                               Grid.Column="1" Grid.Row="2">
             <DataGrid.Columns>

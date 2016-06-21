@@ -7,6 +7,7 @@ using FCS_DataTesting;
 
 namespace FCS_Funding.Views
 {
+	using Definition;
     /// <summary>
     /// Interaction logic for ViewGrantProposals.xaml
     /// </summary>
@@ -51,8 +52,7 @@ namespace FCS_Funding.Views
         }
         private void EditGrantProposal(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count < 3 && StaffDBRole != "Basic")
+			if (StaffDBRole != Definition.Basic)
             {
                 int index;
                 DataGrid dg = sender as DataGrid;
@@ -67,8 +67,7 @@ namespace FCS_Funding.Views
                 {
                     dgp.Deletegrantprop.IsEnabled = false;
                 }
-                dgp.Show();
-                dgp.Topmost = true;
+                dgp.ShowDialog();
                 dgp.oName.IsEnabled = false;
                 if (index == 1 || index == 2)
                 {

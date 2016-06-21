@@ -58,9 +58,19 @@ namespace FCS_Funding.Views.TabViews
 				up.DateRecieved.SelectedDate = p.DateRecieved;
 				up.ShowDialog();
 			}
+			Refresh_InKindGrid(sender, e);
 		}
 
-		private void InKindItemGrid(object sender, RoutedEventArgs e)
+		private void Add_InKind_Item(object sender, RoutedEventArgs e)
+		{
+			AddInKindItem iki = new AddInKindItem(false, -1);
+			iki.Organization.IsEnabled = false;
+			iki.ShowDialog();
+
+			Refresh_InKindGrid(sender, e);
+		}
+
+		private void Refresh_InKindGrid(object sender, RoutedEventArgs e)
 		{
 			var db = new FCS_DBModel();
 			var join1 = (from p in db.Donors
@@ -99,21 +109,7 @@ namespace FCS_Funding.Views.TabViews
 							Description = ki.ItemDescription
 						});
 
-			var grid = sender as DataGrid;
-			grid.ItemsSource = join1.ToList();
-		}
-
-		private void Add_InKind_Item(object sender, RoutedEventArgs e)
-		{
-			AddInKindItem iki = new AddInKindItem(false, -1);
-			iki.Organization.IsEnabled = false;
-			iki.ShowDialog();
-		}
-
-		private void Refresh_InKind(object sender, RoutedEventArgs e)
-		{
-			sender = InKind_DataGrid;
-			InKindItemGrid(sender, e);
+			InKind_DataGrid.ItemsSource = join1.ToList();
 		}
 	}
 }
