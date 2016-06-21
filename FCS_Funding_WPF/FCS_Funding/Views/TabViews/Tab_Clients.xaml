@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FCS_Funding.Views.TabViews"
              xmlns:constants="clr-namespace:Definition"
+			 xmlns:fcs="clr-namespace:FCS_Funding;assembly="
              mc:Ignorable="d" 
              d:DesignHeight="770" d:DesignWidth="1024">
-
+	<UserControl.Resources>
+		<fcs:BooleanConverter x:Key="BooleanConverter" />
+	</UserControl.Resources>
      <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -50,7 +53,7 @@
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_AgeGroup}" Width="110" Binding="{Binding Path=AgeGroup}"/>
 				<DataGridTextColumn Header="{x:Static constants:Definition.Filter_Ethnicity}" Width="110" Binding="{Binding Path=Ethnicity}"/>
                 <DataGridTextColumn Header="Date started" Width="110" Binding="{Binding Path=Time, StringFormat=d}"/>
-                <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=IsHead}"/>
+                <DataGridTextColumn Header="Is Head" Width="110" Binding="{Binding Path=IsHead, Converter={StaticResource BooleanConverter}}"/>
                 <DataGridTextColumn Header="Relation to Head" Width="150" Binding="{Binding Path=RelationToHead}"/>
             </DataGrid.Columns>
             <!--This is to edit the patient-->
