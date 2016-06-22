@@ -90,10 +90,10 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <ListBox x:Name="reportDemoFundingSource_listbox" HorizontalAlignment="Left" Height="188" Margin="659,172,0,0" VerticalAlignment="Top" Width="190"  DisplayMemberPath="fundingSource" SelectionMode="Multiple" SelectedValuePath="fundingSourceID"/>
-        <ListBox x:Name="reportDemoProblems_listbox" HorizontalAlignment="Left" Height="166" Margin="658,368,0,0" VerticalAlignment="Top" Width="190" DisplayMemberPath="problemType" SelectionMode="Multiple" SelectedValuePath="problemID"/>
-        <CheckBox x:Name="MonthlyDemoReport_checkbox" Content="Monthly" HorizontalAlignment="Left" Margin="389,28,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True" Click="MonthlyDemoReport_checkbox_Click"/>
-        <CheckBox x:Name="YearlyDemoReport_checkbox" Content="Yearly" HorizontalAlignment="Left" Margin="493,28,0,0" VerticalAlignment="Top" FontSize="18.667" Click="YearlyDemoReport_checkbox_Click"/>
+        <ListBox x:Name="reportDemoFundingSource_listbox" HorizontalAlignment="Left" Height="188" Margin="659,172,0,0" VerticalAlignment="Top" Width="190"  DisplayMemberPath="fundingSource" SelectionMode="Single" SelectedValuePath="fundingSourceID"/>
+        <ListBox x:Name="reportDemoProblems_listbox" HorizontalAlignment="Left" Height="166" Margin="658,368,0,0" VerticalAlignment="Top" Width="190" DisplayMemberPath="problemType" SelectionMode="Single" SelectedValuePath="problemID"/>
+        <CheckBox x:Name="MonthlyDemoReport_checkbox" Content="Monthly" HorizontalAlignment="Left" Margin="676,10,0,0" VerticalAlignment="Top" FontSize="18.667" IsChecked="True" Click="MonthlyDemoReport_checkbox_Click"/>
+        <CheckBox x:Name="YearlyDemoReport_checkbox" Content="Yearly" HorizontalAlignment="Left" Margin="780,10,0,0" VerticalAlignment="Top" FontSize="18.667" Click="YearlyDemoReport_checkbox_Click"/>
 
     </Grid>
 </UserControl>
