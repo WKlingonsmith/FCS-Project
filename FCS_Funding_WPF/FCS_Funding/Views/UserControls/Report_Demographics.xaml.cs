@@ -836,7 +836,7 @@ namespace FCS_Funding.Views.UserControls
                 int totalPatients = newPatients + ongoingPatients;
                 double totalHoursofService = totalMinutesofService / 60;
 
-                String StaffName = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBName;
+                String StaffName = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
                 // GENERATE HTML STRING OR FORMAT FOR REPORTING MECHANISM
                 String toPrint = "<!DOCTYPE html>"
                 + "<html>"
