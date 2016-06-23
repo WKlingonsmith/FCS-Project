@@ -32,7 +32,7 @@ namespace FCS_Funding
                 var query = (from p in db.Staff
                              where p.StaffUserName == us && p.StaffPassword == hashedPassword
                              select p).Distinct().First();
-                MainWindow mw = new MainWindow(query.StaffDBRole);
+                MainWindow mw = new MainWindow(query.StaffDBRole, query.StaffFirstName + " " + query.StaffLastName);
                 if(query.StaffDBRole == Definition.NoAccess)
                 {
                     MessageBox.Show("Invalid Credentials");

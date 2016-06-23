@@ -28,10 +28,12 @@ namespace FCS_Funding
 
         //Accessablity
         public string StaffDBRole { get; set; }
+        public string StaffDBName { get; set; }
 
-        public MainWindow(string StaffRole)
+        public MainWindow(string StaffRole, string StaffName)
         {
             StaffDBRole = StaffRole;
+            StaffDBName = StaffName;
             //DGrid.ItemsSource = data;
             InitializeComponent();
         }
