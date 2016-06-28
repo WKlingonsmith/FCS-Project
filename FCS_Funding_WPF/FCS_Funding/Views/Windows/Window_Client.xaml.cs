@@ -113,6 +113,7 @@ namespace FCS_Funding.Views.Windows
 
 				//	Hide those UI items that shouldn't exist
 				textbox_FamilyMemberOQ.IsEnabled = false;
+				textbox_ClientOQ.IsEnabled = false;
 
 				check_FirstHouseholdMember.Visibility = Visibility.Hidden;
 			
@@ -168,9 +169,10 @@ namespace FCS_Funding.Views.Windows
 			//	Check to see if the OQ number is already taken
 			try
 			{
-				string strPatientOQ = patientOQ.ToString(); db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientOQ).Distinct().First();
+				string strPatientOQ = patientOQ.ToString();
+				string duplicateQO = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientOQ).Distinct().First();
 
-				if (!string.IsNullOrEmpty(strPatientOQ))
+				if (!string.IsNullOrEmpty(duplicateQO))
 				{
 
 					MessageBox.Show("The OQ Number is already taken, please enter a different OQ number.");
@@ -277,6 +279,11 @@ namespace FCS_Funding.Views.Windows
 					try
 					{
 						patient.HouseholdID = db.Patients.Where(x => x.PatientOQ == famPatientOQ).Select(x => x.HouseholdID).Distinct().First();
+
+						if (patient.HouseholdID == 0)
+						{
+							throw new Exception();
+						}
 					}
 					catch (Exception error)
 					{
@@ -284,18 +291,26 @@ namespace FCS_Funding.Views.Windows
 						return;
 					}
 				}
+				
+				try 
+				{
 
-				patient.PatientOQ = patientOQ;
-				patient.PatientFirstName = firstName;
-				patient.PatientLastName = lastName;
-				patient.RelationToHead = relationToHead;
-				patient.PatientGender = PatientGender;
-				patient.PatientAgeGroup = ageGroup;
-				patient.PatientEthnicity = ethnicGroup;
-				patient.IsHead = check_HeadOfHousehold.IsChecked.Value;
-				UpdateProblems();
-				db.SaveChanges();
-				this.Close();
+					patient.PatientOQ = patientOQ;
+					patient.PatientFirstName = firstName;
+					patient.PatientLastName = lastName;
+					patient.RelationToHead = relationToHead;
+					patient.PatientGender = PatientGender;
+					patient.PatientAgeGroup = ageGroup;
+					patient.PatientEthnicity = ethnicGroup;
+					patient.IsHead = check_HeadOfHousehold.IsChecked.Value;
+					UpdateProblems();
+					db.SaveChanges();
+					this.Close();
+				}
+				catch (Exception error)
+				{
+					MessageBox.Show("Error:  " + error.ToString());
+				}
 			}
 			catch
 			{
