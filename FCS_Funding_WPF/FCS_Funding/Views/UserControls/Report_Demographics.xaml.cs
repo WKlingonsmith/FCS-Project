@@ -1070,16 +1070,6 @@ namespace FCS_Funding.Views.UserControls
             reportDemoProblems_listbox.SelectedIndex = 0;
         }
 
-        private void MonthlyDemoReport_checkbox_Click(object sender, RoutedEventArgs e)
-        {
-            YearlyDemoReport_checkbox.IsChecked = !MonthlyDemoReport_checkbox.IsChecked;
-        }
-
-        private void YearlyDemoReport_checkbox_Click(object sender, RoutedEventArgs e)
-        {
-            MonthlyDemoReport_checkbox.IsChecked = !YearlyDemoReport_checkbox.IsChecked;
-        }
-
         private void demographicsReport_button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Forms.WebBrowser newBrowser = new System.Windows.Forms.WebBrowser();
