@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FCS_Funding.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="606" d:DesignWidth="862" Loaded="UserControl_Loaded">
-    <Grid x:Name="Individual">
+    <Grid x:Name="Individual" Margin="0,0,0,10">
         <Button x:Name="demographicsReport_button" Content="Generate Report" HorizontalAlignment="Left" Margin="681,134,0,0" VerticalAlignment="Top" Width="167" Click="button_Click" RenderTransformOrigin="1.578,0.545" FontSize="18.667" MouseRightButtonDown="demographicsReport_button_MouseRightButtonDown"/>
         <DatePicker x:Name="demographicsReportFrom_datepicker" HorizontalAlignment="Left" Margin="681,41,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166"/>
         <DatePicker x:Name="demographicsReportTo_datepicker" HorizontalAlignment="Left" Margin="681,89,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166"/>
@@ -92,6 +92,10 @@
         </Label>
         <ListBox x:Name="reportDemoFundingSource_listbox" HorizontalAlignment="Left" Height="188" Margin="659,172,0,0" VerticalAlignment="Top" Width="190"  DisplayMemberPath="fundingSource" SelectionMode="Single" SelectedValuePath="fundingSourceID"/>
         <ListBox x:Name="reportDemoProblems_listbox" HorizontalAlignment="Left" Height="166" Margin="658,368,0,0" VerticalAlignment="Top" Width="190" DisplayMemberPath="problemType" SelectionMode="Single" SelectedValuePath="problemID"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="437,36,0,0" VerticalAlignment="Top" Width="120" IsEditable="True">
+            <ComboBoxItem Content="Ogden" IsSelected="True"/>
+        </ComboBox>
+        <Label x:Name="label1_Copy11" Content="Location" HorizontalAlignment="Left" Margin="353,29,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="79"/>
 
     </Grid>
 </UserControl>
