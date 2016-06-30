@@ -74,7 +74,7 @@ namespace FCS_Funding.Views.UserControls
                                                                             ethnicity = pat.PatientEthnicity,
                                                                             patientIntakeTimeDate = pat.NewClientIntakeHour,
                                                                             newClient = false
-                                                                        }),
+                                                                        }).ToList(),
                                                     houseHoldInformation = (from pat in db.Patients
                                                                             join ph in db.PatientHouseholds on pat.HouseholdID equals ph.HouseholdID
                                                                             where pat.PatientID == list.Key
@@ -86,13 +86,13 @@ namespace FCS_Funding.Views.UserControls
                                                                                 householdID = pat.HouseholdID,
                                                                                 householdCount = ph.HouseholdPopulation,
                                                                                 ageGroup = pat.PatientAgeGroup
-                                                                            }),
+                                                                            }).ToList(),
                                                     patientProblems = (from pp in db.PatientProblems
                                                                     where pp.PatientID == list.Key
                                                                     select new
                                                                     {
                                                                         problemID = pp.ProblemID
-                                                                    })
+                                                                    }).Distinct().ToList()
                                                 }).ToList();
 
                 //QUERY FOR ALL SESSIONS BETWEEN DATES FROM ABOVE
@@ -650,11 +650,11 @@ namespace FCS_Funding.Views.UserControls
 
 
                     // Calculate Head of Household counts
-                    if (houseHoldInformation.Single().isHeadOfHousehold && patientInformation.Single().gender == "Male")
+                    if (houseHoldInformation.Single().isHeadOfHousehold.Equals(true) && patientInformation.Single().gender == "Male")
                     {
                         hoHMaleCount++;
                     }
-                    else if (houseHoldInformation.Single().isHeadOfHousehold && patientInformation.Single().gender == "Female")
+                    else if (houseHoldInformation.Single().isHeadOfHousehold.Equals(true) && patientInformation.Single().gender == "Female")
                     {
                         hoHFemaleCount++;
                     }
@@ -865,7 +865,7 @@ namespace FCS_Funding.Views.UserControls
                 + "    <div style='color:#000000;position:absolute;left:25px;top:155px;'>Head of household</div>"
                 + "    <div style='color:#000000;position:absolute;left:225px;top:155px;'>M: " + hoHMaleCount + "</div>"
                 + "    <div style='color:#000000;position:absolute;left:325px;top:155px;'>F: " + hoHFemaleCount + "</div>"
-                + "    <div style='color:#000000;position:absolute;left:425px;top:155px;'>Total Families: " + familySessions + "</div>"
+                + "    <div style='color:#000000;position:absolute;left:425px;top:155px;'>Total Families: " + hoHTotalFamiles + "</div>"
                 + "    <div style='color:#000000;position:absolute;left:25px;top:180px;'># Individuals in the household: " + hoHIndividuals + "</div>"
                 + "    <div style='color:#000000;position:absolute;left:600px;top:175px;'>LtCxl: " + arrayOfCancellations[0] + "</div>"
                 + "    <div style='color:#000000;position:absolute;left:600px;top:195px;'>Cxl: " + arrayOfCancellations[1] + "</div>"
