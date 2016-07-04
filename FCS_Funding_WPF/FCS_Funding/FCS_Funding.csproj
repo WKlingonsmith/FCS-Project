@@ -200,6 +200,9 @@
     <Compile Include="Views\TabViews\Tab_Sessions.xaml.cs">
       <DependentUpon>Tab_Sessions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TestWindows\Test_Patient.xaml.cs">
+      <DependentUpon>Test_Patient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateAccount.xaml.cs">
       <DependentUpon>UpdateAccount.xaml</DependentUpon>
     </Compile>
@@ -380,6 +383,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TabViews\Tab_Sessions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestWindows\Test_Patient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

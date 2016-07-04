@@ -79,6 +79,7 @@
     <Compile Include="Utilities\KeyboardUtilities.cs" />
     <Compile Include="Utilities\MouseUtilities.cs" />
     <Compile Include="Utilities\ThreadUtilities.cs" />
+    <Compile Include="Utilities\UIUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FCS_DataTesting\FCS_DataTesting.csproj">
@@ -100,6 +101,15 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FCS_Funding.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FCS_Funding_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>FCS_Funding.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

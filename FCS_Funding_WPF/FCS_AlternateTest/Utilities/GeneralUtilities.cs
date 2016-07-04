@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -49,5 +50,5 @@ namespace UnitTestUtilities
             Rect position = GetScreenPos(element);
             return new Point(position.X + (position.Width / 2), position.Y + (position.Height / 2));
         }
-    }
+	}
 }
