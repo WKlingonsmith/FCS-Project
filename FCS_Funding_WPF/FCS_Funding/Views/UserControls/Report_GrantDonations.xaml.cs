@@ -144,6 +144,10 @@ namespace FCS_Funding.Views.UserControls
                             Date = joint.Date,
                             Balance = remainingBalance
                         });
+                        GrantSessionList.AddRange(GrantSessionList);
+                        GrantSessionList.AddRange(GrantSessionList);
+                        GrantSessionList.AddRange(GrantSessionList);
+
                     }
                 }
             }
@@ -193,8 +197,10 @@ namespace FCS_Funding.Views.UserControls
                 + "  page: blank; "
                 + "}"
                 + ".table {"
-                + "   page-break-after: always;"
                 + "   margin-top: 50px;"
+                + "}"
+                + ".break {"
+                + "   page-break-after: always;"
                 + "}"
                 + ".cell {"
                 + "   font-size:20px;"
@@ -248,7 +254,7 @@ namespace FCS_Funding.Views.UserControls
 
                             }
 
-                            browserString += "    <div class='table'><table width='1229px' border='0.5' bordercolor='black' bgcolor='black'>"
+                            browserString += "    <div class='table'><table width='100%' border='0.5' bordercolor='black' bgcolor='black'>"
                             + "        <tr border='0'>"
                             + "            <td border='0.5' style='width:656px; padding-left: 4px; text-align: center;' bgcolor='white' bordercolor='black' class='cell'>Client Name</td>"
                             + "            <td border='0.5' style='width:95px; padding-left: 4px; text-align: center;' bgcolor='white' bordercolor='black' class='cell'>Sessions</td>"
@@ -267,6 +273,10 @@ namespace FCS_Funding.Views.UserControls
                         if ((pCount == 1 && rCount % 22 == 0) || rCount == itemCount + 1 || (pCount >= 2 && rCount % 27 == 0))
                         {
                             browserString += "    </table></div>";
+                            if (pCount != rCount)
+                            {
+                                browserString += "    <div class='break'></div>";
+                            }
                             rCount = 1;
                             pCount++;
                         }
