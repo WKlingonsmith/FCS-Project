@@ -115,6 +115,7 @@ namespace FCS_Funding.Views.Windows
 
 				//	Hide those UI items that shouldn't exist
 				textbox_FamilyMemberOQ.IsEnabled = false;
+				textbox_ClientOQ.IsEnabled = false;
 
 				check_FirstHouseholdMember.Visibility = Visibility.Hidden;
 			
@@ -170,9 +171,10 @@ namespace FCS_Funding.Views.Windows
 			//	Check to see if the OQ number is already taken
 			try
 			{
-				string strPatientOQ = patientOQ.ToString(); db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientOQ).Distinct().First();
+				string strPatientOQ = patientOQ.ToString();
+				string duplicateQO = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientOQ).Distinct().First();
 
-				if (!string.IsNullOrEmpty(strPatientOQ))
+				if (!string.IsNullOrEmpty(duplicateQO))
 				{
 
 					MessageBox.Show("The OQ Number is already taken, please enter a different OQ number.");
@@ -204,7 +206,16 @@ namespace FCS_Funding.Views.Windows
 				}
 				else
 				{
-					tempPatient.HouseholdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
+					try
+					{
+						tempPatient.HouseholdID = db.Patients.Where(x => x.PatientOQ == familyOQNumber).Select(x => x.HouseholdID).Distinct().First();
+					}
+					catch (Exception error)
+					{
+						MessageBox.Show("The provided Family OQ Number does not exist. Please double-check the Family OQ Number.", "Family OQ Number Doesn't Exist", MessageBoxButton.OK, MessageBoxImage.Error);
+						return;
+					}
+
 				}
 
 				bool isHeadOfHouse = (bool)check_HeadOfHousehold.IsChecked;
@@ -269,27 +280,60 @@ namespace FCS_Funding.Views.Windows
 				if ((bool)check_ChangeHousehold.IsChecked)
 				{
 					string famPatientOQ = textbox_FamilyMemberOQ.Text;
-					int householdID = db.Patients.Where(x => x.PatientOQ == famPatientOQ).Select(x => x.HouseholdID).Distinct().First();
 
-					patient.HouseholdID = householdID;
+					try
+					{
+						patient.HouseholdID = db.Patients.Where(x => x.PatientOQ == famPatientOQ).Select(x => x.HouseholdID).Distinct().First();
+
+						if (patient.HouseholdID == 0)
+						{
+							throw new Exception();
+						}
+					}
+					catch (Exception error)
+					{
+						MessageBox.Show("The provided Family OQ Number does not exist. Please double-check the Family OQ Number.", "Family OQ Number Doesn't Exist", MessageBoxButton.OK, MessageBoxImage.Error);
+						return;
+					}
 				}
+				
+				try 
+				{
 
-				patient.PatientOQ = patientOQ;
-				patient.PatientFirstName = firstName;
-				patient.PatientLastName = lastName;
-				patient.RelationToHead = relationToHead;
-				patient.PatientGender = PatientGender;
-				patient.PatientAgeGroup = ageGroup;
-				patient.PatientEthnicity = ethnicGroup;
-				patient.IsHead = check_HeadOfHousehold.IsChecked.Value;
-				UpdateProblems();
-				db.SaveChanges();
-				this.Close();
+					patient.PatientOQ = patientOQ;
+					patient.PatientFirstName = firstName;
+					patient.PatientLastName = lastName;
+					patient.RelationToHead = relationToHead;
+					patient.PatientGender = PatientGender;
+					patient.PatientAgeGroup = ageGroup;
+					patient.PatientEthnicity = ethnicGroup;
+					patient.IsHead = check_HeadOfHousehold.IsChecked.Value;
+					UpdateProblems();
+					db.SaveChanges();
+					this.Close();
+				}
+				catch (Exception error)
+				{
+					MessageBox.Show("Error:  " + error.ToString());
+				}
 			}
 			catch
 			{
 				MessageBox.Show("Please make sure all fields are correct");
 			}
+		}
+
+		private bool check_ValidFamilyOQNumber(string familyOQ)
+		{
+			FCS_DBModel db = new FCS_DBModel();
+			int householdID = -1;
+			householdID = db.Patients.Where(x => x.PatientOQ == familyOQ).Select(x => x.HouseholdID).Distinct().First();
+
+			if (householdID == -1)
+				return false;
+
+			return true;
+
 		}
 
 		private void Delete_Client(object sender, RoutedEventArgs e)
