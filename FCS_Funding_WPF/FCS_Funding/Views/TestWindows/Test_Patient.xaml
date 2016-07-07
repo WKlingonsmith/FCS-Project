@@ -1,0 +1,29 @@
+﻿<Window x:Class="FCS_Funding.Views.TestWindows.Test_Patient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FCS_Funding.Views.TestWindows"
+        mc:Ignorable="d"
+        Title="Test_Patient" Height="356.303" Width="300">
+	<Grid>
+		<Label x:Name="lbl_OQ" Content="Patient OQ" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_PatientOQ" HorizontalAlignment="Left" Height="24" Margin="105,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
+		<Label x:Name="lbl_FirstName" Content="First Name" HorizontalAlignment="Left" Height="24" Margin="10,63,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_FirstName" HorizontalAlignment="Left" Height="24" Margin="105,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<Label x:Name="lbl_LastName" Content="Last Name" HorizontalAlignment="Left" Height="24" Margin="10,92,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_LastName" HorizontalAlignment="Left" Height="24" Margin="105,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<Label x:Name="lbl_Gender" Content="Gender" HorizontalAlignment="Left" Height="24" Margin="10,121,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_Gender" HorizontalAlignment="Left" Height="24" Margin="105,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<Label x:Name="lbl_AgeGroup" Content="Age Group" HorizontalAlignment="Left" Height="24" Margin="10,150,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_AgeGroup" HorizontalAlignment="Left" Height="24" Margin="105,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<Label x:Name="lbl_Ethnicity" Content="Ethnicity" HorizontalAlignment="Left" Height="24" Margin="10,179,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_Ethnicity" HorizontalAlignment="Left" Height="24" Margin="105,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<Label x:Name="lbl_RelationToHead" Content="Relation To Head" HorizontalAlignment="Left" Height="24" Margin="10,208,0,0" VerticalAlignment="Top" Width="72"/>
+		<TextBox x:Name="text_RelationToHEad" HorizontalAlignment="Left" Height="24" Margin="105,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<CheckBox x:Name="check_IsHead" Content="Head of House" HorizontalAlignment="Left" Margin="105,237,0,0" VerticalAlignment="Top" Width="109" IsEnabled="False"/>
+		<Button x:Name="button_GetPatient" Content="Get Patient" HorizontalAlignment="Left" Margin="33,285,0,0" VerticalAlignment="Top" Width="100" Click="button_GetPatient_Click"/>
+		<Button x:Name="button_DeletePatient" Content="Delete Patient" HorizontalAlignment="Left" Margin="156,285,0,0" VerticalAlignment="Top" Width="100" Click="button_DeletePatient_Click"/>
+		<Separator HorizontalAlignment="Left" Height="1" Margin="51,48,0,0" VerticalAlignment="Top" Width="177"/>
+	</Grid>
+</Window>
