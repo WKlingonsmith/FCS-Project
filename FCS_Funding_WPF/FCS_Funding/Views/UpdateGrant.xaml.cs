@@ -157,7 +157,6 @@ namespace FCS_Funding.Views
                     db.SaveChanges();
                 }
 
-                MessageBox.Show("Updated these changes successfully.");
                 this.Close();
             }
         }

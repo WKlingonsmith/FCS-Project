@@ -62,7 +62,7 @@ namespace FCS_Funding.Views
 
                     db.FundRaisingEvents.Add(event1);
                     db.SaveChanges();
-                    MessageBox.Show("Successfully added Event");
+                    
                     this.Close();
                 }
                 else

@@ -54,7 +54,7 @@
 			HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="6" FontSize="20" Margin="0,5,32,0" />
         <!--Width="170" Height="40"-->
 
-        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="11" Content="Submit Donation" Click="AddGrant" Margin="10,0,167,0" />
+        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Content="Add" Click="AddGrant" Margin="131.667,30,126.333,0" Height="50" Width="100" Grid.RowSpan="2" />
         <CheckBox FontSize="18" FontWeight="Bold" x:Name="restrictedCheckBox" Content="Is Donation Restricted?" Grid.Column="2" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="8" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="29" Width="222" Unchecked="restrictedCheckBox_Checked" Checked="restrictedCheckBox_Checked"/>
         <ComboBox ItemsSource="{Binding DataContext, ElementName=ThisWindow}" Name="PurposeComboBox" Grid.Column="5" HorizontalAlignment="Left" Margin="0,1,0,0" Grid.Row="8" VerticalAlignment="Top" Width="175" Height="39" IsEnabled="False">
 

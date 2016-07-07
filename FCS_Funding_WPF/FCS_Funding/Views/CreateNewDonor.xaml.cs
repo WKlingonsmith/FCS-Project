@@ -51,7 +51,7 @@ namespace FCS_Funding.Views
                         db.Donors.Add(d);
 
                         db.SaveChanges();
-                        MessageBox.Show("Successfully added Donor!");
+                        
                         this.Close();
                     }
                     else if (OrganizationName == null || OrganizationName == "")
@@ -89,7 +89,7 @@ namespace FCS_Funding.Views
 
                         CreateIndividualContact cic = new CreateIndividualContact(d);
                         this.Close();
-                        cic.Show();
+                        cic.ShowDialog();
                     }
                     else
                     {

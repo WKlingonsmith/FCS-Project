@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FCS_Funding.Models;
+using FCS_DataTesting;
+using FCS_Funding.Views.Windows;
 
 namespace FCS_Funding.Views.Windows
 {
@@ -220,14 +222,17 @@ namespace FCS_Funding.Views.Windows
 				db.SaveChanges();
 				Determine_Problems(patientOQ);
 
-				this.Close();
-			}
+                this.Close();
+                
+            }
 			catch (Exception error)
 			{
 				MessageBox.Show("Something went wrong, please double check your entry values.\n\n");
 				MessageBox.Show("Error: " + error.ToString());
 			}
-		}
+            
+
+        }
 
 		private void Update_Client(object sender, RoutedEventArgs e)
 		{
@@ -311,41 +316,45 @@ namespace FCS_Funding.Views.Windows
 		{
 			this.Close();
 		}
+        private void Refresh_Sessions(object sender, RoutedEventArgs e)
+        {
+            sender = grid_Sessions;
+            Refresh_SessionsGrid(sender, e);
+        }
+        private void Refresh_SessionsGrid(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FCS_DBModel db = new FCS_DBModel();
+                int patientID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientID).Distinct().First();
+                var join1 = from s in db.Staff
+                            join a in db.Appointments on s.StaffID equals a.StaffID
+                            join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
+                            join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID
+                            where ex.PatientID == patientID
+                            select new SessionsGrid
+                            {
+                                StaffFirstName = s.StaffFirstName,
+                                StaffLastName = s.StaffLastName,
+                                AppointmentStart = a.AppointmentStartDate,
+                                AppointmentEnd = a.AppointmentEndDate,
+                                ExpenseDueDate = ex.ExpenseDueDate,
+                                ExpensePaidDate = ex.ExpensePaidDate,
+                                DonorBill = ex.DonorBill,
+                                PatientBill = ex.PatientBill,
+                                TotalExpense = ex.TotalExpenseAmount,
+                                ExpenseType = et.ExpenseType1,
+                                ExpenseDescription = et.ExpenseDescription
+                            };
+                // ... Assign ItemsSource of DataGrid.
+                var grid = sender as DataGrid;
+                grid.ItemsSource = join1.ToList();
+                
+            }
+            catch { }
+        }
 
-		private void Refresh_SessionsGrid(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				FCS_DBModel db = new FCS_DBModel();
-				int patientID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientID).Distinct().First();
-
-				var join1 = from s in db.Staff
-							join a in db.Appointments on s.StaffID equals a.StaffID
-							join ex in db.Expenses on a.AppointmentID equals ex.AppointmentID
-							join et in db.ExpenseTypes on ex.ExpenseTypeID equals et.ExpenseTypeID
-							where ex.PatientID == patientID
-							select new SessionsGrid
-							{
-								StaffFirstName = s.StaffFirstName,
-								StaffLastName = s.StaffLastName,
-								AppointmentStart = a.AppointmentStartDate,
-								AppointmentEnd = a.AppointmentEndDate,
-								ExpenseDueDate = ex.ExpenseDueDate,
-								ExpensePaidDate = ex.ExpensePaidDate,
-								DonorBill = ex.DonorBill,
-								PatientBill = ex.PatientBill,
-								TotalExpense = ex.TotalExpenseAmount,
-								ExpenseType = et.ExpenseType1,
-								ExpenseDescription = et.ExpenseDescription
-							};
-				// ... Assign ItemsSource of DataGrid.
-				var grid = sender as DataGrid;
-				grid.ItemsSource = join1.ToList();
-			}
-			catch { }
-		}
-
-		private void Change_HeadOfHousehold(object sender, RoutedEventArgs e)
+        private void Change_HeadOfHousehold(object sender, RoutedEventArgs e)
 		{
 			CheckForValidInput(sender, null);
 			headOfHouse = (bool)check_HeadOfHousehold.IsChecked;
@@ -390,16 +399,19 @@ namespace FCS_Funding.Views.Windows
 
 		private void AddNewSession(object sender, RoutedEventArgs e)
 		{
-			FCS_DBModel db = new FCS_DBModel();
+            DataGrid dg = sender as DataGrid;
+            FCS_DBModel db = new FCS_DBModel();
 			int patientID = db.Patients.Where(x => x.PatientOQ == patientOQ).Select(x => x.PatientID).Distinct().First();
 
 			AddSession ans = new AddSession(patientID);
-			ans.Show();
-			ans.AMPM_Start.SelectedIndex = 0;
+			
+            ans.AMPM_Start.SelectedIndex = 0;
 			ans.AMPM_End.SelectedIndex = 0;
 			ans.ExpensePaidDate.IsEnabled = false;
 			ans.Topmost = true;
-		}
+            ans.ShowDialog();
+            Refresh_Sessions(sender, e);
+        }
 
 		public void Determine_Problems(string OQ)
 		{

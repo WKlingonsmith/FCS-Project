@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using FCS_DataTesting;
+using FCS_Funding.Views.Windows;
 
 namespace FCS_Funding.Views
 {
@@ -96,7 +98,6 @@ namespace FCS_Funding.Views
                     db.SaveChanges();
 
 
-                    MessageBox.Show("Successfully added In_Kind Service");
                     this.Close();
                 }
                 else
@@ -113,6 +114,7 @@ namespace FCS_Funding.Views
         {
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>() { "AM", "PM" };
+            box.SelectedIndex = 0;
         }
 
         private void Hour_LostFocus(object sender, RoutedEventArgs e)

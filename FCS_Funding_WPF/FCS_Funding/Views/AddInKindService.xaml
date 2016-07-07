@@ -76,6 +76,6 @@
                  VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
         <ComboBox Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="2"  Grid.Row="10" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
-        <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Add In-Kind Service" Click="Add_InKind_Service" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
+        <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Add" Click="Add_InKind_Service" Grid.ColumnSpan="2" Margin="119,7,138.333,23" Height="50" Width="100" Grid.RowSpan="2"  />
     </Grid>
 </Window>

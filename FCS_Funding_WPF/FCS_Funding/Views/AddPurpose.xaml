@@ -56,6 +56,6 @@
         </TextBlock>
         <TextBlock Name="DescriptionText" Text="Purpose Description" TextAlignment="Center"  FontSize="18" Grid.Row="6" FontWeight="Bold" Margin="113,6,5,0" Grid.Column="2" Grid.ColumnSpan="2"/>
         <TextBox Name="PurposeDescription" Grid.Column="4" HorizontalAlignment="Left" Height="120" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="535" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <Button FontSize="18" Name="AddPurposeButton"  Content="Add Purpose" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="10" VerticalAlignment="Top" Width="178" Height="40" Click="AddPurposeButton_Click"/>
+        <Button FontSize="18" Name="AddPurposeButton"  Content="Add" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Top" Width="100" Height="50" Click="AddPurposeButton_Click" RenderTransformOrigin="1.776,0.269" Margin="9.667,20,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>

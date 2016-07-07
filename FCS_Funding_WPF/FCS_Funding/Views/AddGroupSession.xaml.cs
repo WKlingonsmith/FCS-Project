@@ -88,7 +88,6 @@ namespace FCS_Funding.Views
                         grantDonation.DonationAmountRemaining = grantDonation.DonationAmountRemaining - DonorBill;
                         db.SaveChanges();
 
-                        MessageBox.Show("Successfully added Expense");
                         this.Close();
                     }
                     else
@@ -133,7 +132,6 @@ namespace FCS_Funding.Views
                         }
                         db.SaveChanges();
 
-                        MessageBox.Show("Successfully added Expense");
                         this.Close();
                     }
                     else
@@ -162,7 +160,7 @@ namespace FCS_Funding.Views
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();
-                        MessageBox.Show("Successfully added Expense");
+                        
                         this.Close();
                     }
                     catch (Exception exc)

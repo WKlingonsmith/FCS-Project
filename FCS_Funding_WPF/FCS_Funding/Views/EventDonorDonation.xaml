@@ -55,6 +55,6 @@
         <TextBlock Text="Individual Name/Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Individual"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="9" FontSize="20" Loaded="Individual_DropDown" Margin="178.8,0,0.4,0" />
-        <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Continue" Click="Continue" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
+        <Button FontSize="18" Grid.Column="2" Grid.Row="12" Content="Continue" Click="Continue" Grid.ColumnSpan="2" Margin="129,30,128.333,0" Height="50" Width="100" Grid.RowSpan="2"  />
     </Grid>
 </Window>

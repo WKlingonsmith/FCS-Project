@@ -64,7 +64,7 @@
             <ComboBoxItem >$25,000-34,999</ComboBoxItem>
             <ComboBoxItem >$35,000+</ComboBoxItem>
         </ComboBox>
-        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="11" Content="Add Household" Margin="93.6,0,82.8,0" Click="Add_Household"   />
+        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Content="Add" Margin="135.667,20,122.333,10" Click="Add_Household" Height="50" Width="100" Grid.RowSpan="2"  />
 
     </Grid>
 </Window>

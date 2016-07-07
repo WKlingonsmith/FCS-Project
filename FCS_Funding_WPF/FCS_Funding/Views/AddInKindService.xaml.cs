@@ -121,7 +121,6 @@ namespace FCS_Funding.Views
                         db.SaveChanges();
                     }
 
-                    MessageBox.Show("Successfully added In_Kind Service");
                     this.Close();
                 }
                 else

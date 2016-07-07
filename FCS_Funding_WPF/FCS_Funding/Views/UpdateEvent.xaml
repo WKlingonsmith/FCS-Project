@@ -40,7 +40,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="18" >
+        <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="15" Margin="0,-90,0.333,10" >
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -133,8 +133,8 @@
                  VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
                     <ComboBox Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="2"  Grid.Row="10" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
-                    <Button Name="UpEvent" FontSize="18" Grid.Column="2" Grid.Row="14" Content="Update Event" Click="Update_Event"  />
-                    <Button Name="Delete" FontSize="18" Grid.Column="4" Grid.Row="14" Content="Delete Event" Click="Delete_Event"  />
+                    <Button Name="UpEvent" FontSize="18" Grid.Column="2" Grid.Row="13" Content="Update" Click="Update_Event" Height="50" Width="100" Margin="0,25.667,78,0.333" Grid.RowSpan="2" />
+                    <Button Name="Delete" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete" Click="Delete_Event" Height="50" Width="100" Margin="10,25.667,68,0.333" Grid.RowSpan="2" />
                 </Grid>
             </TabItem>
             <TabItem Header="Donations" Height="30">

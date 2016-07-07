@@ -75,7 +75,7 @@
                  VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
         <ComboBox Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="2"  Grid.Row="10" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
-        <Button FontSize="18" Grid.Column="1" Grid.Row="14" Content="Update In-Kind Service" Click="Update_InKind_Service" Grid.ColumnSpan="2" Margin="104.8,0,44.8,1"   />
-        <Button Name="DeleteService" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete In-Kind Service" Click="Delete_InKind_Service" Grid.ColumnSpan="2" Margin="78.2,39.8,101.4,0" Height="40" VerticalAlignment="Top" Grid.RowSpan="2"    />
+        <Button FontSize="18" Grid.Column="1" Grid.Row="13" Content="Update" Click="Update_InKind_Service" Grid.ColumnSpan="2" Margin="178.333,30,79,0" Height="50" Width="100" Grid.RowSpan="2"  />
+        <Button Name="DeleteService" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete" Click="Delete_InKind_Service" Margin="10,30,69.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.RowSpan="2"    />
     </Grid>
 </Window>

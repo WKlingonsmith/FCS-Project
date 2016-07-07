@@ -113,7 +113,7 @@ namespace FCS_Funding.Views
                 event1.EventEndDateTime = endDateTime;
                                 
                 db.SaveChanges();
-                MessageBox.Show("Successfully updated Event");
+                
                 this.Close();
 
             }

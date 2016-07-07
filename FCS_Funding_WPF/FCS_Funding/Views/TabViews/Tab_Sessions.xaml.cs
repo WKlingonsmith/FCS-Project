@@ -56,9 +56,11 @@ namespace FCS_Funding.Views.TabViews
 			at.ApptType.SelectedIndex = 0;
 			at.ShowDialog();
 
-		//	Refresh the grid
-			Refresh_SessionGrid();
-		}
+            //	Refresh the grid
+            //Refresh_SessionGrid();
+            Refresh_SessionGrid(sender, e);
+
+        }
 
 	/// <summary>
 	/// Override that calls the function just below for handlers -only-

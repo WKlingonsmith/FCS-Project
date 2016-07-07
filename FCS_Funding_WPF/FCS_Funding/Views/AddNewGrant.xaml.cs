@@ -70,7 +70,7 @@ namespace FCS_Funding.Views
                     db.Donations.Add(d);
                 }
                 db.SaveChanges();
-                MessageBox.Show("Successfully added Grant");
+                
                 this.Close();
             }
             catch (Exception ex)

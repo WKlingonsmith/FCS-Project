@@ -66,8 +66,7 @@ namespace FCS_Funding.Views
                     dc.DonorID = d.DonorID;
                     db.DonorContacts.Add(dc);
                     db.SaveChanges();
-
-                    MessageBox.Show("Successfully added Donor!");
+                    
                     this.Close();
                 }
                 else

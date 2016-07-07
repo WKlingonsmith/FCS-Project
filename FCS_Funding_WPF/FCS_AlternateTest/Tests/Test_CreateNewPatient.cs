@@ -1,204 +1,130 @@
 ﻿using System;
 using FCS_Funding;
 using FCS_Funding.Views.Windows;
+using FCS_Funding.Views.TabViews;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using UnitTestUtilities;
-using System.Windows.Controls;
 
 namespace FCS_AlternateTest
 {
-	using Definition;
+    using Definition;
+    using System.Windows.Controls;
+    using System.Windows.Input;
 
-	[TestClass]
-	public class UnitTest1
-	{
-	/// <summary>
-	/// Tests that the number-only textboxes can only hold numbers
-	/// </summary>
-		[TestMethod]
-		public void TestNumberOnlyInput()
-		{
-			Window_Client window = OpenCreateNewPatient();
+    [TestClass]
+    public class Test_CreateNewPatient
+    {
+        //[TestMethod]
+        //public void check_if_add_button_is_disabled()
+        //{
+        //    Window_Client window = OpenCreateNewPatient();
+        //    CheckAddPatientButtonState(window, false);
 
-			//	Client OQ Textbo
-			ClickTextBox(window, window.textbox_ClientOQ);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			ClickTextBox(window, window.textbox_ClientOQ);
-			KeyboardUtilities.SendKeys("123456789abcdefghijklmnopqrstuvwxyz");
 
-			ThreadUtilities.RunOnUIThread(new Action(() =>
-			{
-				Assert.AreEqual("123456789", window.textbox_ClientOQ.Text);
-			}));
+        //}
+        [TestMethod]
+        public void Add_New_Patient_as_Head_Of_House()
+        {
+            Window_Client window = OpenCreateNewPatient();
+            
 
-			//	Family OQ Textbox
-			ClickTextBox(window, window.textbox_FamilyMemberOQ);
-			KeyboardUtilities.SendKeys("123456789abcdefghijklmnopqrstuvwxyz");
+            ClickTextBox(window, window.textbox_ClientOQ);
+            KeyboardUtilities.SendKeys("^a");
+            KeyboardUtilities.SendBackspace();
+            KeyboardUtilities.SendKeys("9");
 
-			ThreadUtilities.RunOnUIThread(new Action(() =>
-			{
-				Assert.AreEqual("123456789", window.textbox_FamilyMemberOQ.Text);
-			}));
+            ClickTextBox(window, window.textbox_FirstName);
+            KeyboardUtilities.SendKeys("First_name");
 
-			//	Household Pop
-			ClickCheckbox(window, window.check_FirstHouseholdMember);
+            ClickTextBox(window, window.textbox_LastName);
+            KeyboardUtilities.SendKeys("Last_name");
 
-			ClickTextBox(window, window.textbox_HouseholdPopulation);
-			KeyboardUtilities.SendKeys("123456789abcdefghijklmnopqrstuvwxyz");
-		}
+            ClickCheckbox(window, window.check_HeadOfHousehold);
 
-		[TestMethod]
-		public void TestButtonDisable()
-		{
-			Window_Client window = OpenCreateNewPatient();
+            ClickCheckbox(window, window.check_FirstHouseholdMember);
 
-			//	Check that the button is initially disabled
-			CheckAddPatientButtonState(window, false);
+            CheckAddPatientButtonState(window, true);
 
-			//	Type into all other entry points, so the button is enabled
-			ClickTextBox(window, window.textbox_ClientOQ);
-			KeyboardUtilities.SendKeys("1234560");
+            ClickButton(window, window.button_AddUpdateClient);
 
-			ClickTextBox(window, window.textbox_FirstName);
-			KeyboardUtilities.SendKeys("Test");
+           
+        }
 
-			ClickTextBox(window, window.textbox_LastName);
-			KeyboardUtilities.SendKeys("McGee");
+        //[TestMethod]
+        //public void Add_New_Patient_not_head_of_House()
+        //{
+        //    Window_Client window = OpenCreateNewPatient();
 
-			ClickTextBox(window, window.textbox_RelationToHead);
-			KeyboardUtilities.SendKeys("Related");
+            
+        //}
 
-			ClickTextBox(window, window.textbox_FamilyMemberOQ);
-			KeyboardUtilities.SendKeys("1234550");
+        private void CheckAddPatientButtonState(Window_Client window, bool isEnabled)
+        {
+            GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.button_AddUpdateClient.IsLoaded)));
 
-			CheckAddPatientButtonState(window, true);
+            ThreadUtilities.RunOnUIThread(new Action(() =>
+            {
+                Assert.AreEqual(isEnabled, (bool)window.button_AddUpdateClient.IsEnabled);
+            }));
+        }
 
-		//	Remove one value at a time from the textboxes
-			//	Client OQ		
-			ClickTextBox(window, window.textbox_ClientOQ);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			CheckAddPatientButtonState(window, false);
+        private void ClickButton(Window_Client window, Button window_Button)
+        {
+            Point middle = new Point();
+            ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_Button)));
+            MouseUtilities.LeftClickScreen((int)middle.X, (int)middle.Y);
+            
+        }
 
-			ClickTextBox(window, window.textbox_ClientOQ);
-			KeyboardUtilities.SendKeys("1234560");
+        private void ClickTextBox(Window_Client window, TextBox window_textbox)
+        {
+            Point middle = new Point();
+            ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_textbox)));
+            MouseUtilities.LeftClickScreen((int)middle.X, (int)middle.Y);
+            GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window_textbox.IsKeyboardFocusWithin)));
+        }
 
-			//	First Name
-			ClickTextBox(window, window.textbox_FirstName);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			CheckAddPatientButtonState(window, false);
+        private void ClickCheckbox(Window_Client window, CheckBox window_checkbox)
+        {
+            Point middle = new Point();
+            ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_checkbox)));
+            MouseUtilities.LeftClickScreen((int)middle.X, (int)middle.Y);
+        }
 
-			ClickTextBox(window, window.textbox_FirstName);
-			KeyboardUtilities.SendKeys("Test");
+        private Window_Client OpenCreateNewPatient()
+        {
+            Window_Client window = null;
 
-			//	Last Name			
-			ClickTextBox(window, window.textbox_LastName);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			CheckAddPatientButtonState(window, false);
+            ThreadUtilities.RunOnUIThread(new Action(() =>
+            {
+                window = new Window_Client(Definition.Admin, null);
+                window.Show();
+                window.Activate();
+            }));
 
-			ClickTextBox(window, window.textbox_LastName);
-			KeyboardUtilities.SendKeys("McGee");
+            GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.IsLoaded)));
 
-			//	Relation
-			ClickTextBox(window, window.textbox_RelationToHead);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			CheckAddPatientButtonState(window, false);
+            return window;
+        }
+        private Tab_Clients OpenTabClients()
+        {
+            Tab_Clients window = null;
 
-			ClickTextBox(window, window.textbox_RelationToHead);
-			KeyboardUtilities.SendKeys("Related");
+            //ThreadUtilities.RunOnUIThread(new Action(() =>
+            //{
+            //    window = new Tab_Clients();
+            //    //window.Show();
+            //}));
 
-			//	Family OQ
-			ClickTextBox(window, window.textbox_FamilyMemberOQ);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			CheckAddPatientButtonState(window, false);
+            //GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.IsLoaded)));
 
-			ClickTextBox(window, window.textbox_FamilyMemberOQ);
-			KeyboardUtilities.SendKeys("1234550");
+            return window;
+        }
 
-			//	Clear Head of House, then Check the checkbox
-			ClickTextBox(window, window.textbox_RelationToHead);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
 
-			ClickCheckbox(window, window.check_HeadOfHousehold);
-			CheckAddPatientButtonState(window, true);
-
-			//	Clear family relation, then Check the checkbox
-			ClickTextBox(window, window.textbox_FamilyMemberOQ);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-
-			ClickCheckbox(window, window.check_FirstHouseholdMember);
-			CheckAddPatientButtonState(window, true);
-
-			//	With the new household selected, test the textbox
-			ClickTextBox(window, window.textbox_HouseholdPopulation);
-			KeyboardUtilities.SendKeys("^a");
-			KeyboardUtilities.SendBackspace();
-			CheckAddPatientButtonState(window, false);
-		}
-
-	//	Used in the TestButtonDisable test
-		private void CheckAddPatientButtonState(Window_Client window, bool isEnabled)
-		{
-			GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.button_AddUpdateClient.IsLoaded)));
-
-			ThreadUtilities.RunOnUIThread(new Action(() =>
-			{
-				Assert.AreEqual(isEnabled, (bool)window.button_AddUpdateClient.IsEnabled);
-			}));
-		}
-
-	/// <summary>
-	/// Clicks in a Textbox so you have focus, then use SendKeys to type into the textbox
-	/// </summary>
-	/// <param name="window"></param>
-	/// <param name="window_textbox"></param>
-		private void ClickTextBox(Window_Client window, TextBox window_textbox)
-		{
-			Point middle = new Point();
-			ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_textbox)));
-			MouseUtilities.LeftClickScreen((int)middle.X, (int)middle.Y);
-			GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window_textbox.IsKeyboardFocusWithin)));
-		}
-
-	/// <summary>
-	/// Clicks on a checkbox
-	/// </summary>
-	/// <param name="window"></param>
-	/// <param name="window_checkbox"></param>
-		private void ClickCheckbox(Window_Client window, CheckBox window_checkbox)
-		{
-			Point middle = new Point();
-			ThreadUtilities.RunOnUIThread(new Action(() => middle = GeneralUtilities.GetMiddleInScreenCoordinates(window_checkbox)));
-			MouseUtilities.LeftClickScreen((int)middle.X, (int)middle.Y);
-		}
-
-	/// <summary>
-	/// Opens CreateNewPatient dialog, then returns the object
-	/// </summary>
-	/// <returns></returns>
-		private Window_Client OpenCreateNewPatient()
-		{
-			Window_Client window = null;
-
-			ThreadUtilities.RunOnUIThread(new Action(() =>
-			{
-				window = new Window_Client(Definition.Admin, null);
-				window.Show();
-			}));
-
-			GeneralUtilities.WaitUntil(() => (bool)Application.Current.Dispatcher.Invoke(new Func<bool>(() => window.IsLoaded)));
-
-			return window;
-		}
-	}
+    }
 }
+

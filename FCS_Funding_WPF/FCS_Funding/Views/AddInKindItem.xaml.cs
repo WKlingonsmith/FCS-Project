@@ -159,7 +159,7 @@ namespace FCS_Funding.Views
                     MessageBox.Show("Make sure to select an organization or an individual");
                     return;
                 }
-                MessageBox.Show("Successfully added In_Kind Item");
+                
                 this.Close();
 
             }

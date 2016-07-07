@@ -98,6 +98,6 @@
                    HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="11" FontSize="20" Margin="21,0,10,5" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
             </DatePicker>
-            <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Add Appointment Service" Click="Add_Appointment" Grid.ColumnSpan="2" Margin="68,1,81,0" Height="39" VerticalAlignment="Top"   />
+            <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Add" Click="Add_Appointment" Margin="132.667,0,125.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2"   />
     </Grid>
 </Window>

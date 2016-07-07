@@ -71,7 +71,7 @@
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
             </DatePicker>
             <!--Width="170" Height="40"-->
-            <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Add In-Kind Item" Click="Add_InKind_Item" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
-            <Button FontSize="18" Grid.Column="2" Grid.Row="15" Content="Close" Click="InKindClose" Grid.ColumnSpan="2" Margin="68,1,81,0"   />
+            <Button FontSize="18" Grid.Column="2" Grid.Row="14" Content="Add" Click="Add_InKind_Item" Margin="46,10,32.667,20" Grid.RowSpan="2" Height="50" Width="100"  />
+            <Button FontSize="18" Grid.Column="3" Grid.Row="14" Content="Close" Click="InKindClose" Margin="10.333,10,68.333,20" Grid.RowSpan="2"  Height="50" Width="100" />
     </Grid>
 </Window>

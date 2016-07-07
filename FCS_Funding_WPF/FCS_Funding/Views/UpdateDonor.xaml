@@ -148,9 +148,9 @@
                     </DataGrid>
 
 
-                    <Button FontSize="18" Grid.Column="1" Grid.Row="16" Content="Update Donor" Click="Update_Donor"    />
-                    <Button FontSize="18" Grid.Column="2" Grid.Row="16" Content="Add Contact" Click="Add_New_Contact" Grid.ColumnSpan="2" Margin="91.6,0,88,0"    />
-                    <Button Name="DeleteDon" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Delete Donor" Click="Delete_Donor"    />
+                    <Button FontSize="18" Grid.Column="2" Grid.Row="15" Content="Update" Click="Update_Donor"  Height="50" Width="100" Margin="0,9.667,78,16.333" Grid.RowSpan="2"  />
+                    <Button FontSize="18" Grid.Row="15" Content="Add" Click="Add_New_Contact" Margin="1,9.667,77,16.333"  Height="50" Width="100" Grid.RowSpan="2" Grid.Column="1"  />
+                    <Button Name="DeleteDon" FontSize="18" Grid.Column="3" Grid.Row="15" Content="Delete" Click="Delete_Donor"  Height="50" Width="100" Margin="0,15.667,78,10.333" Grid.RowSpan="2"  />
                 </Grid>
             </TabItem>
             <TabItem Header="Donations"  Height="30">

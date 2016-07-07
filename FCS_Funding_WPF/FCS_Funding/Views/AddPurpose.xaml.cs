@@ -34,7 +34,7 @@ namespace FCS_Funding.Views
             db.Purposes.Add(purpose);
             try {
                 db.SaveChanges();
-                MessageBox.Show("Added Purpose Succesfully");
+                
                 this.Close();
             }
             catch

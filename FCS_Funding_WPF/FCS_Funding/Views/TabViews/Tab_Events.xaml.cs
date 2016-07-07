@@ -78,7 +78,9 @@ namespace FCS_Funding.Views.TabViews
 			}
 			up.DateRecieved.SelectedDate = p.EventStartDateTime;
 			up.ShowDialog();
-		}
+            Refresh_Events(sender, e);
+
+        }
 
 
 		private void Events_Grid(object sender, RoutedEventArgs e)
@@ -105,7 +107,8 @@ namespace FCS_Funding.Views.TabViews
 			ne.AMPM_End.SelectedIndex = 0;
 			ne.AMPM_Start.SelectedIndex = 0;
 			ne.ShowDialog();
-		}
+            Refresh_Events(sender, e);
+        }
 
 		private void Refresh_Events(object sender, RoutedEventArgs e)
 		{

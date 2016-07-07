@@ -53,8 +53,8 @@
         <ComboBox Name="Status" IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Center" 
                   Height="40"  Grid.Column="2" Grid.Row="8" FontSize="20" Loaded="Status_DropDown" >
         </ComboBox>
-        <Button FontSize="18" Grid.Column="1" Grid.Row="11" Content="Update Grant Proposal" Click="Update_Grant_Proposal" Grid.ColumnSpan="2" Margin="90,1,59,0" Height="39" VerticalAlignment="Top"   />
-        <Button Name="Deletegrantprop" FontSize="18" Grid.Column="3" Grid.Row="11" Content="Delete Grant Proposal" Click="Delete_Grant_Proposal" Grid.ColumnSpan="2" Margin="34.2,0,144.4,0" />
+        <Button FontSize="18" Grid.Column="1" Grid.Row="10" Content="Update" Click="Update_Grant_Proposal" Grid.ColumnSpan="2" Margin="178.333,30,79,0" Height="50" Width="100" VerticalAlignment="Top" Grid.RowSpan="2"   />
+        <Button Name="Deletegrantprop" FontSize="18" Grid.Column="3" Grid.Row="10" Content="Delete" Click="Delete_Grant_Proposal" Margin="10,30,69.333,0" Height="50" Width="100" Grid.RowSpan="2" />
 
     </Grid>
 </Window>

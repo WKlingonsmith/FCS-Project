@@ -111,7 +111,7 @@ namespace FCS_Funding.Views
                     foreach (var item in TotalGroup)
                     {
                         AddGroupSession ags = new AddGroupSession(ExpenseTypeID, item, staffID, expenseDueDate, startDateTime, endDateTime, a.AppointmentID);
-                        ags.Show();
+                        ags.ShowDialog();
                         ags.ExpensePaidDate.IsEnabled = false;
                         ags.FN.IsEnabled = false;
                         ags.LN.IsEnabled = false;

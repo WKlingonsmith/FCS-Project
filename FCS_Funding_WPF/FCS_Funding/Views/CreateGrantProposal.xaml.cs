@@ -61,7 +61,7 @@ namespace FCS_Funding.Views
 
                 db.GrantProposals.Add(gp);
                 db.SaveChanges();
-                MessageBox.Show("Successfully added grant proposal");
+                
                 this.Close();
             }
             else

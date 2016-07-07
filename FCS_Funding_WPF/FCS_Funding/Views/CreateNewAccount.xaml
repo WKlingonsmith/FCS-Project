@@ -46,7 +46,7 @@
 
         <TextBlock Text="User Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" FontWeight="Bold" />
         <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding UserName, ElementName=ThisWindow}"  />
+            <TextBox Name="textbox_UserName" FontSize="18" Text="{Binding UserName, ElementName=ThisWindow}"  />
         </Border>
         <TextBlock Text="Password:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" FontWeight="Bold" />
         <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
@@ -58,15 +58,15 @@
         </Border>
         <TextBlock Text="First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" FontWeight="Bold" />
         <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding FirstName, ElementName=ThisWindow}"/>
+            <TextBox Name="textbox_Fname" FontSize="18" Text="{Binding FirstName, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.6,3" FontWeight="Bold" />
         <Border Grid.Row="8" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding LastName, ElementName=ThisWindow}"/>
+            <TextBox Name="textbox_Lname" FontSize="18" Text="{Binding LastName, ElementName=ThisWindow}"/>
         </Border>
         <TextBlock Text="Staff Title:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Grid.ColumnSpan="3" Margin="179,5,178.6,5" FontWeight="Bold" />
         <Border Grid.Row="9" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding StaffTitle, ElementName=ThisWindow}"  />
+            <TextBox Name="textbox_staffTitle"  FontSize="18" Text="{Binding StaffTitle, ElementName=ThisWindow}"  />
         </Border>
 
         <TextBlock Text="User Type:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Grid.ColumnSpan="3" Margin="179,0,177.8,10" FontWeight="Bold" />
@@ -74,7 +74,7 @@
                   HorizontalContentAlignment="Center" Width="175" Height="40"  Grid.Column="1" Grid.Row="10" FontSize="20" Grid.ColumnSpan="2" Margin="178.8,0,3.8,0">
         </ComboBox>
 
-        <Button FontSize="18" Grid.Column="3" Grid.Row="13" Content="Add Account" Click="CreateAccount"    />
+        <Button Name="button_AddAccount" FontSize="18" Grid.Column="3" Grid.Row="12" Content="Add" Click="CreateAccount"  Height="50" Width="100" Margin="10,20,69.333,10" Grid.RowSpan="2"  />
     </Grid>
 
 </Window>

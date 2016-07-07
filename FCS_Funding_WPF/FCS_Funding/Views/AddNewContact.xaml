@@ -62,6 +62,6 @@
         <Border Grid.Row="7" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
             <TextBox  FontSize="18" Text="{Binding ContactEmail, ElementName=ThisWindow}"/>
         </Border>
-        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="11" Content="Add Contact" Margin="93.6,0,82.8,0" Click="Add_Contact"   />
+        <Button FontSize="18" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="10" Content="Add" Margin="134.667,20,123.333,10" Click="Add_Contact" Height="50" Width="100" Grid.RowSpan="2"  />
     </Grid>
 </Window>

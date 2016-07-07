@@ -66,7 +66,7 @@
         <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
                    HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="10" FontSize="20" Margin="21,0,10,5" >
         </DatePicker>
-        <Button FontSize="18" Grid.Column="1" Grid.Row="13" Content="Update In-Kind Item" Click="Update_InKind_Item" Grid.ColumnSpan="2" Margin="108.8,39.8,39.8,1.2" Grid.RowSpan="2"   />
-        <Button Name="DeleteItem" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete In-Kind Item" Click="Delete_InKind_Item" Grid.ColumnSpan="2" Margin="78.2,39.8,101.4,0" Height="40" VerticalAlignment="Top" Grid.RowSpan="2"    />
+        <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Update" Click="Update_InKind_Item" Margin="9.667,30,69,0" Grid.RowSpan="2" Height="50" Width="100"  />
+        <Button Name="DeleteItem" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete" Click="Delete_InKind_Item" Margin="10,30,69.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.RowSpan="2"    />
     </Grid>
 </Window>
