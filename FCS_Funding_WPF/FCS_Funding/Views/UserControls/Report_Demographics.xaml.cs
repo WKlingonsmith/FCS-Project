@@ -113,7 +113,7 @@ namespace FCS_Funding.Views.UserControls
                                           }).ToList();
 
 
-                // LOOP TO DROP SESSIONS AND CLIENTS WHICH DO NOT MEET THE UNCHECKED FILTERS SPECIFIED IN THE GUI
+                // LOOP TO DROP SESSIONS AND CLIENTS WHICH DO NOT MEET THE UNCHECKED FILTERS SPECIFIED IN THE GUI IN REVERSE ORDER
                 for (int i = listOfAllMatchingPatients.Count() - 1; i >= 0; i--)
                 {
                     var query = listOfAllMatchingPatients[i];
@@ -286,7 +286,6 @@ namespace FCS_Funding.Views.UserControls
                         }
                     }
 
-                    //FILTER BASED ON GENDER
                     //FILTER BASED ON MALE GENDER
                     if (demoGenderMale_checkBox.IsChecked.Value == false || !demoGenderMale_checkBox.IsChecked.HasValue)
                     {
@@ -561,9 +560,7 @@ namespace FCS_Funding.Views.UserControls
                 }
 
 
-                //START COUNTING BASED ON THE FILTER RESULTS.
-                listOfAllMatchingPatients = listOfAllMatchingPatients;
-                sessionInformation = sessionInformation;
+                //START COUNTING BASED ON THE FILTERED RESULTS.
                 int newPatients = 0;
                 int ongoingPatients = 0;
                 double totalMinutesofService = 0;
@@ -837,7 +834,7 @@ namespace FCS_Funding.Views.UserControls
                 double totalHoursofService = totalMinutesofService / 60;
 
                 String StaffName = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBName;
-                // GENERATE HTML STRING OR FORMAT FOR REPORTING MECHANISM
+                // GENERATE HTML STRING FORMATTED FOR REPORTING
                 String toPrint = "<!DOCTYPE html>"
                 + "<html>"
                 + "<head>"
@@ -956,48 +953,6 @@ namespace FCS_Funding.Views.UserControls
                 toPrint += "</body>"
                 + "</html>";
 
-                Console.WriteLine("newPatients: " + newPatients + " - ongoingPatients: " + ongoingPatients + " - Total: " + totalPatients);
-                Console.WriteLine("individualSessions: " + individualSessions + " - groupSessions: " + groupSessions + " - familySessions: " + familySessions);
-                Console.WriteLine("hoHMaleCount: " + hoHMaleCount + " - hoHFemaleCount: " + hoHFemaleCount + " - - hoHTotalFamiles: " + hoHTotalFamiles + " - hoHIndividuals: " + hoHIndividuals);
-                Console.WriteLine("Total Hours of service: " + totalHoursofService);
-                Console.WriteLine("Age brackets   0-5: " + ageTotals[0] + "  6 - 11: " + ageTotals[1] + "  12-17: " + ageTotals[2] + "  18-23: " + ageTotals[3] + "  24-44: " + ageTotals[4] + "  45-54: " + ageTotals[5] + " 55-69: " + ageTotals[6] + "  70+: " + ageTotals[7]);
-                Console.WriteLine("totalMales: " + totalMales + " - totalFemales: " + totalFemales);
-                Console.WriteLine("Ethnicities  0: " + totalEthnicity[0] + "  1: " + totalEthnicity[1] + "  2: " + totalEthnicity[2] + "  3: " + totalEthnicity[3] + "  4: " + totalEthnicity[4] + "  5: " + totalEthnicity[5] + " 6: " + totalEthnicity[6]);
-                Console.WriteLine("Income  0: " + totalIncome[0] + "  1: " + totalIncome[1] + "  2: " + totalIncome[2] + "  3: " + totalIncome[3] + "  4: " + totalIncome[4]);
-                Console.WriteLine("County  Weber: " + totalCounty[0] + "  Davis: " + totalCounty[1] + "  DCLC: " + totalCounty[2] + "  Morgan: " + totalCounty[3] + "  Box Elder: " + totalCounty[4] + "  Other: " + totalCounty[5]);
-
-                Console.WriteLine("\n\nFunding Source:");
-                fCount = 0;
-                foreach (var fu in listOfAllKnownFunding)
-                {
-                    if (fCount <=5)
-                    {
-                        Console.Write(" " + fu.fundingSource + ": " + arrayOfFundingCounts[fCount, 1]);
-                    }
-                    else
-                    {
-                        Console.WriteLine(" " + fu.fundingSource + ": " + arrayOfFundingCounts[fCount,1]);
-                        fCount = 0;
-                    }
-                    fCount++;
-                }
-                //Print 4 problems per line.
-                Console.WriteLine("\n\nProblems:");
-                pCount = 1;
-                foreach (var pr in listOfAllKnownProblems)
-                {
-                    if (pCount <= 3)
-                    {
-                        Console.Write(" " + pr.problemType + ": " + arrayOfProblemCounts[pr.problemID]);
-                    }
-                    else
-                    {
-                        Console.WriteLine(" " + pr.problemType + ": " + arrayOfProblemCounts[pr.problemID]);
-                        pCount = 0;
-                    }
-                    pCount++;
-                }
-                Console.WriteLine(toPrint);
                 System.Windows.Forms.WebBrowser newBrowser = new System.Windows.Forms.WebBrowser();
 
                 newBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
@@ -1078,108 +1033,6 @@ namespace FCS_Funding.Views.UserControls
         private void YearlyDemoReport_checkbox_Click(object sender, RoutedEventArgs e)
         {
             MonthlyDemoReport_checkbox.IsChecked = !YearlyDemoReport_checkbox.IsChecked;
-        }
-
-        private void demographicsReport_button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            System.Windows.Forms.WebBrowser newBrowser = new System.Windows.Forms.WebBrowser();
-
-            newBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
-            //newBrowser.DocumentText = "<!DOCTYPE html><html><style>@page { size: landscape; margin: 0px;}</style></head><body>Test Yay!</body></html>";
-            newBrowser.DocumentText = "<!DOCTYPE html>"
-                + "<html>"
-                + "<head>"
-                + " <style>"
-                + "header nav, footer {"
-                + "   display: none;"
-                + "}"
-                + "body {"
-                + "    font-size:11pt;"
-                + "    margin: -40px;"
-                + "}"
-                + "</style>"
-                + "</head>"
-                + "<body>"
-                + "<div style='position:relative;' id='wrap'>"
-                + "    <div style='color:#000000;font-size:18pt;position:relative;left:25px;top:20px;'>Demographic Report</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:80px;'>Staff Name:</div>"
-                + "    <div style='color:#000000;position:absolute;left:425px;top:80px;'>Location:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:105px;'>New:</div>"
-                + "    <div style='color:#000000;position:absolute;left:225px;top:105px;'>Ongoing:</div>"
-                + "    <div style='color:#000000;position:absolute;left:425px;top:105px;'>Total Clients:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:130px;'>Individual:</div>"
-                + "    <div style='color:#000000;position:absolute;left:225px;top:130px;'>Family Sessions:</div>"
-                + "    <div style='color:#000000;position:absolute;left:425px;top:130px;'>Groups:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:155px;'>Head of household</div>"
-                + "    <div style='color:#000000;position:absolute;left:225px;top:155px;'>M:</div>"
-                + "    <div style='color:#000000;position:absolute;left:325px;top:155px;'>F:</div>"
-                + "    <div style='color:#000000;position:absolute;left:425px;top:155px;'>Total Families:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:180px;'># Individuals in the household:</div>"
-                + "    <div style='color:#000000;position:absolute;left:600px;top:175px;'>LtCxl:</div>"
-                + "    <div style='color:#000000;position:absolute;left:600px;top:195px;'>Cxl:</div>"
-                + "    <div style='color:#000000;position:absolute;left:600px;top:214px;'>No Show:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:214px;'>Total Hours of service:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:255px;'>Age</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:255px;'>1. 0-5:</div>"
-                + "    <div style='color:#000000;position:absolute;left:300px;top:255px;'>2. 6-11:</div>"
-                + "    <div style='color:#000000;position:absolute;left:450px;top:255px;'>3. 12-17:</div>"
-                + "    <div style='color:#000000;position:absolute;left:600px;top:255px;'>4. 18-23:</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:275px;'>5. 24-44:</div>"
-                + "    <div style='color:#000000;position:absolute;left:300px;top:275px;'>6. 45-54:</div>"
-                + "    <div style='color:#000000;position:absolute;left:450px;top:275px;'>7. 55-69:</div>"
-                + "    <div style='color:#000000;position:absolute;left:600px;top:275px;'>8. 70+:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:295px;'>Gender of Client</div>"
-                + "    <div style='color:#000000;position:absolute;left:225px;top:295px;'>M:</div>"
-                + "    <div style='color:#000000;position:absolute;left:325px;top:295px;'>F:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:320px;'>Ethnicity</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:320px;'>1. African American:</div>"
-                + "    <div style='color:#000000;position:absolute;left:340px;top:320px;'>2. Natice/Alaskan:</div>"
-                + "    <div style='color:#000000;position:absolute;left:510px;top:320px;'>3. Pacific Islander:</div>"
-                + "    <div style='color:#000000;position:absolute;left:700px;top:320px;'>4. Asian:</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:340px;'>5. Caucasian:</div>"
-                + "    <div style='color:#000000;position:absolute;left:340px;top:340px;'>6. Hispanic:</div>"
-                + "    <div style='color:#000000;position:absolute;left:510px;top:340px;'>7. Other:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:380px;'>Income</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:380px;'>1. $0-9,999:</div>"
-                + "    <div style='color:#000000;position:absolute;left:300px;top:380px;'>2. $10,000-14,999:</div>"
-                + "    <div style='color:#000000;position:absolute;left:450px;top:380px;'>3. $15,000-24,999:</div>"
-                + "    <div style='color:#000000;position:absolute;left:600px;top:380px;'>4. $25,000-34,999:</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:400px;'>5. $35,000+:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:425px;'>County</div>"
-                + "    <div style='color:#000000;position:absolute;left:125px;top:425px;'>1. Weber:</div>"
-                + "    <div style='color:#000000;position:absolute;left:250px;top:425px;'>2. Davis:</div>"
-                + "    <div style='color:#000000;position:absolute;left:375px;top:425px;'>3. DCLC:</div>"
-                + "    <div style='color:#000000;position:absolute;left:500px;top:425px;'>4. Morgan:</div>"
-                + "    <div style='color:#000000;position:absolute;left:625px;top:425px;'>5. Box Elder:</div>"
-                + "    <div style='color:#000000;position:absolute;left:770px;top:425px;'>6. Other:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:455px;'>Funding Source:</div>"
-                + "    <div style='color:#000000;position:absolute;left:150px;top:455px;'>1. ABC:</div>"
-                + "    <div style='color:#000000;position:absolute;left:275px;top:455px;'>2. EFG:</div>"
-                + "    <div style='color:#000000;position:absolute;left:400px;top:455px;'>3. HIJ:</div>"
-                + "    <div style='color:#000000;position:absolute;left:525px;top:455px;'>4. LMN?:</div>"
-                + "    <div style='color:#000000;position:absolute;left:650px;top:455px;'>5. OPQ:</div>"
-                + "    <div style='color:#000000;position:absolute;left:25px;top:500px;'>Problem:</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:95px;top:500px;'>1. Depression: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:275px;top:500px;'>2. Bereavement/Loss: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:525px;top:500px;'>3. Communication: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:720px;top:500px;'>4. Domestic Violence: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:95px;top:520px;'>5. Hopelessness: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:275px;top:520px;'>6. Work Problems: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:525px;top:520px;'>7. Parent Problems: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:720px;top:520px;'>8. Substance Abuse: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:95px;top:540px;'>9. Problems w/School: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:275px;top:540px;'>10. Marriage/Relationship/Family: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:525px;top:540px;'>11. Thought of hurting self: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:720px;top:540px;'>12. Angry Feelings: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:95px;top:560px;'>13. Sexual Abuse: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:275px;top:560px;'>14. Emotional Abuse: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:525px;top:560px;'>15. Physical Abuse: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:720px;top:560px;'>16. Problems w/the law: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:95px;top:580px;'>17. Unhappy with Life: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:275px;top:580px;'>18. Anxiety: XXXX</div>"
-                + "    <div style='color:#000000;font-size:10pt;position:absolute;left:525px;top:580px;'>19. Other: XXXX</div>"
-                + "</body>"
-                + "</html>";
         }
 
         private void PrintDocument(object sender, WebBrowserDocumentCompletedEventArgs e)

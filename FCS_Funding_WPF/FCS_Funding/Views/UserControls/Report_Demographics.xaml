@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="606" d:DesignWidth="862" Loaded="UserControl_Loaded">
     <Grid x:Name="Individual">
-        <Button x:Name="demographicsReport_button" Content="Generate Report" HorizontalAlignment="Left" Margin="681,134,0,0" VerticalAlignment="Top" Width="167" Click="button_Click" RenderTransformOrigin="1.578,0.545" FontSize="18.667" MouseRightButtonDown="demographicsReport_button_MouseRightButtonDown"/>
+        <Button x:Name="demographicsReport_button" Content="Generate Report" HorizontalAlignment="Left" Margin="681,134,0,0" VerticalAlignment="Top" Width="167" Click="button_Click" RenderTransformOrigin="1.578,0.545" FontSize="18.667"/>
         <DatePicker x:Name="demographicsReportFrom_datepicker" HorizontalAlignment="Left" Margin="681,41,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166"/>
         <DatePicker x:Name="demographicsReportTo_datepicker" HorizontalAlignment="Left" Margin="681,89,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166"/>
         <Label x:Name="label" Content="Demographics Report" HorizontalAlignment="Left" Margin="1,12,0,0" VerticalAlignment="Top" FontSize="32"/>
