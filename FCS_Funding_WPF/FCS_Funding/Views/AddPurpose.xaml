@@ -42,7 +42,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBox x:Name="PurposeName" Grid.Column="4" FontSize="18" HorizontalAlignment="Left" Height="40" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="216" Grid.ColumnSpan="2"/>
+		<TextBox x:Name="PurposeName" Grid.Column="4" FontSize="18" HorizontalAlignment="Left" Height="40" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="216" Grid.ColumnSpan="2" KeyDown="useEnterAsTab" />
         <TextBlock Name="PurposeNameText" Text="Purpose Name" TextAlignment="Center"  FontSize="18" Grid.Row="4" FontWeight="Bold" Margin="28,6,177,0" Grid.Column="3" Grid.ColumnSpan="2"  >
 
             <TextBlock.RenderTransform>
@@ -55,7 +55,7 @@
             </TextBlock.RenderTransform>
         </TextBlock>
         <TextBlock Name="DescriptionText" Text="Purpose Description" TextAlignment="Center"  FontSize="18" Grid.Row="6" FontWeight="Bold" Margin="113,6,5,0" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <TextBox Name="PurposeDescription" Grid.Column="4" HorizontalAlignment="Left" Height="120" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="535" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+		<TextBox Name="PurposeDescription" Grid.Column="4" HorizontalAlignment="Left" Height="120" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="535" Grid.ColumnSpan="3" Grid.RowSpan="3" KeyDown="useEnterAsTab" />
         <Button FontSize="18" Name="AddPurposeButton"  Content="Add" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Top" Width="100" Height="50" Click="AddPurposeButton_Click" RenderTransformOrigin="1.776,0.269" Margin="9.667,20,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>

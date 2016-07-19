@@ -42,7 +42,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Select Donor Information" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,26" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" />
         <CheckBox Name="OrgOrIndividual" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Content="Is Organization or Goverment?" FontSize="18" HorizontalAlignment="Right" 
-                  VerticalAlignment="Center" Click="Change_Organization_Individual" Margin="0,7,19,6" Checked="Change_Organization_Individual" FontWeight="Bold" Height="27" >
+                  VerticalAlignment="Center" Click="Change_Organization_Individual" Margin="0,7,19,6" Checked="Change_Organization_Individual" FontWeight="Bold" Height="27" KeyDown="useEnterAsTab" >
             <!---->
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
@@ -50,11 +50,11 @@
         </CheckBox>
         <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="169,5,9.4,5" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Organization" IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" FontSize="20" Loaded="Organization_DropDown" Margin="178.8,0,0.4,0" >
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="7" FontSize="20" Loaded="Organization_DropDown" Margin="178.8,0,0.4,0" KeyDown="useEnterAsTab" >
         </ComboBox>
         <TextBlock Text="Individual Name/Phone:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Individual"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="9" FontSize="20" Loaded="Individual_DropDown" Margin="178.8,0,0.4,0" />
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="9" FontSize="20" Loaded="Individual_DropDown" Margin="178.8,0,0.4,0" KeyDown="useEnterAsTab" />
         <Button FontSize="18" Grid.Column="2" Grid.Row="12" Content="Continue" Click="Continue" Grid.ColumnSpan="2" Margin="129,30,128.333,0" Height="50" Width="100" Grid.RowSpan="2"  />
     </Grid>
 </Window>

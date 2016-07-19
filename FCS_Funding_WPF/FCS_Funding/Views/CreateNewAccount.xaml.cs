@@ -19,6 +19,7 @@ namespace FCS_Funding.Views
         public CreateNewAccount()
         {
             InitializeComponent();
+			textbox_UserName.Focus();
         }
 
         private void CreateAccount(object sender, RoutedEventArgs e)
@@ -99,5 +100,10 @@ namespace FCS_Funding.Views
                 "Admin"     //Read, Insert, Update, Delete
             };
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

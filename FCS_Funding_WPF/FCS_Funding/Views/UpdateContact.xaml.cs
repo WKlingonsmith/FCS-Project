@@ -35,6 +35,7 @@ namespace FCS_Funding.Views
             DonorID = dcg.DonorID;
             ContactID = dcg.ContactID;
             InitializeComponent();
+			text_FirstName.Focus();
         }
 
         private void Update_Contact(object sender, RoutedEventArgs e)
@@ -75,5 +76,10 @@ namespace FCS_Funding.Views
                 this.Close();
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

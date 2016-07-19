@@ -24,6 +24,7 @@ namespace FCS_Funding.Views
         {
             EventID = eventID;
             InitializeComponent();
+			OrgOrIndividual.Focus();
         }
 
         private void Individual_DropDown(object sender, RoutedEventArgs e)
@@ -77,8 +78,7 @@ namespace FCS_Funding.Views
                                 select d.DonorID).Distinct().First();
 
                 CreateMoneyDonation cmd = new CreateMoneyDonation(donorID, true, EventID);
-                cmd.Show();
-                cmd.Topmost = true;
+                cmd.ShowDialog();
                 this.Close();
 
             }
@@ -96,8 +96,7 @@ namespace FCS_Funding.Views
                                select dc.DonorID).Distinct().FirstOrDefault();
 
                 CreateMoneyDonation cmd = new CreateMoneyDonation(donorID, true, EventID);
-                cmd.Show();
-                cmd.Topmost = true;
+                cmd.ShowDialog();
                 this.Close();
             }
             else
@@ -106,6 +105,11 @@ namespace FCS_Funding.Views
                 return;
             }
 
-        }
-    }
+		}
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

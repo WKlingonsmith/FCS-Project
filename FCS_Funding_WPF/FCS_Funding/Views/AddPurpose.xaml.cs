@@ -21,8 +21,9 @@ namespace FCS_Funding.Views
     {
         public AddPurpose()
         {
-
             InitializeComponent();
+
+			PurposeName.Focus();
         }
 
         private void AddPurposeButton_Click(object sender, RoutedEventArgs e)
@@ -44,5 +45,10 @@ namespace FCS_Funding.Views
             
             
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

@@ -11,7 +11,7 @@ namespace FCS_Funding.Views
     /// </summary>
     public partial class CreateMoneyDonation : Window
     {
-        public decimal DonationAmount { get; set; }
+        public decimal DonationAmount { get; set;}
         public string PurposeName { get; set; }
         public string PurposeDescription { get; set; }
         public bool IsEvent { get; set; }
@@ -35,6 +35,8 @@ namespace FCS_Funding.Views
             IsEvent = isEvent;
             DonorID = donorID;
             InitializeComponent();
+
+			text_DonationAmount.Focus();
         }
 
         private void AddGrant(object sender, RoutedEventArgs e)
@@ -118,5 +120,10 @@ namespace FCS_Funding.Views
                 DonationExpiration.IsEnabled = false;
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

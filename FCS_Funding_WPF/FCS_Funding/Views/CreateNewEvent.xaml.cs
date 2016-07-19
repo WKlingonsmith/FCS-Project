@@ -21,6 +21,7 @@ namespace FCS_Funding.Views
         public CreateNewEvent()
         {
             InitializeComponent();
+			text_EventName.Focus();
         }
 
         private void Add_Event(object sender, RoutedEventArgs e)
@@ -147,5 +148,10 @@ namespace FCS_Funding.Views
             var textbox = sender as TextBox;
             textbox.Text = "00";
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

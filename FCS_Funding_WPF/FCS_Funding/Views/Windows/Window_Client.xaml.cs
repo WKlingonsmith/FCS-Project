@@ -98,6 +98,9 @@ namespace FCS_Funding.Views.Windows
 					textbox_ClientOQ.Text = "1";
 					patientOQ = "1";
 				}
+
+				//	Focus for the dialog
+				textbox_ClientOQ.Focus();
 			}
 			//	For updating clients
 			else
@@ -159,6 +162,9 @@ namespace FCS_Funding.Views.Windows
 					button_DeleteClient.Visibility = Visibility.Hidden;
 					button_AddSession.Visibility = Visibility.Hidden;
 				}
+
+				//	Focusing
+				textbox_FirstName.Focus();
 			}
 		}
 
@@ -452,7 +458,6 @@ namespace FCS_Funding.Views.Windows
             ans.AMPM_Start.SelectedIndex = 0;
 			ans.AMPM_End.SelectedIndex = 0;
 			ans.ExpensePaidDate.IsEnabled = false;
-			ans.Topmost = true;
             ans.ShowDialog();
             Refresh_Sessions(sender, e);
         }

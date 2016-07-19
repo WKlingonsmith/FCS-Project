@@ -54,6 +54,7 @@ namespace FCS_Funding.Views
             StaffDBRole = staffDBRole;
 
             InitializeComponent();
+			fName.Focus();
         }
 
         private void UpdateDonor(object sender, RoutedEventArgs e)
@@ -105,15 +106,11 @@ namespace FCS_Funding.Views
         private void AddNewDonation(object sender, RoutedEventArgs e)
         {
             CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID, false, -1);
-            cmd.Show();
-            cmd.Topmost = true;
+            cmd.ShowDialog();
         }
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 3)
-            {
                 DataGrid dg = sender as DataGrid;
 
                     DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
@@ -123,11 +120,8 @@ namespace FCS_Funding.Views
                         up.DeleteDon.IsEnabled = false;
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
-                    up.Show();
-                    this.Topmost = false;
-                    up.Topmost = true;
+                    up.ShowDialog();
 
-            }
         }
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
@@ -154,5 +148,10 @@ namespace FCS_Funding.Views
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

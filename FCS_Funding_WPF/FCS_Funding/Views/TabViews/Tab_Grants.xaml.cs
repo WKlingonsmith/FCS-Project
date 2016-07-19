@@ -67,7 +67,6 @@ namespace FCS_Funding.Views.TabViews
 					if (expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
 					up.DonationDate.SelectedDate = p.DonationDate;
 					up.DonationExpiration.SelectedDate = p.ExpirationDate;
-					up.Topmost = true;
 					up.ShowDialog();
 				}
 				catch (Exception error)

@@ -44,16 +44,16 @@
         <TextBlock Text="Create Grant Proposal" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,27" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
         <TextBlock Text="Grant Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Grid.Column="1" Height="30" FontWeight="Bold" />
         <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox Name="textbox_grantName" FontSize="18" Text="{Binding GrantName, ElementName=ThisWindow}"  />
+			<TextBox Name="textbox_grantName" FontSize="18" Text="{Binding GrantName, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
         </Border>
         <TextBlock Text="Donor Organization:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" Margin="0,0,0,10" FontWeight="Bold" />
         <ComboBox Name="Organization" IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Center" 
-                  Height="40"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="5" FontSize="20" Loaded="Organization_DropDown" >
+                  Height="40"  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="5" FontSize="20" Loaded="Organization_DropDown" KeyDown="useEnterAsTab" >
         </ComboBox>
 
         <TextBlock Text="Submission Due Date:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="1" Height="30" Margin="0,0,0,10" FontWeight="Bold" />
         <DatePicker Name="SubmissionDueDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="21,0,10,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="21,0,10,5" PreviewKeyDown="useEnterAsTab" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
         <!--Width="170" Height="40"-->

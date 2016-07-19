@@ -18,6 +18,7 @@ namespace FCS_Funding.Views
         {
             DonorID = donID;
             InitializeComponent();
+			text_FirstName.Focus();
         }
 
         private void Add_Contact(object sender, RoutedEventArgs e)
@@ -54,5 +55,10 @@ namespace FCS_Funding.Views
             }
 
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

@@ -35,6 +35,7 @@ namespace FCS_Funding.Views
             ItemName = i.ItemName;
             ItemDescription = i.Description;
             InitializeComponent();
+			text_ItemName.Focus();
         }
 
         private void Update_InKind_Item(object sender, RoutedEventArgs e)
@@ -77,5 +78,10 @@ namespace FCS_Funding.Views
                 this.Close();
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

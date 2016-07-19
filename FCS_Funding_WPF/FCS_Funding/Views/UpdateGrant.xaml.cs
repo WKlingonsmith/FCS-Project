@@ -57,6 +57,8 @@ namespace FCS_Funding.Views
             DonorID = g.DonorID;
             GrantProposalID = g.GrantProposalID;
             InitializeComponent();
+			DonAmount.Focus();
+
             var restricted = (from item in db.Donations where item.DonationID == DonationID select item.Restricted).First();
 
             if (restricted == true)
@@ -229,5 +231,10 @@ namespace FCS_Funding.Views
                 DonationExpiration.IsEnabled = false;
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

@@ -26,6 +26,7 @@ namespace FCS_Funding.Views
         {
             PatientID = patientID;
             InitializeComponent();
+			text_PatientBill.Focus();
         }
 
         private void Add_Appointment(object sender, RoutedEventArgs e)
@@ -214,5 +215,10 @@ namespace FCS_Funding.Views
                 ExpensePaidDate.IsEnabled = false;
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

@@ -44,6 +44,9 @@ namespace FCS_Funding.Views
             DonationID = donation.DonationID;
 
             InitializeComponent();
+
+			text_DonationAmount.Focus();
+
             var restricted = (from item in db.Donations where item.DonationID == DonationID select item.Restricted).First();
             var grantID = (from item in db.Donations where item.DonationID == DonationID select item.GrantProposalID).First();
             var grantDate = (from item in db.Donations where item.DonationID == DonationID select item.DonationDate).First();
@@ -197,5 +200,10 @@ namespace FCS_Funding.Views
                 DonationExpiration.IsEnabled = false;
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

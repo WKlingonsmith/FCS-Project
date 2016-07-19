@@ -46,22 +46,22 @@
 
         <TextBlock Text="Donation Amount:" TextAlignment="Center" FontSize="18" Grid.Row="4" Grid.Column="2" Height="30" Padding="10, 0, 0, 0" FontWeight="Bold"/>
         <Border Grid.Row="4" Grid.Column="3"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" >
-            <TextBox  FontSize="18"  Text="{Binding DonationAmount, ElementName=ThisWindow}"/>
+			<TextBox Name="text_DonationAmount"  FontSize="18"  Text="{Binding DonationAmount, ElementName=ThisWindow}" KeyDown="useEnterAsTab" TabIndex="1" />
         </Border>
         <TextBlock Text="Donation Date:" TextAlignment="Center" FontSize="18" Grid.Row="6" Grid.Column="2" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold"/>
         <DatePicker Name="DonationDate"  HorizontalAlignment="Center" VerticalAlignment="Center"
-                   HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="6" FontSize="20" >
+                   HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="6" FontSize="20" PreviewKeyDown="useEnterAsTab" TabIndex="2" >
         </DatePicker>
         <!--Width="170" Height="40"-->
 
         <!--Width="170" Height="40"-->
-        <Button FontSize="18" Grid.Column="2" Grid.Row="12" Content="Update" Click="UpdateThisDonation" Margin="5.667,30,73,0" Height="50" Width="100" Grid.RowSpan="2" />
-        <Button Name="DeleteDon" FontSize="18" Grid.Column="3" Grid.Row="12" Content="Delete" Click="DeleteDonation" Margin="10,30,69.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.RowSpan="2" />
-        <CheckBox FontSize="18" FontWeight="Bold" x:Name="restrictedCheckBox" Content="Is Donation Restricted?" Grid.Column="2" HorizontalAlignment="Left" Margin="6,0,0,0" Grid.Row="10" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="39" Width="242" Unchecked="restrictedCheckBox_Checked" Checked="restrictedCheckBox_Checked"/>
-        <ComboBox ItemsSource="{Binding DataContext, ElementName=ThisWindow}" FontSize="18" x:Name="PurposeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="174,1,0,0" Grid.Row="10" VerticalAlignment="Top" Width="175" Height="39" IsEnabled="False" Grid.ColumnSpan="2"/>
+		<Button FontSize="18" Grid.Column="2" Grid.Row="12" Content="Update" Click="UpdateThisDonation" Margin="5.667,30,73,0" Height="50" Width="100" Grid.RowSpan="2" TabIndex="6" />
+		<Button Name="DeleteDon" FontSize="18" Grid.Column="3" Grid.Row="12" Content="Delete" Click="DeleteDonation" Margin="10,30,69.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.RowSpan="2"  TabIndex="7"/>
+		<CheckBox FontSize="18" FontWeight="Bold" x:Name="restrictedCheckBox" Content="Is Donation Restricted?" Grid.Column="2" HorizontalAlignment="Left" Margin="6,0,0,0" Grid.Row="10" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="39" Width="242" Unchecked="restrictedCheckBox_Checked" Checked="restrictedCheckBox_Checked" KeyDown="useEnterAsTab"  TabIndex="3"/>
+		<ComboBox ItemsSource="{Binding DataContext, ElementName=ThisWindow}" FontSize="18" x:Name="PurposeComboBox" Grid.Column="4" HorizontalAlignment="Left" Margin="174,1,0,0" Grid.Row="10" VerticalAlignment="Top" Width="175" Height="39" IsEnabled="False" Grid.ColumnSpan="2" KeyDown="useEnterAsTab"  TabIndex="4"/>
         <TextBlock Text="Select a Purpose:" TextAlignment="Center" FontSize="18" Grid.Row="10" Grid.Column="3" Height="30" Padding="10, 0, 0, 0" FontWeight="Bold" Margin="170,0,9,10" Grid.ColumnSpan="2" AllowDrop="False"/>
         <DatePicker Name="DonationExpiration"  HorizontalAlignment="Center" VerticalAlignment="Top"
-        	HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="11" FontSize="20" Margin="174,5,36,0" IsEnabled="False" Grid.ColumnSpan="2" />
+        	HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="11" FontSize="20" Margin="174,5,36,0" IsEnabled="False" Grid.ColumnSpan="2" PreviewKeyDown="useEnterAsTab"  TabIndex="5"/>
         <TextBlock Text="Donation Expiration Date:" TextAlignment="Center" FontSize="18" Grid.Row="11" Grid.Column="3" Height="30" Padding="23, 0, 0, 0" FontWeight="Bold" Grid.ColumnSpan="2" Margin="90,10,14,0"/>
     </Grid>
 </Window>

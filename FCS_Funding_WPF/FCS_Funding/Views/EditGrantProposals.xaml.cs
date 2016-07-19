@@ -27,56 +27,63 @@ namespace FCS_Funding.Views
         public EditGrantProposals(GrantProposalGrid p)
         {
             GrantName = p.GrantName;
-            OrganizationName = p.OrganizationName;
             GrantProposalID = p.GrantProposalID;
             DonorID = p.DonorID;
-            InitializeComponent();
+
+			InitializeComponent();
+
+			IEnumerable<string> statusItems = new List<string>() { "Pending", "Accepted", "Not Accepted" };
+			combobox_Status.ItemsSource = statusItems;
+
+			Models.FCS_DBModel db = new Models.FCS_DBModel();
+			var query = (from o in db.Donors
+						 where o.DonorType == "Organization" || o.DonorType == "Government"
+						 orderby o.OrganizationName
+						 select o.OrganizationName).ToList();
+			combobox_Organization.ItemsSource = query;
+
+			combobox_Status.Text = p.GrantStatus;
+			combobox_Organization.Text = p.OrganizationName;
+			text_GrantName.Focus();
         }
 
-        private void Status_DropDown(object sender, RoutedEventArgs e)
+		private void Update_Grant_Proposal(object sender, RoutedEventArgs e)
         {
-            List<string> p = new List<string>()
+			if (string.IsNullOrEmpty(text_GrantName.Text))
+			{
+				MessageBox.Show("Please enter a name for the grant.");
+				return;
+			}
+
+			if (combobox_Organization.Text == "")
+			{
+				MessageBox.Show("Please select an organization.");
+			}
+
+            string GrantStatus = combobox_Status.SelectedValue.ToString();
+            //MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
+
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
+            var grantproposal = (from p in db.GrantProposals
+                                    where p.GrantProposalID == GrantProposalID
+                                    select p).First();
+            grantproposal.GrantName = GrantName;
+            if (combobox_Status.IsEnabled == true)
             {
-                "Pending", "Accepted", "Not Accepted"
-            };
-            var box = sender as ComboBox;
-            box.ItemsSource = p;
 
-        }
-
-        private void Update_Grant_Proposal(object sender, RoutedEventArgs e)
-        {
-            if (GrantName != "" && GrantName != null)
-            {
-                string GrantStatus = Status.SelectedValue.ToString();
-                //MessageBox.Show(GrantStatus + "\n" + "\n" + GrantName + "\n" + OrganizationName);
-
-                Models.FCS_DBModel db = new Models.FCS_DBModel();
-                var grantproposal = (from p in db.GrantProposals
-                                     where p.GrantProposalID == GrantProposalID
-                                     select p).First();
-                grantproposal.GrantName = GrantName;
-                if (Status.IsEnabled == true)
+                grantproposal.GrantStatus = GrantStatus;
+                db.SaveChanges();
+                if (GrantStatus == "Accepted")
                 {
-
-                    grantproposal.GrantStatus = GrantStatus;
-                    db.SaveChanges();
-                    if (GrantStatus == "Accepted")
-                    {
-                        ///OPEN ANOTHER WINDOW TO ADD THIS PROPOSAL TO DONATION & PURPOSE TABLE
-                        AddNewGrant adg = new AddNewGrant(DonorID, GrantProposalID);
-                        adg.ShowDialog();
-                    }
-                    this.Close();
+                    ///OPEN ANOTHER WINDOW TO ADD THIS PROPOSAL TO DONATION & PURPOSE TABLE
+                    AddNewGrant adg = new AddNewGrant(DonorID, GrantProposalID);
+                    adg.ShowDialog();
                 }
-                else
-                {
-                    db.SaveChanges();
-                }
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Select a date");
+                db.SaveChanges();
             }
         }
 
@@ -96,5 +103,10 @@ namespace FCS_Funding.Views
                 this.Close();
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

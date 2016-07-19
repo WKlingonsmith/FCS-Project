@@ -34,6 +34,8 @@ namespace FCS_Funding.Views
             DonorZip = d.DonorZip;
             OrganizationName = d.OrganizationName;
             InitializeComponent();
+
+			text_FirstName.Focus();
         }
 
         private void Add_Contact(object sender, RoutedEventArgs e)
@@ -79,5 +81,10 @@ namespace FCS_Funding.Views
                 MessageBox.Show("Make sure your phone number is 10 digits or less.");
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

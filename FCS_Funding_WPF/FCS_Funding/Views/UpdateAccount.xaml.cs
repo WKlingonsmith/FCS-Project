@@ -40,6 +40,7 @@ namespace FCS_Funding.Views
 
             helperUserName = account.StaffUserName;
             InitializeComponent();
+			text_UserName.Focus();
         }
 
         private void Update_Account(object sender, RoutedEventArgs e)
@@ -145,5 +146,10 @@ namespace FCS_Funding.Views
             }
             this.Close();
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

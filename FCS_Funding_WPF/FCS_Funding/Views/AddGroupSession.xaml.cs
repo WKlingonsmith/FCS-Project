@@ -48,6 +48,8 @@ namespace FCS_Funding.Views
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
             InitializeComponent();
+
+			FN.Focus();
         }
 
         private void Add_Expense(object sender, RoutedEventArgs e)
@@ -231,5 +233,10 @@ namespace FCS_Funding.Views
                 Grant.IsEnabled = false;
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

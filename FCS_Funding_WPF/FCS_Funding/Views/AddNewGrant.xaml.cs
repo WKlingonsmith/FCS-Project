@@ -32,6 +32,8 @@ namespace FCS_Funding.Views
             DonorID = dID;
             GrantProposalID = gpID;
             InitializeComponent();
+
+			text_GrantAmount.Focus();
         }
 
         private void AddGrant(object sender, RoutedEventArgs e)
@@ -94,6 +96,11 @@ namespace FCS_Funding.Views
                 PurposeComboBox.IsEnabled = false;
                 DonationExpiration.IsEnabled = false;
             }
-        }
-    }
+		}
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

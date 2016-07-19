@@ -63,5 +63,10 @@ namespace FCS_Funding
         {
             this.Username.Focus();
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

@@ -28,6 +28,8 @@ namespace FCS_Funding.Views
             IsEvent = isEvent;
             RatePerHour = 0.00M;
             InitializeComponent();
+
+			text_ServiceDescription.Focus();
         }
         private void Add_InKind_Service(object sender, RoutedEventArgs e)
         {
@@ -217,5 +219,10 @@ namespace FCS_Funding.Views
             var textbox = sender as TextBox;
             textbox.Text = "00";
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

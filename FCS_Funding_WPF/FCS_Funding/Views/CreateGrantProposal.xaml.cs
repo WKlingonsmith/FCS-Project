@@ -16,6 +16,8 @@ namespace FCS_Funding.Views
         public CreateGrantProposal()
         {
             InitializeComponent();
+
+			textbox_grantName.Focus();
         }
 
         /// <summary>
@@ -70,5 +72,10 @@ namespace FCS_Funding.Views
             }
 
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

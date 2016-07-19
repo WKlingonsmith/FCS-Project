@@ -21,6 +21,8 @@ namespace FCS_Funding.Views
             EventID = eventID;
             IsEvent = isEvent;
             InitializeComponent();
+
+			text_ItemName.Focus();
         }
 
         private void Individual_DropDown(object sender, RoutedEventArgs e)
@@ -188,5 +190,10 @@ namespace FCS_Funding.Views
         {
             this.Close();
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

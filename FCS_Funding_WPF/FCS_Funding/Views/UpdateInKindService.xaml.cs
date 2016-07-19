@@ -73,6 +73,7 @@ namespace FCS_Funding.Views
                 EndHour = p.EndDateTime.Hour.ToString();
             }
             InitializeComponent();
+			text_ServiceDescription.Focus();
         }
 
         private void Update_InKind_Service(object sender, RoutedEventArgs e)
@@ -217,5 +218,10 @@ namespace FCS_Funding.Views
                 }
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

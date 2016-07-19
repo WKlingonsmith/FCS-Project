@@ -42,6 +42,7 @@ namespace FCS_Funding.Views
             DonorID = d.DonorID;
             OrganizationName = d.OrganizationName;
             InitializeComponent();
+			text_OrganizationName.Focus();
         }
 
         private void Update_Donor(object sender, RoutedEventArgs e)
@@ -116,15 +117,11 @@ namespace FCS_Funding.Views
         private void Add_New_Contact(object sender, RoutedEventArgs e)
         {
             AddNewContact anc = new AddNewContact(DonorID);
-            anc.Show();
-            anc.Topmost = true;
+            anc.ShowDialog();
         }
 
         private void Edit_Contact(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 2)
-            {
                 DataGrid dg = sender as DataGrid;
                     DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     UpdateContact up = new UpdateContact(p);
@@ -132,24 +129,18 @@ namespace FCS_Funding.Views
                     {
                         up.DeleteCon.IsEnabled = false;
                     }
-                    up.Show();
-                    this.Topmost = false;
-                    up.Topmost = true;
-            }
+                    up.ShowDialog();
         }
 
         private void AddNewDonation(object sender, RoutedEventArgs e)
         {
             CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID, false, -1);
-            cmd.Show();
-            cmd.Topmost = true;
+            cmd.ShowDialog();
         }
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 3)
-            {
+
                 try {
                     DataGrid dg = sender as DataGrid;
                     DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
@@ -159,15 +150,12 @@ namespace FCS_Funding.Views
                         up.DeleteDon.IsEnabled = false;
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
-                    up.Show();
-                    this.Topmost = false;
-                    up.Topmost = true;
+                    up.ShowDialog();
                 }
                 catch
                 {
 
                 }
-            }
         }
 
         private void Donations_Grid(object sender, RoutedEventArgs e)
@@ -189,5 +177,10 @@ namespace FCS_Funding.Views
             var grid = sender as DataGrid;
             grid.ItemsSource = join1.ToList();
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

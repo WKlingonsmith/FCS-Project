@@ -46,48 +46,48 @@
 
         <TextBlock Text="Patient Bill:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
         <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
+			<TextBox Name="text_PatientBill"  FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
         </Border>
         <TextBlock Text="Donor Bill:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="2" Margin="152,2,26.4,8" FontWeight="Bold" />
         <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}"  />
+			<TextBox  FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}" KeyDown="useEnterAsTab"   />
         </Border>
         <TextBlock Text="Grant:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Margin="146,0,9.4,10" Grid.ColumnSpan="2" FontWeight="Bold" />
         <ComboBox Name="Grant"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
                   Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="6" FontSize="20" Loaded="Grants_DropDown" Margin="178.8,0,0.4,0" />
         <TextBlock Text="Therapist:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="178,3,155.8,7" Grid.ColumnSpan="3" FontWeight="Bold" />
         <ComboBox Name="Staff"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="10" FontSize="20" Loaded="Staff_DropDown" Margin="178.8,0,0.4,0" />
+                  Height="40"  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="10" FontSize="20" Loaded="Staff_DropDown" Margin="178.8,0,0.4,0" KeyDown="useEnterAsTab" />
 
         <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="178,6,0.4,4" Grid.ColumnSpan="2" FontWeight="Bold" />
         <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="21,0,10,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="21,0,10,5" PreviewKeyDown="useEnterAsTab"  >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
         <TextBlock Text="Expense Due Date:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.Column="3" />
         <DatePicker Name="ExpenseDueDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="7" FontSize="20" Margin="21,0,10,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="7" FontSize="20" Margin="21,0,10,5" PreviewKeyDown="useEnterAsTab"  >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
         </DatePicker>
         <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="179,8,177.8,2" Grid.ColumnSpan="3" FontWeight="Bold" />
         <TextBox LostFocus="Hour_LostFocus" Loaded="Hour_Loaded" Grid.Row="8" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
-                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginHour, ElementName=ThisWindow}"  />
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginHour, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
         <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="8" Height="30" Margin="39.6,0,128.8,10"  />
         <TextBox LostFocus="Minute_LostFocus" Loaded="Minute_Loaded" Grid.Row="8" MaxLength="2" Grid.Column="2" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
-                 VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
+                 VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0" KeyDown="useEnterAsTab"  />
         <ComboBox Name="AMPM_Start"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="2"  Grid.Row="8" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
+                  Height="40"  Grid.Column="2"  Grid.Row="8" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0" KeyDown="useEnterAsTab"  />
 
         <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="178,8,0.4,2" Grid.ColumnSpan="2" FontWeight="Bold" />
         <TextBox LostFocus="Hour_LostFocus" Loaded="Hour_Loaded" Grid.Row="9" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
-                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndHour, ElementName=ThisWindow}"  />
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndHour, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
         <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="9" Height="30" Margin="39.6,0,128.8,10"  />
         <TextBox LostFocus="Minute_LostFocus" Loaded="Minute_Loaded" Grid.Row="9" MaxLength="2" Grid.Column="2" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
-                 VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0"  />
+                 VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="49.6,0,0,0" KeyDown="useEnterAsTab"  />
         <ComboBox Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
-                  Height="40"  Grid.Column="2"  Grid.Row="9" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0"  />
+                  Height="40"  Grid.Column="2"  Grid.Row="9" FontSize="20" Loaded="AM_PM_Dropdown" Grid.ColumnSpan="2" Margin="118.6,0,179,0" KeyDown="useEnterAsTab"  />
         <CheckBox Name="IsPaid" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" Content="Is Patient Bill Paid?" FontSize="18" HorizontalAlignment="Right" 
-                  VerticalAlignment="Center" Click="Change_Paid_Bill" Margin="0,10,45,2" Checked="Change_Paid_Bill" Height="28" >
+                  VerticalAlignment="Center" Click="Change_Paid_Bill" Margin="0,10,45,2" Checked="Change_Paid_Bill" Height="28" KeyDown="useEnterAsTab" >
             <!---->
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
@@ -95,7 +95,7 @@
         </CheckBox>
         <TextBlock Text="Expense Paid Date:" TextAlignment="Center"  FontSize="18" Grid.Row="11" Height="30" Grid.Column="3" />
         <DatePicker Name="ExpensePaidDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="11" FontSize="20" Margin="21,0,10,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="11" FontSize="20" Margin="21,0,10,5" PreviewKeyDown="useEnterAsTab" >
             <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
             </DatePicker>
             <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Add" Click="Add_Appointment" Margin="132.667,0,125.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2"   />

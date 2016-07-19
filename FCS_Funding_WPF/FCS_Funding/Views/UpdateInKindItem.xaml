@@ -39,11 +39,11 @@
         <TextBlock Text="Update In-Kind Item" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="5" Margin="179,0,0.4,26" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
         <TextBlock Text="Item Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
         <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding ItemName, ElementName=ThisWindow}"  />
+			<TextBox Name="text_ItemName"  FontSize="18" Text="{Binding ItemName, ElementName=ThisWindow}"  KeyDown="useEnterAsTab" />
         </Border>
         <TextBlock Text="Item Description:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Height="30" Grid.ColumnSpan="2" Margin="151,2,27.4,8" FontWeight="Bold" />
         <Border Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-            <TextBox  FontSize="18" Text="{Binding ItemDescription , ElementName=ThisWindow}"  />
+			<TextBox  FontSize="18" Text="{Binding ItemDescription , ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
         </Border>
         <!--<CheckBox Name="OrgOrIndividual" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Content="Is Organization or Goverment?" FontSize="18" HorizontalAlignment="Right" 
                   VerticalAlignment="Center" Click="Change_Organization_Individual" Margin="0,6,19,12" Checked="Change_Organization_Individual" >
@@ -64,7 +64,7 @@
         <TextBlock Text="Date Recieved:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Margin="152,6,26.4,4" Grid.ColumnSpan="2" />-->
         <TextBlock Text="Date Recieved:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="152,6,26.4,4" Grid.ColumnSpan="2" FontWeight="Bold" />
         <DatePicker Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="10" FontSize="20" Margin="21,0,10,5" >
+                   HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="10" FontSize="20" Margin="21,0,10,5" PreviewKeyDown="useEnterAsTab" >
         </DatePicker>
         <Button FontSize="18" Grid.Column="2" Grid.Row="13" Content="Update" Click="Update_InKind_Item" Margin="9.667,30,69,0" Grid.RowSpan="2" Height="50" Width="100"  />
         <Button Name="DeleteItem" FontSize="18" Grid.Column="3" Grid.Row="13" Content="Delete" Click="Delete_InKind_Item" Margin="10,30,69.333,0" Height="50" Width="100" VerticalAlignment="Top" Grid.RowSpan="2"    />

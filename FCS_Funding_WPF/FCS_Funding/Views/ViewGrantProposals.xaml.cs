@@ -68,12 +68,12 @@ namespace FCS_Funding.Views
                     dgp.Deletegrantprop.IsEnabled = false;
                 }
                 dgp.ShowDialog();
-                dgp.oName.IsEnabled = false;
+                dgp.text_GrantName.IsEnabled = false;
                 if (index == 1 || index == 2)
                 {
-                    dgp.Status.IsEnabled = false;
+                    dgp.combobox_Status.IsEnabled = false;
                 }
-                dgp.Status.SelectedIndex = index;
+                dgp.combobox_Status.SelectedIndex = index;
             }
         }
 

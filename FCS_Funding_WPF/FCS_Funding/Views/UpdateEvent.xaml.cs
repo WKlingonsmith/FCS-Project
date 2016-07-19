@@ -74,6 +74,8 @@ namespace FCS_Funding.Views
                 EndHour = p.EventEndDateTime.Hour.ToString();
             }
             InitializeComponent();
+
+			text_EventName.Focus();
         }
 
         private void Update_Event(object sender, RoutedEventArgs e)
@@ -257,9 +259,7 @@ namespace FCS_Funding.Views
                         up.DeleteDon.IsEnabled = false;
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
-                    up.Show();
-                    this.Topmost = false;
-                    up.Topmost = true;
+                    up.ShowDialog();
 
             }
         }
@@ -278,9 +278,7 @@ namespace FCS_Funding.Views
                         up.DeleteItem.IsEnabled = false;
                     }
                     up.DateRecieved.SelectedDate = p.DateRecieved;
-                    this.Topmost = false;
-                    up.Topmost = true;
-                    up.Show();
+                    up.ShowDialog();
 
             }
         }
@@ -343,8 +341,6 @@ namespace FCS_Funding.Views
                         up.DeleteService.IsEnabled = false;
                     }
                     up.DateRecieved.SelectedDate = p.StartDateTime;
-                    this.Topmost = false;
-                    up.Topmost = true;
 
                     if (p.StartDateTime.Hour >= 12)
                     {
@@ -362,7 +358,7 @@ namespace FCS_Funding.Views
                     {
                         up.AMPM_End.SelectedIndex = 0;
                     }
-                    up.Show();
+                    up.ShowDialog();
 
             }
         }
@@ -397,8 +393,7 @@ namespace FCS_Funding.Views
         private void AddNewDonation(object sender, RoutedEventArgs e)
         {
             EventDonorDonation cmd = new EventDonorDonation(EventID);
-            cmd.Show();
-            cmd.Topmost = true;
+            cmd.ShowDialog();
             cmd.Organization.IsEnabled = false;
         }
 
@@ -407,8 +402,7 @@ namespace FCS_Funding.Views
             if (Application.Current.Windows.Count <= 2)
             {
                 AddInKindItem iki = new AddInKindItem(true, EventID);
-                iki.Show();
-                iki.Topmost = true;
+                iki.ShowDialog();
                 iki.Organization.IsEnabled = false;
             }
         }
@@ -418,11 +412,15 @@ namespace FCS_Funding.Views
             if (Application.Current.Windows.Count <= 2)
             {
                 AddInKindService iks = new AddInKindService(true, EventID);
-                iks.Show();
-                iks.Topmost = true;
+                iks.ShowDialog();
                 iks.AMPM_End.SelectedIndex = 0;
                 iks.AMPM_Start.SelectedIndex = 0;
             }
         }
-    }
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

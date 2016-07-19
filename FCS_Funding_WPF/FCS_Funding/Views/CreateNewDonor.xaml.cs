@@ -20,6 +20,7 @@ namespace FCS_Funding.Views
         public CreateNewDonor()
         {
             InitializeComponent();
+			textbox_orgName.Focus();
         }
 
         private void CreateDonor(object sender, RoutedEventArgs e)
@@ -153,6 +154,11 @@ namespace FCS_Funding.Views
                 case 4:
                     DonorType = "Insurance"; break;
             }
-        }
-    }
+		}
+
+		private void useEnterAsTab(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			CommonControl.IntepretEnterAsTab(sender, e);
+		}
+	}
 }

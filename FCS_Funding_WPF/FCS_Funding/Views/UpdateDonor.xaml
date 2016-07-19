@@ -108,32 +108,32 @@
 
                     <TextBlock Text="Organization Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}"  />
+						<TextBox Name="text_OrganizationName"  FontSize="18" Text="{Binding OrganizationName, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
                     </Border>
                     <TextBlock Text="Address 1:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="5" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding DonorAddress1, ElementName=ThisWindow}"/>
+						<TextBox  FontSize="18" Text="{Binding DonorAddress1, ElementName=ThisWindow}" KeyDown="useEnterAsTab" />
                     </Border>
                     <TextBlock Text="Address 2:" TextAlignment="Center"  FontSize="18" Grid.Row="6" Grid.Column="1" Height="30" FontWeight="Bold" />
                     <Border Grid.Row="6" Grid.Column="2" Height="35" Grid.ColumnSpan="3" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding DonorAddress2, ElementName=ThisWindow}"/>
+						<TextBox  FontSize="18" Text="{Binding DonorAddress2, ElementName=ThisWindow}" KeyDown="useEnterAsTab" />
                     </Border>
                     <TextBlock Text="State:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Grid.ColumnSpan="3" Margin="179,7,177.8,3" FontWeight="Bold" />
                     <Border Grid.Row="7" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding DonorState, ElementName=ThisWindow}"  />
+						<TextBox  FontSize="18" Text="{Binding DonorState, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
                     </Border>
 
                     <TextBlock Text="City:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Grid.Column="3" Height="30" Grid.ColumnSpan="2" Margin="0.2,7,177.4,3" RenderTransformOrigin="0.534,0.013" FontWeight="Bold" />
                     <Border Grid.Row="7" Grid.Column="4" Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding DonorCity, ElementName=ThisWindow}"/>
+						<TextBox  FontSize="18" Text="{Binding DonorCity, ElementName=ThisWindow}" KeyDown="useEnterAsTab" />
                     </Border>
                     <TextBlock Text="Zip:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Height="30" Grid.ColumnSpan="3" Margin="179,2,177.8,8" FontWeight="Bold" />
                     <Border Grid.Row="8" Grid.Column="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}"  />
+						<TextBox  FontSize="18" Text="{Binding DonorZip, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
                     </Border>
                     <TextBlock Text="Donor Type:" TextAlignment="Center"  FontSize="18" Grid.Row="8" Grid.Column="2" Height="30" Grid.ColumnSpan="2" Margin="173.6,2,4,8" FontWeight="Bold" />
                     <Border Grid.Row="8" Grid.Column="4"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue">
-                        <TextBox  FontSize="18" Text="{Binding DonorType, ElementName=ThisWindow}"  />
+						<TextBox  FontSize="18" Text="{Binding DonorType, ElementName=ThisWindow}" KeyDown="useEnterAsTab"  />
                     </Border>
                     <TextBlock Text="Contacts:" TextAlignment="Center"  FontSize="18" Grid.Column="1" FontWeight="Bold" Grid.Row="9" Height="30"   />
                     <DataGrid Name="ContactsGrid" Grid.Column="1"  Grid.Row="10" Grid.ColumnSpan="4" Grid.RowSpan="5" CanUserResizeColumns="True" Loaded="Load_Contacts_Grid"  AutoGenerateColumns="False" 

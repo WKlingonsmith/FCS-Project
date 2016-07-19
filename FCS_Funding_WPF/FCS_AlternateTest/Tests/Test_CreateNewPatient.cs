@@ -25,25 +25,227 @@ namespace FCS_AlternateTest
 		[TestMethod]
 		public void TestAddingDuplicatePatient()
 		{
-			//Todo
+			Patient tempPatient = new Patient();
+			tempPatient.PatientOQ = "123451";
+			tempPatient.PatientFirstName = "Test";
+			tempPatient.PatientLastName = "McGee";
+			tempPatient.RelationToHead = "Related";
+			tempPatient.PatientGender = "Female";
+			tempPatient.PatientEthnicity = "Pacific Islander";
+			tempPatient.PatientAgeGroup = "12-17";
+			tempPatient.IsHead = false;
+
+			//	Premade household
+			PatientHousehold tempHousehold = new PatientHousehold();
+			tempHousehold.HouseholdCounty = "Box Elder";
+			tempHousehold.HouseholdIncomeBracket = "$25,000-34,999";
+			tempHousehold.HouseholdPopulation = 7;
+
+			//	Add the patient with new household
+			Test_Patient tpat = OpenTestPatient();
+			DeletePatient(tpat, tempPatient.PatientOQ);
+			AddPatient(tpat, tempPatient, tempHousehold);
+
+			//	Open the client window
+			Window_Client window = OpenCreateNewPatient();
+
+			//	Add the patient
+			UIUtilities.ClickOnItem(window.check_HeadOfHousehold);
+
+			UIUtilities.TypeIntoTextbox(window.textbox_ClientOQ, tempPatient.PatientOQ);
+			UIUtilities.TypeIntoTextbox(window.textbox_FirstName, tempPatient.PatientFirstName);
+			UIUtilities.TypeIntoTextbox(window.textbox_LastName, tempPatient.PatientLastName);
+
+			UIUtilities.SelectComboboxItem(window.combobox_AgeGroup, tempPatient.PatientAgeGroup);
+			UIUtilities.SelectComboboxItem(window.combobox_ethnicity, tempPatient.PatientEthnicity);
+			UIUtilities.SelectComboboxItem(window.combobox_Gender, tempPatient.PatientGender);
+
+			//	Check that it added
+			UIUtilities.ClickOnItemNoWait(window.button_AddUpdateClient);
+
+			UIUtilities.CloseWindow(tpat);
+
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+				//	Is the window still open after clicking, because the error dialog should be showing
+				//	Test patient is also open, hence the 2 window count
+				Assert.AreEqual(2, Application.Current.Windows.Count);
+			}));
+
+			UIUtilities.CloseWindow(window);
+
 		}
 
 		[TestMethod]
 		public void TestAddingNewHousehold()
 		{
-			//Todo
+			Patient tempPatient = new Patient();
+			tempPatient.PatientOQ = "123451";
+			tempPatient.PatientFirstName = "Test";
+			tempPatient.PatientLastName = "McGee";
+			tempPatient.RelationToHead = "Related";
+			tempPatient.PatientGender = "Female";
+			tempPatient.PatientEthnicity = "Pacific Islander";
+			tempPatient.PatientAgeGroup = "12-17";
+			tempPatient.IsHead = false;
+
+			//	Premade household
+			PatientHousehold tempHousehold = new PatientHousehold();
+			tempHousehold.HouseholdCounty = "Box Elder";
+			tempHousehold.HouseholdIncomeBracket = "$25,000-34,999";
+			tempHousehold.HouseholdPopulation = 7;
+
+			//	Add the patient with new household
+			Test_Patient tpat = OpenTestPatient();
+			DeletePatient(tpat, tempPatient.PatientOQ);
+
+			//	Open the client window
+			Window_Client window = OpenCreateNewPatient();
+
+			//	Add the patient
+			UIUtilities.ClickOnItem(window.check_HeadOfHousehold);
+
+			UIUtilities.TypeIntoTextbox(window.textbox_ClientOQ, tempPatient.PatientOQ);
+			UIUtilities.TypeIntoTextbox(window.textbox_FirstName, tempPatient.PatientFirstName);
+			UIUtilities.TypeIntoTextbox(window.textbox_LastName, tempPatient.PatientLastName);
+
+			UIUtilities.SelectComboboxItem(window.combobox_AgeGroup, tempPatient.PatientAgeGroup);
+			UIUtilities.SelectComboboxItem(window.combobox_ethnicity, tempPatient.PatientEthnicity);
+			UIUtilities.SelectComboboxItem(window.combobox_Gender, tempPatient.PatientGender);
+
+			//	Add the household
+			UIUtilities.ClickOnItem(window.check_FirstHouseholdMember);
+
+			UIUtilities.TypeIntoTextbox(window.textbox_HouseholdPopulation, tempHousehold.HouseholdPopulation.ToString());
+			UIUtilities.SelectComboboxItem(window.combobox_County, tempHousehold.HouseholdCounty);
+			UIUtilities.SelectComboboxItem(window.combobox_IncomeBracket, tempHousehold.HouseholdIncomeBracket);
+
+			//	Check that it added
+			UIUtilities.ClickOnItemNoWait(window.button_AddUpdateClient);
+
+			//	Find the patient
+			FindPatient(tpat, tempPatient.PatientOQ);
+
+			//	Check the values
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+				Assert.AreEqual(tempHousehold.HouseholdCounty, tpat.text_county.Text);
+				Assert.AreEqual(tempHousehold.HouseholdIncomeBracket, tpat.text_Income.Text);
+				Assert.AreEqual(tempHousehold.HouseholdPopulation, int.Parse(tpat.text_HouseholdPop.Text));
+			}));
+
+			UIUtilities.CloseWindow(tpat);
 		}
 
 		[TestMethod]
 		public void TestUsingWrongFamilyOQForHousehold()
 		{
-			//Todo
+
+			//	Patient to test with
+			Patient tempPatient = new Patient();
+			tempPatient.PatientOQ = "123451";
+			tempPatient.PatientFirstName = "Test";
+			tempPatient.PatientLastName = "McGee";
+			tempPatient.RelationToHead = "Related";
+			tempPatient.PatientGender = "Female";
+			tempPatient.PatientEthnicity = "Pacific Islander";
+			tempPatient.PatientAgeGroup = "12-17";
+			tempPatient.IsHead = false;
+
+			//	Add the temp patient manually, but link to previously-made family member
+			Window_Client window = OpenCreateNewPatient();
+
+			UIUtilities.TypeIntoTextbox(window.textbox_FamilyMemberOQ, "01234567");
+
+			UIUtilities.TypeIntoTextbox(window.textbox_ClientOQ, tempPatient.PatientOQ);
+			UIUtilities.TypeIntoTextbox(window.textbox_FirstName, tempPatient.PatientFirstName);
+			UIUtilities.TypeIntoTextbox(window.textbox_LastName, tempPatient.PatientLastName);
+			UIUtilities.TypeIntoTextbox(window.textbox_RelationToHead, tempPatient.RelationToHead);
+
+			UIUtilities.SelectComboboxItem(window.combobox_AgeGroup, tempPatient.PatientAgeGroup);
+			UIUtilities.SelectComboboxItem(window.combobox_ethnicity, tempPatient.PatientEthnicity);
+			UIUtilities.SelectComboboxItem(window.combobox_Gender, tempPatient.PatientGender);
+
+			UIUtilities.ClickOnItem(window.button_AddUpdateClient);
+			
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+			//	Is the window still open after clicking, because the error dialog should be showing
+				Assert.AreEqual(1, Application.Current.Windows.Count);
+			}));
+
+			UIUtilities.CloseWindow(window);
 		}
 
 		[TestMethod]
 		public void TestUsingFamilyOQForHousehold()
 		{
-			//Todo
+			//	Premade Family Member
+			Patient familyPatient = new Patient();
+			familyPatient.PatientOQ = "123450";
+			familyPatient.PatientFirstName = "Doodly";
+			familyPatient.PatientLastName = "Doo";
+			familyPatient.RelationToHead = "DA FATHER";
+			familyPatient.PatientGender = "Male";
+			familyPatient.PatientEthnicity = "Caucasian";
+			familyPatient.PatientAgeGroup = "24-44";
+			familyPatient.IsHead = true;
+
+			//	Premade household
+			PatientHousehold familyHousehold = new PatientHousehold();
+			familyHousehold.HouseholdCounty = "Box Elder";
+			familyHousehold.HouseholdIncomeBracket = "$25,000-34,999";
+			familyHousehold.HouseholdPopulation = 7;
+
+			//	Patient to test with
+			Patient tempPatient = new Patient();
+			tempPatient.PatientOQ = "123451";
+			tempPatient.PatientFirstName = "Test";
+			tempPatient.PatientLastName = "McGee";
+			tempPatient.RelationToHead = "Related";
+			tempPatient.PatientGender = "Female";
+			tempPatient.PatientEthnicity = "Pacific Islander";
+			tempPatient.PatientAgeGroup = "12-17";
+			tempPatient.IsHead = false;
+
+			//	Add the patient
+			Test_Patient tpat = OpenTestPatient();
+			DeletePatient(tpat, tempPatient.PatientOQ);
+			DeletePatient(tpat, familyPatient.PatientOQ);
+			AddPatient(tpat, familyPatient, familyHousehold);
+
+			//	Add the temp patient manually, but link to previously-made family member
+			Window_Client window = OpenCreateNewPatient();
+
+			UIUtilities.TypeIntoTextbox(window.textbox_FamilyMemberOQ, familyPatient.PatientOQ);
+
+			UIUtilities.TypeIntoTextbox(window.textbox_ClientOQ, tempPatient.PatientOQ);
+			UIUtilities.TypeIntoTextbox(window.textbox_FirstName, tempPatient.PatientFirstName);
+			UIUtilities.TypeIntoTextbox(window.textbox_LastName, tempPatient.PatientLastName);
+			UIUtilities.TypeIntoTextbox(window.textbox_RelationToHead, tempPatient.RelationToHead);
+
+			UIUtilities.SelectComboboxItem(window.combobox_AgeGroup, tempPatient.PatientAgeGroup);
+			UIUtilities.SelectComboboxItem(window.combobox_ethnicity, tempPatient.PatientEthnicity);
+			UIUtilities.SelectComboboxItem(window.combobox_Gender, tempPatient.PatientGender);
+
+			UIUtilities.ClickOnItemNoWait(window.button_AddUpdateClient);
+
+			//	Find the added patient
+			FindPatient(tpat, tempPatient.PatientOQ);
+
+
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+				Assert.AreEqual(familyHousehold.HouseholdCounty, tpat.text_county.Text);
+				Assert.AreEqual(familyHousehold.HouseholdIncomeBracket, tpat.text_Income.Text);
+				Assert.AreEqual(familyHousehold.HouseholdPopulation, int.Parse(tpat.text_HouseholdPop.Text));
+			}));
+
+			//	Clean up
+			DeletePatient(tpat, tempPatient.PatientOQ);
+			DeleteHousehold(tpat, familyPatient.PatientOQ);
+			DeletePatient(tpat, familyPatient.PatientOQ);
+
 		}
 
 		[TestMethod]
@@ -51,7 +253,7 @@ namespace FCS_AlternateTest
 		{
 			//	Set the testing data
 			Patient tempPatient = new Patient();
-			tempPatient.PatientOQ = "1234567890";
+			tempPatient.PatientOQ = "123451";
 			tempPatient.PatientFirstName = "Test";
 			tempPatient.PatientLastName = "McGee";
 			tempPatient.RelationToHead = "Related";
@@ -223,6 +425,8 @@ namespace FCS_AlternateTest
 			//	With the new household selected, test the textbox
 			UIUtilities.TypeIntoTextbox(window.textbox_HouseholdPopulation, "");
 			CheckAddPatientButtonState(window, false);
+
+			UIUtilities.CloseWindow(window);
 		}
 
 	//	Used in the TestButtonDisable test
@@ -294,6 +498,68 @@ namespace FCS_AlternateTest
 			UIUtilities.TypeIntoTextbox(test.text_PatientOQ, patientOQ);
 
 			UIUtilities.ClickOnItem(test.button_DeletePatient);
+		}
+
+		private void DeleteHousehold(Test_Patient test, string patientOQ)
+		{
+			int householdID = 0;
+
+			FindPatient(test, patientOQ);
+			
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+				householdID = int.Parse(test.text_HouseholdID.Text);
+			}));
+
+			DeleteHousehold(test, householdID);
+		}
+
+		private void DeleteHousehold(Test_Patient test, int HouseholdID)
+		{
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+				test.Activate();
+			}));
+
+			UIUtilities.TypeIntoTextbox(test.text_HouseholdID, HouseholdID.ToString());
+
+			UIUtilities.ClickOnItem(test.button_DeleteHousehold);
+		}
+
+		private void AddPatient(Test_Patient test, Patient tempPatient, PatientHousehold household)
+		{
+			ThreadUtilities.RunOnUIThread(new Action(() =>
+			{
+				test.Activate();
+			}));
+
+			UIUtilities.TypeIntoTextbox(test.text_AgeGroup, tempPatient.PatientAgeGroup);
+			
+			UIUtilities.TypeIntoTextbox(test.text_Ethnicity, tempPatient.PatientEthnicity);
+			UIUtilities.TypeIntoTextbox(test.text_FirstName, tempPatient.PatientFirstName);
+			UIUtilities.TypeIntoTextbox(test.text_Gender, tempPatient.PatientGender);
+			UIUtilities.TypeIntoTextbox(test.text_LastName, tempPatient.PatientLastName);
+			UIUtilities.TypeIntoTextbox(test.text_PatientOQ, tempPatient.PatientOQ);
+			UIUtilities.TypeIntoTextbox(test.text_RelationToHEad, tempPatient.RelationToHead);
+
+			if (tempPatient.IsHead)
+			{
+				UIUtilities.ClickOnItem(test.check_IsHead);
+			}
+			
+			if (tempPatient.HouseholdID == 0)
+			{
+				UIUtilities.ClickOnItem(test.check_NewHousehold);
+				UIUtilities.TypeIntoTextbox(test.text_county, household.HouseholdCounty);
+				UIUtilities.TypeIntoTextbox(test.text_Income, household.HouseholdIncomeBracket);
+				UIUtilities.TypeIntoTextbox(test.text_HouseholdPop, household.HouseholdPopulation.ToString());
+			}
+			else
+			{
+				UIUtilities.TypeIntoTextbox(test.text_HouseholdID, tempPatient.HouseholdID.ToString());
+			}
+
+			UIUtilities.ClickOnItem(test.button_AddPatient);
 		}
 	}
 }
