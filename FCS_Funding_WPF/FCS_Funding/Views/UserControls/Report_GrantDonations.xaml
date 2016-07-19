@@ -4,58 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FCS_Funding.Views.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="606" d:DesignWidth="862">
-    <Grid>
-        <DataGrid Name="Grant_DataGridReport" CanUserResizeColumns="True"  
-                              IsReadOnly="True" CanUserDeleteRows="False" AlternationCount="2" AutoGenerateColumns="False" Margin="5,67,5,320" Loaded="Grant_DataGridReport_Loaded" SelectionChanged="Grant_DataGridReport_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Grant Name" Width="100" Binding="{Binding GrantName}"/>
-                <!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
-                <DataGridTextColumn Header="Donation Amount" Width="125" Binding="{Binding DonationAmount, StringFormat={}{0:n2}}"/>
-                <DataGridTextColumn Header="Amount Remaining" Width="130" Binding="{Binding DonationAmountRemaining, StringFormat={}{0:n2}}"/>
-                <DataGridTextColumn Header="Date Recieved" Width="100" Binding="{Binding DonationDate, StringFormat=d}"/>
-                <DataGridTextColumn Header="Expiration Date" Width="110" Binding="{Binding ExpirationDate}"/>
-                <DataGridTextColumn Header="Purpose" Width="80" Binding="{Binding PurposeName}"/>
-                <DataGridTextColumn Header="Purpose Description" Width="*" Binding="{Binding PurposeDescription}"/>
-                <DataGridTextColumn x:Name="GrantProposalID" Header="Grant ID" Width="100" Binding="{Binding GrantProposalID}" Visibility="Hidden"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid x:Name="GrantSessions_DataGridReport" CanUserResizeColumns="True"  
-        	IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="5,327,5,76">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Client Name" Width="200" Binding="{Binding ClientName}"/>
-                <DataGridTextColumn Header="Sessions" Width="125" Binding="{Binding Sessions}"/>
-                <DataGridTextColumn Header="Amount" Width="130" Binding="{Binding Amount, StringFormat={}{0:n2}}"/>
-                <DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date, StringFormat=d}"/>
-                <DataGridTextColumn Header="Balance" Width="110" Binding="{Binding Balance, StringFormat={}{0:n2}}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="printGrants_button" Content="Print Grants" HorizontalAlignment="Left" Margin="245,295,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="printGrantSessions_button" Content="Print Sessions" HorizontalAlignment="Left" Margin="477,295,0,0" VerticalAlignment="Top" Width="92" Click="printGrantSessions_button_Click"/>
-        <ComboBox x:Name="GrantSessionsReportMonth_comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="79,18,0,0" Height="27" SelectionChanged="GrantSessionsReportMonth_comboBox_SelectionChanged">
-            <ComboBoxItem>All</ComboBoxItem>
-            <ComboBoxItem>January</ComboBoxItem>
-            <ComboBoxItem>February</ComboBoxItem>
-            <ComboBoxItem>March</ComboBoxItem>
-            <ComboBoxItem>April</ComboBoxItem>
-            <ComboBoxItem>May</ComboBoxItem>
-            <ComboBoxItem>June</ComboBoxItem>
-            <ComboBoxItem>July</ComboBoxItem>
-            <ComboBoxItem>August</ComboBoxItem>
-            <ComboBoxItem>September</ComboBoxItem>
-            <ComboBoxItem>October</ComboBoxItem>
-            <ComboBoxItem>November</ComboBoxItem>
-            <ComboBoxItem>December</ComboBoxItem>
-        </ComboBox>
-        <ComboBox x:Name="GrantSessionsReportYear_comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="274,18,0,0" Height="27" SelectionChanged="GrantSessionsReportYear_comboBox_SelectionChanged">
-            <ComboBoxItem>2016</ComboBoxItem>
-            <ComboBoxItem>2015</ComboBoxItem>
-            <ComboBoxItem>2014</ComboBoxItem>
-            <ComboBoxItem>2013</ComboBoxItem>
-            <ComboBoxItem>2012</ComboBoxItem>
-            <ComboBoxItem>2011</ComboBoxItem>
-            <ComboBoxItem>2010</ComboBoxItem>
-        </ComboBox>
-    </Grid>
+             mc:Ignorable="d" d:DesignWidth="862" Height="505">
+	<Grid Height="505" VerticalAlignment="Top" Margin="0,0,0,-29">
+		<DataGrid Name="Grant_DataGridReport" CanUserResizeColumns="True"  
+                              IsReadOnly="True" CanUserDeleteRows="False" AlternationCount="2" AutoGenerateColumns="False" Margin="5,42,5,252" Loaded="Grant_DataGridReport_Loaded" SelectionChanged="Grant_DataGridReport_SelectionChanged" MouseDown="Grant_DataGridReport_MouseDown">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Grant Name" Width="100" Binding="{Binding GrantName}"/>
+				<!--<DataGridTextColumn Header="Amount" Width="150" Binding="{Binding Path=Amount}"/>-->
+				<DataGridTextColumn Header="Donation Amount" Width="125" Binding="{Binding DonationAmount, StringFormat={}{0:n2}}"/>
+				<DataGridTextColumn Header="Amount Remaining" Width="130" Binding="{Binding DonationAmountRemaining, StringFormat={}{0:n2}}"/>
+				<DataGridTextColumn Header="Date Recieved" Width="100" Binding="{Binding DonationDate, StringFormat=d}"/>
+				<DataGridTextColumn Header="Expiration Date" Width="110" Binding="{Binding ExpirationDate}"/>
+				<DataGridTextColumn Header="Purpose" Width="80" Binding="{Binding PurposeName}"/>
+				<DataGridTextColumn Header="Purpose Description" Width="*" Binding="{Binding PurposeDescription}"/>
+				<DataGridTextColumn x:Name="GrantProposalID" Header="Grant ID" Width="100" Binding="{Binding GrantProposalID}" Visibility="Hidden"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<DataGrid x:Name="GrantSessions_DataGridReport" CanUserResizeColumns="True"  
+        	IsReadOnly="True" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="5,287,5,53">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Client Name" Width="200" Binding="{Binding ClientName}"/>
+				<DataGridTextColumn Header="Sessions" Width="125" Binding="{Binding Sessions}"/>
+				<DataGridTextColumn Header="Amount" Width="130" Binding="{Binding Amount, StringFormat={}{0:n2}}"/>
+				<DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date, StringFormat=d}"/>
+				<DataGridTextColumn Header="Balance" Width="110" Binding="{Binding Balance, StringFormat={}{0:n2}}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Button x:Name="printGrantSessions_button" Content="Print Report" HorizontalAlignment="Left" Margin="667,459,0,0" VerticalAlignment="Top" Width="143" Click="printGrantSessions_button_Click" FontSize="16" Height="25"/>
+		<Label x:Name="label" Content="Grant/Donation Report" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" FontSize="26" Height="46"/>
+		<Label x:Name="label2" Content="List of sessions" HorizontalAlignment="Left" Margin="10,253,0,0" VerticalAlignment="Top" FontSize="22" Height="34"/>
+		<Label x:Name="label1_Copy7" Content="From" HorizontalAlignment="Left" Margin="202,455,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="54" Height="33"/>
+		<Label x:Name="label1_Copy8" Content="To" HorizontalAlignment="Left" Margin="440,453,0,0" VerticalAlignment="Top" FontSize="18.667" RenderTransformOrigin="1.297,0.252" Width="30" Height="33"/>
+		<DatePicker x:Name="grantReportFrom_datepicker" HorizontalAlignment="Left" Margin="258,455,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166" SelectedDateChanged="grantReportFrom_datepicker_SelectedDateChanged" Height="31"/>
+		<DatePicker x:Name="grantReportTo_datepicker" HorizontalAlignment="Left" Margin="473,455,0,0" VerticalAlignment="Top" FontSize="18.667" Width="166" SelectedDateChanged="grantReportTo_datepicker_SelectedDateChanged" Height="31"/>
+		<Label x:Name="label2_Copy" Content="Filter by Date" HorizontalAlignment="Left" Margin="10,452,0,0" VerticalAlignment="Top" FontSize="22" Height="37"/>
+	</Grid>
 </UserControl>
