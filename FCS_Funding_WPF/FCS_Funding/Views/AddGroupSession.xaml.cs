@@ -144,7 +144,7 @@ namespace FCS_Funding.Views
             }
             catch
             {
-                MessageBox.Show(DonorBill.ToString());
+                //MessageBox.Show(DonorBill.ToString());
                 if (DonorBill == 0)
                 {
                     try
