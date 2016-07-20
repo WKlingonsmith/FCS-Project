@@ -158,7 +158,7 @@ namespace FCS_Funding.Views
                         expense.DonorBill = DonorBill;
                         expense.PatientBill = PatientBill;
                         expense.TotalExpenseAmount = DonorBill + PatientBill;
-                        if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                        if (IsPaid.IsChecked.Value.Equals(true)) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();
@@ -167,7 +167,7 @@ namespace FCS_Funding.Views
                     }
                     catch (Exception exc)
                     {
-                        MessageBox.Show("Please make sure all fields are correct");
+                        MessageBox.Show("Please make sure all fields are correct: " + exc);
                     }
                 }
                 else

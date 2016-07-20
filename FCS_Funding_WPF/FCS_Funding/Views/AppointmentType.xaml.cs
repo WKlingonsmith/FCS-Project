@@ -149,7 +149,23 @@ namespace FCS_Funding.Views
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Please check the fields and try again.");
+                
+                if (GroupGrid.Items.Count == 0)
+                {
+                    MessageBox.Show("Please select atleast one client prior to clicking on Select Appointment Type");
+                }
+                else if (Staff.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Therapist prior to clicking Select on Appointment Type");
+                }
+                else if (DateRecieved.Text.Equals("") || DateRecieved == null)
+                {
+                    MessageBox.Show("Please select a Date prior to clicking Select Appointment Type");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong. Please check the fields and try again.");
+                }
             }
 
         }
