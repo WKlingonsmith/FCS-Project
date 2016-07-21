@@ -47,12 +47,11 @@ namespace FCS_Funding.Views
 
         private void Update_Donor(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var donor = (from p in db.Donors
                            where p.DonorID == DonorID
                            select p).First();
-            //donor.DonorFirstName = DonorFirstName;
-            //donor.DonorLastName = DonorLastName;
+            
             donor.DonorAddress1 = DonorAddress1;
             donor.DonorAddress2 = DonorAddress2;
             donor.DonorCity = DonorCity;
@@ -61,7 +60,8 @@ namespace FCS_Funding.Views
             donor.OrganizationName = OrganizationName;
             donor.DonorType = DonorType;
             int changes = db.SaveChanges();
-            MessageBox.Show("Updated these changes successfully.");
+            
+
             this.Close();
         }
 
@@ -70,7 +70,7 @@ namespace FCS_Funding.Views
             System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Donor?" , "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 var donorContact = (from p in db.DonorContacts
                                     where p.DonorID == DonorID
                                     select p);
@@ -84,11 +84,15 @@ namespace FCS_Funding.Views
 
                 db.Donors.Remove(donor);
                 db.SaveChanges();
-                MessageBox.Show("Donor Deleted.");
+                
                 this.Close();
             }
         }
-
+        private void Refresh_ContactsGrid(object sender, RoutedEventArgs e)
+        {
+            sender = ContactsGrid;
+            Load_Contacts_Grid(sender, e);
+        }
         private void Load_Contacts_Grid(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
@@ -118,6 +122,8 @@ namespace FCS_Funding.Views
         {
             AddNewContact anc = new AddNewContact(DonorID);
             anc.ShowDialog();
+            
+            Refresh_ContactsGrid(sender, e);
         }
 
         private void Edit_Contact(object sender, MouseButtonEventArgs e)
@@ -130,12 +136,17 @@ namespace FCS_Funding.Views
                         up.DeleteCon.IsEnabled = false;
                     }
                     up.ShowDialog();
+                    
+                    Refresh_ContactsGrid(sender, e);
+            }
         }
 
         private void AddNewDonation(object sender, RoutedEventArgs e)
         {
             CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID, false, -1);
             cmd.ShowDialog();
+            
+            Refresh_ContactsGrid(sender, e);
         }
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
@@ -151,6 +162,8 @@ namespace FCS_Funding.Views
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
                     up.ShowDialog();
+                   
+                    Refresh_ContactsGrid(sender, e);
                 }
                 catch
                 {
