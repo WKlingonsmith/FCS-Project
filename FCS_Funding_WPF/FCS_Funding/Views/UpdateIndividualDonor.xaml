@@ -197,7 +197,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="Donations" TextAlignment="Center"  FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="0.4,0,0.2,24" Grid.RowSpan="2" FontWeight="Bold" TextDecorations="Underline" FontFamily="Razer Header Regular" />
-                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                    <DataGrid Name="grid_Donations"  Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Amount" Width="90" Binding="{Binding Path=DonationAmount, StringFormat={}{0:C}}"/>
@@ -207,7 +207,7 @@
                             <DataGridTextColumn Header="Purpose Description" Width="280" Binding="{Binding Path=PurposeDescription}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Name="AddDonation" FontSize="18"  Content="Add New Donation" Click="AddNewDonation" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2"     />
+                    <Button Name="AddDonation" FontSize="18"  Content="Add" Click="AddNewDonation" Grid.ColumnSpan="2" Grid.Column="2" Margin="85,37.2,93,0" Grid.Row="15" Grid.RowSpan="2"  Height="50" Width="100"   />
                 </Grid>
             </TabItem>
         </TabControl>

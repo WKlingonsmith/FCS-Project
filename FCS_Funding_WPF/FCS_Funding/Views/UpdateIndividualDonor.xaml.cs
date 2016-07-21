@@ -98,7 +98,7 @@ namespace FCS_Funding.Views
                 db.DonorContacts.Remove(contact);
                 db.Donors.Remove(donor);
                 db.SaveChanges();
-                MessageBox.Show("Donor deleted.");
+                
                 this.Close();
             }
         }
@@ -107,11 +107,16 @@ namespace FCS_Funding.Views
         {
             CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID, false, -1);
             cmd.ShowDialog();
+            
+            Refresh_DonationGrid(sender, e);
         }
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-                DataGrid dg = sender as DataGrid;
+            
+                try
+                {
+                    DataGrid dg = sender as DataGrid;
 
                     DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     UpdateDonation up = new UpdateDonation(p);
@@ -121,28 +126,52 @@ namespace FCS_Funding.Views
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
                     up.ShowDialog();
+                   
+                    Refresh_DonationGrid(sender, e);
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("could not edit");
+                }
 
         }
 
+            
+        private void Refresh_DonationGrid(object sender, RoutedEventArgs e)
+        {
+            sender = grid_Donations;
+            Donations_Grid(sender, e);
+        }
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
-            var join1 = from p in db.Purposes
-                        join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
-                        join d in db.Donations on dp.DonationID equals d.DonationID
-                        where d.DonorID == DonorID
-                        select new DonationsGrid
-                        {
-                            DonationAmount = d.DonationAmount,
-                            DonationAmountRemaining = d.DonationAmountRemaining,
-                            DonationDate = d.DonationDate,
-                            PurposeName = p.PurposeName,
-                            PurposeDescription = p.PurposeDescription,
-                            DonorID = d.DonorID,
-                            DonationPurposeID = dp.DonationPurposeID,
-                            PurposeID = p.PurposeID,
-                            DonationID = d.DonationID
-                        };
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
+
+            var join1 = (from d in db.Donations
+                         where d.DonorID == DonorID
+                         select new DonationsGrid
+                         {
+                             DonationAmount = d.DonationAmount,
+                             DonationAmountRemaining = d.DonationAmountRemaining,
+                             DonationDate = d.DonationDate,
+                             PurposeName = (from p in db.Purposes
+                                            join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                                            where dp.DonationID == d.DonationID
+                                            select p.PurposeName).FirstOrDefault(),
+                             PurposeDescription = (from p in db.Purposes
+                                                   join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                                                   where dp.DonationID == d.DonationID
+                                                   select p.PurposeDescription).FirstOrDefault(),
+                             DonorID = d.DonorID,
+                             DonationPurposeID = (from p in db.Purposes
+                                                  join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                                                  where dp.DonationID == d.DonationID
+                                                  select dp.DonationPurposeID).FirstOrDefault(),
+                             PurposeID = (from p in db.Purposes
+                                          join dp in db.DonationPurposes on p.PurposeID equals dp.PurposeID
+                                          where dp.DonationID == d.DonationID
+                                          select dp.PurposeID).FirstOrDefault(),
+                             DonationID = d.DonationID
+                         }).ToList();
 
             // ... Assign ItemsSource of DataGrid.
             var grid = sender as DataGrid;
