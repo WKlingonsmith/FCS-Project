@@ -64,7 +64,9 @@ namespace FCS_Funding.Views.TabViews
 					up.AMPM_End.SelectedIndex = 0;
 				}
 				up.ShowDialog();
-			}
+                Refresh_InKindServiceGrid(sender, e);
+            }
+
 		}
 		private void Refresh_InKindServiceGrid(object sender, RoutedEventArgs e)
 		{

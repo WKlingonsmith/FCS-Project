@@ -105,7 +105,7 @@ namespace FCS_Funding.Views
 
                 var inkindservice = (from p in db.In_Kind_Service
                                   where p.ServiceID == ServiceID
-                                  select p).First();
+                                  select p).FirstOrDefault();
                 inkindservice.ServiceDescription = ServiceDescription;
                 inkindservice.RatePerHour = RatePerHour;
                 inkindservice.StartDateTime = startDateTime;
@@ -116,7 +116,7 @@ namespace FCS_Funding.Views
 
                 var donation2 = (from d in db.Donations
                                 where d.DonationID == DonationID
-                                select d).First();
+                                select d).FirstOrDefault();
                 donation2.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
 
                 db.SaveChanges();
