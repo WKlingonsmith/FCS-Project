@@ -14,59 +14,38 @@ namespace FCS_Funding.Views.TabViews
 	/// </summary>
 	public partial class Tab_InKindServices : UserControl
 	{
-		public string StaffRole { get; set; }
-
 		public Tab_InKindServices()
 		{
 			InitializeComponent();
-
-			//	Check for permissions
-			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				AddService.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				AddService.IsEnabled = true;
-			}
 		}
 
 		private void Edit_InKindService(object sender, MouseButtonEventArgs e)
 		{
-			if (StaffRole != Definition.Basic)
+			DataGrid dg = sender as DataGrid;
+
+			InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+			UpdateInKindService up = new UpdateInKindService(p);
+
+			up.DateRecieved.SelectedDate = p.StartDateTime;
+
+			if (p.StartDateTime.Hour >= 12)
 			{
-				DataGrid dg = sender as DataGrid;
-
-				InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateInKindService up = new UpdateInKindService(p);
-				if (StaffRole != Definition.Admin)
-				{
-					up.DeleteService.IsEnabled = false;
-				}
-				up.DateRecieved.SelectedDate = p.StartDateTime;
-
-				if (p.StartDateTime.Hour >= 12)
-				{
-					up.AMPM_Start.SelectedIndex = 1;
-				}
-				else
-				{
-					up.AMPM_Start.SelectedIndex = 0;
-				}
-				if (p.EndDateTime.Hour >= 12)
-				{
-					up.AMPM_End.SelectedIndex = 1;
-				}
-				else
-				{
-					up.AMPM_End.SelectedIndex = 0;
-				}
-				up.ShowDialog();
-                Refresh_InKindServiceGrid(sender, e);
-            }
-
+				up.AMPM_Start.SelectedIndex = 1;
+			}
+			else
+			{
+				up.AMPM_Start.SelectedIndex = 0;
+			}
+			if (p.EndDateTime.Hour >= 12)
+			{
+				up.AMPM_End.SelectedIndex = 1;
+			}
+			else
+			{
+				up.AMPM_End.SelectedIndex = 0;
+			}
+			up.ShowDialog();
+            Refresh_InKindServiceGrid(sender, e);
 		}
 		private void Refresh_InKindServiceGrid(object sender, RoutedEventArgs e)
 		{

@@ -155,14 +155,6 @@ namespace FCS_Funding.Views.Windows
 			//	Change the title
 				textblock_Title.Text = "Update Client";
 
-			//	Set the security available
-				if (staffRole != Definition.Admin)
-				{
-					button_AddUpdateClient.Visibility = Visibility.Hidden;
-					button_DeleteClient.Visibility = Visibility.Hidden;
-					button_AddSession.Visibility = Visibility.Hidden;
-				}
-
 				//	Focusing
 				textbox_FirstName.Focus();
 			}

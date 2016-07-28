@@ -5,10 +5,11 @@ namespace Definition
 	{
 	//	The following are login-based constants
 		
-		public const string Basic = "Basic";
 		public const string Admin = "Admin";
 		public const string User = "User";
 		public const string NoAccess = "No Access";
+
+		public const string FrontDesk = "Front Desk";
 
 	//	The following are filter-based constants
 		public const string Filter_ClientOQ = "Client OQ";

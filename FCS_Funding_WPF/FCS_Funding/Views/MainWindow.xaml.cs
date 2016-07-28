@@ -36,6 +36,21 @@ namespace FCS_Funding
             StaffDBName = StaffName;
             //DGrid.ItemsSource = data;
             InitializeComponent();
+
+			if (StaffRole != Definition.Definition.Admin)
+			{
+				tab_Admin.Visibility = Visibility.Collapsed;
+
+				if (StaffRole == Definition.Definition.FrontDesk)
+				{
+					tab_Donor.Visibility = Visibility.Collapsed;
+					tab_Grant.Visibility = Visibility.Collapsed;
+					tab_InKindItem.Visibility = Visibility.Collapsed;
+					tab_InKindService.Visibility = Visibility.Collapsed;
+					tab_Report.Visibility = Visibility.Collapsed;
+					tab_Session.Visibility = Visibility.Collapsed;
+				}
+			}
         }
 
 		private void CreateBindingsForTabs(string roleForStaff)

@@ -131,10 +131,7 @@ namespace FCS_Funding.Views
                 DataGrid dg = sender as DataGrid;
                     DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     UpdateContact up = new UpdateContact(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteCon.IsEnabled = false;
-                    }
+                    up.DeleteCon.IsEnabled = false;
                     up.ShowDialog();
                     
                     Refresh_ContactsGrid(sender, e);
@@ -156,10 +153,7 @@ namespace FCS_Funding.Views
                     DataGrid dg = sender as DataGrid;
                     DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     UpdateDonation up = new UpdateDonation(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteDon.IsEnabled = false;
-                    }
+                    up.DeleteDon.IsEnabled = false;
                     up.DonationDate.SelectedDate = p.DonationDate;
                     up.ShowDialog();
 

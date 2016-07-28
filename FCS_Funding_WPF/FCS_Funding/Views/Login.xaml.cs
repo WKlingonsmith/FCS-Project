@@ -35,19 +35,9 @@ namespace FCS_Funding
                 MainWindow mw = new MainWindow(query.StaffDBRole, query.StaffFirstName + " " + query.StaffLastName);
                 if(query.StaffDBRole == Definition.NoAccess)
                 {
-                    MessageBox.Show("Invalid Credentials");
+                    MessageBox.Show("You are not allowed to access this program. Please contact your manager if you feel this is in error.");
                     mw.Close();
                     return;
-                }
-                else if(query.StaffDBRole == Definition.Basic || query.StaffDBRole == Definition.User)
-                {
-                    mw.AdminTab.IsEnabled = false;
-                    mw.AdminTab.Visibility = Visibility.Collapsed;
-                }
-                else if (query.StaffDBRole == Definition.Admin)
-                {
-                    mw.AdminTab.IsEnabled = true;
-                    mw.AdminTab.Visibility = Visibility.Visible;
                 }
                 mw.Show();
                 this.Close();

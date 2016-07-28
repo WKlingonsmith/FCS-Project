@@ -32,15 +32,6 @@ namespace FCS_Funding.Views.TabViews
 
 			//	Check for permissions
 			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				CreateEven.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				CreateEven.IsEnabled = true;
-			}
 		}
 
 		private void Edit_Events(object sender, MouseButtonEventArgs e)
@@ -48,18 +39,7 @@ namespace FCS_Funding.Views.TabViews
 			DataGrid dg = sender as DataGrid;
 			EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
 			UpdateEvent up = new UpdateEvent(p, StaffRole);
-			if (StaffRole != Definition.Admin)
-			{
-				up.Delete.IsEnabled = false;
-			}
-			if (StaffRole == Definition.Basic)
-			{
-				up.Delete.IsEnabled = false;
-				up.UpEvent.IsEnabled = false;
-				up.AddDonation.IsEnabled = false;
-				up.AddItem.IsEnabled = false;
-				up.AddService.IsEnabled = false;
-			}
+
 			if (p.EventStartDateTime.Hour >= 12)
 			{
 				up.AMPM_Start.SelectedIndex = 1;

@@ -19,18 +19,6 @@ namespace FCS_Funding.Views.TabViews
 		public Tab_Donors()
 		{
 			InitializeComponent();
-
-			//	Check for permissions
-			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				CreateNewDon.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				CreateNewDon.IsEnabled = true;
-			}
 		}
 
 
@@ -38,65 +26,49 @@ namespace FCS_Funding.Views.TabViews
 		{
 			try
 			{
-				if (StaffRole != Definition.Basic)
+				DataGrid dg = sender as DataGrid;
+				DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				var db = new FCS_DBModel();
+
+				if (p.DonorType == "Individual")
 				{
-					DataGrid dg = sender as DataGrid;
-					DonorsDataGrid p = (DonorsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-					var db = new FCS_DBModel();
+					//Open in individual view
+					Models.DonorContact query = (from doncontacts in db.DonorContacts
+													where doncontacts.DonorID == p.DonorID
+													select doncontacts).First();
+					UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffRole);
+					id.dType.SelectedIndex = 1;
+					id.oName.IsEnabled = false;
+					id.ShowDialog();
+				}
+				else if (p.DonorType == "Anonymous")
+				{
+					Models.DonorContact query = (from doncontacts in db.DonorContacts
+													where doncontacts.DonorID == p.DonorID
+													select doncontacts).First();
+					UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffRole);
 
-					if (p.DonorType == "Individual")
-					{
-						//Open in individual view
-						Models.DonorContact query = (from doncontacts in db.DonorContacts
-													 where doncontacts.DonorID == p.DonorID
-													 select doncontacts).First();
-						UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffRole);
-						if (StaffRole != Definition.Admin)
-						{
-							id.DeleteIndDonor.IsEnabled = false;
-						}
-						id.dType.SelectedIndex = 1;
-						id.oName.IsEnabled = false;
-						id.ShowDialog();
-					}
-					else if (p.DonorType == "Anonymous")
-					{
-						Models.DonorContact query = (from doncontacts in db.DonorContacts
-													 where doncontacts.DonorID == p.DonorID
-													 select doncontacts).First();
-						UpdateIndividualDonor id = new UpdateIndividualDonor(p, query, StaffRole);
-						if (StaffRole != Definition.Admin)
-						{
-							id.DeleteIndDonor.IsEnabled = false;
-						}
-						id.ShowDialog();
-						id.UpdateIndDonor.IsEnabled = false;
-						id.dType.SelectedIndex = 2;
-						id.fName.IsEnabled = false;
-						id.lName.IsEnabled = false;
-						id.oName.IsEnabled = false;
-						id.donA1.IsEnabled = false;
-						id.donA2.IsEnabled = false;
-						id.cPhone.IsEnabled = false;
-						id.dCity.IsEnabled = false;
-						id.cPhone.IsEnabled = false;
-						id.dState.IsEnabled = false;
-						id.dZip.IsEnabled = false;
-						id.cEmail.IsEnabled = false;
+					id.ShowDialog();
+					id.UpdateIndDonor.IsEnabled = false;
+					id.dType.SelectedIndex = 2;
+					id.fName.IsEnabled = false;
+					id.lName.IsEnabled = false;
+					id.oName.IsEnabled = false;
+					id.donA1.IsEnabled = false;
+					id.donA2.IsEnabled = false;
+					id.cPhone.IsEnabled = false;
+					id.dCity.IsEnabled = false;
+					id.cPhone.IsEnabled = false;
+					id.dState.IsEnabled = false;
+					id.dZip.IsEnabled = false;
+					id.cEmail.IsEnabled = false;
 
-					}
-					else
-					{
-						UpdateDonor up = new UpdateDonor(p, StaffRole);
+				}
+				else
+				{
+					UpdateDonor up = new UpdateDonor(p, StaffRole);
 
-						if (StaffRole != Definition.Admin)
-						{
-							up.DeleteDon.IsEnabled = false;
-						}
-
-						up.ShowDialog();
-					}
-
+					up.ShowDialog();
 				}
 			}
 			catch
@@ -127,20 +99,13 @@ namespace FCS_Funding.Views.TabViews
 		{
 			try
 			{
-				if (StaffRole != Definition.Basic)
-				{
-					DataGrid dg = sender as DataGrid;
+				DataGrid dg = sender as DataGrid;
 
-					DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-					UpdateDonation up = new UpdateDonation(p);
-
-					if (StaffRole != Definition.Admin)
-					{
-						up.DeleteDon.IsEnabled = false;
-					}
-					up.DonationDate.SelectedDate = p.DonationDate;
-					up.ShowDialog();
-				}
+				DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateDonation up = new UpdateDonation(p);
+				
+				up.DonationDate.SelectedDate = p.DonationDate;
+				up.ShowDialog();
 			}
 			catch
 			{

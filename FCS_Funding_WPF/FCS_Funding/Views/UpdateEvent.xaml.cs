@@ -247,40 +247,26 @@ namespace FCS_Funding.Views
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 3 && StaffDBRole != "Basic")
-            {
                 DataGrid dg = sender as DataGrid;
 
-                    DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                    UpdateDonation up = new UpdateDonation(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteDon.IsEnabled = false;
-                    }
-                    up.DonationDate.SelectedDate = p.DonationDate;
-                    up.ShowDialog();
-
-            }
+                DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+                UpdateDonation up = new UpdateDonation(p);
+                up.DeleteDon.IsEnabled = false;
+                up.DonationDate.SelectedDate = p.DonationDate;
+                up.ShowDialog();
+					
         }
 
         private void Edit_InKindItem(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 2 && StaffDBRole != "Basic")
-            {
-                DataGrid dg = sender as DataGrid;
+            DataGrid dg = sender as DataGrid;
 
-                    InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                    UpdateInKindItem up = new UpdateInKindItem(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteItem.IsEnabled = false;
-                    }
-                    up.DateRecieved.SelectedDate = p.DateRecieved;
-                    up.ShowDialog();
-
-            }
+            InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+            UpdateInKindItem up = new UpdateInKindItem(p);
+            up.DeleteItem.IsEnabled = false;
+            up.DateRecieved.SelectedDate = p.DateRecieved;
+            up.ShowDialog();
+				
         }
 
         private void InKindItemGrid(object sender, RoutedEventArgs e)
@@ -329,38 +315,30 @@ namespace FCS_Funding.Views
 
         private void Edit_InKindService(object sender, MouseButtonEventArgs e)
         {
-            int Count = Application.Current.Windows.Count;
-            if (Count <= 2 && StaffDBRole != "Basic")
+            DataGrid dg = sender as DataGrid;
+
+            InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+            UpdateInKindService up = new UpdateInKindService(p);
+					
+            up.DateRecieved.SelectedDate = p.StartDateTime;
+
+            if (p.StartDateTime.Hour >= 12)
             {
-                DataGrid dg = sender as DataGrid;
-
-                    InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                    UpdateInKindService up = new UpdateInKindService(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteService.IsEnabled = false;
-                    }
-                    up.DateRecieved.SelectedDate = p.StartDateTime;
-
-                    if (p.StartDateTime.Hour >= 12)
-                    {
-                        up.AMPM_Start.SelectedIndex = 1;
-                    }
-                    else
-                    {
-                        up.AMPM_Start.SelectedIndex = 0;
-                    }
-                    if (p.EndDateTime.Hour >= 12)
-                    {
-                        up.AMPM_End.SelectedIndex = 1;
-                    }
-                    else
-                    {
-                        up.AMPM_End.SelectedIndex = 0;
-                    }
-                    up.ShowDialog();
-
+                up.AMPM_Start.SelectedIndex = 1;
             }
+            else
+            {
+                up.AMPM_Start.SelectedIndex = 0;
+            }
+            if (p.EndDateTime.Hour >= 12)
+            {
+                up.AMPM_End.SelectedIndex = 1;
+            }
+            else
+            {
+                up.AMPM_End.SelectedIndex = 0;
+            }
+            up.ShowDialog();
         }
 
         private void InKindServiceGrid(object sender, RoutedEventArgs e)

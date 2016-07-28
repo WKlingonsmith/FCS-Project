@@ -24,14 +24,10 @@ namespace FCS_Funding.Views.TabViews
 	/// </summary>
 	public partial class Tab_Admin : UserControl
 	{
-		public string StaffRole { get; set; }
 
 		public Tab_Admin()
 		{
 			InitializeComponent();
-
-			//	Check for permissions
-			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
 		}
 
 		private void Refresh_AdminGrid(object sender, RoutedEventArgs e)
@@ -62,30 +58,13 @@ namespace FCS_Funding.Views.TabViews
 
 		private void EditAccount(object sender, MouseButtonEventArgs e)
 		{
-			if (StaffRole != Definition.Basic)
-			{
-				DataGrid dg = sender as DataGrid;
+			DataGrid dg = sender as DataGrid;
 
-				AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateAccount up = new UpdateAccount(p);
-				if (p.StaffDBRole == Definition.NoAccess)
-				{
-					up.UserRole.SelectedIndex = 0;
-				}
-				else if (p.StaffDBRole == Definition.Basic)
-				{
-					up.UserRole.SelectedIndex = 1;
-				}
-				else if (p.StaffDBRole == Definition.User)
-				{
-					up.UserRole.SelectedIndex = 2;
-				}
-				else if (p.StaffDBRole == Definition.Admin)
-				{
-					up.UserRole.SelectedIndex = 3;
-				}
-				up.ShowDialog();
-			}
+			AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+			UpdateAccount up = new UpdateAccount(p);
+
+			up.UserRole.SelectedItem = p.StaffDBRole;
+			up.ShowDialog();
 
 			Refresh_AdminGrid(sender, e);
 		}

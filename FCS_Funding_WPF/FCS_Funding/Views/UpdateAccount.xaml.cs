@@ -121,10 +121,10 @@ namespace FCS_Funding.Views
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>()
             {
-                "No Access", //User cannot login
-                "Basic",    //Read
-                "User",     //Read, Insert, Update
-                "Admin"     //Read, Insert, Update, Delete
+				Definition.Definition.NoAccess,
+				Definition.Definition.FrontDesk,
+				Definition.Definition.User,
+				Definition.Definition.Admin
             };
         }
 

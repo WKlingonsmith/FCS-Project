@@ -52,29 +52,22 @@ namespace FCS_Funding.Views
         }
         private void EditGrantProposal(object sender, MouseButtonEventArgs e)
         {
-			if (StaffDBRole != Definition.Basic)
-            {
-                int index;
-                DataGrid dg = sender as DataGrid;
-                GrantProposalGrid p = (GrantProposalGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                if (p.GrantStatus == "Accepted") { index = 1; }
-                else if (p.GrantStatus == "Not Accepted") { index = 2; }
-                else { index = 0; }
+            int index;
+            DataGrid dg = sender as DataGrid;
+            GrantProposalGrid p = (GrantProposalGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+            if (p.GrantStatus == "Accepted") { index = 1; }
+            else if (p.GrantStatus == "Not Accepted") { index = 2; }
+            else { index = 0; }
 
-                Models.FCS_DBModel db = new Models.FCS_DBModel();
-                EditGrantProposals dgp = new EditGrantProposals(p);
-                if (StaffDBRole != "Admin")
-                {
-                    dgp.Deletegrantprop.IsEnabled = false;
-                }
-                dgp.ShowDialog();
-                dgp.text_GrantName.IsEnabled = false;
-                if (index == 1 || index == 2)
-                {
-                    dgp.combobox_Status.IsEnabled = false;
-                }
-                dgp.combobox_Status.SelectedIndex = index;
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
+            EditGrantProposals dgp = new EditGrantProposals(p);
+            dgp.ShowDialog();
+            dgp.text_GrantName.IsEnabled = false;
+            if (index == 1 || index == 2)
+            {
+                dgp.combobox_Status.IsEnabled = false;
             }
+            dgp.combobox_Status.SelectedIndex = index;
         }
 
 

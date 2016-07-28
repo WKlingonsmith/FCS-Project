@@ -32,32 +32,17 @@ namespace FCS_Funding.Views.TabViews
 
 			//	Check for permissions
 			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				AddItem.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				AddItem.IsEnabled = true;
-			}
 		}
 
 		private void Edit_InKindItem(object sender, MouseButtonEventArgs e)
 		{
-			if (StaffRole != Definition.Basic)
-			{
-				DataGrid dg = sender as DataGrid;
+			DataGrid dg = sender as DataGrid;
 
-				InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateInKindItem up = new UpdateInKindItem(p);
-				if (StaffRole != Definition.Admin)
-				{
-					up.DeleteItem.IsEnabled = false;
-				}
-				up.DateRecieved.SelectedDate = p.DateRecieved;
-				up.ShowDialog();
-			}
+			InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+			UpdateInKindItem up = new UpdateInKindItem(p);
+			up.DateRecieved.SelectedDate = p.DateRecieved;
+			up.ShowDialog();
+
 			Refresh_InKindGrid(sender, e);
 		}
 

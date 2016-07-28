@@ -120,10 +120,6 @@ namespace FCS_Funding.Views
 
                     DonationsGrid p = (DonationsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
                     UpdateDonation up = new UpdateDonation(p);
-                    if (StaffDBRole != "Admin")
-                    {
-                        up.DeleteDon.IsEnabled = false;
-                    }
                     up.DonationDate.SelectedDate = p.DonationDate;
                     up.ShowDialog();
                    

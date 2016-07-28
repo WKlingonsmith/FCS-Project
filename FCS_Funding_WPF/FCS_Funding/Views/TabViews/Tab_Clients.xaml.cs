@@ -24,19 +24,7 @@ namespace FCS_Funding.Views.TabViews
 		public Tab_Clients()
         {
             InitializeComponent();
-
-		//	Check for permissions
-			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				CreateNewPat.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				CreateNewPat.IsEnabled = true;
-			}
-
+			
 			//	Populate the combobox
 			combobox_Search.ItemsSource = new List<string> { "", Definition.Filter_ClientOQ, Definition.Filter_FirstName, Definition.Filter_LastName, Definition.Filter_Gender, Definition.Filter_AgeGroup, Definition.Filter_Ethnicity };
 		}

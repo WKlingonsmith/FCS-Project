@@ -13,36 +13,20 @@ namespace FCS_Funding.Views.TabViews
 	/// </summary>
 	public partial class Tab_Sessions : UserControl
 	{
-		public string StaffRole { get; set; }
 
 		public Tab_Sessions()
 		{
 			InitializeComponent();
-
-			//	Check for permissions
-			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				CreateNewsession.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				CreateNewsession.IsEnabled = true;
-			}
 		}
 
 
 		private void Edit_Expense(object sender, MouseButtonEventArgs e)
 		{
-			if (StaffRole == Definition.Admin)
-			{
-				DataGrid dg = sender as DataGrid;
+			DataGrid dg = sender as DataGrid;
 
-				SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-				UpdateSession up = new UpdateSession(p);
-				up.ShowDialog();
-			}
+			SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+			UpdateSession up = new UpdateSession(p);
+			up.ShowDialog();
 
 			//	Refresh the grid
 			Refresh_SessionGrid();

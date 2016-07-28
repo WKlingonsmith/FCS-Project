@@ -24,54 +24,34 @@ namespace FCS_Funding.Views.TabViews
 	/// </summary>
 	public partial class Tab_Grants : UserControl
 	{
-		public string StaffRole { get; set; }
 
 		public Tab_Grants()
 		{
 			InitializeComponent();
-
-			//	Check for permissions
-			StaffRole = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBRole;
-
-			if (StaffRole == Definition.Basic || StaffRole == Definition.User)
-			{
-				CreateGrantProp.IsEnabled = false;
-			}
-			else if (StaffRole == Definition.Admin)
-			{
-				CreateGrantProp.IsEnabled = true;
-			}
 		}
 
 		private void EditGrant(object sender, MouseButtonEventArgs e)
 		{
 			var db = new FCS_DBModel();
-
-			if (StaffRole != Definition.Basic)
+			
+			try
 			{
-				try
-				{
-					DataGrid dg = sender as DataGrid;
+				DataGrid dg = sender as DataGrid;
 
-					GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-					UpdateGrant up = new UpdateGrant(p);
-					if (StaffRole != Definition.Admin)
-					{
-						up.DeleteGran.IsEnabled = false;
-					}
-					//Grant prop ID & donation ID with expense
-					//p.DonationID
-					var expenseTotal = (from ex in db.Expenses
-										where ex.DonationID == p.DonationID
-										select ex).Count();
-					if (expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
-					up.DonationDate.SelectedDate = p.DonationDate;
-					up.DonationExpiration.SelectedDate = p.ExpirationDate;
-					up.ShowDialog();
-				}
-				catch (Exception error)
-				{
-				}
+				GrantsDataGrid p = (GrantsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateGrant up = new UpdateGrant(p);
+				//Grant prop ID & donation ID with expense
+				//p.DonationID
+				var expenseTotal = (from ex in db.Expenses
+									where ex.DonationID == p.DonationID
+									select ex).Count();
+				if (expenseTotal > 0) { up.DonAmount.IsEnabled = false; up.AmountRem.IsEnabled = false; }
+				up.DonationDate.SelectedDate = p.DonationDate;
+				up.DonationExpiration.SelectedDate = p.ExpirationDate;
+				up.ShowDialog();
+			}
+			catch (Exception error)
+			{
 			}
 
 			Refresh_GrantGrid(sender, e);
@@ -87,7 +67,7 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Open_ViewGrantProposals(object sender, RoutedEventArgs e)
 		{
-			ViewGrantProposals vgp = new ViewGrantProposals(StaffRole);
+			ViewGrantProposals vgp = new ViewGrantProposals(null);
 			vgp.ShowDialog();
 
 			Refresh_GrantGrid(sender, e);

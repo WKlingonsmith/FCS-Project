@@ -63,31 +63,31 @@
                     <GradientStop Color="#FFB5EEFF"/>
                 </LinearGradientBrush>
             </TabControl.Background>
-			<TabItem Width="111" Height="50" Header="Clients" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
+			<TabItem Name="tab_Client" Width="111" Height="50" Header="Clients" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
 				<controls:Tab_Clients />
 			</TabItem>
-			<TabItem Width="111" Height="50" Header="Sessions" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0"  >
+			<TabItem Name="tab_Session" Width="111" Height="50" Header="Sessions" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0"  >
 				<controls:Tab_Sessions />
 			</TabItem>
-            <TabItem Width="111" Height="50" Header="Grants" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0">
+            <TabItem Name="tab_Grant" Width="111" Height="50" Header="Grants" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0">
 				<controls:Tab_Grants />
 			</TabItem>
-            <TabItem Width="111" Height="50" Header="Donors" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0">
+            <TabItem Name="tab_Donor" Width="111" Height="50" Header="Donors" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0">
 				<controls:Tab_Donors />
 			</TabItem>
-            <TabItem Width="111" Height="50" Header="In-Kind Item" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
+            <TabItem Name="tab_InKindItem" Width="111" Height="50" Header="In-Kind Item" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
 				<controls:Tab_InKindItems />
 			</TabItem>
-            <TabItem Width="111" Height="50" Header="In-Kind Service" FontSize="15" FontFamily="Calibri" Margin="2,0,-2,0">
+            <TabItem Name="tab_InKindService" Width="111" Height="50" Header="In-Kind Service" FontSize="15" FontFamily="Calibri" Margin="2,0,-2,0">
 				<controls:Tab_InKindServices />
 			</TabItem>
-            <TabItem Width="111" Height="50" Header="Events" FontSize="15.5" FontFamily="Calibri" HorizontalAlignment="Left" Margin="2,0,-2,0" >
+            <TabItem Name="tab_Event" Width="111" Height="50" Header="Events" FontSize="15.5" FontFamily="Calibri" HorizontalAlignment="Left" Margin="2,0,-2,0" >
 				<controls:Tab_Events />
 			</TabItem>
-			<TabItem Width="111" Height="50" Header="Reports" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
+			<TabItem Name="tab_Report"  Width="111" Height="50" Header="Reports" FontSize="15.5" FontFamily="Calibri" Margin="2,0,-2,0" >
 				<controls:Tab_Reports/>
 			</TabItem>
-			<TabItem Name="AdminTab" Width="111" Height="50" Header="Administrative" FontSize="15" FontFamily="Calibri" Margin="3,0,-3,0" >
+			<TabItem Name="tab_Admin" Width="111" Height="50" Header="Administrative" FontSize="15" FontFamily="Calibri" Margin="3,0,-3,0" >
 				<controls:Tab_Admin />
 			</TabItem>
         </TabControl>

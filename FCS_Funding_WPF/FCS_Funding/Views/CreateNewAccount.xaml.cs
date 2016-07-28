@@ -6,6 +6,8 @@ using System.Windows.Controls;
 
 namespace FCS_Funding.Views
 {
+	using Definition;
+
     /// <summary>
     /// Interaction logic for CreateNewAccount.xaml
     /// </summary>
@@ -94,10 +96,10 @@ namespace FCS_Funding.Views
             var box = sender as ComboBox;
             box.ItemsSource = new List<string>()
             {
-                "No Access", //User cannot login
-                "Basic",    //Read
-                "User",     //Read, Insert, Update
-                "Admin"     //Read, Insert, Update, Delete
+				Definition.NoAccess, // Can't login
+				Definition.FrontDesk, //Front Desk
+				Definition.User, // General Users
+				Definition.Admin // Admin
             };
         }
 
