@@ -138,15 +138,15 @@ namespace FCS_Funding.Views
                     up.ShowDialog();
                     
                     Refresh_ContactsGrid(sender, e);
-            }
-        }
+          }
+        
 
         private void AddNewDonation(object sender, RoutedEventArgs e)
         {
             CreateMoneyDonation cmd = new CreateMoneyDonation(DonorID, false, -1);
             cmd.ShowDialog();
-            
-            Refresh_ContactsGrid(sender, e);
+
+            Refresh_DonationsGrid(sender, e);
         }
 
         private void EditDonation(object sender, MouseButtonEventArgs e)
@@ -162,18 +162,24 @@ namespace FCS_Funding.Views
                     }
                     up.DonationDate.SelectedDate = p.DonationDate;
                     up.ShowDialog();
-                   
-                    Refresh_ContactsGrid(sender, e);
-                }
+
+                    Refresh_DonationsGrid(sender, e);
+            }
                 catch
                 {
 
                 }
         }
 
+        private void Refresh_DonationsGrid(object sender, RoutedEventArgs e)
+        {
+            sender = DonorGrid;
+            Donations_Grid(sender, e);
+        }
+
         private void Donations_Grid(object sender, RoutedEventArgs e)
         {
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
 
             var join1 = from d in db.Donations
                         where d.DonorID == DonorID                                                

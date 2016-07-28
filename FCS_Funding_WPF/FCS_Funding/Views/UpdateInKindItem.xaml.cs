@@ -41,7 +41,7 @@ namespace FCS_Funding.Views
         private void Update_InKind_Item(object sender, RoutedEventArgs e)
         {
 
-            FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+            Models.FCS_DBModel db = new Models.FCS_DBModel();
             var inkinditem = (from p in db.In_Kind_Item
                            where p.ItemID == ItemID
                            select p).First();
@@ -53,7 +53,7 @@ namespace FCS_Funding.Views
                             select d).First();
             donation.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
             db.SaveChanges();
-            MessageBox.Show("Successfully updated In-Kind Item.");
+            
             this.Close();
         }
 
@@ -63,7 +63,7 @@ namespace FCS_Funding.Views
                "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
-                FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+                Models.FCS_DBModel db = new Models.FCS_DBModel();
                 var inkinditem = (from p in db.In_Kind_Item
                                         where p.ItemID == ItemID
                                         select p).First();

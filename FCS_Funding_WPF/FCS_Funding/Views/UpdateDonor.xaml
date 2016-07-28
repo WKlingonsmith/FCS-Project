@@ -184,7 +184,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="Donations" TextAlignment="Center"  FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="0.4,0,0.2,23" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" FontFamily="Razer Header Regular" />
-                    <DataGrid Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
+                    <DataGrid Name="DonorGrid"  Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Donations_Grid"  AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4"
                                           IsReadOnly="True" CanUserDeleteRows="False" PreviewMouseDoubleClick="EditDonation">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Amount" Width="90" Binding="{Binding Path=DonationAmount}"/>

@@ -102,7 +102,6 @@ namespace FCS_Funding.Views
             try
             {
                 Models.FCS_DBModel db = new Models.FCS_DBModel();
-                //MessageBox.Show(ServiceDescription + "\n" + RatePerHour + "\n" + startDateTime + "\n" + endDateTime + "\n" + timeDiff );
 
                 var inkindservice = (from p in db.In_Kind_Service
                                   where p.ServiceID == ServiceID
@@ -121,7 +120,7 @@ namespace FCS_Funding.Views
                 donation2.DonationDate = Convert.ToDateTime(DateRecieved.ToString());
 
                 db.SaveChanges();
-                MessageBox.Show("Successfully updated In_Kind Service");
+                
                 this.Close();
 
             }
@@ -138,7 +137,7 @@ namespace FCS_Funding.Views
             if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 try {
-                    FCS_Funding.Models.FCS_DBModel db = new FCS_Funding.Models.FCS_DBModel();
+                    Models.FCS_DBModel db = new Models.FCS_DBModel();
                     var inkindservice = (from p in db.In_Kind_Service
                                          where p.ServiceID == ServiceID
                                          select p).First();

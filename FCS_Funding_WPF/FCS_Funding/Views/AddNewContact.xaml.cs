@@ -25,7 +25,6 @@ namespace FCS_Funding.Views
         {
             if(ContactFirstName != null && ContactFirstName != ""  && ContactLastName != null && ContactLastName != "")
             {
-                //MessageBox.Show(ContactFirstName + "\n" + ContactLastName + "\n" + ContactPhone + "\n" + ContactEmail);
 
                 FCS_DBModel db = new FCS_DBModel();
                 DonorContact d = new DonorContact();
@@ -40,7 +39,6 @@ namespace FCS_Funding.Views
                 if (ContactPhone.Length < 11)
                 {
                     db.SaveChanges();
-                    MessageBox.Show("Successfully added contact");
                     this.Close();
                 }
                 else

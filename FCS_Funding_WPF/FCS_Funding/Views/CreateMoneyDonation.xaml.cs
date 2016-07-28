@@ -41,12 +41,10 @@ namespace FCS_Funding.Views
 
         private void AddGrant(object sender, RoutedEventArgs e)
         {
-            //if (DonationAmount != 0 && PurposeName != null && PurposeName != "" && DonationDate.ToString() != "")
-            //{
+            
             try
             {
-                //MessageBox.Show(DonationAmount.ToString() + "\n" + DonationDate + "\n" +
-                //    PurposeName + "\n" + PurposeDescription);
+                
                 FCS_DBModel db = new FCS_DBModel();
                 Donation d = new Donation();
                 if (IsEvent)
@@ -87,17 +85,12 @@ namespace FCS_Funding.Views
                     db.DonationPurposes.Add(dp);
                     db.Donations.Remove(d);
                     db.Donations.Add(d);
-                    //db.Entry(d);
-                    //db.SaveChanges();
+                    
                 }
                 db.SaveChanges();
-                MessageBox.Show("Successfully added Donation");
+                
                 this.Close();
-                //}
-                //catch ()
-                //{
-                //    MessageBox.Show("Cannot add Grant" + "\n" + ex);
-                //}
+                
             }
             catch
             {
