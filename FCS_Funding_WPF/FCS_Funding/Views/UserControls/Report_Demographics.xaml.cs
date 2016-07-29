@@ -563,8 +563,8 @@ namespace FCS_Funding.Views.UserControls
 
 
 				//START COUNTING BASED ON THE FILTER RESULTS.
-				listOfAllMatchingPatients = listOfAllMatchingPatients;
-				sessionInformation = sessionInformation;
+				//listOfAllMatchingPatients = listOfAllMatchingPatients;
+				//sessionInformation = sessionInformation;
 				int newPatients = 0;
 				int ongoingPatients = 0;
 				double totalMinutesofService = 0;
@@ -648,10 +648,36 @@ namespace FCS_Funding.Views.UserControls
 					{
 						ongoingPatients++;
 					}
+                    //Count individual/group/family sessions
+                    bool found = false;
+                    foreach (var session in sessionInformation)
+                    {
+                        if (session.patientID.Equals(query.patientID) && found == false)
+                        {
+                            if (session.expenseTypeID == 1)
+                            {
+                                individualSessions++;
+                                found = true;
+                                continue;
+                            }
+                            else if (session.expenseTypeID == 2)
+                            {
+                                groupSessions++;
+                                found = true;
+                                continue;
+                            }
+                            else if (session.expenseTypeID == 3)
+                            {
+                                familySessions++;
+                                found = true;
+                                continue;
+                            }
+                        }
+                    }
 
 
-					// Calculate Head of Household counts
-					if (houseHoldInformation.Single().isHeadOfHousehold.Equals(true) && patientInformation.Single().gender == "Male")
+                    // Calculate Head of Household counts
+                    if (houseHoldInformation.Single().isHeadOfHousehold.Equals(true) && patientInformation.Single().gender == "Male")
 					{
 						hoHMaleCount++;
 					}
@@ -781,10 +807,10 @@ namespace FCS_Funding.Views.UserControls
 					//arrayOfFundingCounts
 				}
 
-				// - Session times - Add all sessions together in minutes and convert to hours.
-				foreach (var session in sessionInformation)
+                // - Session times - Add all sessions together in minutes and convert to hours.
+                foreach (var session in sessionInformation)
 				{
-					if (session.expenseTypeID == 1)
+					/*if (session.expenseTypeID == 1)
 					{
 						individualSessions++;
 					}
@@ -795,17 +821,20 @@ namespace FCS_Funding.Views.UserControls
 					else if (session.expenseTypeID == 3)
 					{
 						familySessions++;
-					}
+					}*/
 					totalMinutesofClientService += session.appointmentDateTimeEnd.Subtract(session.appointmentDateTimeStart).TotalMinutes;  //Cannot add hours because sessions less than 1 hour will not be tallied.
 				}
+
 
 				//Total count per funding source.
 				foreach (var se in sessionInformation)
 				{
 					if (se.fundingSource != null)
 					{
-						for (var y = 0; y < listOfAllKnownFunding.Count(); y++)
-						{
+                        int tempCount = listOfAllKnownFunding.Count();
+
+                        for (int y = 0; y < tempCount; y++)
+                        {
 							if (arrayOfFundingCounts[y, 0].Equals(se.fundingSource))
 							{
 								arrayOfFundingCounts[y, 1]++;
@@ -813,7 +842,7 @@ namespace FCS_Funding.Views.UserControls
 							}
 						}
 					}
-					if (!se.typeofCx.Equals("Not Cxl"))
+					if (se.typeofCx != "Not Cxl" && se.typeofCx != null)
 					{
 						switch (se.typeofCx)
 						{
@@ -838,49 +867,51 @@ namespace FCS_Funding.Views.UserControls
 				double totalHoursofService = totalMinutesofService / 60;
 
 				String StaffName = System.Windows.Application.Current.Windows.OfType<MainWindow>().FirstOrDefault().StaffDBName;
-				// GENERATE HTML STRING OR FORMAT FOR REPORTING MECHANISM
-				String toPrint = "<!DOCTYPE html>"
+                // GENERATE HTML STRING OR FORMAT FOR REPORTING MECHANISM
+                String Location = locationComboBox.Text;
+
+                String toPrint = "<!DOCTYPE html>"
 				+ "<html>"
 				+ "<head>"
 				+ " <style>"
-				+ "header nav, footer {"
-				+ "   display: none;"
-				+ "}"
-				+ "body {"
-				+ "    font-size:11pt;"
-				+ "    margin: -40px;"
-				+ "}"
+				+ "     header nav, footer {"
+				+ "         display: none;"
+				+ "     }"
+				+ "     body {"
+				+ "         font-size:10pt;"
+				+ "         margin: -40px;"
+				+ "     }"
 				+ "</style>"
 				+ "</head>"
 				+ "<body>"
 				+ "<div style='position:relative;' id='wrap'>"
 				+ "    <div style='color:#000000;font-size:18pt;position:relative;left:25px;top:20px;'>Demographic Report</div>"
 				+ "    <div style='color:#000000;position:absolute;left:25px;top:80px;'>Staff Name: " + StaffName + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:425px;top:80px;'>Location: </div>"
+                + "    <div style='color:#000000;position:absolute;left:560px;top:80px;'>Location: " + Location + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:25px;top:105px;'>New: " + newPatients + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:225px;top:105px;'>Ongoing: " + ongoingPatients + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:425px;top:105px;'>Total Clients: " + totalPatients + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:25px;top:130px;'>Individual: " + individualSessions + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:25px;top:130px;'>Individual Sessions: " + individualSessions + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:225px;top:130px;'>Family Sessions: " + familySessions + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:425px;top:130px;'>Groups: " + groupSessions + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:425px;top:130px;'>Group Sessions: " + groupSessions + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:25px;top:155px;'>Head of household</div>"
 				+ "    <div style='color:#000000;position:absolute;left:225px;top:155px;'>M: " + hoHMaleCount + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:325px;top:155px;'>F: " + hoHFemaleCount + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:425px;top:155px;'>Total Families: " + hoHTotalFamiles + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:25px;top:180px;'># Individuals in the household: " + hoHIndividuals + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:600px;top:175px;'>LtCxl: " + arrayOfCancellations[0] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:600px;top:195px;'>Cxl: " + arrayOfCancellations[1] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:600px;top:214px;'>No Show: " + arrayOfCancellations[2] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:25px;top:214px;'>Total Hours of service: " + totalHoursofService + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:25px;top:255px;'>Age:</div>"
-				+ "    <div style='color:#000000;position:absolute;left:150px;top:255px;'>1. 0-5: " + ageTotals[0] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:300px;top:255px;'>2. 6-11: " + ageTotals[1] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:450px;top:255px;'>3. 12-17: " + ageTotals[2] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:600px;top:255px;'>4. 18-23: " + ageTotals[3] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:150px;top:275px;'>5. 24-44: " + ageTotals[4] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:300px;top:275px;'>6. 45-54: " + ageTotals[5] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:450px;top:275px;'>7. 55-69: " + ageTotals[6] + "</div>"
-				+ "    <div style='color:#000000;position:absolute;left:600px;top:275px;'>8. 70+: " + ageTotals[7] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:600px;top:105px;'>LtCxl: " + arrayOfCancellations[0] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:600px;top:130px;'>Cxl: " + arrayOfCancellations[1] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:600px;top:155px;'>No Show: " + arrayOfCancellations[2] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:25px;top:205px;'>Total Hours of service: " + totalHoursofService + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:25px;top:235px;'>Age:</div>"
+				+ "    <div style='color:#000000;position:absolute;left:150px;top:235px;'>1. 0-5: " + ageTotals[0] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:300px;top:235px;'>2. 6-11: " + ageTotals[1] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:450px;top:235px;'>3. 12-17: " + ageTotals[2] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:600px;top:235px;'>4. 18-23: " + ageTotals[3] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:150px;top:255px;'>5. 24-44: " + ageTotals[4] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:300px;top:255px;'>6. 45-54: " + ageTotals[5] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:450px;top:255px;'>7. 55-69: " + ageTotals[6] + "</div>"
+				+ "    <div style='color:#000000;position:absolute;left:600px;top:255px;'>8. 70+: " + ageTotals[7] + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:25px;top:295px;'>Gender of Client</div>"
 				+ "    <div style='color:#000000;position:absolute;left:225px;top:295px;'>M: " + totalMales + "</div>"
 				+ "    <div style='color:#000000;position:absolute;left:325px;top:295px;'>F: " + totalFemales + "</div>"
@@ -908,21 +939,21 @@ namespace FCS_Funding.Views.UserControls
 
 				String toPrintFunding = "    <div style='color:#000000;position:absolute;left:25px;top:455px;'>Funding Source:</div>";
 				int fCount = 0;
-				int xLoc = 150;
-				int yLoc = 455;
+				int xLoc = 25;
+				int yLoc = 475;
 				int totalCount = 1;
 				foreach (var fu in listOfAllKnownFunding)
 				{
 					toPrintFunding += "    <div style='color:#000000;position:absolute;left:" + xLoc + "px;top:" + yLoc + "px;'>" + totalCount + ". " + fu.fundingSource + ": " + arrayOfFundingCounts[totalCount - 1, 1] + "</div>";
-					if (fCount <= 5)    // 5 per row
+					if (fCount <= 2)
 					{
-						xLoc += 125;
+						xLoc += 300;
 						fCount++;
 					}
 					else
 					{
 						yLoc += 20;
-						xLoc = 150;
+						xLoc = 25;
 						fCount = 0;
 					}
 					totalCount++;
@@ -957,7 +988,7 @@ namespace FCS_Funding.Views.UserControls
 				toPrint += "</body>"
 				+ "</html>";
 
-				Console.WriteLine("newPatients: " + newPatients + " - ongoingPatients: " + ongoingPatients + " - Total: " + totalPatients);
+				/*Console.WriteLine("newPatients: " + newPatients + " - ongoingPatients: " + ongoingPatients + " - Total: " + totalPatients);
 				Console.WriteLine("individualSessions: " + individualSessions + " - groupSessions: " + groupSessions + " - familySessions: " + familySessions);
 				Console.WriteLine("hoHMaleCount: " + hoHMaleCount + " - hoHFemaleCount: " + hoHFemaleCount + " - - hoHTotalFamiles: " + hoHTotalFamiles + " - hoHIndividuals: " + hoHIndividuals);
 				Console.WriteLine("Total Hours of service: " + totalHoursofService);
@@ -999,6 +1030,7 @@ namespace FCS_Funding.Views.UserControls
 					pCount++;
 				}
 				Console.WriteLine(toPrint);
+                */
 				System.Windows.Forms.WebBrowser newBrowser = new System.Windows.Forms.WebBrowser();
 
 				newBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
@@ -1014,8 +1046,8 @@ namespace FCS_Funding.Views.UserControls
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
 		{
 			problemTotalList.Clear();
-			demographicsReportFrom_datepicker.SelectedDate = new DateTime(DateTime.Now.Year, 1, 1);
-			demographicsReportTo_datepicker.SelectedDate = new DateTime(DateTime.Now.Year, 12, 31);
+			demographicsReportFrom_datepicker.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+			demographicsReportTo_datepicker.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
 			var db = new FCS_DBModel();
 			var fundingSourceList = (from don in db.Donations.AsEnumerable()
 									 join donor in db.Donors on don.DonationID equals donor.DonorID
@@ -1181,5 +1213,6 @@ namespace FCS_Funding.Views.UserControls
 			((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
 
 		}
-	}
+
+    }
 }
