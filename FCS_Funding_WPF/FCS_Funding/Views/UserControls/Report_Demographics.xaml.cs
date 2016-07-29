@@ -1209,8 +1209,8 @@ namespace FCS_Funding.Views.UserControls
 		private void PrintDocument(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
 			((System.Windows.Forms.WebBrowser)sender).ShowPageSetupDialog();
-			//((System.Windows.Forms.WebBrowser)sender).Print();
-			((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
+			((System.Windows.Forms.WebBrowser)sender).Print();
+			//((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
 
 		}
 
