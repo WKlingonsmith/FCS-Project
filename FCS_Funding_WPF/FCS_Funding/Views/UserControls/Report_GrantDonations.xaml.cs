@@ -62,8 +62,10 @@ namespace FCS_Funding.Views.UserControls
 
 		private void Grant_DataGridReport_Loaded(object sender, RoutedEventArgs e)
 		{
-			//db = new FCS_DBModel();
-			var join = from d in db.Donations
+            grantReportFrom_datepicker.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            grantReportTo_datepicker.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+            //db = new FCS_DBModel();
+            var join = from d in db.Donations
 					   join dr in db.Donors on d.DonorID equals dr.DonorID
 					   join gp in db.GrantProposals on dr.DonorID equals gp.DonorID
 					   where gp.GrantStatus == "Accepted" && d.GrantProposalID == gp.GrantProposalID
@@ -144,9 +146,9 @@ namespace FCS_Funding.Views.UserControls
 							Date = joint.Date,
 							Balance = remainingBalance
 						});
-						GrantSessionList.AddRange(GrantSessionList);
-						GrantSessionList.AddRange(GrantSessionList);
-						GrantSessionList.AddRange(GrantSessionList);
+						//GrantSessionList.AddRange(GrantSessionList);
+						//GrantSessionList.AddRange(GrantSessionList);
+						//GrantSessionList.AddRange(GrantSessionList);
 
 					}
 				}
@@ -294,8 +296,8 @@ namespace FCS_Funding.Views.UserControls
 		private void PrintDocument(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
 			((System.Windows.Forms.WebBrowser)sender).ShowPageSetupDialog();
-			//((System.Windows.Forms.WebBrowser)sender).Print();
-			((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
+			((System.Windows.Forms.WebBrowser)sender).Print();
+			//((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
 
 		}
 
