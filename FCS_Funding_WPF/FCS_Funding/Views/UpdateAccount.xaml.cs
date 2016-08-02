@@ -69,7 +69,7 @@ namespace FCS_Funding.Views
                         staff.StaffUserName = UserName;
                         staff.StaffDBRole = Role;
                         db.SaveChanges();
-                        MessageBox.Show("Updated these changes successfully.");
+                        
                         this.Close();
                     }
                     catch
@@ -107,7 +107,7 @@ namespace FCS_Funding.Views
                                  select p).First();
                     staff.StaffPassword = hashedPassword;
                     db.SaveChanges();
-                    MessageBox.Show("Updated these changes successfully.");
+                    
                 }
                 catch
                 {
@@ -130,8 +130,9 @@ namespace FCS_Funding.Views
 
         private void DeleteAccount(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Delete this Account?",
+                 "Confirmation", System.Windows.Forms.MessageBoxButtons.YesNo);
+            
                 db = new FCS_DBModel();
                 var staff = (from s in db.Staff
                              where s.StaffID == StaffID
@@ -139,11 +140,7 @@ namespace FCS_Funding.Views
 
                 db.Staff.Remove(staff);
                 db.SaveChanges();
-            }
-            catch
-            {
-                MessageBox.Show("This account has already been deleted");
-            }
+            
             this.Close();
         }
 
