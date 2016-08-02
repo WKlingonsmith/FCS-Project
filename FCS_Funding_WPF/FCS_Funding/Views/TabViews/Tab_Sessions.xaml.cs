@@ -8,9 +8,9 @@ using FCS_DataTesting;
 namespace FCS_Funding.Views.TabViews
 {
 	using Definition;
-	/// <summary>
-	/// Interaction logic for Tab_Sessions.xaml
-	/// </summary>
+	using System;   /// <summary>
+					/// Interaction logic for Tab_Sessions.xaml
+					/// </summary>
 	public partial class Tab_Sessions : UserControl
 	{
 
@@ -22,11 +22,17 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Edit_Expense(object sender, MouseButtonEventArgs e)
 		{
-			DataGrid dg = sender as DataGrid;
+			try 
+			{
+				DataGrid dg = sender as DataGrid;
 
-			SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-			UpdateSession up = new UpdateSession(p);
-			up.ShowDialog();
+				SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateSession up = new UpdateSession(p);
+				up.ShowDialog();
+			}
+			catch (Exception error)
+			{
+			}
 
 			//	Refresh the grid
 			Refresh_SessionGrid();

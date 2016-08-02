@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Controls;
 using System.Linq;
+using System;
+
 namespace FCS_Funding.Views
 {
     /// <summary>
@@ -128,13 +130,18 @@ namespace FCS_Funding.Views
 
         private void Edit_Contact(object sender, MouseButtonEventArgs e)
         {
-                DataGrid dg = sender as DataGrid;
-                    DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-                    UpdateContact up = new UpdateContact(p);
-                    up.DeleteCon.IsEnabled = false;
-                    up.ShowDialog();
-                    
-                    Refresh_ContactsGrid(sender, e);
+			try
+			{
+				DataGrid dg = sender as DataGrid;
+				DonorContactGrid p = (DonorContactGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateContact up = new UpdateContact(p);
+				up.DeleteCon.IsEnabled = false;
+				up.ShowDialog();
+			}
+			catch (Exception error)
+			{
+			}       
+			Refresh_ContactsGrid(sender, e);
           }
         
 

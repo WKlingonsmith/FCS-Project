@@ -58,13 +58,19 @@ namespace FCS_Funding.Views.TabViews
 
 		private void EditAccount(object sender, MouseButtonEventArgs e)
 		{
-			DataGrid dg = sender as DataGrid;
+			try
+			{
+				DataGrid dg = sender as DataGrid;
 
-			AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-			UpdateAccount up = new UpdateAccount(p);
+				AdminDataGrid p = (AdminDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateAccount up = new UpdateAccount(p);
 
-			up.UserRole.SelectedItem = p.StaffDBRole;
-			up.ShowDialog();
+				up.UserRole.SelectedItem = p.StaffDBRole;
+				up.ShowDialog();
+			}
+			catch (Exception error)
+			{
+			}
 
 			Refresh_AdminGrid(sender, e);
 		}

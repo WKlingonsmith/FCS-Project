@@ -8,7 +8,7 @@ using FCS_Funding.Models;
 namespace FCS_Funding.Views.TabViews
 {
 	using Definition;
-
+	using System;
 	/// <summary>
 	/// Interaction logic for Tab_InKindServices.xaml
 	/// </summary>
@@ -21,30 +21,36 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Edit_InKindService(object sender, MouseButtonEventArgs e)
 		{
-			DataGrid dg = sender as DataGrid;
+			try
+			{
+				DataGrid dg = sender as DataGrid;
 
-			InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-			UpdateInKindService up = new UpdateInKindService(p);
+				InKindService p = (InKindService)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateInKindService up = new UpdateInKindService(p);
 
-			up.DateRecieved.SelectedDate = p.StartDateTime;
+				up.DateRecieved.SelectedDate = p.StartDateTime;
 
-			if (p.StartDateTime.Hour >= 12)
-			{
-				up.AMPM_Start.SelectedIndex = 1;
+				if (p.StartDateTime.Hour >= 12)
+				{
+					up.AMPM_Start.SelectedIndex = 1;
+				}
+				else
+				{
+					up.AMPM_Start.SelectedIndex = 0;
+				}
+				if (p.EndDateTime.Hour >= 12)
+				{
+					up.AMPM_End.SelectedIndex = 1;
+				}
+				else
+				{
+					up.AMPM_End.SelectedIndex = 0;
+				}
+				up.ShowDialog();
 			}
-			else
+			catch (Exception error)
 			{
-				up.AMPM_Start.SelectedIndex = 0;
 			}
-			if (p.EndDateTime.Hour >= 12)
-			{
-				up.AMPM_End.SelectedIndex = 1;
-			}
-			else
-			{
-				up.AMPM_End.SelectedIndex = 0;
-			}
-			up.ShowDialog();
             Refresh_InKindServiceGrid(sender, e);
 		}
 		private void Refresh_InKindServiceGrid(object sender, RoutedEventArgs e)

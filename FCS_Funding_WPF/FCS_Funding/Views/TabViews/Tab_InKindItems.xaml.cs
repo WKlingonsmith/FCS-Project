@@ -36,12 +36,18 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Edit_InKindItem(object sender, MouseButtonEventArgs e)
 		{
-			DataGrid dg = sender as DataGrid;
+			try
+			{
+				DataGrid dg = sender as DataGrid;
 
-			InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-			UpdateInKindItem up = new UpdateInKindItem(p);
-			up.DateRecieved.SelectedDate = p.DateRecieved;
-			up.ShowDialog();
+				InKindItem p = (InKindItem)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateInKindItem up = new UpdateInKindItem(p);
+				up.DateRecieved.SelectedDate = p.DateRecieved;
+				up.ShowDialog();
+			}
+			catch (Exception error)
+			{
+			}
 
 			Refresh_InKindGrid(sender, e);
 		}

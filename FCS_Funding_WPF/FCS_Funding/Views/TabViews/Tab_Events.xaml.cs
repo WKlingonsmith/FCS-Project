@@ -36,30 +36,35 @@ namespace FCS_Funding.Views.TabViews
 
 		private void Edit_Events(object sender, MouseButtonEventArgs e)
 		{
-			DataGrid dg = sender as DataGrid;
-			EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
-			UpdateEvent up = new UpdateEvent(p, StaffRole);
+			try 
+			{
+				DataGrid dg = sender as DataGrid;
+				EventsDataGrid p = (EventsDataGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+				UpdateEvent up = new UpdateEvent(p, StaffRole);
 
-			if (p.EventStartDateTime.Hour >= 12)
-			{
-				up.AMPM_Start.SelectedIndex = 1;
+				if (p.EventStartDateTime.Hour >= 12)
+				{
+					up.AMPM_Start.SelectedIndex = 1;
+				}
+				else
+				{
+					up.AMPM_Start.SelectedIndex = 0;
+				}
+				if (p.EventEndDateTime.Hour >= 12)
+				{
+					up.AMPM_End.SelectedIndex = 1;
+				}
+				else
+				{
+					up.AMPM_End.SelectedIndex = 0;
+				}
+				up.DateRecieved.SelectedDate = p.EventStartDateTime;
+				up.ShowDialog();
 			}
-			else
+			catch (Exception error)
 			{
-				up.AMPM_Start.SelectedIndex = 0;
 			}
-			if (p.EventEndDateTime.Hour >= 12)
-			{
-				up.AMPM_End.SelectedIndex = 1;
-			}
-			else
-			{
-				up.AMPM_End.SelectedIndex = 0;
-			}
-			up.DateRecieved.SelectedDate = p.EventStartDateTime;
-			up.ShowDialog();
             Refresh_Events(sender, e);
-
         }
 
 
