@@ -69,7 +69,7 @@
                     <TextBlock Name="textblock_Title" Text="Create New Client" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="4" FontFamily="Razer Header Regular" Margin="0,0,0,5" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" Grid.Column="1" />
                     <TextBlock Name="txtClientOQ" Text="Client OQ Number:  " TextAlignment="Right"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" />
                     <Border Grid.Row="3" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_ClientOQ"  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" TextChanged="CheckForValidInput" PreviewTextInput="txt_NumberOnlyCheck" KeyDown="useEnterAsTab" TabIndex="1"  />
+                        <TextBox Name="textbox_ClientOQ"  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="1"  />
                     </Border>
 
                     <TextBlock Text="First Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="4" Grid.Column="1" Margin="0,5" />

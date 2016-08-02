@@ -80,7 +80,7 @@ namespace FCS_Funding.Views.Windows
 				button_CancelClient.SetValue(Grid.ColumnProperty, 3);
 
 				//	Add Client button stuff
-				button_AddUpdateClient.Content = "Add Client";
+				button_AddUpdateClient.Content = "Add";
 				button_AddUpdateClient.Click += new RoutedEventHandler(Add_Client);
 
 				textblock_Title.Text = "Add New Client";
@@ -149,7 +149,7 @@ namespace FCS_Funding.Views.Windows
 
 
 				//	Update Client button stuff
-				button_AddUpdateClient.Content = "Update Client";
+				button_AddUpdateClient.Content = "Update";
 				button_AddUpdateClient.Click += new RoutedEventHandler(Update_Client);
 
 			//	Change the title
@@ -598,7 +598,6 @@ namespace FCS_Funding.Views.Windows
 				{
 					if (checkForPatientTextEntry() && checkForHeadOfHouseEntry() && checkForHouseholdEntryAddPatient())
 					{
-						int.Parse(textbox_ClientOQ.Text);
 						int.Parse(textbox_HouseholdPopulation.Text);
 
 						if (!(bool)check_FirstHouseholdMember.IsChecked)
@@ -614,7 +613,6 @@ namespace FCS_Funding.Views.Windows
 				{
 					if (checkForPatientTextEntry() && checkForHeadOfHouseEntry() && checkForChangeHouseholdEntryEditPatient() && checkForUpdateHouseholdEntryEditPatient())
 					{
-						int.Parse(textbox_ClientOQ.Text);
 						int.Parse(textbox_HouseholdPopulation.Text);
 
 						if ((bool)check_ChangeHousehold.IsChecked)
