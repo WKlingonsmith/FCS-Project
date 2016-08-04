@@ -49,6 +49,8 @@ namespace FCS_Funding.Views
             EndDateTime = endDateTime;
             InitializeComponent();
 
+            Grant.IsEnabled = false;
+            ExpensePaidDate.IsEnabled = false;
 			FN.Focus();
         }
 
@@ -83,7 +85,7 @@ namespace FCS_Funding.Views
                         expense.DonorBill = DonorBill;
                         expense.PatientBill = PatientBill;
                         expense.TotalExpenseAmount = DonorBill + PatientBill;
-                        if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                        if (IsPaid.IsChecked.Value == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();
@@ -121,7 +123,7 @@ namespace FCS_Funding.Views
                         expense.DonorBill = DonorBill;
                         expense.PatientBill = PatientBill;
                         expense.TotalExpenseAmount = DonorBill + PatientBill;
-                        if (ExpensePaidDate.IsEnabled == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                        if (IsPaid.IsChecked.Value == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();
@@ -158,7 +160,7 @@ namespace FCS_Funding.Views
                         expense.DonorBill = DonorBill;
                         expense.PatientBill = PatientBill;
                         expense.TotalExpenseAmount = DonorBill + PatientBill;
-                        if (IsPaid.IsChecked.Value.Equals(true)) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
+                        if (IsPaid.IsChecked.Value == true) { expense.ExpensePaidDate = Convert.ToDateTime(ExpensePaidDate.ToString()); }
 
                         db.Expenses.Add(expense);
                         db.SaveChanges();

@@ -358,6 +358,20 @@ namespace FCS_Funding.Views.Windows
 		{
 			this.Close();
 		}
+	private void Edit_Expense(object sender, MouseButtonEventArgs e)
+        {
+            
+            DataGrid dg = sender as DataGrid;
+
+            SessionsGrid p = (SessionsGrid)dg.SelectedItems[0]; // OR:  Patient p = (Patient)dg.SelectedItem;
+            UpdateSession up = new UpdateSession(p);
+            up.ShowDialog();
+
+
+            //	Refresh the grid
+            Refresh_SessionsGrid(sender, e);
+        }
+
         private void Refresh_Sessions(object sender, RoutedEventArgs e)
         {
             sender = grid_Sessions;

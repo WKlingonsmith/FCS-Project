@@ -74,10 +74,10 @@ namespace FCS_Funding.Views
                         cancellationType = "Not Cxl";
                         break;
                     case 1:
-                        cancellationType = "Lt Cxl";
+                        cancellationType = "No Show";
                         break;
                     case 2:
-                        cancellationType = "No Show";
+                        cancellationType = "Late Cxl";
                         break;                 
                     case 3:
                         cancellationType = "Cxl";
@@ -131,6 +131,7 @@ namespace FCS_Funding.Views
                         a.StaffID = staffID;
                         a.AppointmentStartDate = startDateTime;
                         a.AppointmentEndDate = endDateTime;
+                        a.AppointmentCancelationType = cancellationType;
                         db.Appointments.Add(a);
                         db.SaveChanges();
 
