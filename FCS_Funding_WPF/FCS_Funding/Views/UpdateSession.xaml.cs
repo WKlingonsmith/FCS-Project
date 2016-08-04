@@ -313,7 +313,8 @@ namespace FCS_Funding.Views
                 }
 
                 //Update Donor/Insurance Deduction
-                newDonorBill = DonorBill; //The rest is done in Update Grant/MoneyDonation
+                newDonorBill = 0;
+                Decimal.TryParse(Deduction.Text, out newDonorBill); //The rest is done in Update Grant/MoneyDonation
 
                 //Update Client Copay in Update All
 
