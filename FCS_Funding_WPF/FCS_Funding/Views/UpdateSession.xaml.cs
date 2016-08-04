@@ -312,103 +312,67 @@ namespace FCS_Funding.Views
                         break;
                 }
 
-                //Update Donor/Insurance Deduction
-                newDonorBill = 0;
-                Decimal.TryParse(Deduction.Text, out newDonorBill); //The rest is done in Update Grant/MoneyDonation
-
+				//Update Donor/Insurance Deduction
+				newDonorBill = Decimal.Parse(Deduction.Text);
+				
                 //Update Client Copay in Update All
-
                 //Update Grant/MoneyDonation and Donation
-                decimal newDonationAmountRemaining;
-                //Updating Grant
-                if (DonorDeduction.IsChecked.Value)
-                {
-                    string newGrant = Grant.SelectedValue.ToString();
-                    var newGrantproposalID = (from g in db.GrantProposals
-                                           where g.GrantName == newGrant
-                                           select g.GrantProposalID).Distinct().FirstOrDefault();
-                    var newGrantDonationID = (from don in db.Donations
-                                              where don.GrantProposalID == newGrantproposalID
-                                              select don.DonationID).Distinct().FirstOrDefault();
-                    var newGrantDonation = (from d in db.Donations
-                                         where d.DonationID == newGrantDonationID
-                                         select d).FirstOrDefault(); //Row
-                    var oldDonorID = (from d in db.Donations
-                                      where d.DonationID == oldDonationID
-                                      select d.DonorID).Distinct().FirstOrDefault();
-                    var oldDonorType = (from d in db.Donors
-                                        where d.DonorID == oldDonorID
-                                        select d.DonorType).Distinct().FirstOrDefault();
-                    var oldGrantProposalID = (from d in db.Donations
-                                              where d.DonationID == oldDonationID
-                                              select d.GrantProposalID).Distinct().FirstOrDefault();
-                    var oldDonation = (from d in db.Donations
-                                       where d.GrantProposalID == oldGrantProposalID
-                                       select d).FirstOrDefault();
-                    var expense = (from exp in db.Expenses
-                                      where exp.ExpenseID == Session.ExpenseID
-                                      select exp).FirstOrDefault(); //Row
-                    oldDonation.DonationAmountRemaining += oldDonorBill;
-                    if (newGrantDonation.DonationAmountRemaining >= newDonorBill)
-                    {
-                        newDonationAmountRemaining = newGrantDonation.DonationAmountRemaining - newDonorBill;
-                        newGrantDonation.DonationAmountRemaining = newDonationAmountRemaining;
-                    }
-                    else
-                    {
-                        MessageBox.Show("That grant does not have enough money.");
-                        oldDonation.DonationAmountRemaining -= oldDonorBill;
-                        return;
-                    }
-                    expense.DonationID = newGrantDonationID;
-                }
-                //Updating MoneyDonation
-                else
-                {
-                    string[] monDonSeparators = new string[] { ", " };
-                    string monDon = MoneyDonation.SelectedValue.ToString();
-                    //MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
-                    string[] monDonWords = monDon.Split(monDonSeparators, StringSplitOptions.None);
-                    int newDonationID = Convert.ToInt32(monDonWords[0]);
-                    var newDonation = (from d in db.Donations
-                                    where d.DonationID == newDonationID
-                                    select d).FirstOrDefault(); //Row
-                    var oldDonorID = (from d in db.Donations
-                                      where d.DonationID == oldDonationID
-                                      select d.DonorID).Distinct().FirstOrDefault();
-                    var oldDonorType = (from d in db.Donors
-                                        where d.DonorID == oldDonorID
-                                        select d.DonorType).Distinct().FirstOrDefault();
-                    var oldGrantProposalID = (from d in db.Donations
-                                              where d.DonationID == oldDonationID
-                                              select d.GrantProposalID).Distinct().FirstOrDefault();
-                    var oldDonation = (from d in db.Donations
-                                       where d.GrantProposalID == oldGrantProposalID
-                                       select d).FirstOrDefault();
-                    var expense = (from exp in db.Expenses
-                                   where exp.ExpenseID == Session.ExpenseID
-                                   select exp).FirstOrDefault(); //Row
-                    oldDonation.DonationAmountRemaining += oldDonorBill;
-                    if (newDonation.DonationAmountRemaining >= newDonorBill)
-                    {
-                        var newDonor = (from d in db.Donors
-                                     where d.DonorID == newDonation.DonorID
-                                     select d).FirstOrDefault(); //Row
-                        if (newDonor.DonorType != "Insurance")
-                        {
-                            newDonationAmountRemaining = newDonation.DonationAmountRemaining - newDonorBill;
-                            newDonation.DonationAmountRemaining = newDonationAmountRemaining;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("That donation does not have enough money.");
-                        oldDonation.DonationAmountRemaining -= oldDonorBill;
-                        return;
-                    }
-                    expense.DonationID = newDonationID;
-                }
+				var oldDonation = (from d in db.Donations
+							   where d.DonationID == oldDonationID
+							   select d).FirstOrDefault();
 
+				var newDonationQuery = (from d in db.Donations
+										select d);
+
+				var expense = (from exp in db.Expenses
+							   where exp.ExpenseID == Session.ExpenseID
+							   select exp).FirstOrDefault();
+
+				if ((bool)DonorDeduction.IsChecked)
+				{
+					string newGrant = Grant.SelectedValue.ToString();
+					var newGrantproposalID = (from g in db.GrantProposals
+											  where g.GrantName == newGrant
+											  select g.GrantProposalID).Distinct().FirstOrDefault();
+
+					newDonationQuery = newDonationQuery.Where(x => x.GrantProposalID == newGrantproposalID);
+				}
+				else
+				{
+					string[] monDonSeparators = new string[] { ", " };
+					string monDon = MoneyDonation.SelectedValue.ToString();
+					//MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
+					string[] monDonWords = monDon.Split(monDonSeparators, StringSplitOptions.None);
+					int newDonationID = Convert.ToInt32(monDonWords[0]);
+
+					newDonationQuery = newDonationQuery.Where(x => x.DonationID == newDonationID);
+				}
+
+				var newDonation = newDonationQuery.FirstOrDefault();
+
+				//	If the new donation is different, check to see if the amount is enough
+				decimal amountRemaining = 0;
+
+				if (newDonation.DonationID != oldDonation.DonationID)
+				{
+					amountRemaining = newDonation.DonationAmountRemaining;
+				}
+				else
+				{
+					amountRemaining = newDonation.DonationAmountRemaining + oldDonorBill;
+				}
+
+				if (amountRemaining < newDonorBill)
+				{
+					MessageBox.Show("That donation does not have enough money.");
+					return;
+				}
+
+				oldDonation.DonationAmountRemaining += oldDonorBill;
+				newDonation.DonationAmountRemaining -= newDonorBill;
+
+				expense.DonationID = newDonation.DonationID;
+				
                 //Update Therapist
                 string[] therSeparators = new string[] { ", ", " " };
                 string staff = Staff.SelectedValue.ToString();
@@ -499,7 +463,7 @@ namespace FCS_Funding.Views
                 db.SaveChanges();
                 this.Close();
             }
-            catch (Exception exe)
+            catch (Exception error)
             {
                 MessageBox.Show("Something went wrong. Please check the fields and try again.");
             }

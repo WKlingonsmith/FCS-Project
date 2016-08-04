@@ -78,7 +78,6 @@ namespace FCS_Funding.Views
                 donor.DonorCity = DonorCity;
                 donor.DonorZip = DonorZip;
                 db.SaveChanges();
-                MessageBox.Show("Donor updated successfully");
                 this.Close();
 
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
-        Title="UpdateSession" Height="400" Width="500" x:Name="ThisWindow">
+        Title="UpdateSession" Height="800" Width="1200" x:Name="ThisWindow">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="AliceBlue" Offset="1"/>
@@ -104,7 +104,7 @@
             <ComboBoxItem Content="Late Cancellation"/>
             <ComboBoxItem Content="Cancelled"/>
         </ComboBox>
-        <Button FontSize="18" Grid.Row="16" Content="Update Appointment" Click="Update_Expense" Grid.ColumnSpan="3" Margin="95,10,110,23"   Grid.RowSpan="2"   />
+		<Button FontSize="18" Grid.Row="16" Content="Update Appointment" Click="Update_Expense" Grid.ColumnSpan="3" Margin="115,23,90,23"   Grid.RowSpan="2" Height="39"  />
         <Button x:Name="Delete_Copy" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Cancel" Click="Close_Window" Height="39" Margin="150,0,40,23" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"   />
         <TextBlock Text="Appointment Type:" TextAlignment="Center"  FontSize="18" Grid.Row="2" Height="30" Grid.ColumnSpan="2" Margin="11,10,129,36" Grid.RowSpan="2" FontWeight="Bold" Grid.Column="1" />
         <ComboBox x:Name="ApptType"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 

@@ -6,6 +6,7 @@ using System.Linq;
 //using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 //using System.Windows.Data;
 //using System.Windows.Documents;
 //using System.Windows.Input;
@@ -148,7 +149,6 @@ namespace FCS_Funding.Views
                     db.In_Kind_Service.Remove(inkindservice);
                     db.Donations.Remove(donation);
                     db.SaveChanges();
-                    MessageBox.Show("This grant has been deleted and the Proposal associated\nwith this grant has been set to Pending.");
                     this.Close();
                 }
                 catch
@@ -164,9 +164,14 @@ namespace FCS_Funding.Views
         }
 
 
-        private void Hour_LostFocus(object sender, RoutedEventArgs e)
-        {
+		private void txt_NumberOnlyCheck(object sender, TextCompositionEventArgs e)
+		{
+			CommonControl.NumberOnlyEventCheckNoPeriod(sender, e);
+		}
 
+
+		private void Hour_LostFocus(object sender, RoutedEventArgs e)
+        {
             //StartHour
             var textbox = sender as TextBox;
             if (textbox.Text != "" && textbox.Text != null)
@@ -182,7 +187,6 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("Please insert a number.");
                 }
             }
 
@@ -213,7 +217,6 @@ namespace FCS_Funding.Views
                 catch 
                 {
                     textbox.Text = "";
-                    MessageBox.Show("Please insert a number.");
                 }
             }
         }

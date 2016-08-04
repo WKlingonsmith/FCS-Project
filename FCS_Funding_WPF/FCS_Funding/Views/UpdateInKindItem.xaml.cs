@@ -74,7 +74,6 @@ namespace FCS_Funding.Views
                 db.In_Kind_Item.Remove(inkinditem);
                 db.Donations.Remove(donation);
                 db.SaveChanges();
-                MessageBox.Show("This Grant has been deleted and the Proposal associated with this grant has been set to Pending.");
                 this.Close();
             }
         }
