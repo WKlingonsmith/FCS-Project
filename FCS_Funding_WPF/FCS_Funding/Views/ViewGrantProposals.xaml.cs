@@ -24,7 +24,11 @@ namespace FCS_Funding.Views
             StaffDBRole = StaffRole;
             InitializeComponent();
         }
-
+        private void Refresh_Grant_Proposal(object sender, RoutedEventArgs e)
+        {
+            sender = GrantProposals;
+            Grant_Proposal_Grid(sender, e);
+        }
         private void Grant_Proposal_Grid(object sender, RoutedEventArgs e)
         {
             Models.FCS_DBModel db = new Models.FCS_DBModel();
@@ -71,6 +75,7 @@ namespace FCS_Funding.Views
                 }
                 dgp.combobox_Status.SelectedIndex = index;
             }
+            Refresh_Grant_Proposal(sender, e);
         }
 
 

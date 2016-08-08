@@ -655,7 +655,7 @@ namespace FCS_Funding.Views
                 }
                 db.SaveChanges();
 
-                MessageBox.Show("This session has been deleted.");
+                //MessageBox.Show("This session has been deleted.");
                 this.Close();
             }
         }
