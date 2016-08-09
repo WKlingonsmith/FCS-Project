@@ -6,119 +6,119 @@
         xmlns:local="clr-namespace:FCS_Funding.Views"
         mc:Ignorable="d"
         Title="UpdateSession" Height="800" Width="1200" x:Name="ThisWindow">
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="AliceBlue" Offset="1"/>
-            <GradientStop Color="#FFB5EEFF" Offset="0.42"/>
-        </LinearGradientBrush>
-    </Window.Background>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBlock Text="Update Expense" TextAlignment="Center"  FontSize="36" Grid.ColumnSpan="5" 
+	<Window.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="AliceBlue" Offset="1"/>
+			<GradientStop Color="#FFB5EEFF" Offset="0.42"/>
+		</LinearGradientBrush>
+	</Window.Background>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<TextBlock Text="Update Expense" TextAlignment="Center"  FontSize="36" Grid.ColumnSpan="5" 
                    Height="53" Margin="99,21,100,0" VerticalAlignment="Top" Grid.RowSpan="2" FontFamily="Razer Header Regular" FontWeight="Bold" TextDecorations="Underline" Grid.Column="1" />
-        <Button Name="Delete" FontSize="18" Grid.Column="2" Grid.Row="16" Content="Delete Expense" Click="Delete_Expense" Height="39" Margin="126,0,63,23" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"   />
-        <TextBlock Text="Client First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="15,11,111,35" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="1" />
-        <Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="68,13,60,27" Grid.RowSpan="2">
-            <TextBox x:Name="FN"  FontSize="18" Text="{Binding ClientFirstName, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Client Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="15,15,111,31" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="1" />
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="68,16,60,25" Grid.RowSpan="2">
-            <TextBox x:Name="LN" FontSize="18" Text="{Binding ClientLastName, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Client Co-Pay:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="113,17,13,29" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="3" />
-        <Border Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="13,18,116,23" Grid.RowSpan="2">
-            <TextBox  Name="Copay" FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
-        </Border>
-        <TextBlock Text="Donor/Insurance Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="3" Margin="97,30,126,16" FontWeight="Bold" Grid.RowSpan="2" />
-        <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="68,25,60,16" Grid.RowSpan="2">
-            <TextBox  Name="Deduction" FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}"  />
-        </Border>
-        <CheckBox x:Name="DonorDeduction" Grid.Row="6" Content="Is Donor Deduction coming from a Grant?" FontSize="18" HorizontalAlignment="Right"  FontWeight="Bold"
+		<Button Name="Delete" FontSize="18" Grid.Column="2" Grid.Row="16" Content="Delete Expense" Click="Delete_Expense" Height="39" Margin="126,0,63,23" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"   />
+		<TextBlock Text="Client First Name:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="15,11,111,35" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="1" />
+		<Border Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="68,13,60,27" Grid.RowSpan="2">
+			<TextBox x:Name="FN"  FontSize="18" Text="{Binding ClientFirstName, ElementName=ThisWindow}"  />
+		</Border>
+		<TextBlock Text="Client Last Name:" TextAlignment="Center"  FontSize="18" Grid.Row="4" Height="30" Grid.ColumnSpan="2" Margin="15,15,111,31" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="1" />
+		<Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="68,16,60,25" Grid.RowSpan="2">
+			<TextBox x:Name="LN" FontSize="18" Text="{Binding ClientLastName, ElementName=ThisWindow}"  />
+		</Border>
+		<TextBlock Text="Client Co-Pay:" TextAlignment="Center"  FontSize="18" Grid.Row="3" Height="30" Grid.ColumnSpan="2" Margin="113,17,13,29" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="3" />
+		<Border Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="13,18,116,23" Grid.RowSpan="2">
+			<TextBox  Name="Copay" FontSize="18" Text="{Binding PatientBill, ElementName=ThisWindow}"  />
+		</Border>
+		<TextBlock Text="Donor/Insurance Deduction:" TextAlignment="Center"  FontSize="18" Grid.Row="5" Height="30" Grid.ColumnSpan="3" Margin="97,30,126,16" FontWeight="Bold" Grid.RowSpan="2" />
+		<Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"  Height="35" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="68,25,60,16" Grid.RowSpan="2">
+			<TextBox  Name="Deduction" FontSize="18" Text="{Binding DonorBill, ElementName=ThisWindow}"  />
+		</Border>
+		<CheckBox x:Name="DonorDeduction" Grid.Row="6" Content="Is Donor Deduction coming from a Grant?" FontSize="18" HorizontalAlignment="Right"  FontWeight="Bold"
         	VerticalAlignment="Center" Click="Change_Client_Bill" Margin="0,33,87,11" Checked="Change_Client_Bill" Height="32" Grid.ColumnSpan="4" Width="427" Grid.Column="1" Grid.RowSpan="2" >
-            <CheckBox.LayoutTransform>
-                <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-            </CheckBox.LayoutTransform>
-        </CheckBox>
-        <TextBlock Text="Money Donation ID:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="0,36,103,10" Grid.ColumnSpan="2" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="1" />
-        <ComboBox x:Name="MoneyDonation"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+			<CheckBox.LayoutTransform>
+				<ScaleTransform ScaleX="1.1" ScaleY="1.1" />
+			</CheckBox.LayoutTransform>
+		</CheckBox>
+		<TextBlock Text="Money Donation ID:" TextAlignment="Center"  FontSize="18" Grid.Row="7" Height="30" Margin="0,36,103,10" Grid.ColumnSpan="2" FontWeight="Bold" Grid.RowSpan="2" Grid.Column="1" />
+		<ComboBox x:Name="MoneyDonation"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
         	Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="7" FontSize="20" Loaded="MoneyDonation_DropDown" Margin="68,31,9,5" Grid.RowSpan="2" />
-        <TextBlock Text="Grant:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="28,5,75,3" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" />
-        <ComboBox x:Name="Grant"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+		<TextBlock Text="Grant:" TextAlignment="Center"  FontSize="18" Grid.Row="9" Height="30" Margin="28,5,75,3" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" />
+		<ComboBox x:Name="Grant"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
         	Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="8" FontSize="20" Loaded="Grants_DropDown" Margin="68,33,9,3" Grid.RowSpan="2" />
-        <TextBlock Text="Therapist:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="53,10,126,36" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-        <ComboBox x:Name="Staff"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+		<TextBlock Text="Therapist:" TextAlignment="Center"  FontSize="18" Grid.Row="10" Height="30" Margin="53,10,126,36" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+		<ComboBox x:Name="Staff"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
         	Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="10" FontSize="20" Loaded="Staff_DropDown" Margin="68,2,9,34" Grid.RowSpan="2" />
-        <TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Margin="78,14,75,32" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-        <DatePicker x:Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
+		<TextBlock Text="Date:" TextAlignment="Center"  FontSize="18" Grid.Row="12" Height="30" Margin="78,14,75,32" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+		<DatePicker x:Name="DateRecieved" HorizontalAlignment="Center" VerticalAlignment="Center"  
         	HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="12" FontSize="20" Margin="86,6,42,36" Width="178" Grid.ColumnSpan="2" Height="34" Grid.RowSpan="2" >
-            <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
-        </DatePicker>
-        <TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="13" Height="30" Margin="91,24,111,22" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-        <TextBox Name="StartHour" LostFocus="Hour_LostFocus" Grid.Row="13" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
+			<!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
+		</DatePicker>
+		<TextBlock Text="Start Time:" TextAlignment="Center"  FontSize="18" Grid.Row="13" Height="30" Margin="91,24,111,22" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+		<TextBox Name="StartHour" LostFocus="Hour_LostFocus" Grid.Row="13" Grid.Column="2" MaxLength="2" Width="40" HorizontalAlignment="Left" 
         	HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginHour, ElementName=ThisWindow}" Margin="52,14,0,28" Grid.RowSpan="2"  />
-        <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="13" Height="30" Margin="97,10,46,36"  Grid.RowSpan="2"  />
-        <TextBox Name="StartMinute" LostFocus="Minute_LostFocus" Grid.Row="13" MaxLength="2" Grid.Column="2" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
+		<TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="2" Grid.Row="13" Height="30" Margin="97,10,46,36"  Grid.RowSpan="2"  />
+		<TextBox Name="StartMinute" LostFocus="Minute_LostFocus" Grid.Row="13" MaxLength="2" Grid.Column="2" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
         	VerticalContentAlignment="Center" FontSize="25" Text="{Binding BeginMinute, ElementName=ThisWindow}" Margin="107,14,0,28" Grid.RowSpan="2" Grid.ColumnSpan="2"  />
-        <ComboBox x:Name="AMPM_Start"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+		<ComboBox x:Name="AMPM_Start"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
         	Height="40"  Grid.Column="3"  Grid.Row="13" FontSize="20" Loaded="AM_PM_Dropdown" Margin="33,10,38,26"  Grid.RowSpan="2"  />
-        <TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="13" Height="30" Margin="120,18,58,28" FontWeight="Bold" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-        <TextBox Name="End_Hour" LostFocus="Hour_LostFocus" Grid.Row="13" Grid.Column="4" MaxLength="2" Width="40" HorizontalAlignment="Left" 
+		<TextBlock Text="End Time:"  TextAlignment="Center"  FontSize="18" Grid.Row="13" Height="30" Margin="120,18,58,28" FontWeight="Bold" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+		<TextBox Name="End_Hour" LostFocus="Hour_LostFocus" Grid.Row="13" Grid.Column="4" MaxLength="2" Width="40" HorizontalAlignment="Left" 
         	HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndHour, ElementName=ThisWindow}" Margin="84,14,0,26" Grid.RowSpan="2"  />
-        <TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="4" Grid.Row="13" Height="30" Margin="129,14,14,32" Grid.RowSpan="2"  />
-        <TextBox Name="End_Minute" LostFocus="Minute_LostFocus" Grid.Row="13" MaxLength="2" Grid.Column="4" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
+		<TextBlock Text=":" TextAlignment="Center" FontSize="25" Width="10" Grid.Column="4" Grid.Row="13" Height="30" Margin="129,14,14,32" Grid.RowSpan="2"  />
+		<TextBox Name="End_Minute" LostFocus="Minute_LostFocus" Grid.Row="13" MaxLength="2" Grid.Column="4" Width="60" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
         	VerticalContentAlignment="Center" FontSize="25" Text="{Binding EndMinute, ElementName=ThisWindow}" Margin="144,14,0,28" Grid.ColumnSpan="2" Grid.RowSpan="2"  />
-        <ComboBox x:Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+		<ComboBox x:Name="AMPM_End"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
         	Height="40"  Grid.Column="5"  Grid.Row="13" FontSize="20" Loaded="AM_PM_Dropdown" Margin="62,10,9,26"  Grid.RowSpan="2"  />
-        <TextBlock Text="Cancellation Type:" TextAlignment="Center"  FontSize="18" Grid.Row="14" Height="30" Grid.ColumnSpan="2" Margin="50,32,90,14" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="2" />
-        <ComboBox x:Name="CancellationType"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="14" FontSize="20" Margin="68,26,112,10" Grid.RowSpan="2" >
-            <ComboBoxItem IsSelected="True" Content="Not Cancelled"/>
-            <ComboBoxItem Content="No-Show"/>
-            <ComboBoxItem Content="Late Cancellation"/>
-            <ComboBoxItem Content="Cancelled"/>
-        </ComboBox>
+		<TextBlock Text="Cancellation Type:" TextAlignment="Center"  FontSize="18" Grid.Row="14" Height="30" Grid.ColumnSpan="2" Margin="50,32,90,14" FontWeight="Bold" Grid.Column="1" Grid.RowSpan="2" />
+		<ComboBox x:Name="CancellationType"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="14" FontSize="20" Margin="68,26,112,10" Grid.RowSpan="2" >
+			<ComboBoxItem IsSelected="True" Content="Not Cancelled"/>
+			<ComboBoxItem Content="No-Show"/>
+			<ComboBoxItem Content="Late Cancellation"/>
+			<ComboBoxItem Content="Cancelled"/>
+		</ComboBox>
 		<Button FontSize="18" Grid.Row="16" Content="Update Appointment" Click="Update_Expense" Grid.ColumnSpan="3" Margin="115,23,90,23"   Grid.RowSpan="2" Height="39"  />
-        <Button x:Name="Delete_Copy" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Cancel" Click="Close_Window" Height="39" Margin="150,0,40,23" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"   />
-        <TextBlock Text="Appointment Type:" TextAlignment="Center"  FontSize="18" Grid.Row="2" Height="30" Grid.ColumnSpan="2" Margin="11,10,129,36" Grid.RowSpan="2" FontWeight="Bold" Grid.Column="1" />
-        <ComboBox x:Name="ApptType"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
+		<Button x:Name="Delete_Copy" FontSize="18" Grid.Column="4" Grid.Row="16" Content="Cancel" Click="Close_Window" Height="39" Margin="150,0,40,23" Grid.RowSpan="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"   />
+		<TextBlock Text="Appointment Type:" TextAlignment="Center"  FontSize="18" Grid.Row="2" Height="30" Grid.ColumnSpan="2" Margin="11,10,129,36" Grid.RowSpan="2" FontWeight="Bold" Grid.Column="1" />
+		<ComboBox x:Name="ApptType"  IsReadOnly="True"  VerticalAlignment="Center" HorizontalContentAlignment="Left" 
         	Height="40"  Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="2" FontSize="20" Loaded="Appt_DropDown" Margin="68,4.5,112,31" Grid.RowSpan="2" />
-        <CheckBox x:Name="IsPaid" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" Content="Is Patient Bill Paid?" FontSize="18" HorizontalAlignment="Right" FontWeight="Bold"
+		<CheckBox x:Name="IsPaid" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" Content="Is Patient Bill Paid?" FontSize="18" HorizontalAlignment="Right" FontWeight="Bold"
         	VerticalAlignment="Center" Click="Change_Paid_Bill" Margin="0,11,39,33" Checked="Change_Paid_Bill" Height="32" Grid.RowSpan="2" >
-            <CheckBox.LayoutTransform>
-                <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
-            </CheckBox.LayoutTransform>
-        </CheckBox>
-        <TextBlock Text="Expense Paid Date:" TextAlignment="Center"  FontSize="18" Grid.Row="11" Height="30" Grid.Column="3" FontWeight="Bold" Grid.ColumnSpan="2" Margin="81,9,45,37" Grid.RowSpan="2" />
-        <DatePicker x:Name="ExpensePaidDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
+			<CheckBox.LayoutTransform>
+				<ScaleTransform ScaleX="1.1" ScaleY="1.1" />
+			</CheckBox.LayoutTransform>
+		</CheckBox>
+		<TextBlock Text="Expense Paid Date:" TextAlignment="Center"  FontSize="18" Grid.Row="11" Height="30" Grid.Column="3" FontWeight="Bold" Grid.ColumnSpan="2" Margin="81,9,45,37" Grid.RowSpan="2" />
+		<DatePicker x:Name="ExpensePaidDate" HorizontalAlignment="Center" VerticalAlignment="Center"  IsEnabled="False"
         	HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="11" FontSize="20" Margin="130,6,33,0" Grid.ColumnSpan="2" >
-            <!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
-        </DatePicker>
-    </Grid>
+			<!--, Mode=TwoWay, TargetNullValue={x:Static System:DateTime.Now}-->
+		</DatePicker>
+	</Grid>
 </Window>
