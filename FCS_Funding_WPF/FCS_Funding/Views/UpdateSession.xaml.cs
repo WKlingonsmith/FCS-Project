@@ -67,6 +67,8 @@ namespace FCS_Funding.Views
 
 		public UpdateSession(SessionsGrid sg)
 		{
+			Session = sg;
+
 			// Initialize the variables and such
 			staffFirstName = sg.StaffFirstName;
 			staffLastName = sg.StaffLastName;
@@ -178,6 +180,8 @@ namespace FCS_Funding.Views
 			{
 				if (sg.AppointmentStart.Hour % 12 != 0)
 					StartHour.Text = (sg.AppointmentStart.Hour - 12).ToString();
+				else
+					StartHour.Text = sg.AppointmentStart.Hour.ToString();
 
 				AMPM_Start.SelectedItem = "PM";
 			}
@@ -196,6 +200,8 @@ namespace FCS_Funding.Views
 			{
 				if (sg.AppointmentEnd.Hour % 12 != 0)
 					End_Hour.Text = (sg.AppointmentEnd.Hour - 12).ToString();
+				else
+					End_Hour.Text = sg.AppointmentEnd.Hour.ToString();
 
 				AMPM_End.SelectedItem = "PM";
 			}
