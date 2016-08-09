@@ -149,6 +149,7 @@ namespace FCS_Funding.Views
                 {
 
                     DonorDeduction.IsChecked = false;
+                    Grant.IsEnabled = false;
                     if (oldDonorType == "Organization" || oldDonorType == "Government")
                     {
                         var moneyDonation = (from d in db.Donations
@@ -175,6 +176,7 @@ namespace FCS_Funding.Views
                 else
                 {
                     DonorDeduction.IsChecked = true;
+                    MoneyDonation.IsEnabled = false;
                     Grant.SelectedItem = oldGrantName;
                 }
 
@@ -187,6 +189,7 @@ namespace FCS_Funding.Views
                 if (expensePaidDate == null)
                 {
                     IsPaid.IsChecked = false;
+                    ExpensePaidDate.IsEnabled = false;
                 }
                 else
                 {

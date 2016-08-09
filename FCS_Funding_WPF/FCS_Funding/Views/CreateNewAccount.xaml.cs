@@ -69,7 +69,11 @@ namespace FCS_Funding.Views
                 else if (UserName == null || UserName == "" || FirstName == null || FirstName == ""
                     || LastName == null || LastName == "" || StaffTitle == null || StaffTitle == "")
                 {
-                    MessageBox.Show("Please check the data entered");
+                    MessageBox.Show("Please check the data entered. A required field is missing.");
+                }
+                else if (UserName.Contains(" "))
+                {
+                    MessageBox.Show("User name cannot contain spaces");
                 }
                 else if(usernameVerify != 0)
                 {
