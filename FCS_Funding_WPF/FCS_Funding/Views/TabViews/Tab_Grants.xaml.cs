@@ -79,7 +79,9 @@ namespace FCS_Funding.Views.TabViews
 			var join1 = from d in db.Donations
 						join dr in db.Donors on d.DonorID equals dr.DonorID
 						join gp in db.GrantProposals on dr.DonorID equals gp.DonorID
-						where gp.GrantStatus == "Accepted" && d.GrantProposalID == gp.GrantProposalID
+                        join dp in db.DonationPurposes on d.DonationID equals dp.DonationID
+                        join p in db.Purposes on dp.PurposeID equals p.PurposeID
+                        where gp.GrantStatus == "Accepted" && d.GrantProposalID == gp.GrantProposalID
 						select new GrantsDataGrid
 						{
 							GrantName = gp.GrantName,
@@ -89,8 +91,10 @@ namespace FCS_Funding.Views.TabViews
 							ExpirationDate = d.DonationExpirationDate,
 							DonationID = d.DonationID,
 							DonorID = dr.DonorID,
-							GrantProposalID = gp.GrantProposalID
-						};
+							GrantProposalID = gp.GrantProposalID,
+                            PurposeName = p.PurposeName,
+                            PurposeDescription = p.PurposeDescription
+                        };
 
 			// ... Assign ItemsSource of DataGrid.
 			Grant_DataGrid.ItemsSource = join1.ToList();
