@@ -67,160 +67,194 @@ namespace FCS_Funding.Views
 
 		public UpdateSession(SessionsGrid sg)
 		{
-			Session = sg;
-
-			// Initialize the variables and such
-			staffFirstName = sg.StaffFirstName;
-			staffLastName = sg.StaffLastName;
-			clientFirstName = sg.ClientFirstName;
-			clientLastName = sg.ClientLastName;
-			appointmentStart = sg.AppointmentStart;
-			appointmentEnd = sg.AppointmentEnd;
-			expenseDueDate = sg.ExpenseDueDate;
-			expensePaidDate = sg.ExpensePaidDate;
-			donorBill = sg.DonorBill;
-			patientBill = sg.PatientBill;
-			totalExpense = sg.TotalExpense;
-			expenseType = sg.ExpenseType;
-			expenseDescription = sg.ExpenseDescription;
-			expenseID = sg.ExpenseID;
-			cancellationType = sg.CancellationType;
-
-			oldDonorBill = donorBill;
-			newDonorBill = donorBill;
-
-			// Initialize the UI
-			InitializeComponent();
-
-			// Disable the patient's first and last name fields
-			FN.IsEnabled = false;
-			LN.IsEnabled = false;
-
-			//	Select the appointment type
-			ApptType.SelectedItem = sg.ExpenseType;
-
-			//	Fill out the information in the form
-			FN.Text = sg.ClientFirstName;
-			LN.Text = sg.ClientLastName;
-			Copay.Text = Math.Round(sg.PatientBill, 2).ToString();
-			Deduction.Text = Math.Round(sg.DonorBill, 2).ToString();
-
-
-			Models.FCS_DBModel db = new Models.FCS_DBModel();
-			oldDonationID = (from d in db.Expenses
-							 where d.ExpenseID == expenseID
-							 select d.DonationID).Distinct().FirstOrDefault();
-
-			var oldDonation = (from d in db.Donations
-							   where d.DonationID == oldDonationID
-							   select d).FirstOrDefault();
-
-			//	If there is a grant
-			if (oldDonation.GrantProposalID != null)
+			try
 			{
-				MoneyDonation.Visibility = Visibility.Hidden;
 
-				var oldGrantName = (from d in db.GrantProposals
-									where d.GrantProposalID == oldDonation.GrantProposalID
-									select d.GrantName).Distinct().FirstOrDefault();
+				Session = sg;
 
-				DonorDeduction.IsChecked = true;
-				Grant.SelectedItem = oldGrantName;
-			}
-			//	If it is a money donation
-			else if (oldDonation != null)
-			{
-				//	UI Updates for the money donation
-				DonorDeduction.IsChecked = false;
-				Grant.Visibility = Visibility.Hidden;
+				// Initialize the variables and such
+				staffFirstName = sg.StaffFirstName;
+				staffLastName = sg.StaffLastName;
+				clientFirstName = sg.ClientFirstName;
+				clientLastName = sg.ClientLastName;
+				appointmentStart = sg.AppointmentStart;
+				appointmentEnd = sg.AppointmentEnd;
+				expenseDueDate = sg.ExpenseDueDate;
+				expensePaidDate = sg.ExpensePaidDate;
+				donorBill = sg.DonorBill;
+				patientBill = sg.PatientBill;
+				totalExpense = sg.TotalExpense;
+				expenseType = sg.ExpenseType;
+				expenseDescription = sg.ExpenseDescription;
+				expenseID = sg.ExpenseID;
+				cancellationType = sg.CancellationType;
 
-				//	Get the money donation
-				var oldDonorType = (from d in db.Donors
-									where d.DonorID == oldDonation.DonorID
-									select d.DonorType).Distinct().FirstOrDefault();
+				oldDonorBill = donorBill;
+				newDonorBill = donorBill;
+
+				// Initialize the UI
+				InitializeComponent();
+
+				// Disable the patient's first and last name fields
+				FN.IsEnabled = false;
+				LN.IsEnabled = false;
+
+				//	Select the appointment type
+				ApptType.SelectedItem = sg.ExpenseType;
+
+				//	Fill out the information in the form
+				FN.Text = sg.ClientFirstName;
+				LN.Text = sg.ClientLastName;
+				Copay.Text = Math.Round(sg.PatientBill, 2).ToString();
+				Deduction.Text = Math.Round(sg.DonorBill, 2).ToString();
 
 
-				if (oldDonorType == "Organization" || oldDonorType == "Government")
+				Models.FCS_DBModel db = new Models.FCS_DBModel();
+				oldDonationID = (from d in db.Expenses
+								 where d.ExpenseID == expenseID
+								 select d.DonationID).Distinct().FirstOrDefault();
+
+				var oldDonation = (from d in db.Donations
+								   where d.DonationID == oldDonationID
+								   select d).FirstOrDefault();
+
+				//	If there is a grant
+				if (oldDonation != null)
 				{
+					if (oldDonation.GrantProposalID != null)
+					{
+						MoneyDonation.Visibility = Visibility.Hidden;
 
-					MoneyDonation.SelectedItem = (from d in db.Donations
-												  join dn in db.Donors on d.DonorID equals dn.DonorID
-												  where d.DonationID == oldDonationID
-												  && dn.DonorID == oldDonation.DonorID
-												  select d.DonationID.ToString() + ", " + dn.OrganizationName + ", " + d.DonationAmountRemaining.ToString()).Distinct().FirstOrDefault();
+						var oldGrantName = (from d in db.GrantProposals
+											where d.GrantProposalID == oldDonation.GrantProposalID
+											select d.GrantName).Distinct().FirstOrDefault();
+
+						DonorDeduction.IsChecked = true;
+						Grant.SelectedItem = oldGrantName;
+					}
+					//	If it is a money donation
+					else
+					{
+						//	UI Updates for the money donation
+						DonorDeduction.IsChecked = false;
+						Grant.Visibility = Visibility.Hidden;
+
+						//	Get the money donation
+						var oldDonorType = (from d in db.Donors
+											where d.DonorID == oldDonation.DonorID
+											select d.DonorType).Distinct().FirstOrDefault();
+
+
+						if (oldDonorType == "Organization" || oldDonorType == "Government")
+						{
+
+							MoneyDonation.SelectedItem = (from d in db.Donations
+														  join dn in db.Donors on d.DonorID equals dn.DonorID
+														  where d.DonationID == oldDonationID
+														  && dn.DonorID == oldDonation.DonorID
+														  select d.DonationID.ToString() + ", " + dn.OrganizationName + ", " + d.DonationAmountRemaining.ToString()).Distinct().FirstOrDefault();
+						}
+						else if (oldDonorType == "Anonymous" || oldDonorType == "Individual")
+						{
+							MoneyDonation.SelectedItem = (from d in db.Donations
+														  join dn in db.Donors on d.DonorID equals dn.DonorID
+														  join c in db.DonorContacts on dn.DonorID equals c.DonorID
+														  where d.DonationID == oldDonationID
+														  && dn.DonorID == oldDonation.DonorID
+														  select d.DonationID + ", " + d.DonationAmountRemaining + ", " + c.ContactFirstName + ", " + c.ContactLastName).Distinct().FirstOrDefault();
+						}
+					}
 				}
-				else if (oldDonorType == "Anonymous" || oldDonorType == "Individual")
+				else
 				{
-					MoneyDonation.SelectedItem = (from d in db.Donations
-												  join dn in db.Donors on d.DonorID equals dn.DonorID
-												  join c in db.DonorContacts on dn.DonorID equals c.DonorID
-												  where d.DonationID == oldDonationID
-												  && dn.DonorID == oldDonation.DonorID
-												  select d.DonationID + ", " + d.DonationAmountRemaining + ", " + c.ContactFirstName + ", " + c.ContactLastName).Distinct().FirstOrDefault();
+					// Hide grant stuffz for consistency
+					DonorDeduction.IsChecked = false;
+					Grant.Visibility = Visibility.Hidden;
+				}
+
+				Staff.SelectedItem = (from o in db.Staff
+									  where o.StaffFirstName == staffFirstName && o.StaffLastName == staffLastName
+									  select o.StaffFirstName + " " + o.StaffLastName + ", " + o.StaffUserName).Distinct().FirstOrDefault();
+
+				//	If the patient's due is paid
+				if (expensePaidDate != null)
+				{
+					IsPaid.IsChecked = true;
+					ExpensePaidDate.IsEnabled = true;
+					ExpensePaidDate.Text = sg.ExpensePaidDate.ToString();
+				}
+
+				//	Set the date stuff
+				DateRecieved.Text = sg.AppointmentStart.ToString();
+
+				//	Start Hour Stuff
+				if (sg.AppointmentStart.Hour >= 12)
+				{
+					if (sg.AppointmentStart.Hour % 12 != 0)
+						StartHour.Text = (sg.AppointmentStart.Hour - 12).ToString();
+					else
+						StartHour.Text = sg.AppointmentStart.Hour.ToString();
+
+					AMPM_Start.SelectedItem = "PM";
+				}
+				else
+				{
+					if (sg.AppointmentStart.Hour == 0)
+						StartHour.Text = (sg.AppointmentStart.Hour + 12).ToString();
+					else
+						StartHour.Text = sg.AppointmentStart.Hour.ToString();
+
+					AMPM_Start.SelectedItem = "AM";
+				}
+
+				//	End Hour Stuff
+				if (sg.AppointmentEnd.Hour >= 12)
+				{
+					if (sg.AppointmentEnd.Hour % 12 != 0)
+						End_Hour.Text = (sg.AppointmentEnd.Hour - 12).ToString();
+					else
+						End_Hour.Text = sg.AppointmentEnd.Hour.ToString();
+
+					AMPM_End.SelectedItem = "PM";
+				}
+				else
+				{
+					if (sg.AppointmentEnd.Hour == 0)
+						End_Hour.Text = (sg.AppointmentEnd.Hour + 12).ToString();
+					else
+						End_Hour.Text = sg.AppointmentEnd.Hour.ToString();
+
+					AMPM_End.SelectedItem = "AM";
+				}
+
+				//	Setting the minutes
+				StartMinute.Text = DisplayMinuteConversion(sg.AppointmentStart.Minute.ToString());
+				End_Minute.Text = DisplayMinuteConversion(sg.AppointmentEnd.Minute.ToString());
+
+				//	Setting the cancellation type
+				switch (sg.CancellationType)
+				{
+					case "Not Cxl":
+						CancellationType.SelectedIndex = 0;
+						break;
+					case "No Show":
+						CancellationType.SelectedIndex = 1;
+						break;
+					case "Late Cxl":
+						CancellationType.SelectedIndex = 2;
+						break;
+					case "Cxl":
+						CancellationType.SelectedIndex = 3;
+						break;
+					default:
+						CancellationType.SelectedIndex = 0;
+						break;
 				}
 			}
-
-			Staff.SelectedItem = (from o in db.Staff
-								  where o.StaffFirstName == staffFirstName && o.StaffLastName == staffLastName
-								  select o.StaffFirstName + " " + o.StaffLastName + ", " + o.StaffUserName).Distinct().FirstOrDefault();
-
-			//	If the patient's due is paid
-			if (expensePaidDate != null)
+			catch (Exception error)
 			{
-				IsPaid.IsChecked = true;
-				ExpensePaidDate.IsEnabled = true;
-				ExpensePaidDate.Text = sg.ExpensePaidDate.ToString();
+				MessageBox.Show("Something went wrong, please try again.");
 			}
-
-			//	Set the date stuff
-			DateRecieved.Text = sg.AppointmentStart.ToString();
-
-			//	Start Hour Stuff
-			if (sg.AppointmentStart.Hour >= 12)
-			{
-				if (sg.AppointmentStart.Hour % 12 != 0)
-					StartHour.Text = (sg.AppointmentStart.Hour - 12).ToString();
-				else
-					StartHour.Text = sg.AppointmentStart.Hour.ToString();
-
-				AMPM_Start.SelectedItem = "PM";
-			}
-			else
-			{
-				if (sg.AppointmentStart.Hour == 0)
-					StartHour.Text = (sg.AppointmentStart.Hour + 12).ToString();
-				else
-					StartHour.Text = sg.AppointmentStart.Hour.ToString();
-
-				AMPM_Start.SelectedItem = "AM";
-			}
-
-			//	End Hour Stuff
-			if (sg.AppointmentEnd.Hour >= 12)
-			{
-				if (sg.AppointmentEnd.Hour % 12 != 0)
-					End_Hour.Text = (sg.AppointmentEnd.Hour - 12).ToString();
-				else
-					End_Hour.Text = sg.AppointmentEnd.Hour.ToString();
-
-				AMPM_End.SelectedItem = "PM";
-			}
-			else
-			{
-				if (sg.AppointmentEnd.Hour == 0)
-					End_Hour.Text = (sg.AppointmentEnd.Hour + 12).ToString();
-				else
-					End_Hour.Text = sg.AppointmentEnd.Hour.ToString();
-
-				AMPM_End.SelectedItem = "AM";
-			}
-
-			//	Setting the minutes
-			StartMinute.Text = DisplayMinuteConversion(sg.AppointmentStart.Minute.ToString());
-			End_Minute.Text = DisplayMinuteConversion(sg.AppointmentEnd.Minute.ToString());
-
-			//	Setting the cancellation type
-			CancellationType.SelectedItem = sg.CancellationType;
 		}
 
 		private void MoneyDonation_DropDown(object sender, RoutedEventArgs e)
@@ -306,66 +340,69 @@ namespace FCS_Funding.Views
 						break;
 				}
 
-				//Update Donor/Insurance Deduction
-				newDonorBill = Decimal.Parse(Deduction.Text);
-
-				//Update Client Copay in Update All
-				//Update Grant/MoneyDonation and Donation
-				var oldDonation = (from d in db.Donations
-								   where d.DonationID == oldDonationID
-								   select d).FirstOrDefault();
-
-				var newDonationQuery = (from d in db.Donations
-										select d);
-
-				var expense = (from exp in db.Expenses
-							   where exp.ExpenseID == Session.ExpenseID
-							   select exp).FirstOrDefault();
-
-				if ((bool)DonorDeduction.IsChecked)
+				if ((Grant.SelectedValue != null && (bool)DonorDeduction.IsChecked) || (MoneyDonation.SelectedValue != null && !(bool)DonorDeduction.IsChecked))
 				{
-					string newGrant = Grant.SelectedValue.ToString();
-					var newGrantproposalID = (from g in db.GrantProposals
-											  where g.GrantName == newGrant
-											  select g.GrantProposalID).Distinct().FirstOrDefault();
+					//Update Donor/Insurance Deduction
+					newDonorBill = Decimal.Parse(Deduction.Text);
 
-					newDonationQuery = newDonationQuery.Where(x => x.GrantProposalID == newGrantproposalID);
+					//Update Client Copay in Update All
+					//Update Grant/MoneyDonation and Donation
+					var oldDonation = (from d in db.Donations
+									   where d.DonationID == oldDonationID
+									   select d).FirstOrDefault();
+
+					var newDonationQuery = (from d in db.Donations
+											select d);
+
+					var expense = (from exp in db.Expenses
+								   where exp.ExpenseID == Session.ExpenseID
+								   select exp).FirstOrDefault();
+
+					if ((bool)DonorDeduction.IsChecked)
+					{
+						string newGrant = Grant.SelectedValue.ToString();
+						var newGrantproposalID = (from g in db.GrantProposals
+												  where g.GrantName == newGrant
+												  select g.GrantProposalID).Distinct().FirstOrDefault();
+
+						newDonationQuery = newDonationQuery.Where(x => x.GrantProposalID == newGrantproposalID);
+					}
+					else
+					{
+						string[] monDonSeparators = new string[] { ", " };
+						string monDon = MoneyDonation.SelectedValue.ToString();
+						//MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
+						string[] monDonWords = monDon.Split(monDonSeparators, StringSplitOptions.None);
+						int newDonationID = Convert.ToInt32(monDonWords[0]);
+
+						newDonationQuery = newDonationQuery.Where(x => x.DonationID == newDonationID);
+					}
+
+					var newDonation = newDonationQuery.FirstOrDefault();
+
+					//	If the new donation is different, check to see if the amount is enough
+					decimal amountRemaining = 0;
+
+					if (newDonation.DonationID != oldDonation.DonationID)
+					{
+						amountRemaining = newDonation.DonationAmountRemaining;
+					}
+					else
+					{
+						amountRemaining = newDonation.DonationAmountRemaining + oldDonorBill;
+					}
+
+					if (amountRemaining < newDonorBill)
+					{
+						MessageBox.Show("That donation does not have enough money.");
+						return;
+					}
+
+					oldDonation.DonationAmountRemaining += oldDonorBill;
+					newDonation.DonationAmountRemaining -= newDonorBill;
+
+					expense.DonationID = newDonation.DonationID;
 				}
-				else
-				{
-					string[] monDonSeparators = new string[] { ", " };
-					string monDon = MoneyDonation.SelectedValue.ToString();
-					//MessageBox.Show(ItemName + "\n" + ItemDescription + "\n" + DateRecieved + "\n" + Indiv);
-					string[] monDonWords = monDon.Split(monDonSeparators, StringSplitOptions.None);
-					int newDonationID = Convert.ToInt32(monDonWords[0]);
-
-					newDonationQuery = newDonationQuery.Where(x => x.DonationID == newDonationID);
-				}
-
-				var newDonation = newDonationQuery.FirstOrDefault();
-
-				//	If the new donation is different, check to see if the amount is enough
-				decimal amountRemaining = 0;
-
-				if (newDonation.DonationID != oldDonation.DonationID)
-				{
-					amountRemaining = newDonation.DonationAmountRemaining;
-				}
-				else
-				{
-					amountRemaining = newDonation.DonationAmountRemaining + oldDonorBill;
-				}
-
-				if (amountRemaining < newDonorBill)
-				{
-					MessageBox.Show("That donation does not have enough money.");
-					return;
-				}
-
-				oldDonation.DonationAmountRemaining += oldDonorBill;
-				newDonation.DonationAmountRemaining -= newDonorBill;
-
-				expense.DonationID = newDonation.DonationID;
 
 				//Update Therapist
 				string[] therSeparators = new string[] { ", ", " " };
@@ -381,6 +418,10 @@ namespace FCS_Funding.Views
 				//Update PaidBill and Date is done when everything is updated
 
 				//Update Appointment Time and Date
+				BeginHour = StartHour.Text;
+				EndHour = End_Hour.Text;
+				BeginMinute = StartMinute.Text;
+				EndMinute = End_Minute.Text;
 
 				if (AMPM_Start.SelectedValue.ToString() == "PM" && Convert.ToInt32(BeginHour) != 12)
 				{
@@ -405,7 +446,7 @@ namespace FCS_Funding.Views
 				DateTime newExpenseDueDate = newStartDateTime.AddDays(30);
 
 				//Update Cancellation Type
-				string newCancellationType = "Not Cxl";
+				string newCancellationType;
 				switch (CancellationType.SelectedIndex)
 				{
 					case 0:
