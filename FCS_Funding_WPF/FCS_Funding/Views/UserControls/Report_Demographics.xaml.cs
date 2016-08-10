@@ -804,7 +804,21 @@ namespace FCS_Funding.Views.UserControls
 						}
 					}
 
-					//arrayOfFundingCounts
+                    //arrayOfFundingCounts
+                    //Find first instance of a session with a funding source, add to total count.
+                    //
+                    var fundingSourceFound = sessionInformation.Where(z => z.patientID.Equals(query.patientID) && z.fundingSource != 0).First();
+
+                    for (int y = 0; y < listOfAllKnownFunding.Count(); y++)
+                    {
+                        if (arrayOfFundingCounts[y, 0].Equals(fundingSourceFound.fundingSource))
+                        {
+                            arrayOfFundingCounts[y, 1]++;
+                            break;
+                        }
+                    }
+
+                    //arrayOfFundingCounts[y, 0].Equals(se.fundingSource))
 				}
 
                 // - Session times - Add all sessions together in minutes and convert to hours.
@@ -829,7 +843,7 @@ namespace FCS_Funding.Views.UserControls
 				//Total count per funding source.
 				foreach (var se in sessionInformation)
 				{
-					if (se.fundingSource != null)
+					/*if (se.fundingSource != null)
 					{
                         int tempCount = listOfAllKnownFunding.Count();
 
@@ -841,7 +855,7 @@ namespace FCS_Funding.Views.UserControls
 								break;
 							}
 						}
-					}
+					}*/
 					if (se.typeofCx != "Not Cxl" && se.typeofCx != null)
 					{
 						switch (se.typeofCx)
