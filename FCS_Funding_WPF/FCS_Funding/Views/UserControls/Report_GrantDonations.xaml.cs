@@ -295,15 +295,21 @@ namespace FCS_Funding.Views.UserControls
 		}
 		private void PrintDocument(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
-			((System.Windows.Forms.WebBrowser)sender).ShowPageSetupDialog();
-			((System.Windows.Forms.WebBrowser)sender).Print();
-			//((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
-
-		}
+            //((System.Windows.Forms.WebBrowser)sender).ShowPageSetupDialog();
+            //((System.Windows.Forms.WebBrowser)sender).Print();
+            ((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
+        }
 
 		private void printGrantSessions_button_Click(object sender, RoutedEventArgs e)
 		{
-			generate_Report();
+            if (GrantSessions_DataGridReport.Items.Count >= 1)
+            {
+                generate_Report();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("There are no items to print");
+            }
 		}
 	}
 }

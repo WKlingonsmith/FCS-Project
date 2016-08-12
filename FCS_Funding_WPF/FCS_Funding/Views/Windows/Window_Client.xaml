@@ -133,7 +133,7 @@
                     </CheckBox>
                     <TextBlock Text="Family Member OQ Number:  " TextAlignment="Center" FontSize="18" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     <Border Grid.Row="13" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="1" Margin="0,3">
-                        <TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" PreviewTextInput="txt_NumberOnlyCheck" KeyDown="useEnterAsTab" TabIndex="10"/>
+                        <TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="10"/>
                     </Border>
                     <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
 		  VerticalAlignment="Top" Height="236" Width="352" Grid.ColumnSpan="2" Grid.RowSpan="6" Grid.Column="3" Grid.Row="3" TabIndex="11">

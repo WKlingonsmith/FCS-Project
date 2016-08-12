@@ -1002,52 +1002,10 @@ namespace FCS_Funding.Views.UserControls
 				toPrint += "</body>"
 				+ "</html>";
 
-				/*Console.WriteLine("newPatients: " + newPatients + " - ongoingPatients: " + ongoingPatients + " - Total: " + totalPatients);
-				Console.WriteLine("individualSessions: " + individualSessions + " - groupSessions: " + groupSessions + " - familySessions: " + familySessions);
-				Console.WriteLine("hoHMaleCount: " + hoHMaleCount + " - hoHFemaleCount: " + hoHFemaleCount + " - - hoHTotalFamiles: " + hoHTotalFamiles + " - hoHIndividuals: " + hoHIndividuals);
-				Console.WriteLine("Total Hours of service: " + totalHoursofService);
-				Console.WriteLine("Age brackets   0-5: " + ageTotals[0] + "  6 - 11: " + ageTotals[1] + "  12-17: " + ageTotals[2] + "  18-23: " + ageTotals[3] + "  24-44: " + ageTotals[4] + "  45-54: " + ageTotals[5] + " 55-69: " + ageTotals[6] + "  70+: " + ageTotals[7]);
-				Console.WriteLine("totalMales: " + totalMales + " - totalFemales: " + totalFemales);
-				Console.WriteLine("Ethnicities  0: " + totalEthnicity[0] + "  1: " + totalEthnicity[1] + "  2: " + totalEthnicity[2] + "  3: " + totalEthnicity[3] + "  4: " + totalEthnicity[4] + "  5: " + totalEthnicity[5] + " 6: " + totalEthnicity[6]);
-				Console.WriteLine("Income  0: " + totalIncome[0] + "  1: " + totalIncome[1] + "  2: " + totalIncome[2] + "  3: " + totalIncome[3] + "  4: " + totalIncome[4]);
-				Console.WriteLine("County  Weber: " + totalCounty[0] + "  Davis: " + totalCounty[1] + "  DCLC: " + totalCounty[2] + "  Morgan: " + totalCounty[3] + "  Box Elder: " + totalCounty[4] + "  Other: " + totalCounty[5]);
-
-				Console.WriteLine("\n\nFunding Source:");
-				fCount = 0;
-				foreach (var fu in listOfAllKnownFunding)
-				{
-					if (fCount <= 5)
-					{
-						Console.Write(" " + fu.fundingSource + ": " + arrayOfFundingCounts[fCount, 1]);
-					}
-					else
-					{
-						Console.WriteLine(" " + fu.fundingSource + ": " + arrayOfFundingCounts[fCount, 1]);
-						fCount = 0;
-					}
-					fCount++;
-				}
-				//Print 4 problems per line.
-				Console.WriteLine("\n\nProblems:");
-				pCount = 1;
-				foreach (var pr in listOfAllKnownProblems)
-				{
-					if (pCount <= 3)
-					{
-						Console.Write(" " + pr.problemType + ": " + arrayOfProblemCounts[pr.problemID]);
-					}
-					else
-					{
-						Console.WriteLine(" " + pr.problemType + ": " + arrayOfProblemCounts[pr.problemID]);
-						pCount = 0;
-					}
-					pCount++;
-				}
-				Console.WriteLine(toPrint);
-                */
 				System.Windows.Forms.WebBrowser newBrowser = new System.Windows.Forms.WebBrowser();
 
 				newBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(PrintDocument);
+
 				//newBrowser.DocumentText = "<!DOCTYPE html><html><style>@page { size: landscape; margin: 0px;}</style></head><body>Test Yay!</body></html>";
 				newBrowser.DocumentText = toPrint;
 			}
@@ -1222,11 +1180,7 @@ namespace FCS_Funding.Views.UserControls
 
 		private void PrintDocument(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
-			((System.Windows.Forms.WebBrowser)sender).ShowPageSetupDialog();
-			((System.Windows.Forms.WebBrowser)sender).Print();
-			//((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
-
-		}
-
+           ((System.Windows.Forms.WebBrowser)sender).ShowPrintPreviewDialog();
+        } 
     }
 }

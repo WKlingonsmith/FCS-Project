@@ -144,7 +144,7 @@ namespace FCS_Funding.Views.Windows
 				HouseholdPopulation = db.PatientHouseholds.Where(x => x.HouseholdID == householdID).Select(x => x.HouseholdPopulation).Distinct().First();
 
 				combobox_County.Text = County;
-				combobox_IncomeBracket.Text= Income;
+				combobox_IncomeBracket.Text = Income;
 				textbox_HouseholdPopulation.Text = HouseholdPopulation.ToString();
 
 
@@ -255,6 +255,9 @@ namespace FCS_Funding.Views.Windows
 					var household = (from h in db.PatientHouseholds
 									 where h.HouseholdID == householdID
 									 select h).First();
+
+                    County = combobox_County.Text;
+                    Income = combobox_IncomeBracket.Text;
 
 					household.HouseholdCounty = County;
 					household.HouseholdIncomeBracket = Income;
@@ -628,11 +631,6 @@ namespace FCS_Funding.Views.Windows
 					if (checkForPatientTextEntry() && checkForHeadOfHouseEntry() && checkForChangeHouseholdEntryEditPatient() && checkForUpdateHouseholdEntryEditPatient())
 					{
 						int.Parse(textbox_HouseholdPopulation.Text);
-
-						if ((bool)check_ChangeHousehold.IsChecked)
-						{
-							int.Parse(textbox_FamilyMemberOQ.Text);
-						}
 
 						button_AddUpdateClient.IsEnabled = true;
 						return;
