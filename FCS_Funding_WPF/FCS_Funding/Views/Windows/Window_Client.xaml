@@ -2,262 +2,265 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="CreateNewPatient" Width="900" Height="709" MinHeight="100" MaxHeight="1000" MinWidth="500" MaxWidth="1080" x:Name="ThisWindow">
-    <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
-        <TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="18" >
-            <TabControl.Resources>
-                <Style TargetType="TabItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                                <Grid Name="Panel">
-                                    <ContentPresenter x:Name="ContentSite"
+	<ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto">
+		<TabControl   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="18" >
+			<TabControl.Resources>
+				<Style TargetType="TabItem">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="TabItem">
+								<Grid Name="Panel">
+									<ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         ContentSource="Header"
                                         Margin="10,2"/>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Panel" Property="Background" Value="#FFA500" />
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="Panel" Property="Background" Value="#EEE8AA" />
-                                        <Setter TargetName="Panel" Property="Margin" Value="1"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.Resources>
-            <TabItem Name="tab_UpdateClient"  Header="Update Client" Height="30">
+								</Grid>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsSelected" Value="True">
+										<Setter TargetName="Panel" Property="Background" Value="#FFA500" />
+									</Trigger>
+									<Trigger Property="IsSelected" Value="False">
+										<Setter TargetName="Panel" Property="Background" Value="#EEE8AA" />
+										<Setter TargetName="Panel" Property="Margin" Value="1"/>
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</TabControl.Resources>
+			<TabItem Name="tab_UpdateClient"  Header="Update Client" Height="30">
 
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="AliceBlue" Offset="1"/>
-                            <GradientStop Color="#FFB5EEFF" Offset="0.668"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Name="textblock_Title" Text="Create New Client" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="4" FontFamily="Razer Header Regular" Margin="0,0,0,5" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" Grid.Column="1" />
-                    <TextBlock Name="txtClientOQ" Text="Client OQ Number:  " TextAlignment="Right"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" />
-                    <Border Grid.Row="3" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_ClientOQ"  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="1"  />
-                    </Border>
+				<Grid>
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="AliceBlue" Offset="1"/>
+							<GradientStop Color="#FFB5EEFF" Offset="0.668"/>
+						</LinearGradientBrush>
+					</Grid.Background>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="50"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock Name="textblock_Title" Text="Create New Client" TextAlignment="Center"  FontSize="36" Grid.Row="1" Grid.ColumnSpan="4" FontFamily="Razer Header Regular" Margin="0,0,0,5" Grid.RowSpan="2" TextDecorations="Underline" FontWeight="Bold" Grid.Column="1" />
+					<TextBlock Name="txtClientOQ" Text="Client OQ Number:  " TextAlignment="Right"  FontSize="18" Grid.Row="3" Grid.Column="1" Margin="0,5" />
+					<Border Grid.Row="3" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+						<TextBox Name="textbox_ClientOQ"  FontSize="18" Text="{Binding patientOQ, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="1"  />
+					</Border>
 
-                    <TextBlock Text="First Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="4" Grid.Column="1" Margin="0,5" />
-                    <Border Grid.Row="4" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_FirstName" FontSize="18" Grid.Column="2" Text="{Binding firstName, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="2"/>
-                    </Border>
-                    <TextBlock Text="Last Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="5" Grid.Column="1" Margin="0,5" />
-                    <Border Grid.Row="5" Grid.Column="2"  BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_LastName" FontSize="18" Text="{Binding lastName, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="3"/>
-                    </Border>
-                    <TextBlock Text="Relation to Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="11" Grid.Column="1" Margin="0,5" />
-                    <Border Grid.Row="11" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
-                        <TextBox Name="textbox_RelationToHead"  FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="8" />
-                    </Border>
-                    <TextBlock Text="Gender:  " TextAlignment="Right"  FontSize="18" Grid.Row="6" Grid.Column="1" Margin="0,5" />
-                    <ComboBox Name="combobox_Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
+					<TextBlock Text="First Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="4" Grid.Column="1" Margin="0,5" />
+					<Border Grid.Row="4" Grid.Column="2"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+						<TextBox Name="textbox_FirstName" FontSize="18" Grid.Column="2" Text="{Binding firstName, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="2"/>
+					</Border>
+					<TextBlock Text="Last Name:  " TextAlignment="Right"  FontSize="18" Grid.Row="5" Grid.Column="1" Margin="0,5" />
+					<Border Grid.Row="5" Grid.Column="2"  BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+						<TextBox Name="textbox_LastName" FontSize="18" Text="{Binding lastName, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="3"/>
+					</Border>
+					<TextBlock Text="Relation to Head:  " TextAlignment="Right"  FontSize="18" Grid.Row="11" Grid.Column="1" Margin="0,5" />
+					<Border Grid.Row="11" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Margin="0,3">
+						<TextBox Name="textbox_RelationToHead"  FontSize="18" Text="{Binding relationToHead, ElementName=ThisWindow}" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="8" />
+					</Border>
+					<TextBlock Text="Gender:  " TextAlignment="Right"  FontSize="18" Grid.Row="6" Grid.Column="1" Margin="0,5" />
+					<ComboBox Name="combobox_Gender" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
                   Width="190" Height="40"  Grid.Column="2" Grid.Row="6" FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="4">
-                        <ComboBoxItem >Male</ComboBoxItem>
-                        <ComboBoxItem >Female</ComboBoxItem>
-                        <ComboBoxItem >Other</ComboBoxItem>
-                    </ComboBox>
-                    <TextBlock Text="Age Group:  " TextAlignment="Right"  FontSize="18" Grid.Row="7" Grid.Column="1" Margin="0,5" />
-                    <ComboBox Name="combobox_AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+						<ComboBoxItem >Male</ComboBoxItem>
+						<ComboBoxItem >Female</ComboBoxItem>
+						<ComboBoxItem >Other</ComboBoxItem>
+					</ComboBox>
+					<TextBlock Text="Age Group:  " TextAlignment="Right"  FontSize="18" Grid.Row="7" Grid.Column="1" Margin="0,5" />
+					<ComboBox Name="combobox_AgeGroup"  IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
                   HorizontalContentAlignment="Center" Width="190" Height="40" Grid.ColumnSpan="1" Grid.Column="2" Grid.Row="7"
 				  FontSize="20" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="5">
-                        <ComboBoxItem >0-5</ComboBoxItem>
-                        <ComboBoxItem >6-11</ComboBoxItem>
-                        <ComboBoxItem >12-17</ComboBoxItem>
-                        <ComboBoxItem >18-23</ComboBoxItem>
-                        <ComboBoxItem >24-44</ComboBoxItem>
-                        <ComboBoxItem >45-54</ComboBoxItem>
-                        <ComboBoxItem >55-69</ComboBoxItem>
-                        <ComboBoxItem >70+</ComboBoxItem>
-                    </ComboBox>
+						<ComboBoxItem >0-5</ComboBoxItem>
+						<ComboBoxItem >6-11</ComboBoxItem>
+						<ComboBoxItem >12-17</ComboBoxItem>
+						<ComboBoxItem >18-23</ComboBoxItem>
+						<ComboBoxItem >24-44</ComboBoxItem>
+						<ComboBoxItem >45-54</ComboBoxItem>
+						<ComboBoxItem >55-69</ComboBoxItem>
+						<ComboBoxItem >70+</ComboBoxItem>
+					</ComboBox>
 
 
 
-                    <TextBlock Text="Ethnicity:  " TextAlignment="Right"  FontSize="18" Grid.Row="8" Grid.Column="1" Margin="0,5" />
-                    <ComboBox Name="combobox_ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                  HorizontalContentAlignment="Center" Width="190" Height="40"  Grid.Column="2" Grid.Row="8" FontSize="20" Margin="1,1,1,1" Grid.RowSpan="1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="6">
-                        <ComboBoxItem >African American</ComboBoxItem>
-                        <ComboBoxItem >Native/Alaskan</ComboBoxItem>
-                        <ComboBoxItem >Pacific Islander</ComboBoxItem>
-                        <ComboBoxItem >Asian</ComboBoxItem>
-                        <ComboBoxItem >Caucasian</ComboBoxItem>
-                        <ComboBoxItem >Hispanic</ComboBoxItem>
-                        <ComboBoxItem >Other</ComboBoxItem>
-                    </ComboBox>
+					<TextBlock Text="Ethnicity:  " TextAlignment="Right"  FontSize="18" Grid.Row="8" Grid.Column="1" Margin="0,5" />
+					<ComboBox Name="combobox_ethnicity" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                  HorizontalContentAlignment="Center" Width="190" Height="40"  Grid.Column="2" Grid.Row="8" FontSize="20" Margin="5.5,0,180.5,2" Grid.RowSpan="1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="6" Grid.ColumnSpan="2">
+						<ComboBoxItem >African American</ComboBoxItem>
+						<ComboBoxItem >Native/Alaskan</ComboBoxItem>
+						<ComboBoxItem >Pacific Islander</ComboBoxItem>
+						<ComboBoxItem >Asian</ComboBoxItem>
+						<ComboBoxItem >Caucasian</ComboBoxItem>
+						<ComboBoxItem >Hispanic</ComboBoxItem>
+						<ComboBoxItem >Other</ComboBoxItem>
+					</ComboBox>
+					<TextBlock Text="Client Creation Date:  " TextAlignment="Right"  FontSize="18" Grid.Row="9" Grid.Column="1" Margin="0,5" />
+					<DatePicker Name="date_ClientCreationDate" HorizontalAlignment="Center" VerticalAlignment="Center"  
+						HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="9" FontSize="20" Grid.ColumnSpan="3" Height="34" />
 
-                    <CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7">
-                        <TextBlock Name="block_HeadOfHousehold" Text="Head of Household" FontSize="18" />
-                    </CheckBox>
-                    <CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9">
-                        <TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" />
-                    </CheckBox>
-                    <CheckBox Name="check_ChangeHousehold"  Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_Household" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="300">
-                        <TextBlock Name="block_ChangeHousehold" Text="Change Household" FontSize="18" />
-                    </CheckBox>
-                    <CheckBox Name="check_UpdateHousehold" Grid.Column="4" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_UpdateHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="3016">
-                        <TextBlock Name="block_UpdateHousehold" Text="Update Household" FontSize="18" />
-                    </CheckBox>
-                    <TextBlock Text="Family Member OQ Number:  " TextAlignment="Center" FontSize="18" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                    <Border Grid.Row="13" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="1" Margin="0,3">
-                        <TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="10"/>
-                    </Border>
-                    <GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
+					<CheckBox Name="check_HeadOfHousehold" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Click="Change_HeadOfHousehold" Margin="0,10,0,4" Height="26" Width="178" KeyDown="useEnterAsTab" TabIndex="7">
+						<TextBlock Name="block_HeadOfHousehold" Text="Head of Household" FontSize="18" />
+					</CheckBox>
+					<CheckBox Name="check_FirstHouseholdMember" Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_NewHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="9">
+						<TextBlock Name="block_NewHousehold" Text="New Household" FontSize="18" />
+					</CheckBox>
+					<CheckBox Name="check_ChangeHousehold"  Grid.Column="2" Grid.Row="12" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_Household" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="300">
+						<TextBlock Name="block_ChangeHousehold" Text="Change Household" FontSize="18" />
+					</CheckBox>
+					<CheckBox Name="check_UpdateHousehold" Grid.Column="4" Grid.Row="10" Margin="0,5" HorizontalAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center"  Click="Change_UpdateHousehold" Height="30" Width="178" KeyDown="useEnterAsTab" TabIndex="3016">
+						<TextBlock Name="block_UpdateHousehold" Text="Update Household" FontSize="18" />
+					</CheckBox>
+					<TextBlock Text="Family Member OQ Number:  " TextAlignment="Center" FontSize="18" Grid.Row="13" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<Border Grid.Row="13" Grid.Column="2" BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" Grid.ColumnSpan="1" Margin="0,3">
+						<TextBox Name="textbox_FamilyMemberOQ" FontSize="18" Grid.Row="3" Grid.Column="2" Text="{Binding familyOQNumber, ElementName=ThisWindow}" Margin="0,-1,0,1" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="10"/>
+					</Border>
+					<GroupBox Name="PatientProblemsGroupBox" Header="Patient Problems" HorizontalAlignment="Left" Margin="5,0,0,0"
 		  VerticalAlignment="Top" Height="236" Width="352" Grid.ColumnSpan="2" Grid.RowSpan="6" Grid.Column="3" Grid.Row="3" TabIndex="11">
-                        <GroupBox.Resources>
-                            <ResourceDictionary>
-                                <Style TargetType="CheckBox">
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <EventSetter Event="KeyDown" Handler="useEnterAsTab" />
-                                </Style>
-                            </ResourceDictionary>
-                        </GroupBox.Resources>
-                        <UniformGrid Name="PatientProblemsCheckBoxes" Columns="2" Rows="10">
-                            <CheckBox x:Name="DepressionCheckBox"  Content=     "Depression" TabIndex="11" KeyDown="useEnterAsTab"/>
-                            <CheckBox x:Name="LossCheckBox" Content=            "Bereavement/Loss" TabIndex="12"/>
-                            <CheckBox x:Name="CommunicationCheckBox" Content=   "Communication" TabIndex="13" />
-                            <CheckBox x:Name="DomesticViolenceCheckBox" Content="Domestic Violence" TabIndex="14" />
-                            <CheckBox x:Name="HoplessnessCheckBox" Content=     "Hopelessness" TabIndex="15" />
-                            <CheckBox x:Name="WorkProblemsCheckBox" Content=    "Work Problems" TabIndex="16" />
-                            <CheckBox x:Name="ParentProblemsCheckBox" Content=  "Parent Problems" TabIndex="17" />
-                            <CheckBox x:Name="SubstanceAbuseCheckBox" Content=  "Substance Abuse" TabIndex="18" />
-                            <CheckBox x:Name="SchoolProblemsCheckBox" Content=  "Problems w/ School" TabIndex="19" />
-                            <CheckBox x:Name="MarriageRelationCheckBox" Content="Marriage/Relationship/Family" FontSize="11" TabIndex="20" />
-                            <CheckBox x:Name="HurtSelfThoughtsCheckBox" Content="Thoughts of Hurting Self" TabIndex="21" />
-                            <CheckBox x:Name="AngryFeelingsCheckBox" Content=   "Angry Feelings" TabIndex="22" />
-                            <CheckBox x:Name="SexualAbuseCheckBox" Content=     "Sexual Abuse" TabIndex="23" />
-                            <CheckBox x:Name="EmotionalAbuseCheckBox" Content=  "Emotional Abuse" TabIndex="24"/>
-                            <CheckBox x:Name="PhysicalAbuseCheckBox" Content=   "Physical Abuse" TabIndex="25" />
-                            <CheckBox x:Name="LawProblemsCheckBox" Content=     "Problems with the Law" TabIndex="26"/>
-                            <CheckBox x:Name="UnhappyWithLifeCheckBox" Content= "Unhappy with Life" TabIndex="27"/>
-                            <CheckBox x:Name="AnxietyCheckBox" Content=         "Anxiety" TabIndex="28"/>
-                            <CheckBox x:Name="OtherCheckBox" Content=           "Other" TabIndex="29" />
-                        </UniformGrid>
-                    </GroupBox>
+						<GroupBox.Resources>
+							<ResourceDictionary>
+								<Style TargetType="CheckBox">
+									<Setter Property="VerticalContentAlignment" Value="Center"/>
+									<EventSetter Event="KeyDown" Handler="useEnterAsTab" />
+								</Style>
+							</ResourceDictionary>
+						</GroupBox.Resources>
+						<UniformGrid Name="PatientProblemsCheckBoxes" Columns="2" Rows="10">
+							<CheckBox x:Name="DepressionCheckBox"  Content=     "Depression" TabIndex="11" KeyDown="useEnterAsTab"/>
+							<CheckBox x:Name="LossCheckBox" Content=            "Bereavement/Loss" TabIndex="12"/>
+							<CheckBox x:Name="CommunicationCheckBox" Content=   "Communication" TabIndex="13" />
+							<CheckBox x:Name="DomesticViolenceCheckBox" Content="Domestic Violence" TabIndex="14" />
+							<CheckBox x:Name="HoplessnessCheckBox" Content=     "Hopelessness" TabIndex="15" />
+							<CheckBox x:Name="WorkProblemsCheckBox" Content=    "Work Problems" TabIndex="16" />
+							<CheckBox x:Name="ParentProblemsCheckBox" Content=  "Parent Problems" TabIndex="17" />
+							<CheckBox x:Name="SubstanceAbuseCheckBox" Content=  "Substance Abuse" TabIndex="18" />
+							<CheckBox x:Name="SchoolProblemsCheckBox" Content=  "Problems w/ School" TabIndex="19" />
+							<CheckBox x:Name="MarriageRelationCheckBox" Content="Marriage/Relationship/Family" FontSize="11" TabIndex="20" />
+							<CheckBox x:Name="HurtSelfThoughtsCheckBox" Content="Thoughts of Hurting Self" TabIndex="21" />
+							<CheckBox x:Name="AngryFeelingsCheckBox" Content=   "Angry Feelings" TabIndex="22" />
+							<CheckBox x:Name="SexualAbuseCheckBox" Content=     "Sexual Abuse" TabIndex="23" />
+							<CheckBox x:Name="EmotionalAbuseCheckBox" Content=  "Emotional Abuse" TabIndex="24"/>
+							<CheckBox x:Name="PhysicalAbuseCheckBox" Content=   "Physical Abuse" TabIndex="25" />
+							<CheckBox x:Name="LawProblemsCheckBox" Content=     "Problems with the Law" TabIndex="26"/>
+							<CheckBox x:Name="UnhappyWithLifeCheckBox" Content= "Unhappy with Life" TabIndex="27"/>
+							<CheckBox x:Name="AnxietyCheckBox" Content=         "Anxiety" TabIndex="28"/>
+							<CheckBox x:Name="OtherCheckBox" Content=           "Other" TabIndex="29" />
+						</UniformGrid>
+					</GroupBox>
 
-                    <TextBlock Text="Household Population:  " TextAlignment="Right"  FontSize="16" Grid.Row="11" Grid.Column="3" Height="30" Grid.ColumnSpan="1" Margin="0" VerticalAlignment="Center"/>
-                    <Border Grid.Row="11" Grid.Column="4"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" >
-                        <TextBox Name="textbox_HouseholdPopulation" FontSize="18"  Text="{Binding HouseholdPopulation, ElementName=ThisWindow}" PreviewTextInput="txt_NumberOnlyCheck" IsEnabled="False" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="30"/>
-                    </Border>
-                    <TextBlock Text="County:  " TextAlignment="Right" FontSize="18" Grid.Row="12" Grid.Column="3" Height="30" Padding="83, 0, 0, 0"/>
+					<TextBlock Text="Household Population:  " TextAlignment="Right"  FontSize="16" Grid.Row="11" Grid.Column="3" Height="30" Grid.ColumnSpan="1" Margin="0" VerticalAlignment="Center"/>
+					<Border Grid.Row="11" Grid.Column="4"  Height="35"   BorderThickness="3, 3, 3, 3" BorderBrush="AliceBlue" >
+						<TextBox Name="textbox_HouseholdPopulation" FontSize="18"  Text="{Binding HouseholdPopulation, ElementName=ThisWindow}" PreviewTextInput="txt_NumberOnlyCheck" IsEnabled="False" TextChanged="CheckForValidInput" KeyDown="useEnterAsTab" TabIndex="30"/>
+					</Border>
+					<TextBlock Text="County:  " TextAlignment="Right" FontSize="18" Grid.Row="12" Grid.Column="3" Height="30" Padding="83, 0, 0, 0"/>
 
-                    <ComboBox Name="combobox_County" IsReadOnly="True" HorizontalAlignment="Center" 
+					<ComboBox Name="combobox_County" IsReadOnly="True" HorizontalAlignment="Center" 
                   VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="190" Height="40" Grid.Column="4" 
                   Grid.Row="12" FontSize="20" Margin="1,1,1,1" Grid.ColumnSpan="1" IsEnabled="False" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="31">
-                        <ComboBoxItem >Weber</ComboBoxItem>
-                        <ComboBoxItem >Davis</ComboBoxItem>
-                        <ComboBoxItem >DCLC</ComboBoxItem>
-                        <ComboBoxItem >Morgan</ComboBoxItem>
-                        <ComboBoxItem >Box Elder</ComboBoxItem>
-                        <ComboBoxItem >Other</ComboBoxItem>
-                    </ComboBox>
-                    <TextBlock Text="Income Bracket:" TextAlignment="Right" FontSize="18" Grid.Row="13" Grid.Column="3" Height="30" Padding="23, 0, 0, 0"/>
-                    <ComboBox Name="combobox_IncomeBracket" IsReadOnly="True" HorizontalAlignment="Center" 
+						<ComboBoxItem >Weber</ComboBoxItem>
+						<ComboBoxItem >Davis</ComboBoxItem>
+						<ComboBoxItem >DCLC</ComboBoxItem>
+						<ComboBoxItem >Morgan</ComboBoxItem>
+						<ComboBoxItem >Box Elder</ComboBoxItem>
+						<ComboBoxItem >Other</ComboBoxItem>
+					</ComboBox>
+					<TextBlock Text="Income Bracket:" TextAlignment="Right" FontSize="18" Grid.Row="13" Grid.Column="3" Height="30" Padding="23, 0, 0, 0"/>
+					<ComboBox Name="combobox_IncomeBracket" IsReadOnly="True" HorizontalAlignment="Center" 
                   VerticalAlignment="Center" HorizontalContentAlignment="Center" Width="190" Height="40" Grid.Column="4" 
                   Grid.Row="13" FontSize="20" IsEnabled="False" Margin="1,1,1,1" BorderThickness="2" KeyDown="useEnterAsTab" TabIndex="32">
-                        <ComboBoxItem >$0-9,999</ComboBoxItem>
-                        <ComboBoxItem >$10,000-14,999</ComboBoxItem>
-                        <ComboBoxItem >$15,000-24,000</ComboBoxItem>
-                        <ComboBoxItem >$25,000-34,999</ComboBoxItem>
-                        <ComboBoxItem >$35,000+</ComboBoxItem>
-                    </ComboBox>
+						<ComboBoxItem >$0-9,999</ComboBoxItem>
+						<ComboBoxItem >$10,000-14,999</ComboBoxItem>
+						<ComboBoxItem >$15,000-24,000</ComboBoxItem>
+						<ComboBoxItem >$25,000-34,999</ComboBoxItem>
+						<ComboBoxItem >$35,000+</ComboBoxItem>
+					</ComboBox>
 
-                    <Button Name="button_CancelClient" FontSize="18" Grid.Column="4" Grid.Row="15" Content="Cancel" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="Close_Window" TabIndex="34" Height="50" Width="100" />
-                    <Button Name="button_AddUpdateClient"  FontSize="18" Grid.Column="2" Grid.Row="15" Content="Add" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="False" TabIndex="33" Height="50" Width="100" />
-                    <Button Name="button_DeleteClient" FontSize="18" Grid.Column="3" Grid.Row="15" Content="Delete" Click="Delete_Client" Margin="0,0,10,0"  Height="50" Width="100"  />
-                </Grid>
-            </TabItem>
-            <TabItem Name="tab_ClientSessions"  Header="Client Sessions" Height="30">
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="AliceBlue" Offset="1"/>
-                            <GradientStop Color="#FFB5EEFF" Offset="0.407"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Sessions" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
-                    <DataGrid Name="grid_Sessions"  Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Refresh_SessionsGrid"
+					<Button Name="button_CancelClient" FontSize="18" Grid.Column="4" Grid.Row="15" Content="Cancel" Grid.ColumnSpan="1" Margin="10,0,0,0" Click="Close_Window" TabIndex="34" Height="50" Width="100" />
+					<Button Name="button_AddUpdateClient"  FontSize="18" Grid.Column="2" Grid.Row="15" Content="Add" Grid.ColumnSpan="1" Margin="0,0,10,0" IsEnabled="False" TabIndex="33" Height="50" Width="100" />
+					<Button Name="button_DeleteClient" FontSize="18" Grid.Column="3" Grid.Row="15" Content="Delete" Click="Delete_Client" Margin="0,0,10,0"  Height="50" Width="100"  />
+				</Grid>
+			</TabItem>
+			<TabItem Name="tab_ClientSessions"  Header="Client Sessions" Height="30">
+				<Grid>
+					<Grid.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="AliceBlue" Offset="1"/>
+							<GradientStop Color="#FFB5EEFF" Offset="0.407"/>
+						</LinearGradientBrush>
+					</Grid.Background>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock Text="Sessions" TextAlignment="Center"  VerticalAlignment="Center" FontSize="36" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" />
+					<DataGrid Name="grid_Sessions"  Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="14" CanUserResizeColumns="True" Loaded="Refresh_SessionsGrid"
                               AutoGenerateColumns="False" Margin="0.4,43,0.6,0.4" IsReadOnly="True" CanUserDeleteRows="False" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Staff First Name" Width="90" Binding="{Binding Path=StaffFirstName}"/>
-                            <DataGridTextColumn Header="Staff Last Name" Width="90" Binding="{Binding Path=StaffLastName}"/>
-                            <DataGridTextColumn Header="Appointment Start" Width="110" Binding="{Binding Path=AppointmentStart}"/>
-                            <DataGridTextColumn Header="Appointment End" Width="110" Binding="{Binding Path=AppointmentEnd}"/>
-                            <DataGridTextColumn Header="Expense Due Date" Width="110" Binding="{Binding Path=ExpenseDueDate}"/>
-                            <DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/>
-                            <DataGridTextColumn Header="Donor Bill" Width="63" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
-                            <DataGridTextColumn Header="Client Payment" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
-                            <DataGridTextColumn Header="Total Expense" Width="70" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
-                            <DataGridTextColumn Header="Expense Type" Width="110" Binding="{Binding Path=ExpenseType}"/>
-                            <DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button Name="button_AddSession" FontSize="18"  Content="Add" Click="AddNewSession" Grid.Column="2" Margin="79.944,23.667,82.667,0" Grid.Row="15" Height="50" Width="100" VerticalAlignment="Top" Grid.ColumnSpan="1" Grid.RowSpan="2"     />
-                </Grid>
-            </TabItem>
-        </TabControl>
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Staff First Name" Width="90" Binding="{Binding Path=StaffFirstName}"/>
+							<DataGridTextColumn Header="Staff Last Name" Width="90" Binding="{Binding Path=StaffLastName}"/>
+							<DataGridTextColumn Header="Appointment Start" Width="110" Binding="{Binding Path=AppointmentStart}"/>
+							<DataGridTextColumn Header="Appointment End" Width="110" Binding="{Binding Path=AppointmentEnd}"/>
+							<DataGridTextColumn Header="Expense Due Date" Width="110" Binding="{Binding Path=ExpenseDueDate}"/>
+							<DataGridTextColumn Header="Expense Paid Date" Width="110" Binding="{Binding Path=ExpensePaidDate}"/>
+							<DataGridTextColumn Header="Donor Bill" Width="63" Binding="{Binding Path=DonorBill, StringFormat={}{0:C}}"/>
+							<DataGridTextColumn Header="Client Payment" Width="63" Binding="{Binding Path=PatientBill, StringFormat={}{0:C}}"/>
+							<DataGridTextColumn Header="Total Expense" Width="70" Binding="{Binding Path=TotalExpense, StringFormat={}{0:C}}"/>
+							<DataGridTextColumn Header="Expense Type" Width="110" Binding="{Binding Path=ExpenseType}"/>
+							<DataGridTextColumn Header="Expense Description" Width="130" Binding="{Binding Path=ExpenseDescription}"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<Button Name="button_AddSession" FontSize="18"  Content="Add" Click="AddNewSession" Grid.Column="2" Margin="79.944,23.667,82.667,0" Grid.Row="15" Height="50" Width="100" VerticalAlignment="Top" Grid.ColumnSpan="1" Grid.RowSpan="2"     />
+				</Grid>
+			</TabItem>
+		</TabControl>
 
 
-    </ScrollViewer>
+	</ScrollViewer>
 </Window>

@@ -99,6 +99,9 @@ namespace FCS_Funding.Views.Windows
 					patientOQ = "1";
 				}
 
+				//	Prepopulate the date
+				date_ClientCreationDate.SelectedDate = DateTime.Now;
+
 				//	Focus for the dialog
 				textbox_ClientOQ.Focus();
 			}
@@ -129,6 +132,8 @@ namespace FCS_Funding.Views.Windows
 					textbox_RelationToHead.IsEnabled = false;
 					textbox_RelationToHead.Text = "";
 				}
+
+				date_ClientCreationDate.SelectedDate = editPatient.Time;
 
 				combobox_Gender.Text = editPatient.Gender;
 				combobox_AgeGroup.Text = editPatient.AgeGroup;
@@ -213,7 +218,6 @@ namespace FCS_Funding.Views.Windows
 						MessageBox.Show("The provided Family OQ Number does not exist. Please double-check the Family OQ Number.", "Family OQ Number Doesn't Exist", MessageBoxButton.OK, MessageBoxImage.Error);
 						return;
 					}
-
 				}
 
 				bool isHeadOfHouse = (bool)check_HeadOfHousehold.IsChecked;
@@ -308,6 +312,7 @@ namespace FCS_Funding.Views.Windows
 					patient.PatientGender = PatientGender;
 					patient.PatientAgeGroup = ageGroup;
 					patient.PatientEthnicity = ethnicGroup;
+					patient.NewClientIntakeHour = (System.DateTime)date_ClientCreationDate.SelectedDate;
 					patient.IsHead = check_HeadOfHousehold.IsChecked.Value;
 					UpdateProblems();
 					db.SaveChanges();
