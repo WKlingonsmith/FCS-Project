@@ -190,8 +190,8 @@ namespace FCS_Funding.Views.Windows
 			ethnicGroup = combobox_ethnicity.Text;
 			PatientGender = combobox_Gender.Text;
 
-			try
-			{
+            try
+            {
 				//	Check to see if there needs to be a new household made first
 				if ((bool)check_FirstHouseholdMember.IsChecked)
 				{
@@ -228,7 +228,18 @@ namespace FCS_Funding.Views.Windows
 				tempPatient.PatientAgeGroup = ageGroup;
 				tempPatient.PatientEthnicity = ethnicGroup;
 				tempPatient.PatientGender = PatientGender;
-				tempPatient.NewClientIntakeHour = DateTime.Now;
+                DateTime ClientIntakeDateTime;
+                bool result = DateTime.TryParse(date_ClientCreationDate.Text, out ClientIntakeDateTime);
+                if (result == true)
+                {
+                    tempPatient.NewClientIntakeHour = ClientIntakeDateTime;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid Client Creation date");
+                    return;
+                }
+                
 				tempPatient.IsHead = headOfHouse;
 				tempPatient.RelationToHead = (headOfHouse) ? "Head" : relationToHead;
 				db.Patients.Add(tempPatient);
