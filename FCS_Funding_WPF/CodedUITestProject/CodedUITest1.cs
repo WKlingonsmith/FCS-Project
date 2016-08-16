@@ -26,7 +26,7 @@ namespace CodedUITestProject
         public void CodedUITestMethod1()
         {
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
-            this.UIMap.TestInsertPatientGUI();
+            //this.UIMap.TestInsertPatientGUI();
         }
 
         #region Additional test attributes

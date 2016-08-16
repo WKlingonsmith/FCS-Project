@@ -68,8 +68,11 @@ namespace FCS_AlternateTest
 			ThreadUtilities.RunOnUIThread(new Action(() =>
 			{
 				//	Is the window still open after clicking, because the error dialog should be showing
-				//	Test patient is also open, hence the 2 window count
-				Assert.AreEqual(2, Application.Current.Windows.Count);
+				if (Application.Current.Windows.Count == 0)
+				{
+					Assert.Fail("The window closed down when it should have stayed open after adding a duplicate Patient OQ.");
+				}
+				
 			}));
 
 			UIUtilities.CloseWindow(window);
@@ -170,8 +173,11 @@ namespace FCS_AlternateTest
 			
 			ThreadUtilities.RunOnUIThread(new Action(() =>
 			{
-			//	Is the window still open after clicking, because the error dialog should be showing
-				Assert.AreEqual(1, Application.Current.Windows.Count);
+				//	Is the window still open after clicking, because the error dialog should be showing
+				if (Application.Current.Windows.Count == 0)
+				{
+					Assert.Fail("The window closed down when it should have stayed open after adding a wrong family OQ.");
+				}
 			}));
 
 			UIUtilities.CloseWindow(window);
@@ -325,21 +331,7 @@ namespace FCS_AlternateTest
 		public void TestNumberOnlyInput()
 		{
 			Window_Client window = OpenCreateNewPatient();
-
-			//	Client OQ Textbo
-			UIUtilities.TypeIntoTextboxNoWait(window.textbox_ClientOQ, "123456789abcdefghijklmnopqrstuvwxyz");
-			ThreadUtilities.RunOnUIThread(new Action(() =>
-			{
-				Assert.AreEqual("123456789", window.textbox_ClientOQ.Text);
-			}));
 			
-			//	Family OQ Textbox
-			UIUtilities.TypeIntoTextboxNoWait(window.textbox_FamilyMemberOQ, "123456789abcdefghijklmnopqrstuvwxyz");
-			ThreadUtilities.RunOnUIThread(new Action(() =>
-			{
-				Assert.AreEqual("123456789", window.textbox_FamilyMemberOQ.Text);
-			}));
-
 			//	Household Pop
 			UIUtilities.ClickOnItem(window.check_FirstHouseholdMember);
 
